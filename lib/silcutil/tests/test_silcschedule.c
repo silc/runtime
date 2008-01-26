@@ -1,6 +1,6 @@
 /* SilcSchedule tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 typedef void (*Callback)(void *context);
 
@@ -41,7 +41,7 @@ SILC_TASK_CALLBACK(timeout)
 SILC_TASK_CALLBACK(cont2)
 {
 #ifdef SILC_DEBUG
-  silc_schedule_stats(schedule);
+//  silc_schedule_stats(schedule);
 #endif /* SILC_DEBUG */
 
   SILC_LOG_DEBUG(("Adding %d fd tasks", NUM_FTASK - 10));
@@ -50,6 +50,8 @@ SILC_TASK_CALLBACK(cont2)
   for (i = 0; i < NUM_FTASK - 10; i++)
     silc_schedule_task_add_fd(schedule, i + 5, foo, (void *)(i + 5));
 #endif
+
+  silc_schedule_event_signal(schedule, "interrupted", NULL, schedule);
 }
 
 SILC_TASK_CALLBACK(cont)
@@ -57,7 +59,7 @@ SILC_TASK_CALLBACK(cont)
   int i;
 
 #ifdef SILC_DEBUG
-  silc_schedule_stats(schedule);
+//  silc_schedule_stats(schedule);
 #endif /* SILC_DEBUG */
 
   SILC_LOG_DEBUG(("Adding %d timeout tasks", NUM_TTASK / 3));
@@ -185,5 +187,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

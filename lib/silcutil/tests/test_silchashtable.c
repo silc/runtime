@@ -1,6 +1,6 @@
 /* Hash table tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 typedef struct entry_struct {
   char name[8];
@@ -313,5 +313,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

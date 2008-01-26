@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -89,6 +89,5 @@ SilcBool silc_unsetenv(const char *variable);
  *
  ***/
 SilcBool silc_clearenv(void);
-
 
 #endif /* SILCENV_H */

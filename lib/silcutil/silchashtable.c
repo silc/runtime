@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,10 +23,8 @@
    However, this is reliable and no data is lost at any point. If you know
    that you never have duplicate keys then this is as fast as any simple
    hash table. */
-/* $Id$ */
 
-#include "silc.h"
-#include "silchashtable.h"
+#include "silcruntime.h"
 
 /* Define to 1 if you want hash table debug enabled */
 #define SILC_HASH_TABLE_DEBUG 0

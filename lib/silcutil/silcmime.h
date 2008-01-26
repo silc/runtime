@@ -21,11 +21,11 @@
  *
  * DESCRIPTION
  *
- * Simple implementation of MIME.  Supports creation and parsing of simple
+ * Simple MIME Interface.  This API supports creation and parsing of simple
  * MIME messages, multipart MIME messages, including nested multiparts, and
  * MIME fragmentation and defragmentation.
  *
- * SILC Mime API is not thread-safe.  If the same MIME context must be
+ * SILC Mime API is not thread-safe.  If the same SilcMime context must be
  * used in multithreaded environment concurrency control must be employed.
  *
  ***/

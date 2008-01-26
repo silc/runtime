@@ -55,7 +55,7 @@
  *
  **************************************************************/
 
-#include "silc.h"
+#include "silcruntime.h"
 
 #ifdef HAVE_LONG_DOUBLE
 #define LDOUBLE long double

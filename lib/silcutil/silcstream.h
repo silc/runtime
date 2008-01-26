@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,9 @@
  * is defined that can be used to read from and write to the stream.  Any
  * other stream API derived from this API can use this same interface for
  * reading and writing.
+ *
+ * The SilcStream is an abstraction.  It can represent any stream, socket
+ * stream, file descriptor stream, packet stream, etc.
  *
  * Note that stream implementations usually are not thread-safe.  Always
  * verify whether a stream implementation is thread-safe by checking their

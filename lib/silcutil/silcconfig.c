@@ -4,7 +4,7 @@
 
   Author: Giovanni Giacobbi <giovanni@giacobbi.net>
 
-  Copyright (C) 2002 - 2007 Giovanni Giacobbi
+  Copyright (C) 2002 - 2008 Giovanni Giacobbi
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /* limit debug logging verbosity */
 #if 0

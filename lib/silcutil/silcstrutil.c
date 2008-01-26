@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2002 - 2007 Pekka Riikonen
+  Copyright (C) 2002 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
-#include "silcstrutil.h"
+#include "silcruntime.h"
 
 /* Concatenates the `src' into `dest'.  If `src_len' is more than the
    size of the `dest' (minus NULL at the end) the `src' will be

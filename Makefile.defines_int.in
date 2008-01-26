@@ -30,7 +30,7 @@ silc_install_prefix=@prefix@
 # Common libraries that are linked against the created executable
 #
 SILC_COMMON_LDFLAGS= @LDFLAGS@
-SILC_COMMON_LIBS= -lsilc @LIBS@
+SILC_COMMON_LIBS= @LIBS@
 
 #
 # Common compilation flags

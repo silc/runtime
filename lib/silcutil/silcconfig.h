@@ -34,10 +34,10 @@
  *
  * Now you can use the newly created Entity to register a group of expected
  * known options and sub-blocks, and then you can call the main parsing loop
- * with the silc_config_main() function. When silc_config_main() will 
- * return, if some error encoured the object file will point to the file 
- * that caused this error (this can be different from the originally 
- * opened file if it contained `Include' directives).  If no errors 
+ * with the silc_config_main() function. When silc_config_main() will
+ * return, if some error encoured the object file will point to the file
+ * that caused this error (this can be different from the originally
+ * opened file if it contained `Include' directives).  If no errors
  * encoured then the File objects will still point to the original file.
  *
  * While silc_config_main() will take care of destroying Entities before

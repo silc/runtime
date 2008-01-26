@@ -255,7 +255,7 @@ typedef SilcUInt32 * void *;
  *    Platform specific socket.  On POSIX compliant systems this is simply
  *    an integer, representing the socket. On other systems it is platform
  *    specific socket context.  Access it only through routines that can
- *    handle SilcSocket types, unless you know what you are doing.
+ *    handle SilcSocket types.
  *
  * SOURCE
  */

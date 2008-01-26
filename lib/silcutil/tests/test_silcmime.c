@@ -1,6 +1,6 @@
 /* SilcMime tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 #include "silcmime.h"
 
 int main(int argc, char **argv)
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     silc_log_set_debug_string("*mime*,*errno*");
   }
 
-  /* 
+  /*
    * Simple MIME test
    */
   SILC_LOG_DEBUG(("Allocating MIME message context"));
@@ -279,5 +279,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

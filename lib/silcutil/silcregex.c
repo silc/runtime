@@ -36,7 +36,7 @@
   - SilcStack support         compile/match without real memory allocations
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 #define RE_NREGS	128	/* number of registers available */
 
@@ -2315,7 +2315,7 @@ SilcBool silc_regex_compile(SilcRegex regexp, const char *regex,
     regexp->rstack = silc_stack_alloc(512, regexp->rstack);
 
   /* Compile */
-  ret = silc_re_compile_pattern((char *)regex, strlen(regex), regexp);
+  ret = silc_re_compile_pattern((unsigned char *)regex, strlen(regex), regexp);
   if (ret != SILC_OK)
     silc_set_errno(ret);
 
@@ -2359,8 +2359,8 @@ SilcBool silc_regex_match(SilcRegex regexp, const char *string,
     f |= RE_NOTEOL;
 
   /* Search */
-  ret = silc_re_search(regexp, (char *)string, string_len, 0, string_len,
-		       num_match ? &regs : NULL, f);
+  ret = silc_re_search(regexp, (unsigned char *)string, string_len, 0,
+		       string_len, num_match ? &regs : NULL, f);
   if (ret < 0) {
     if (ret == -1)
       silc_set_errno(SILC_ERR_NOT_FOUND);

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -230,7 +230,7 @@ SilcBool silc_socket_stream_set_info(SilcStream stream,
  *    more than `read_limit_bytes' of data.  The `limit_sec' and `limit_usec'
  *    specifies the time limit that is applied if `read_rate' and/or
  *    `read_limit_bytes' is reached.  If all arguments except `stream'
- *    are zero this resets the QoS from the socket stream, all QoS for
+ *    are zero this resets the QoS from the socket stream, all QoS data for
  *    this socket stream that may be pending will be cancelled.
  *
  ***/

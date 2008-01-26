@@ -16,7 +16,7 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
+/* $Id: silcbuffer.h,v 1.43 2008/01/15 06:36:54 priikone Exp $ */
 
 /****h* silcutil/SILC Buffer Interface
  *

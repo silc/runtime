@@ -1,6 +1,6 @@
 /* SilcList tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 struct foo {
   int i;
@@ -42,11 +42,11 @@ int main(int argc, char **argv)
   silc_list_add(list, f1);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
   SILC_LOG_DEBUG(("Delete the entry"));
-  silc_list_del(list, f1);  
+  silc_list_del(list, f1);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END)
     goto err;
@@ -55,11 +55,11 @@ int main(int argc, char **argv)
   silc_list_add(list, f1);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
   SILC_LOG_DEBUG(("Delete the entry"));
-  silc_list_del(list, f1);  
+  silc_list_del(list, f1);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END)
     goto err;
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
   silc_list_insert(list, NULL, f4);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
   silc_list_insert(list, f1, f4);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
   silc_list_insert(list, f3, f4);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -116,24 +116,24 @@ int main(int argc, char **argv)
   silc_list_insert(list, NULL, f4);
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
   silc_list_start(list);
   silc_list_del(list, f1);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
   silc_list_del(list, f3);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
   silc_list_del(list, f2);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -143,7 +143,7 @@ int main(int argc, char **argv)
 
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -151,7 +151,7 @@ int main(int argc, char **argv)
 
   silc_list_start(list);
   while ((f = silc_list_get(list)) != SILC_LIST_END) {
-    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next, 
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
   }
 
@@ -161,5 +161,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

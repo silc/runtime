@@ -1,6 +1,6 @@
 /* SilcDll tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 int main(int argc, char **argv)
 {
@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 
   SILC_LOG_DEBUG(("Load shared object /lib/libc.so.6"));
   dll = silc_dll_load("/lib/libc.so.6");
+  if (!dll)
+    dll = silc_dll_load("/lib64/libc.so.6");
   if (!dll) {
     SILC_LOG_DEBUG(("Cannot load: %s", silc_dll_error(dll)));
     goto err;
@@ -37,5 +39,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

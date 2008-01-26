@@ -21,9 +21,7 @@
  *
  * DESCRIPTION
  *
- * String manipulation utility routines.  These routines provides
- * various helper functions for encoding, decoding and otherwise
- * managing strings.
+ * Various string utility routines.
  *
  ***/
 

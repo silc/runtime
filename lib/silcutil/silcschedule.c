@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1998 - 2007 Pekka Riikonen
+  Copyright (C) 1998 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /************************** Types and definitions ***************************/
 
@@ -227,13 +226,15 @@ static void silc_schedule_task_remove(SilcSchedule schedule, SilcTask task)
 
     /* Delete even tasks */
     parent = silc_schedule_get_parent(schedule);
-    silc_hash_table_list(parent->events, &htl);
-    while (silc_hash_table_get(&htl, NULL, (void *)&etask)) {
-      silc_hash_table_del_by_context(parent->events, etask->event, etask);
-      silc_free(etask->event);
-      silc_free(etask);
+    if (parent->events) {
+      silc_hash_table_list(parent->events, &htl);
+      while (silc_hash_table_get(&htl, NULL, (void *)&etask)) {
+	silc_hash_table_del_by_context(parent->events, etask->event, etask);
+	silc_free(etask->event);
+	silc_free(etask);
+      }
+      silc_hash_table_list_reset(&htl);
     }
-    silc_hash_table_list_reset(&htl);
     return;
   }
 
@@ -880,10 +881,12 @@ SilcBool silc_schedule_task_del(SilcSchedule schedule, SilcTask task)
 
     /* Delete even tasks */
     parent = silc_schedule_get_parent(schedule);
-    silc_hash_table_list(parent->events, &htl);
-    while (silc_hash_table_get(&htl, NULL, (void *)&task))
-      task->valid = FALSE;
-    silc_hash_table_list_reset(&htl);
+    if (parent->events) {
+      silc_hash_table_list(parent->events, &htl);
+      while (silc_hash_table_get(&htl, NULL, (void *)&task))
+	task->valid = FALSE;
+      silc_hash_table_list_reset(&htl);
+    }
 
     SILC_SCHEDULE_UNLOCK(schedule);
     return TRUE;

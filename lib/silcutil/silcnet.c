@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1997 - 2007 Pekka Riikonen
+  Copyright (C) 1997 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /* Returns bound port from listener */
 
@@ -112,7 +111,7 @@ int silc_net_set_socket_opt(int sock, int level, int option, int on)
 int silc_net_get_socket_opt(int sock, int level, int option,
 			    void *optval, int *opt_len)
 {
-  int ret = getsockopt(sock, level, option, optval, opt_len);
+  int ret = getsockopt(sock, level, option, optval, (unsigned int *)opt_len);
   if (ret < 0)
     silc_set_errno_posix(errno);
   return ret;
@@ -383,7 +382,8 @@ SilcBool silc_net_check_host_by_sock(SilcSocket sock, char **hostname,
 				     char **ip)
 {
   char host[1024];
-  int rval, len;
+  int rval;
+  unsigned int len;
 
 #ifdef HAVE_IPV6
   struct sockaddr_storage remote;
@@ -462,7 +462,8 @@ SilcBool silc_net_check_local_by_sock(SilcSocket sock, char **hostname,
 				      char **ip)
 {
   char host[1024];
-  int rval, len;
+  int rval;
+  unsigned int len;
 
 #ifdef HAVE_IPV6
   struct sockaddr_storage local;
@@ -540,7 +541,7 @@ SilcUInt16 silc_net_get_remote_port(SilcSocket sock)
 {
 #ifdef HAVE_IPV6
   struct sockaddr_storage remote;
-  int len;
+  unsigned int len;
   char s[NI_MAXSERV];
 
   memset(&remote, 0, sizeof(remote));
@@ -555,7 +556,7 @@ SilcUInt16 silc_net_get_remote_port(SilcSocket sock)
   return atoi(s);
 #else
   struct sockaddr_in remote;
-  int len;
+  unsigned int len;
 
   memset(&remote, 0, sizeof(remote));
   len = sizeof(remote);
@@ -572,7 +573,7 @@ SilcUInt16 silc_net_get_local_port(SilcSocket sock)
 {
 #ifdef HAVE_IPV6
   struct sockaddr_storage local;
-  int len;
+  unsigned int len;
   char s[NI_MAXSERV];
 
   memset(&local, 0, sizeof(local));
@@ -587,7 +588,7 @@ SilcUInt16 silc_net_get_local_port(SilcSocket sock)
   return atoi(s);
 #else
   struct sockaddr_in local;
-  int len;
+  unsigned int len;
 
   memset(&local, 0, sizeof(local));
   len = sizeof(local);

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /* Load shared object */
 
@@ -48,7 +48,9 @@ SilcDll silc_dll_load(const char *object_path)
 void silc_dll_close(SilcDll dll)
 {
 #ifdef SILC_UNIX
+#if defined(HAVE_DLOPEN)
   dlclose(dll);
+#endif /* HAVE_DLOPEN */
 #elif SILC_WIN32
   FreeLibrary(dll);
 #else
@@ -61,7 +63,9 @@ void silc_dll_close(SilcDll dll)
 void *silc_dll_getsym(SilcDll dll, const char *symbol)
 {
 #ifdef SILC_UNIX
+#if defined(HAVE_DLOPEN)
   return (void *)dlsym(dll, symbol);
+#endif /* HAVE_DLOPEN */
 #elif SILC_WIN32
   return (void *)GetProcAddress(dll, symbol);
 #else
@@ -77,7 +81,9 @@ void *silc_dll_getsym(SilcDll dll, const char *symbol)
 const char *silc_dll_error(SilcDll dll)
 {
 #ifdef SILC_UNIX
+#if defined(HAVE_DLOPEN)
   return dlerror();
+#endif /* HAVE_DLOPEN */
 #elif SILC_WIN32
   return NULL;
 #else

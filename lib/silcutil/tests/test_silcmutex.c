@@ -1,7 +1,7 @@
 /* Locking performance tests.  Gives locsk&unlocks/second. */
 /* Version 1.0 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 typedef struct {
   SilcThread thread;
@@ -84,6 +84,7 @@ int main(int argc, char **argv)
   sleep(1);
   val = rdtsc() - val;
   val /= 1000;			/* Gives us milliseconds */
+  cpu_freq = val;
   fprintf(stderr, "CPU frequency: %llu\n", val);
 
   max_locks = MAX_LOCKS;
@@ -179,5 +180,5 @@ int main(int argc, char **argv)
 
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

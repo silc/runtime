@@ -3,7 +3,7 @@
 #
 #  Author: Pekka Riikonen <priikone@silcnet.org>
 #
-#  Copyright (C) 2000 - 2007 Pekka Riikonen
+#  Copyright (C) 2000 - 2008 Pekka Riikonen
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -23,26 +23,14 @@ else
 if SILC_SYMBIAN
 SUBDIRS=symbian
 else
-SUBDIRS=unix
+SUBDIRS=unix tests
 endif
 endif
 
-#ifdef SILC_DIST_TOOLKIT
-DIST_SUBDIRS=win32 symbian unix
-#else !SILC_DIST_TOOLKIT
-#ifdef SILC_DIST_CLIENT
-DIST_SUBDIRS=win32 unix
-#else !SILC_DIST_CLIENT
-#ifdef SILC_DIST_SERVER
-DIST_SUBDIRS=unix
-#endif SILC_DIST_SERVER
-#endif SILC_DIST_CLIENT
-#endif SILC_DIST_TOOLKIT
+DIST_SUBDIRS=win32 symbian unix tests
 
-#ifdef SILC_DIST_TOOLKIT
 SILC_DIST_SOURCE = stacktrace.c
 SILC_DIST_HEADER = stacktrace.h
-#endif SILC_DIST_TOOLKIT
 
 noinst_LTLIBRARIES = libsilcutil.la
 
@@ -77,9 +65,9 @@ libsilcutil_la_SOURCES = \
 	silcbitops.c	\
 	silcerrno.c	\
 	silcgetopt.c	\
-	silcregex.c
+	silcregex.c	\
+	silcthreadqueue.c
 
-#ifdef SILC_DIST_TOOLKIT
 include_HEADERS =	\
 	$(SILC_DIST_HEADER) \
 	silcbuffer.h	\
@@ -128,10 +116,10 @@ include_HEADERS =	\
 	silcbitops.h	\
 	silcerrno.h	\
 	silcgetopt.h	\
-	silcregex.h
+	silcregex.h	\
+	silcthreadqueue.h
 
-SILC_EXTRA_DIST = tests
-#endif SILC_DIST_TOOLKIT
+SILC_EXTRA_DIST =
 
 EXTRA_DIST = *.h $(SILC_EXTRA_DIST)
 

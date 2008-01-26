@@ -370,6 +370,11 @@ SilcBool silc_regex_buffer(SilcBuffer buffer, const char *regex,
  *    using the SILC_STR_REGEX in SILC Buffer Format API directly.  This
  *    function only provides basic matching and substitution.
  *
+ * EXAMPLE
+ *
+ *    // Replace all foos with bar on all lines in the buffer
+ *    silc_subst(buffer, "s/foo/bar/g");
+ *
  ***/
 SilcBool silc_subst(SilcBuffer buffer, const char *subst);
 

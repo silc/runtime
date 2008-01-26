@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 SILC_TASK_CALLBACK(silc_fsm_run);
 SILC_TASK_CALLBACK(silc_fsm_finish_fsm);

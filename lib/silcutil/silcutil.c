@@ -20,9 +20,8 @@
  * These are general utility functions that doesn't belong to any specific
  * group of routines.
  */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /* Gets line from a buffer. Stops reading when a newline or EOF occurs.
    This doesn't remove the newline sign from the destination buffer. The
@@ -256,14 +255,14 @@ char *silc_fingerprint(const unsigned char *data, SilcUInt32 data_len)
     return NULL;
 
   for (i = 0; i < data_len; i++) {
-    silc_snprintf(cp, len, "%02X", data[i]);
+    silc_snprintf((char *)cp, len, "%02X", data[i]);
     cp += 2;
     len -= 2;
 
     if ((i + 1) % 2 == 0)
-      silc_snprintf(cp++, len--, " ");
+      silc_snprintf((char *)cp++, len--, " ");
     if ((i + 1) % 10 == 0)
-      silc_snprintf(cp++, len--, " ");
+      silc_snprintf((char *)cp++, len--, " ");
   }
   i--;
   if ((i + 1) % 10 == 0)
@@ -271,7 +270,7 @@ char *silc_fingerprint(const unsigned char *data, SilcUInt32 data_len)
   if ((i + 1) % 2 == 0)
     *(--cp) = '\0';
 
-  return fingerprint;
+  return (char *)fingerprint;
 }
 
 /* Return TRUE if the `data' is ASCII string. */

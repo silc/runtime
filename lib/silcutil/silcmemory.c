@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 #ifndef SILC_STACKTRACE
 

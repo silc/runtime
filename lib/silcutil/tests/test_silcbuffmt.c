@@ -1,6 +1,6 @@
 /* Buffer formatting tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 int print(SilcStack stack, SilcBuffer buf, void *value, void *context)
 {
@@ -153,5 +153,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

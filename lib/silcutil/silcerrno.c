@@ -17,7 +17,7 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /* Get last error */
 
@@ -44,8 +44,6 @@ void silc_set_errno(SilcResult error)
       return;
   }
 
-  SILC_LOG_DEBUG(("Error: %s (%d)", silc_errno_string(error), error));
-
   tls->error_reason[0] = '\0';
   tls->error = error;
 }
@@ -58,8 +56,6 @@ void silc_set_errno_nofail(SilcResult error)
 
   if (!tls)
     return;
-
-  SILC_LOG_DEBUG(("Error: %s (%d)", silc_errno_string(error), error));
 
   tls->error_reason[0] = '\0';
   tls->error = error;
@@ -83,9 +79,6 @@ void silc_set_errno_reason(SilcResult error, const char *format, ...)
   silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
   va_end(va);
 
-  SILC_LOG_DEBUG(("Error: %s (%d): %s", silc_errno_string(error), error,
-		  tls->error_reason));
-
   tls->error = error;
 }
 
@@ -102,9 +95,6 @@ void silc_set_errno_reason_nofail(SilcResult error, const char *format, ...)
   va_start(va, format);
   silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
   va_end(va);
-
-  SILC_LOG_DEBUG(("Error: %s (%d): %s", silc_errno_string(error), error,
-		  tls->error_reason));
 
   tls->error = error;
 }

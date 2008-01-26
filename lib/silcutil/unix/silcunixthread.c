@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /**************************** SILC Thread API *******************************/
 
@@ -343,6 +342,7 @@ SilcBool silc_cond_timedwait(SilcCond cond, SilcMutex mutex,
 #if (defined(SILC_THREADS) && defined(HAVE_PTHREAD_KEY_CREATE) && \
      defined(HAVE_PTHREAD_ONCE))
 
+static SilcBool key_set = FALSE;
 static pthread_key_t key;
 static pthread_once_t key_once = PTHREAD_ONCE_INIT;
 
@@ -355,6 +355,7 @@ static void silc_thread_tls_alloc(void)
 {
   if (pthread_key_create(&key, silc_thread_tls_destructor))
     SILC_LOG_ERROR(("Error creating Thread-local storage"));
+  key_set = TRUE;
 }
 
 SilcTls silc_thread_tls_init(void)
@@ -379,6 +380,8 @@ SilcTls silc_thread_tls_init(void)
 
 SilcTls silc_thread_get_tls(void)
 {
+  if (!key_set)
+    return NULL;
   return pthread_getspecific(key);
 }
 

@@ -1,6 +1,6 @@
 /* SilcTimer tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 SilcSchedule schedule;
 SilcTimerStruct timer;
@@ -40,9 +40,9 @@ SILC_TASK_CALLBACK(check)
     silc_timer_start_time(&timer, &st);
     silc_timer_value_time(&timer, &t);
     silc_time_universal_string(&st, ts, sizeof(ts));
-    SILC_LOG_DEBUG(("Start time: %s", ts));    
+    SILC_LOG_DEBUG(("Start time: %s", ts));
     silc_time_universal_string(&t, ts, sizeof(ts));
-    SILC_LOG_DEBUG(("End time: %s", ts));    
+    SILC_LOG_DEBUG(("End time: %s", ts));
 
     success = TRUE;
     silc_schedule_stop(schedule);
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     silc_log_set_debug_string("*timer*,*errno*");
   }
 
-  schedule = silc_schedule_init(0, NULL, NULL);
+  schedule = silc_schedule_init(0, NULL, NULL, NULL);
   if (!schedule)
     goto err;
 
@@ -90,5 +90,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

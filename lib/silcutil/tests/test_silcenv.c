@@ -1,6 +1,6 @@
 /* environment tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 int main(int argc, char **argv)
 {
@@ -21,14 +21,9 @@ int main(int argc, char **argv)
     goto err;
   success = TRUE;
 
-  for (i = 0; i < SILC_ERR_MAX + 10; i++) {
-    fprintf(stderr, "%d: ", i);
-    silc_set_errno(i);
-  }
-
  err:
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

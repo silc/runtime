@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1998 - 2007 Pekka Riikonen
+  Copyright (C) 1998 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,16 +33,16 @@
  *
  * The SILC Scheduler is designed to be the sole main loop of the application
  * so that the application does not need any other main loop.  However,
- * SILC Scheduler does support running the scheduler only once, so that the
- * scheduler does not block, and thus providing a possiblity that some
+ * SILC Scheduler does support running the scheduler only one iteration, so
+ * that the scheduler does not block, and thus providing a possiblity that some
  * external main loop is run over the SILC Scheduler.
  *
- * Typical application first initializes the scheduler and then registers
+ * Typical application first initializes the scheduler and then register
  * the very first tasks to the scheduler and then run the scheduler.  After
  * the scheduler's run function returns the application is considered to be
  * ended.
  *
- * On WIN32 systems the SILC Scheduler is too designed to work as the main
+ * On Windows systems the SILC Scheduler is too designed to work as the main
  * loop of the GUI application. It can handle all Windows messages and
  * it dispatches them from the scheduler, and thus makes it possible to
  * create GUI applications. The scheduler can also handle all kinds of
@@ -57,7 +57,8 @@
  * which makes it possible to allocate several schedulers for one application.
  * Since the scheduler must be run in single-thread, a multi-threaded
  * application could be created by allocating own scheduler for each of the
- * worker threads.
+ * worker threads.  Each scheduler in worker thread should be a child
+ * scheduler created from the main thread's parent schedule.
  *
  ***/
 

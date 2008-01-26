@@ -17,7 +17,7 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /************************** Types and definitions ***************************/
 
@@ -42,7 +42,7 @@ SilcDir silc_dir_open(const char *name)
 {
   SilcDir dir;
 
-  if (!name || !strlen(!name)) {
+  if (!name || !strlen(name)) {
     silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
     return NULL;
   }

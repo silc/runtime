@@ -21,7 +21,7 @@
  *
  * DESCRIPTION
  *
- * Implementation of data stack which can be used to do fast allocations from
+ * Data stack interface which can be used to do fast allocations from
  * the stack.  Basically SilcStack is a pre-allocated memory pool system
  * which allows fast memory allocation for routines and applications that
  * frequently allocate small amounts of memory.  Other advantage of this
@@ -163,7 +163,7 @@ void silc_stack_free(SilcStack stack);
  *
  * DESCRIPTION
  *
- *    Push the top of the stack down which becomes the new top of the stack.
+ *    Push the top of the stack and add new stack frame on top of the stack.
  *    For every silc_stack_push call there must be silc_stack_pop call.  All
  *    allocations between these two calls will be done from the top of the
  *    stack and all allocated memory is freed after the next silc_stack_pop
@@ -223,8 +223,8 @@ SilcUInt32 silc_stack_push(SilcStack stack, SilcStackFrame *frame);
  *
  * DESCRIPTION
  *
- *    Pop the top of the stack which removes the previous stack frame and
- *    becomes the top of the stack.  After popping, memory allocated in
+ *    Pop the top of the stack to remove the previous stack frame and use
+ *    previous frame as top of the stack.  After popping, memory allocated in
  *    the old frame is freed.  For each silc_stack_push call there must be
  *    silc_stack_pop call to free all memory (in reality any memory is not
  *    freed but within the stack it is).  This returns the stack pointer of
@@ -295,7 +295,8 @@ void *silc_stack_malloc(SilcStack stack, SilcUInt32 size);
  * NOTES
  *
  *    This function should be used only if low level memory allocation with
- *    SilcStack is needed.  Instead, silc_srealloc could be used.
+ *    SilcStack is needed.  Instead, silc_srealloc could be used which can
+ *    handle failed reallocation by allocating new block.
  *
  ***/
 void *silc_stack_realloc(SilcStack stack, SilcUInt32 old_size,

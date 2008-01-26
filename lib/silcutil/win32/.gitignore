@@ -1,2 +1,8 @@
 Makefile
-Makefile.in
+*.in
+*.am
+*.o
+*.lo
+*.la
+*.a
+*.pc

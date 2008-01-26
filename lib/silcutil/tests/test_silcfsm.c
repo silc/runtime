@@ -1,6 +1,6 @@
 /* SILC FSM tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 #include "silcfsm.h"
 
 typedef void (*Callback)(void *context);
@@ -454,7 +454,7 @@ int main(int argc, char **argv)
   }
 
   SILC_LOG_DEBUG(("Allocating scheduler"));
-  schedule = silc_schedule_init(0, NULL, NULL);
+  schedule = silc_schedule_init(0, NULL, NULL, NULL);
 
   f = silc_calloc(1, sizeof(*f));
   if (!f)
@@ -482,5 +482,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

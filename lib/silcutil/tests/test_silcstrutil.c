@@ -1,7 +1,7 @@
 /* UTF-8 decoding tests */
 /* Other string util tests too */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 #define utf8fail(n, data, len)			\
 const unsigned char u##n[] = (data);		\
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
   /* To UTF-8 */
   l = silc_utf8_encoded_len(s3, strlen(s3), SILC_STRING_LDAP_DN);
   if (!l)
-    goto err;  
+    goto err;
   s4 = silc_calloc(l + 1, sizeof(*s4));
   silc_utf8_encode(s3, strlen(s3), SILC_STRING_LDAP_DN, s4, l);
   SILC_LOG_DEBUG(("utf8 = %s", s4));
@@ -139,13 +139,13 @@ int main(int argc, char **argv)
   s2 = "PÄIVÄÄ VUAN YRJÖ";
   l = silc_utf8_encoded_len(s1, strlen(s1), SILC_STRING_LOCALE);
   if (!l)
-    goto err;  
+    goto err;
   s3 = silc_calloc(l + 1, sizeof(*s3));
   silc_utf8_encode(s1, strlen(s1), SILC_STRING_LOCALE, s3, l);
 
   l = silc_utf8_encoded_len(s2, strlen(s2), SILC_STRING_LOCALE);
   if (!l)
-    goto err;  
+    goto err;
   s4 = silc_calloc(l + 1, sizeof(*s4));
   silc_utf8_encode(s2, strlen(s2), SILC_STRING_LOCALE, s4, l);
 
@@ -192,5 +192,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

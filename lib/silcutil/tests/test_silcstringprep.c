@@ -1,6 +1,6 @@
 /* Stringprep tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 typedef struct {
   const char *comment;
@@ -30,7 +30,7 @@ const test_st tests[] = {
   {"Locale test",
    "Pהivהה", "pהivהה", 0, SILC_STRING_LOCALE},
   {"Locale test2",
-   "#צהצצ/&#\\#(&(&#(.הצהִײהִײִײ^'", 
+   "#צהצצ/&#\\#(&(&#(.הצהִײהִײִײ^'",
    "#צהצצ/&#\\#(&(&#(.הצההצההצהצ^'", 0, SILC_STRING_LOCALE},
 
   /* Some libidn tests */
@@ -64,7 +64,7 @@ const test_st tests_norm[] = {
   {"Locale test",
    "Pהivהה", "pהivהה", 0, SILC_STRING_LOCALE},
   {"Locale test2",
-   "#צהצצ/&#\\#(&(&#(.הצהִײהִײִײ^'", 
+   "#צהצצ/&#\\#(&(&#(.הצהִײהִײִײ^'",
    "#צהצצ/&#\\#(&(&#(.הצההצההצהצ^'", 0, SILC_STRING_LOCALE},
 };
 
@@ -163,5 +163,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

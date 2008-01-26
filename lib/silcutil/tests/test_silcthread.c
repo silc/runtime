@@ -1,6 +1,6 @@
 /* SilcThreadPool tests */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 SilcSchedule schedule;
 
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     silc_log_set_debug_string("*thread*,*errno*");
   }
 
-  schedule = silc_schedule_init(0, NULL, NULL);
+  schedule = silc_schedule_init(0, NULL, NULL, NULL);
   if (!schedule)
     goto err;
 
@@ -103,5 +103,5 @@ int main(int argc, char **argv)
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
 
-  return success;
+  return !success;
 }

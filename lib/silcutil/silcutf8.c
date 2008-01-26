@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2004 - 2007 Pekka Riikonen
+  Copyright (C) 2004 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,8 +17,7 @@
 
 */
 
-#include "silc.h"
-#include "silcutf8.h"
+#include "silcruntime.h"
 
 /* Encodes the string `bin' of which encoding is `bin_encoding' to the
    UTF-8 encoding into the buffer `utf8' which is of size of `utf8_size'.
@@ -508,7 +507,7 @@ SilcUInt32 silc_utf8_decode(const unsigned char *utf8, SilcUInt32 utf8_len,
 	      if (enclen + 3 > bin_size)
 		goto overflow;
 	      bin[enclen] = '\\';
-	      silc_snprintf(bin + enclen + 1, 3, "%02X", cv);
+	      silc_snprintf((char *)bin + enclen + 1, 3, "%02X", cv);
 	    }
 	    enclen += 3;
 	    continue;

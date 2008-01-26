@@ -1,9 +1,9 @@
 #
-#  silc.m4
+#  srt.m4
 #
 #  Author: Pekka Riikonen <priikone@silcnet.org>
 #
-#  Copyright (C) 2007 Pekka Riikonen
+#  Copyright (C) 2007 - 2008 Pekka Riikonen
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -20,11 +20,11 @@
 # Usage: SILC_SYSTEM_IS_SMP([ACTION-IF-FOUND] [, ACTION-IF-NOT-FOUND]
 #                           [, ACTION-IF-NOT-DETECTED])
 #
-# The ACTION-IF-NOT-DETECTED is called if we could not detect whether or 
+# The ACTION-IF-NOT-DETECTED is called if we could not detect whether or
 # not the system is SMP.
 #
 # x_is_smp variable is set to true or false as a result for calling this
-# function.  Caller may use the variable to check for the result in the 
+# function.  Caller may use the variable to check for the result in the
 # code.
 #
 AC_DEFUN([SILC_SYSTEM_IS_SMP],
@@ -77,54 +77,71 @@ AC_DEFUN([SILC_SYSTEM_IS_SMP],
 
 # Function to check for CPU feature flags.
 #
-# Usage: SILC_CPU_FLAG(flag [, ACTION-IF-FOUND] [, ACTION-IF-NOT-FOUND])
+# Usage: SILC_CPU_FLAG(flag, enable, [, ACTION-IF-FOUND]
+#                      [, ACTION-IF-NOT-FOUND])
 #
 # x_have_cpu_<flag> variable is set to true or false value as a result for
 # calling this function for the <flag>.  Caller may use the variable to
-# check the result in the code.
+# check the result in the code.  If <enable> is true this will add
+# AC_ARG_ENABLE option for the <flag>.
 #
 AC_DEFUN([SILC_CPU_FLAG],
 [
   AC_MSG_CHECKING(whether CPU supports $1)
   x_have_cpu_$1=false
 
-  case "$target" in
-    *-*-linux*)
-      # Take data from Linux /proc
-      if test -f /proc/cpuinfo; then
-        cpuflags=`grep "^flags.*$1 " /proc/cpuinfo 2> /dev/null`
+  if test x$2 = xtrue; then
+    AC_ARG_ENABLE($1,
+      [  --enable-$1 ],
+      [
+        AC_MSG_RESULT(yes - enabled by --enable-$1)
+        x_have_cpu_$1=true
+      ])
+  fi
+
+  if test x$x_have_cpu_$1 = xfalse; then
+    case "$target" in
+      *-*-linux*)
+        # Take data from Linux /proc
+        if test -f /proc/cpuinfo; then
+          cpuflags=`grep "^flags.*$1 " /proc/cpuinfo 2> /dev/null`
+          if test $? != 0; then
+            AC_MSG_RESULT(no)
+            x_have_cpu_$1=false
+            ifelse([$4], , :, [$4])
+          else
+            AC_MSG_RESULT(yes)
+            x_have_cpu_$1=true
+            ifelse([$3], , :, [$3])
+          fi
+        else
+          AC_MSG_RESULT(no)
+          x_have_cpu_$1=false
+          ifelse([$4], , :, [$4])
+        fi
+        ;;
+
+      *-*-*bsd*)
+        # BSDs have some flags in sysctl 'machdep' variable
+        cpuflags=`/sbin/sysctl machdep 2> /dev/null | grep "\.$1.*.1"`
         if test $? != 0; then
           AC_MSG_RESULT(no)
-          ifelse([$3], , :, [$3])
+           x_have_cpu_$1=false
+          ifelse([$4], , :, [$4])
         else
           AC_MSG_RESULT(yes)
           x_have_cpu_$1=true
-          ifelse([$2], , :, [$2])
+          ifelse([$3], , :, [$3])
         fi
-      else
-        AC_MSG_RESULT(no)
-        ifelse([$3], , :, [$3])
-      fi
-      ;;
+        ;;
 
-    *-*-*bsd*)
-      # BSDs have some flags in sysctl 'machdep' variable
-      cpuflags=`/sbin/sysctl machdep 2> /dev/null | grep "\.$1.*.1"`
-      if test $? != 0; then
-        AC_MSG_RESULT(no)
-        ifelse([$3], , :, [$3])
-      else
-        AC_MSG_RESULT(yes)
-        x_have_cpu_$1=true
-        ifelse([$2], , :, [$2])
-      fi
-      ;;
-
-    *)
-      AC_MSG_RESULT(no, cannot detect on this system)
-      ifelse([$3], , :, [$3])
-      ;;
-  esac
+      *)
+        AC_MSG_RESULT(no - cannot detect on this system)
+        x_have_cpu_$1=false
+        ifelse([$4], , :, [$4])
+        ;;
+    esac
+  fi
 ])
 
 # Function to check if compiler option works with the compiler.  If you

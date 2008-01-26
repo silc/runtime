@@ -16,9 +16,8 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /************************** Types and definitions ***************************/
 
@@ -180,7 +179,7 @@ int silc_buffer_sformat_vp_i(SilcStack stack, SilcBuffer dst, va_list ap,
     case SILC_PARAM_REGEX:
       {
 	const char *regex = va_arg(ap, char *);
-	SilcBufferRegexFlags rflags = va_arg(ap, SilcUInt32);
+	SilcBufferRegexFlags rflags = va_arg(ap, SilcBufferRegexFlags);
 	SilcBufferStruct match;
 	SilcBool match_all = (rflags & SILC_STR_REGEX_ALL) != 0;
 	SilcBool match_nl = (rflags & SILC_STR_REGEX_NL) != 0;
@@ -284,7 +283,7 @@ int silc_buffer_sformat_vp_i(SilcStack stack, SilcBuffer dst, va_list ap,
 
 	if (x && tmp_len) {
 	  FORMAT_HAS_SPACE(stack, dst, tmp_len);
-	  silc_buffer_put(dst, x, tmp_len);
+	  silc_buffer_put(dst, (unsigned char *)x, tmp_len);
 	  silc_buffer_pull(dst, tmp_len);
 	}
 	break;
@@ -669,7 +668,7 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
     case SILC_PARAM_REGEX:
       {
 	const char *regex = va_arg(ap, char *);
-	SilcBufferRegexFlags rflags = va_arg(ap, SilcUInt32);
+	SilcBufferRegexFlags rflags = va_arg(ap, SilcBufferRegexFlags);
 	SilcBufferStruct match;
 	SilcBool match_all = (rflags & SILC_STR_REGEX_ALL) != 0;
 	SilcBool match_nl = (rflags & SILC_STR_REGEX_NL) != 0;

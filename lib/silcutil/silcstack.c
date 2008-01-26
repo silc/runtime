@@ -17,7 +17,7 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 
 /************************** Types and definitions ***************************/
 

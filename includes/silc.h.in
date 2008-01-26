@@ -28,41 +28,7 @@
 extern "C" {
 #endif
 
-#define SILC_UNIX
-
-#ifdef WIN32
-#ifndef SILC_WIN32
-#define SILC_WIN32
-#undef SILC_UNIX
-#endif
-#endif
-
-#if defined(__EPOC32__) || defined(__SYMBIAN32__)
-#ifndef SILC_SYMBIAN
-#define SILC_SYMBIAN
-#undef SILC_UNIX
-#undef SILC_WIN32
-#endif
-#endif
-
-#if defined(__MACH__) && defined(__APPLE__)
-#ifndef SILC_MACOSX
-#define SILC_MACOSX
-#undef SILC_WIN32
-#undef SILC_SYMBIAN
-#endif
-#endif
-
-/* Types */
-#define SILC_SIZEOF_LONG_LONG @SILC_SIZEOF_LONG_LONG@
-#define SILC_SIZEOF_LONG @SILC_SIZEOF_LONG@
-#define SILC_SIZEOF_INT @SILC_SIZEOF_INT@
-#define SILC_SIZEOF_SHORT @SILC_SIZEOF_SHORT@
-#define SILC_SIZEOF_CHAR @SILC_SIZEOF_CHAR@
-#define SILC_SIZEOF_VOID_P @SILC_SIZEOF_VOID_P@
-
 /* Compilation time defines, for third-party software */
-@__SILC_HAVE_PTHREAD@
 @__SILC_HAVE_SIM@
 @__SILC_ENABLE_DEBUG@
 
