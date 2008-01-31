@@ -66,7 +66,9 @@ libsilcutil_la_SOURCES = \
 	silcerrno.c	\
 	silcgetopt.c	\
 	silcregex.c	\
-	silcthreadqueue.c
+	silcthreadqueue.c \
+	silcrand.c	\
+	silcglobal.c
 
 include_HEADERS =	\
 	$(SILC_DIST_HEADER) \
@@ -117,7 +119,9 @@ include_HEADERS =	\
 	silcerrno.h	\
 	silcgetopt.h	\
 	silcregex.h	\
-	silcthreadqueue.h
+	silcthreadqueue.h \
+	silcrand.h	\
+	silcglobal.h
 
 SILC_EXTRA_DIST =
 

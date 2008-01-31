@@ -585,6 +585,8 @@ void silc_thread_pool_purge(SilcThreadPool tp)
 
 /*************************** Thread-local Storage ***************************/
 
+/* Set Tls context */
+
 void silc_thread_tls_set(void *context)
 {
   SilcTls tls = silc_thread_get_tls();
@@ -598,6 +600,8 @@ void silc_thread_tls_set(void *context)
 
   tls->thread_context = context;
 }
+
+/* Get Tls context */
 
 void *silc_thread_tls_get(void)
 {

@@ -1,0 +1,209 @@
+/*
+
+  silcruntime.h
+
+  Author: Pekka Riikonen <priikone@silcnet.org>
+
+  Copyright (C) 2008 Pekka Riikonen
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; version 2 of the License.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+*/
+
+#ifndef SILCRUNTIME_H
+#define SILCRUNTIME_H
+
+/* Version check macro.  Use this to check that package is of specific
+   version compile time.  Use the __SILC_XXX_VERSION below in comparison.
+   Example:
+
+   #if __SILC_RUNTIME_VERSION < SILC_VERSION(1,2,0)
+     ...
+   #endif
+*/
+#ifndef SILC_VERSION
+#define SILC_VERSION(a, b, c) (((a) << 24) + ((b) << 16) + ((c) << 8)
+#endif /* !SILC_VERSION */
+
+/* SILC Runtime Toolkit version */
+@__RUNTIME_PACKAGE_VERSION@
+
+/* Compilation time defines, for third-party software.  Use these to check
+   in configuration/compilation time how the SILC Runtime Toolkit was
+   configured/compiled. */
+@__SILC_HAVE_PTHREAD@
+@__SILC_ENABLE_DEBUG@
+
+/* Types */
+#define SILC_SIZEOF_LONG_LONG @SILC_SIZEOF_LONG_LONG@
+#define SILC_SIZEOF_LONG @SILC_SIZEOF_LONG@
+#define SILC_SIZEOF_INT @SILC_SIZEOF_INT@
+#define SILC_SIZEOF_SHORT @SILC_SIZEOF_SHORT@
+#define SILC_SIZEOF_CHAR @SILC_SIZEOF_CHAR@
+#define SILC_SIZEOF_VOID_P @SILC_SIZEOF_VOID_P@
+
+/* Detect OS */
+#define SILC_UNIX
+
+#ifdef WIN32
+#ifndef SILC_WIN32
+#define SILC_WIN32
+#undef SILC_UNIX
+#endif
+#endif
+
+#if defined(__EPOC32__) || defined(__SYMBIAN32__)
+#ifndef SILC_SYMBIAN
+#define SILC_SYMBIAN
+#undef SILC_UNIX
+#undef SILC_WIN32
+#endif
+#endif
+
+#if defined(__MACH__) && defined(__APPLE__)
+#ifndef SILC_MACOSX
+#define SILC_MACOSX
+#undef SILC_WIN32
+#undef SILC_SYMBIAN
+#endif
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Platform specific includes */
+#if defined(SILC_WIN32)
+#include <silcwin32.h>
+#endif
+
+#if defined(SILC_SYMBIAN)
+#include <silcsymbian.h>
+#endif
+
+#if defined(HAVE_SILCDEFS_H)
+
+/* Automatically generated configuration header.  These are included only
+   when the SILC Runtime Toolkit itself is compiled. */
+#ifndef SILC_SYMBIAN
+#include "silcdefs.h"
+#else
+#include "../../symbian/silcdefs.h"
+#endif /* SILC_SYMBIAN */
+#include "silcdistdefs.h"
+#include "silccompile.h"
+
+#else
+
+/* Autodetect CPU so that inline assembly in headers are enabled */
+
+#if defined(__i386__)
+#undef SILC_I386
+#undef SILC_I486
+#define SILC_I386
+#define SILC_I486
+#endif /* __i386__ */
+
+#if defined(__i486__)
+#undef SILC_I386
+#undef SILC_I486
+#define SILC_I386
+#define SILC_I486
+#endif /* __i486__ */
+
+#if defined(__i586__)
+#undef SILC_I386
+#undef SILC_I486
+#undef SILC_I586
+#define SILC_I386
+#define SILC_I486
+#define SILC_I586
+#endif /* __i586__ */
+
+#if defined(__i686__)
+#undef SILC_I386
+#undef SILC_I486
+#undef SILC_I586
+#undef SILC_I686
+#define SILC_I386
+#define SILC_I486
+#define SILC_I586
+#define SILC_I686
+#endif /* __i686__ */
+
+#if defined(__x86_64__)
+#undef SILC_X86_64
+#define SILC_X86_64
+#endif /* __x86_64__ */
+
+#if defined(__ia64__)
+#undef SILC_IA64
+#define SILC_IA64
+#endif /* __ia64__ */
+
+#if defined(__ppc__) || defined(__ppc64__)
+#undef SILC_POWERPC
+#define SILC_POWERPC
+#endif /* __ppc__ || __ppc64__ */
+
+#ifndef SILC_ALIGNMENT
+#define SILC_ALIGNMENT SILC_SIZEOF_VOID_P
+#endif /* SILC_ALIGNMENT */
+
+#endif /* HAVE_SILCDEFS_H */
+
+/* SILC Runtime Toolkit includes */
+#include <silcerrno.h>
+#include <silctypes.h>
+#include <silcbitops.h>
+#include <silcmutex.h>
+#include <silcatomic.h>
+#include <silcgetopt.h>
+#include <silcstack.h>
+#include <silcmemory.h>
+#include <silclist.h>
+#include <silcdlist.h>
+#include <silcsnprintf.h>
+#include <silctime.h>
+#include <silctimer.h>
+#include <silccond.h>
+#include <silcglobal.h>
+#include <silcthread.h>
+#include <silcthreadqueue.h>
+#include <silcschedule.h>
+#include <silclog.h>
+#include <silcfileutil.h>
+#include <silcdir.h>
+#include <silcbuffer.h>
+#include <silcbuffmt.h>
+#include <silcasync.h>
+#include <silcregex.h>
+#include <silcenv.h>
+#include <silcdll.h>
+#include <silchashtable.h>
+#include <silcstream.h>
+#include <silcnet.h>
+#include <silcbase64.h>
+#include <silcstrutil.h>
+#include <silcutf8.h>
+#include <silcstringprep.h>
+#include <silcutil.h>
+#include <silcconfig.h>
+#include <silcfsm.h>
+#include <silcsocketstream.h>
+#include <silcfdstream.h>
+#include <silcmime.h>
+#include <silcrand.h>
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* SILCRUNTIME_H */

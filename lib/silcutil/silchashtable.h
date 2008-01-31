@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Hash Table Interface
+/****h* silcutil/Hash Table Interface
  *
  * DESCRIPTION
  *
@@ -30,7 +30,7 @@
  * table.
  *
  * The interface provides many ways to search the hash table including
- * an extended interface where caller can specify its own hash and comparison
+ * an extended interface where caller can specify their own hash and comparison
  * functions.  The interface also supports SilcStack and all memory allocated
  * by the hash table can be allocated from SilcStack.
  *
@@ -40,6 +40,9 @@
  * SilcHashTableList structure and traverse the hash table inside while()
  * using the list structure. Both are equally fast.
  *
+ * The interface also provides many utility hashing and comparison functions
+ * that caller may use with SilcHashTable.
+ *
  * The hash table is not thread safe.  If same SilcHashtable context is used
  * in multi thread environment concurrency control must be employed.
  *
@@ -48,7 +51,7 @@
 #ifndef SILCHASHTABLE_H
 #define SILCHASHTABLE_H
 
-/****s* silcutil/SilcHashTableAPI/SilcHashTable
+/****s* silcutil/SilcHashTable
  *
  * NAME
  *
@@ -64,7 +67,7 @@
  ***/
 typedef struct SilcHashTableStruct *SilcHashTable;
 
-/****s* silcutil/SilcHashTableAPI/SilcHashTableList
+/****s* silcutil/SilcHashTableList
  *
  * NAME
  *
@@ -98,7 +101,7 @@ struct SilcHashTableListStruct {
 };
 /***/
 
-/****f* silcutil/SilcHashTableAPI/SilcHashFunction
+/****f* silcutil/SilcHashFunction
  *
  * SYNOPSIS
  *
@@ -114,7 +117,7 @@ struct SilcHashTableListStruct {
  ***/
 typedef SilcUInt32 (*SilcHashFunction)(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/SilcHashCompare
+/****f* silcutil/SilcHashCompare
  *
  * SYNOPSIS
  *
@@ -133,7 +136,7 @@ typedef SilcUInt32 (*SilcHashFunction)(void *key, void *user_context);
 typedef SilcBool (*SilcHashCompare)(void *key1, void *key2,
 				    void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/SilcHashDestructor
+/****f* silcutil/SilcHashDestructor
  *
  * SYNOPSIS
  *
@@ -151,7 +154,7 @@ typedef SilcBool (*SilcHashCompare)(void *key1, void *key2,
 typedef void (*SilcHashDestructor)(void *key, void *context,
 				   void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/SilcHashForeach
+/****f* silcutil/SilcHashForeach
  *
  * SYNOPSIS
  *
@@ -169,7 +172,7 @@ typedef void (*SilcHashForeach)(void *key, void *context, void *user_context);
 
 /* Simple hash table interface */
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_alloc
+/****f* silcutil/silc_hash_table_alloc
  *
  * SYNOPSIS
  *
@@ -205,7 +208,7 @@ SilcHashTable silc_hash_table_alloc(SilcStack stack,
 				    void *destructor_user_context,
 				    SilcBool auto_rehash);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_free
+/****f* silcutil/silc_hash_table_free
  *
  * SYNOPSIS
  *
@@ -223,7 +226,7 @@ SilcHashTable silc_hash_table_alloc(SilcStack stack,
  ***/
 void silc_hash_table_free(SilcHashTable ht);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_size
+/****f* silcutil/silc_hash_table_size
  *
  * SYNOPSIS
  *
@@ -237,7 +240,7 @@ void silc_hash_table_free(SilcHashTable ht);
  ***/
 SilcUInt32 silc_hash_table_size(SilcHashTable ht);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_count
+/****f* silcutil/silc_hash_table_count
  *
  * SYNOPSIS
  *
@@ -252,7 +255,7 @@ SilcUInt32 silc_hash_table_size(SilcHashTable ht);
  ***/
 SilcUInt32 silc_hash_table_count(SilcHashTable ht);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_add
+/****f* silcutil/silc_hash_table_add
  *
  * SYNOPSIS
  *
@@ -268,7 +271,7 @@ SilcUInt32 silc_hash_table_count(SilcHashTable ht);
  ***/
 SilcBool silc_hash_table_add(SilcHashTable ht, void *key, void *context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_set
+/****f* silcutil/silc_hash_table_set
  *
  * SYNOPSIS
  *
@@ -285,7 +288,7 @@ SilcBool silc_hash_table_add(SilcHashTable ht, void *key, void *context);
  ***/
 SilcBool silc_hash_table_set(SilcHashTable ht, void *key, void *context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_del
+/****f* silcutil/silc_hash_table_del
  *
  * SYNOPSIS
  *
@@ -300,7 +303,7 @@ SilcBool silc_hash_table_set(SilcHashTable ht, void *key, void *context);
  ***/
 SilcBool silc_hash_table_del(SilcHashTable ht, void *key);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_del_by_context
+/****f* silcutil/silc_hash_table_del_by_context
  *
  * SYNOPSIS
  *
@@ -318,7 +321,7 @@ SilcBool silc_hash_table_del(SilcHashTable ht, void *key);
 SilcBool silc_hash_table_del_by_context(SilcHashTable ht, void *key,
 					void *context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find
+/****f* silcutil/silc_hash_table_find
  *
  * SYNOPSIS
  *
@@ -337,7 +340,7 @@ SilcBool silc_hash_table_del_by_context(SilcHashTable ht, void *key,
 SilcBool silc_hash_table_find(SilcHashTable ht, void *key,
 			      void **ret_key, void **ret_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find_by_context
+/****f* silcutil/silc_hash_table_find_by_context
  *
  * SYNOPSIS
  *
@@ -358,7 +361,7 @@ SilcBool silc_hash_table_find(SilcHashTable ht, void *key,
 SilcBool silc_hash_table_find_by_context(SilcHashTable ht, void *key,
 					 void *context, void **ret_key);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find_foreach
+/****f* silcutil/silc_hash_table_find_foreach
  *
  * SYNOPSIS
  *
@@ -385,7 +388,7 @@ SilcBool silc_hash_table_find_by_context(SilcHashTable ht, void *key,
 void silc_hash_table_find_foreach(SilcHashTable ht, void *key,
 				  SilcHashForeach foreach, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_foreach
+/****f* silcutil/silc_hash_table_foreach
  *
  * SYNOPSIS
  *
@@ -407,7 +410,7 @@ void silc_hash_table_find_foreach(SilcHashTable ht, void *key,
 void silc_hash_table_foreach(SilcHashTable ht, SilcHashForeach foreach,
 			     void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_rehash
+/****f* silcutil/silc_hash_table_rehash
  *
  * SYNOPSIS
  *
@@ -423,7 +426,7 @@ void silc_hash_table_foreach(SilcHashTable ht, SilcHashForeach foreach,
  ***/
 void silc_hash_table_rehash(SilcHashTable ht, SilcUInt32 new_size);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_list
+/****f* silcutil/silc_hash_table_list
  *
  * SYNOPSIS
  *
@@ -445,7 +448,7 @@ void silc_hash_table_rehash(SilcHashTable ht, SilcUInt32 new_size);
  ***/
 void silc_hash_table_list(SilcHashTable ht, SilcHashTableList *htl);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_list_reset
+/****f* silcutil/silc_hash_table_list_reset
  *
  * SYNOPSIS
  *
@@ -459,7 +462,7 @@ void silc_hash_table_list(SilcHashTable ht, SilcHashTableList *htl);
  ***/
 void silc_hash_table_list_reset(SilcHashTableList *htl);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_get
+/****f* silcutil/silc_hash_table_get
  *
  * SYNOPSIS
  *
@@ -488,7 +491,7 @@ SilcBool silc_hash_table_get(SilcHashTableList *htl,
 /* Extended hash table interface (same as above but with specific
    hash and comparison functions). */
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_add_ext
+/****f* silcutil/silc_hash_table_add_ext
  *
  * SYNOPSIS
  *
@@ -513,7 +516,7 @@ SilcBool silc_hash_table_add_ext(SilcHashTable ht,
 				 SilcHashFunction hash,
 				 void *hash_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_set_ext
+/****f* silcutil/silc_hash_table_set_ext
  *
  * SYNOPSIS
  *
@@ -538,7 +541,7 @@ SilcBool silc_hash_table_set_ext(SilcHashTable ht,
 				 SilcHashFunction hash,
 				 void *hash_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_del_ext
+/****f* silcutil/silc_hash_table_del_ext
  *
  * SYNOPSIS
  *
@@ -572,7 +575,7 @@ SilcBool silc_hash_table_del_ext(SilcHashTable ht, void *key,
 				 SilcHashDestructor destructor,
 				 void *destructor_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_del_by_context_ext
+/****f* silcutil/silc_hash_table_del_by_context_ext
  *
  * SYNOPSIS
  *
@@ -610,7 +613,7 @@ SilcBool silc_hash_table_del_by_context_ext(SilcHashTable ht, void *key,
 					    SilcHashDestructor destructor,
 					    void *destructor_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find_ext
+/****f* silcutil/silc_hash_table_find_ext
  *
  * SYNOPSIS
  *
@@ -642,7 +645,7 @@ SilcBool silc_hash_table_find_ext(SilcHashTable ht, void *key,
 				  SilcHashCompare compare,
 				  void *compare_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find_by_context_ext
+/****f* silcutil/silc_hash_table_find_by_context_ext
  *
  * SYNOPSIS
  *
@@ -677,7 +680,7 @@ SilcBool silc_hash_table_find_by_context_ext(SilcHashTable ht, void *key,
 					     SilcHashCompare compare,
 					     void *compare_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_find_foreach_ext
+/****f* silcutil/silc_hash_table_find_foreach_ext
  *
  * SYNOPSIS
  *
@@ -718,7 +721,7 @@ void silc_hash_table_find_foreach_ext(SilcHashTable ht, void *key,
 				      SilcHashForeach foreach,
 				      void *foreach_user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_table_rehash_ext
+/****f* silcutil/silc_hash_table_rehash_ext
  *
  * SYNOPSIS
  *
@@ -743,7 +746,7 @@ void silc_hash_table_rehash_ext(SilcHashTable ht, SilcUInt32 new_size,
 
 /* Hash functions */
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_string
+/****f* silcutil/silc_hash_string
  *
  * SYNOPSIS
  *
@@ -758,7 +761,7 @@ void silc_hash_table_rehash_ext(SilcHashTable ht, SilcUInt32 new_size,
  ***/
 SilcUInt32 silc_hash_string(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_string_case
+/****f* silcutil/silc_hash_string_case
  *
  * SYNOPSIS
  *
@@ -774,7 +777,7 @@ SilcUInt32 silc_hash_string(void *key, void *user_context);
  ***/
 SilcUInt32 silc_hash_string_case(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_utf8_string
+/****f* silcutil/silc_hash_utf8_string
  *
  * SYNOPSIS
  *
@@ -789,7 +792,7 @@ SilcUInt32 silc_hash_string_case(void *key, void *user_context);
  ***/
 SilcUInt32 silc_hash_utf8_string(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_uint
+/****f* silcutil/silc_hash_uint
  *
  * SYNOPSIS
  *
@@ -804,7 +807,7 @@ SilcUInt32 silc_hash_utf8_string(void *key, void *user_context);
  ***/
 SilcUInt32 silc_hash_uint(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_ptr
+/****f* silcutil/silc_hash_ptr
  *
  * SYNOPSIS
  *
@@ -819,7 +822,7 @@ SilcUInt32 silc_hash_uint(void *key, void *user_context);
  ***/
 SilcUInt32 silc_hash_ptr(void *key, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_data
+/****f* silcutil/silc_hash_data
  *
  * SYNOPSIS
  *
@@ -835,7 +838,7 @@ SilcUInt32 silc_hash_data(void *key, void *user_context);
 
 /* Comparison functions */
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_string_compare
+/****f* silcutil/silc_hash_string_compare
  *
  * SYNOPSIS
  *
@@ -850,7 +853,7 @@ SilcUInt32 silc_hash_data(void *key, void *user_context);
  ***/
 SilcBool silc_hash_string_compare(void *key1, void *key2, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_string_case_compare
+/****f* silcutil/silc_hash_string_case_compare
  *
  * SYNOPSIS
  *
@@ -866,7 +869,7 @@ SilcBool silc_hash_string_compare(void *key1, void *key2, void *user_context);
 SilcBool silc_hash_string_case_compare(void *key1, void *key2,
 				       void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_utf8_compare
+/****f* silcutil/silc_hash_utf8_compare
  *
  * SYNOPSIS
  *
@@ -881,7 +884,7 @@ SilcBool silc_hash_string_case_compare(void *key1, void *key2,
  ***/
 SilcBool silc_hash_utf8_compare(void *key1, void *key2, void *user_context);
 
-/****f* silcutil/SilcHashTableAPI/silc_hash_data_compare
+/****f* silcutil/silc_hash_data_compare
  *
  * SYNOPSIS
  *
@@ -894,5 +897,21 @@ SilcBool silc_hash_utf8_compare(void *key1, void *key2, void *user_context);
  *
  ***/
 SilcBool silc_hash_data_compare(void *key1, void *key2, void *user_context);
+
+/* Destructor functions */
+
+/****f* silcutil/silc_hash_destructor
+ *
+ * SYNOPSIS
+ *
+ *    void silc_hash_destructor(void *key, void *context, void *user_context);
+ *
+ * DESCRIPTION
+ *
+ *    A generic destructor for SilcHashTable.  This will call silc_free for
+ *    `key' and `context'.
+ *
+ ***/
+void silc_hash_destructor(void *key, void *context, void *user_context);
 
 #endif

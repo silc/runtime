@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2006 - 2007 Pekka Riikonen
+  Copyright (C) 2006 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,9 +17,13 @@
 
 */
 
-#include "silc.h"
+#include "silcruntime.h"
 #include <e32base.h>
 #include <e32std.h>
+
+/************************ Static utility functions **************************/
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other);
 
 /**************************** SILC Thread API *******************************/
 
@@ -31,9 +35,8 @@ struct SilcSymbianThread {
   SilcThreadStart start_func;
   void *context;
   SilcBool waitable;
-#else
-  void *tmp;
 #endif
+  SilcTls tls;
 };
 
 /* The actual thread function */
@@ -45,12 +48,12 @@ static TInt silc_thread_start(TAny *context)
   SilcThreadStart start_func = tc->start_func;
   void *user_context = tc->context;
   SilcBool waitable = tc->waitable;
+  SilcTls tls, other = tc->tls;
   void *ret = NULL;
-  SilcTls tls;
 
   silc_free(tc);
 
-  tls = silc_thread_tls_init();
+  tls = silc_thread_tls_init_shared(other);
 
   CTrapCleanup *cs = CTrapCleanup::New();
   if (cs) {
@@ -66,6 +69,8 @@ static TInt silc_thread_start(TAny *context)
     delete cs;
   }
 
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
   silc_free(tls);
   silc_thread_exit(ret);
 
@@ -429,12 +434,55 @@ SilcTls silc_thread_tls_init(void)
 
   Dll::SetTls(tls);
 
+  /* Allocate global lock */
+  silc_mutex_alloc(&tls->lock);
+
+  return tls;
+}
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other)
+{
+  SilcTls tls;
+
+  if (silc_thread_get_tls())
+    return silc_thread_get_tls();
+
+  /* Allocate Tls for the thread */
+  tls = (SilcTls)silc_calloc(1, sizeof(*tls));
+  if (!tls)
+    return NULL;
+
+  Dll::SetTls(tls);
+
+  /* Take shared data */
+  tls->shared_data = 1;
+  tls->lock = other->lock;
+  tls->variables = other->variables;
+
   return tls;
 }
 
 SilcTls silc_thread_get_tls(void)
 {
   return STATIC_CAST(SilcTls, Dll::Tls());
+}
+
+void silc_thread_tls_uninit(void)
+{
+  SilcTls tls = silc_thread_get_tls();
+
+  if (!tls || tls->shared_data)
+    return;
+
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
+  if (tls->variables)
+    silc_hash_table_free(tls->variables);
+  if (tls->lock)
+    silc_mutex_free(tls->lock);
+
+  tls->variables = NULL;
+  tls->lock = NULL;
 }
 
 } /* extern "C" */

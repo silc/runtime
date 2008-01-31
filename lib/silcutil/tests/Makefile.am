@@ -23,14 +23,16 @@ check_PROGRAMS = \
 	test_silcnet test_silcstack test_silcmime test_silcfdstream \
 	test_silcatomic test_silcmutex test_silctime test_silcthread \
 	test_silcdll test_silcenv test_silctimer test_silcbitops \
-	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue
+	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue \
+	test_silcrand test_silcglobal
 
 TESTS = test_silcstrutil test_silcstringprep test_silchashtable \
 	test_silclist test_silcfsm test_silcasync test_silcschedule \
 	test_silcnet test_silcstack test_silcmime test_silcfdstream \
 	test_silcatomic test_silctime test_silcthread \
 	test_silcdll test_silcenv test_silctimer test_silcbitops \
-	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue
+	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue \
+	test_silcrand test_silcglobal
 
 LIBS = $(SILC_COMMON_LIBS)
 LDADD = -L.. -L../.. -lsrt

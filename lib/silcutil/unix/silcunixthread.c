@@ -19,9 +19,14 @@
 
 #include "silcruntime.h"
 
+/************************ Static utility functions **************************/
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other);
+
 /**************************** SILC Thread API *******************************/
 
 typedef struct {
+  SilcTls tls;
   SilcThreadStart start_func;
   void *context;
 } *SilcThreadStartContext;
@@ -31,10 +36,11 @@ static void *silc_thread_start(void *context)
   SilcThreadStartContext c = context;
   SilcThreadStart start_func = c->start_func;
   void *start_context = c->context;
+  SilcTls other = c->tls;
 
   silc_free(c);
 
-  silc_thread_tls_init();
+  silc_thread_tls_init_shared(other);
 
   return start_func(start_context);
 }
@@ -58,6 +64,7 @@ SilcThread silc_thread_create(SilcThreadStart start_func, void *context,
     return NULL;
   c->start_func = start_func;
   c->context = context;
+  c->tls = silc_thread_get_tls();
 
   if (pthread_attr_init(&attr)) {
     silc_set_errno_posix(errno);
@@ -348,7 +355,13 @@ static pthread_once_t key_once = PTHREAD_ONCE_INIT;
 
 static void silc_thread_tls_destructor(void *context)
 {
-  silc_free(context);
+  SilcTls tls = context;
+
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
+  tls->tls_variables = NULL;
+
+  silc_free(tls);
 }
 
 static void silc_thread_tls_alloc(void)
@@ -373,8 +386,36 @@ SilcTls silc_thread_tls_init(void)
     SILC_LOG_ERROR(("Error allocating Thread-local storage"));
     return NULL;
   }
-
   pthread_setspecific(key, tls);
+
+  /* Allocate global lock */
+  silc_mutex_alloc(&tls->lock);
+
+  return tls;
+}
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other)
+{
+  SilcTls tls;
+
+  pthread_once(&key_once, silc_thread_tls_alloc);
+
+  if (silc_thread_get_tls())
+    return silc_thread_get_tls();
+
+  /* Allocate Tls for the thread */
+  tls = silc_calloc(1, sizeof(*tls));
+  if (!tls) {
+    SILC_LOG_ERROR(("Error allocating Thread-local storage"));
+    return NULL;
+  }
+  pthread_setspecific(key, tls);
+
+  /* Take shared data */
+  tls->shared_data = 1;
+  tls->lock = other->lock;
+  tls->variables = other->variables;
+
   return tls;
 }
 
@@ -383,6 +424,26 @@ SilcTls silc_thread_get_tls(void)
   if (!key_set)
     return NULL;
   return pthread_getspecific(key);
+}
+
+void silc_thread_tls_uninit(void)
+{
+  SilcTls tls = silc_thread_get_tls();
+
+  if (!tls || tls->shared_data)
+    return;
+
+  /* Main thread cleanup */
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
+  if (tls->variables)
+    silc_hash_table_free(tls->variables);
+  if (tls->lock)
+    silc_mutex_free(tls->lock);
+  tls->variables = NULL;
+  tls->lock = NULL;
+  silc_free(tls);
+  pthread_setspecific(key, NULL);
 }
 
 #else
@@ -397,12 +458,30 @@ SilcTls silc_thread_tls_init(void)
 
   tls_ptr = &tls;
   memset(tls_ptr, 0, sizeof(*tls_ptr));
+
+  atexit(silc_thread_tls_uninit);
+
   return tls_ptr;
+}
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other)
+{
+  return silc_thread_tls_init();
 }
 
 SilcTls silc_thread_get_tls(void)
 {
   return tls_ptr;
+}
+
+void silc_thread_tls_uninit(void)
+{
+  if (tls.tls_variables)
+    silc_hash_table_free(tls.tls_variables);
+  if (tls.variables)
+    silc_hash_table_free(tls.variables);
+  if (tls.lock)
+    silc_mutex_free(tls.lock);
 }
 
 #endif

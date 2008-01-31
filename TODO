@@ -41,11 +41,17 @@ General
 Runtime library, lib/silcutil/
 ==============================
 
- o Simple SILC Rand API for pseudo-random numbers.  use SILC Crypto
-   Toolkit for really good random numbers.
+ o Unix socket support to Socket Stream API (local socket stream).
 
- o file removing, chmod, rmmod, etc. chdir, rmdir etc. to
+ o Simple SILC Rand API for pseudo-random numbers.  (***DONE)
+
+ o file removing, chmod, rmmod, etc. chdir, rmdir, stat, etc. to
    lib/silcutil/silcfileutil.h.
+
+ o mmap API
+
+ o silc_file_readfile and silc_file_writefile should perhaps do the thing
+   with mmap, as it's probably a bit faster.
 
  o silc_malloc et. al. to respect --with-alignment.
 
@@ -154,8 +160,6 @@ Runtime library, lib/silcutil/
 
  (o Fast mutex implementation.  Fast rwlock implementation.  Mutex and
    rwlock implementation using atomic operations.) not for now.
-
- (o mmap) maybe
 
 
 lib/silcutil/symbian/

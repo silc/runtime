@@ -1119,3 +1119,11 @@ SilcBool silc_hash_utf8_compare(void *key1, void *key2, void *user_context)
     return FALSE;
   return !memcmp(key1, key2, l2);
 }
+
+/* Generic destructor */
+
+void silc_hash_destructor(void *key, void *context, void *user_context)
+{
+  silc_free(key);
+  silc_free(context);
+}

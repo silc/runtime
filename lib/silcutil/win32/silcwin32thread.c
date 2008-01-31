@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,12 @@
   GNU General Public License for more details.
 
 */
-/* $Id$ */
 
-#include "silc.h"
+#include "silcruntime.h"
+
+/************************ Static utility functions **************************/
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other);
 
 /**************************** SILC Thread API *******************************/
 
@@ -30,6 +33,7 @@ typedef struct {
   SilcThreadStart start_func;
   void *context;
   SilcBool waitable;
+  SilcTls tls;
 } *SilcWin32Thread;
 
 /* Actual routine that is called by WIN32 when the thread is created.
@@ -39,14 +43,16 @@ typedef struct {
 unsigned __stdcall silc_thread_win32_start(void *context)
 {
   SilcWin32Thread thread = (SilcWin32Thread)context;
-  SilcTls tls;
+  SilcTls other = thread->tls, tls;
 
-  tls = silc_thread_tls_init();
+  tls = silc_thread_tls_init_shared(other);
   if (tls)
     tls->platform_context = thread;
 
   silc_thread_exit(thread->start_func(thread->context));
 
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
   silc_free(tls);
 
   return 0;
@@ -68,6 +74,7 @@ SilcThread silc_thread_create(SilcThreadStart start_func, void *context,
   thread->start_func = start_func;
   thread->context = context;
   thread->waitable = waitable;
+  thread->tls = silc_thread_get_tls();
   thread->thread =
     _beginthreadex(NULL, 0, (LPTHREAD_START_ROUTINE)silc_thread_win32_start,
 		   (void *)thread, 0, &id);
@@ -429,14 +436,68 @@ SilcTls silc_thread_tls_init(void)
     SILC_LOG_ERROR(("Error allocating Thread-local storage"));
     return NULL;
   }
-
   TlsSetValue(silc_tls, tls);
+
+  /* Allocate global lock */
+  silc_mutex_alloc(&tls->lock);
+
+  return tls;
+}
+
+static SilcTls silc_thread_tls_init_shared(SilcTls other)
+{
+  SilcTls tls;
+
+  if (!silc_tls_set) {
+    silc_tls = TlsAlloc();
+    if (silc_tls == TLS_OUT_OF_INDEXES) {
+      SILC_LOG_ERROR(("Error creating Thread-local storage"));
+      return NULL;
+    }
+
+    silc_tls_set = TRUE;
+  }
+
+  if (silc_thread_get_tls())
+    return silc_thread_get_tls();
+
+  /* Allocate Tls for the thread */
+  tls = silc_calloc(1, sizeof(*tls));
+  if (!tls) {
+    SILC_LOG_ERROR(("Error allocating Thread-local storage"));
+    return NULL;
+  }
+  TlsSetValue(silc_tls, tls);
+
+  /* Take shared data */
+  tls->shared_data = 1;
+  tls->lock = other->lock;
+  tls->variables = other->variables;
+
   return tls;
 }
 
 SilcTls silc_thread_get_tls(void)
 {
   return (SilcTls)TlsGetValue(silc_tls);
+}
+
+void silc_thread_tls_uninit(void)
+{
+  SilcTls tls = silc_thread_get_tls();
+
+  if (!tls || tls->shared_data)
+    return;
+
+  if (tls->tls_variables)
+    silc_hash_table_free(tls->tls_variables);
+  if (tls->variables)
+    silc_hash_table_free(tls->variables);
+  if (tls->lock)
+    silc_mutex_free(tls->lock);
+
+  tls->variables = NULL;
+  tls->lock = NULL;
 }
 
 #else
@@ -454,9 +515,24 @@ SilcTls silc_thread_tls_init(void)
   return tls_ptr;
 }
 
+static SilcTls silc_thread_tls_init_shared(SilcTls other)
+{
+  return silc_thread_tls_init();
+}
+
 SilcTls silc_thread_get_tls(void)
 {
   return tls_ptr;
+}
+
+void silc_thread_tls_uninit(void)
+{
+  if (tls.tls_variables)
+    silc_hash_table_free(tls.tls_variables);
+  if (tls.variables)
+    silc_hash_table_free(tls.variables);
+  if (tls.lock)
+    silc_mutex_free(tls.lock);
 }
 
 #endif /* SILC_THREADS */
