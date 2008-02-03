@@ -21,8 +21,7 @@ AUTOMAKE_OPTIONS = 1.0 no-dependencies foreign
 SUBDIRS =
 
 EXTRA_DIST = 					\
-	silcdefs.h silc.dsw copy_dll		\
-	tests all.dsp clean_dist.pl README	\
-	libsilc_static
+	silcdefs.h *.dsw copy_dll		\
+	tests *.dsp clean_dist.pl README
 
 include $(top_srcdir)/Makefile.defines.in

@@ -17,17 +17,15 @@
 
 */
 
-/****h* silcutil/SilcStack Interface
+/****h* silcutil/Memory Pool Interface
  *
  * DESCRIPTION
  *
- * Data stack interface which can be used to do fast allocations from
- * the stack.  Basically SilcStack is a pre-allocated memory pool system
- * which allows fast memory allocation for routines and applications that
- * frequently allocate small amounts of memory.  Other advantage of this
- * system is that there are no memory leaks, as long as the stack is
- * freed eventually.  Since the stack is usually allocated only once this
- * is not an issue.
+ * SilcStack is a pre-allocated memory pool system which allows fast memory
+ * allocation for routines and applications that frequently allocate small
+ * amounts of memory.  Other advantage of this system is that there are no
+ * memory leaks, as long as the stack is freed eventually.  Since the stack
+ * is usually allocated only once this is not an issue.
  *
  * SilcStack supports stack pushing and popping allowing to push the stack,
  * allocate memory and then pop it to free the allocated memory.  The freeing
@@ -44,14 +42,14 @@
  *
  * A basic set of utility functions are provided for application that wish
  * to use the SilcStack as their primary memory allocation source.  The
- * following functions support SilcStack:
+ * following functions (among many others) support SilcStack:
  *
  * silc_smalloc, silc_smalloc, silc_scalloc, silc_srealloc, silc_smemdup,
  * silc_sfree, silc_sstrdup, silc_buffer_salloc, silc_buffer_salloc_size,
  * silc_buffer_srealloc, silc_buffer_srealloc_size, silc_buffer_scopy,
  * silc_buffer_sclone, silc_buffer_sformat, silc_buffer_sformat_vp,
- * silc_buffer_sstrformat, silc_buffer_senlarge, silc_mp_sinit,
- * silc_dlist_sinit, silc_hash_table_alloc
+ * silc_buffer_sstrformat, silc_buffer_senlarge, silc_dlist_sinit,
+ * silc_hash_table_alloc
  *
  * The SilcStack is not thread-safe so that same context could be used for
  * allocations from multiple threads.  It is however safe to create and use
@@ -63,7 +61,7 @@
 #ifndef SILCSTACK_H
 #define SILCSTACK_H
 
-/****s* silcutil/SilcStackAPI/SilcStack
+/****s* silcutil/SilcStack
  *
  * NAME
  *
@@ -79,7 +77,7 @@
  ***/
 typedef struct SilcStackStruct *SilcStack;
 
-/****s* silcutil/SilcStackAPI/SilcStackFrame
+/****s* silcutil/SilcStackFrame
  *
  * NAME
  *
@@ -97,7 +95,7 @@ typedef struct SilcStackStruct *SilcStack;
  ***/
 typedef struct SilcStackFrameStruct SilcStackFrame;
 
-/****f* silcutil/SilcStackAPI/SilcStackOomHandler
+/****f* silcutil/SilcStackOomHandler
  *
  * SYNOPSIS
  *
@@ -113,7 +111,7 @@ typedef struct SilcStackFrameStruct SilcStackFrame;
  ***/
 typedef void (*SilcStackOomHandler)(SilcStack stack, void *context);
 
-/****f* silcutil/SilcStackAPI/silc_stack_alloc
+/****f* silcutil/silc_stack_alloc
  *
  * SYNOPSIS
  *
@@ -133,12 +131,12 @@ typedef void (*SilcStackOomHandler)(SilcStack stack, void *context);
  *    that, even though child allocates memory from the parent, the parent's
  *    stack is not consumed.
  *
- *    Returns NULL on error.
+ *    Returns NULL on error and sets silc_errno.
  *
  ***/
 SilcStack silc_stack_alloc(SilcUInt32 stack_size, SilcStack parent);
 
-/****f* silcutil/SilcStackAPI/silc_stack_free
+/****f* silcutil/silc_stack_free
  *
  * SYNOPSIS
  *
@@ -155,7 +153,7 @@ SilcStack silc_stack_alloc(SilcUInt32 stack_size, SilcStack parent);
  ***/
 void silc_stack_free(SilcStack stack);
 
-/****f* silcutil/SilcStackAPI/silc_stack_push
+/****f* silcutil/silc_stack_push
  *
  * SYNOPSIS
  *
@@ -215,7 +213,7 @@ void silc_stack_free(SilcStack stack);
  ***/
 SilcUInt32 silc_stack_push(SilcStack stack, SilcStackFrame *frame);
 
-/****f* silcutil/SilcStackAPI/silc_stack_pop
+/****f* silcutil/silc_stack_pop
  *
  * SYNOPSIS
  *
@@ -252,7 +250,7 @@ SilcUInt32 silc_stack_push(SilcStack stack, SilcStackFrame *frame);
  ***/
 SilcUInt32 silc_stack_pop(SilcStack stack);
 
-/****f* silcutil/SilcStackAPI/silc_stack_malloc
+/****f* silcutil/silc_stack_malloc
  *
  * SYNOPSIS
  *
@@ -275,7 +273,7 @@ SilcUInt32 silc_stack_pop(SilcStack stack);
  ***/
 void *silc_stack_malloc(SilcStack stack, SilcUInt32 size);
 
-/****f* silcutil/SilcStackAPI/silc_stack_realloc
+/****f* silcutil/silc_stack_realloc
  *
  * SYNOPSIS
  *
@@ -302,7 +300,7 @@ void *silc_stack_malloc(SilcStack stack, SilcUInt32 size);
 void *silc_stack_realloc(SilcStack stack, SilcUInt32 old_size,
 			 void *ptr, SilcUInt32 size);
 
-/****f* silcutil/SilcStackAPI/silc_stack_set_oom_handler
+/****f* silcutil/silc_stack_set_oom_handler
  *
  * SYNOPSIS
  *
@@ -326,7 +324,7 @@ void silc_stack_set_oom_handler(SilcStack stack,
 				SilcStackOomHandler oom_handler,
 				void *context);
 
-/****f* silcutil/SilcStackAPI/silc_stack_set_alignment
+/****f* silcutil/silc_stack_set_alignment
  *
  * SYNOPSIS
  *
@@ -352,7 +350,7 @@ void silc_stack_set_oom_handler(SilcStack stack,
  ***/
 void silc_stack_set_alignment(SilcStack stack, SilcUInt32 alignment);
 
-/****f* silcutil/SilcStackAPI/silc_stack_get_alignment
+/****f* silcutil/silc_stack_get_alignment
  *
  * SYNOPSIS
  *
@@ -366,7 +364,7 @@ void silc_stack_set_alignment(SilcStack stack, SilcUInt32 alignment);
  ***/
 SilcUInt32 silc_stack_get_alignment(SilcStack stack);
 
-/****f* silcutil/SilcStackAPI/silc_stack_purge
+/****f* silcutil/silc_stack_purge
  *
  * SYNOPSIS
  *
@@ -385,7 +383,7 @@ SilcUInt32 silc_stack_get_alignment(SilcStack stack);
  ***/
 SilcBool silc_stack_purge(SilcStack stack);
 
-/****f* silcutil/SilcStackAPI/silc_stack_set_global
+/****f* silcutil/silc_stack_set_global
  *
  * SYNOPSIS
  *
@@ -407,7 +405,7 @@ SilcBool silc_stack_purge(SilcStack stack);
  ***/
 void silc_stack_set_global(SilcStack stack);
 
-/****f* silcutil/SilcStackAPI/silc_stack_get_global
+/****f* silcutil/silc_stack_get_global
  *
  * SYNOPSIS
  *

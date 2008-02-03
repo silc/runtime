@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1997 - 2007 Pekka Riikonen
+  Copyright (C) 1997 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Logging Interface
+/****h* silcutil/Logging Interface
  *
  * DESCRIPTION
  *
@@ -29,7 +29,7 @@
 #ifndef SILCLOG_H
 #define SILCLOG_H
 
-/****d* silcutil/SilcLogAPI/SilcLogType
+/****d* silcutil/SilcLogType
  *
  * NAME
  *
@@ -51,7 +51,7 @@ typedef enum {
 
 #include "silclog_i.h"
 
-/****f* silcutil/SilcLogAPI/SilcLogCb
+/****f* silcutil/SilcLogCb
  *
  * SYNOPSIS
  *
@@ -76,7 +76,7 @@ typedef enum {
  ***/
 typedef SilcBool (*SilcLogCb)(SilcLogType type, char *message, void *context);
 
-/****f* silcutil/SilcLogAPI/SilcLogDebugCb
+/****f* silcutil/SilcLogDebugCb
  *
  * SYNOPSIS
  *
@@ -102,7 +102,7 @@ typedef SilcBool (*SilcLogCb)(SilcLogType type, char *message, void *context);
 typedef SilcBool (*SilcLogDebugCb)(char *file, char *function, int line,
 				   char *message, void *context);
 
-/****f* silcutil/SilcLogAPI/SilcLogHexdumpCb
+/****f* silcutil/SilcLogHexdumpCb
  *
  * SYNOPSIS
  *
@@ -136,7 +136,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 
 /* Macros */
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_INFO
+/****d* silcutil/SILC_LOG_INFO
  *
  * NAME
  *
@@ -162,7 +162,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #define SILC_LOG_INFO(fmt) silc_log_output(SILC_LOG_INFO, silc_format fmt)
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_WARNING
+/****d* silcutil/SILC_LOG_WARNING
  *
  * NAME
  *
@@ -181,7 +181,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #define SILC_LOG_WARNING(fmt) silc_log_output(SILC_LOG_WARNING, silc_format fmt)
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_ERROR
+/****d* silcutil/SILC_LOG_ERROR
  *
  * NAME
  *
@@ -200,7 +200,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #define SILC_LOG_ERROR(fmt) silc_log_output(SILC_LOG_ERROR, silc_format fmt)
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_FATAL
+/****d* silcutil/SILC_LOG_FATAL
  *
  * NAME
  *
@@ -219,7 +219,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #define SILC_LOG_FATAL(fmt) silc_log_output(SILC_LOG_FATAL, silc_format fmt)
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_DEBUG
+/****d* silcutil/SILC_LOG_DEBUG
  *
  * NAME
  *
@@ -250,7 +250,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #endif	/* SILC_DEBUG */
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_LOG_HEXDUMP
+/****d* silcutil/SILC_LOG_HEXDUMP
  *
  * NAME
  *
@@ -288,60 +288,9 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 #endif	/* SILC_DEBUG */
 /***/
 
-/****d* silcutil/SilcLogAPI/SILC_ASSERT
- *
- * NAME
- *
- *    #define SILC_ASSERT(experssion)
- *
- * DESCRIPTION
- *
- *    Assert macro that prints error message to stderr and calls abort()
- *    if the `expression' is false (ie. compares equal to zero).  If
- *    SILC_DEBUG is not defined this macro has no effect.
- *
- * SOURCE
- */
-#if defined(SILC_DEBUG)
-#define SILC_ASSERT(expr) assert((expr));
-#else
-#define SILC_ASSERT(expr) do { } while(0)
-#endif /* SILC_DEBUG */
-/***/
-
-/****d* silcutil/SilcLogAPI/SILC_VERIFY
- *
- * NAME
- *
- *    #define SILC_VERIFY(experssion)
- *
- * DESCRIPTION
- *
- *    Verification macro that prints error message to stderr and calls
- *    abort() if the `expression' is false (ie. compares equal to zero)
- *    on debug builds (SILC_DEBUG defined), and prints error message to
- *    stderr on release builds (SILC_DEBUG undefined) but does not abort().
- *    This macro is always compiled even if debugging (SILC_DEBUG) is not
- *    defined.
- *
- * SOURCE
- */
-#if defined(SILC_DEBUG)
-#define SILC_VERIFY(expr) assert((expr));
-#else
-#define SILC_VERIFY(expr)						\
-  if (silc_unlikely(!(expr))) {						\
-    SILC_LOG_ERROR(("SILC_VERIFY %s:%s:%d",				\
-		    __FILE__, __FUNCTION__, __LINE__));			\
-    silc_set_errno_reason_nofail(SILC_ERR_ASSERT, "SILC_VERIFY %s:%s:%d", \
-				 __FILE__, __FUNCTION__, __LINE__);	\
-  }
-#endif /* SILC_DEBUG */
-/***/
-
 /* Prototypes */
 
-/****f* silcutil/SilcLogAPI/silc_log_set_file
+/****f* silcutil/silc_log_set_file
  *
  * SYNOPSIS
  *
@@ -366,7 +315,7 @@ typedef SilcBool (*SilcLogHexdumpCb)(char *file, char *function, int line,
 SilcBool silc_log_set_file(SilcLogType type, char *filename,
 			   SilcUInt32 maxsize, SilcSchedule scheduler);
 
-/****f* silcutil/SilcLogAPI/silc_log_get_file
+/****f* silcutil/silc_log_get_file
  *
  * SYNOPSIS
  *
@@ -385,7 +334,7 @@ SilcBool silc_log_set_file(SilcLogType type, char *filename,
  ***/
 char *silc_log_get_file(SilcLogType type);
 
-/****f* silcutil/SilcLogAPI/silc_log_set_callback
+/****f* silcutil/silc_log_set_callback
  *
  * SYNOPSIS
  *
@@ -410,7 +359,7 @@ char *silc_log_get_file(SilcLogType type);
  ***/
 void silc_log_set_callback(SilcLogType type, SilcLogCb cb, void *context);
 
-/****f* silcutil/SilcLogAPI/silc_log_reset_callbacks
+/****f* silcutil/silc_log_reset_callbacks
  *
  * SYNOPSIS
  *
@@ -425,7 +374,7 @@ void silc_log_set_callback(SilcLogType type, SilcLogCb cb, void *context);
  ***/
 void silc_log_reset_callbacks(void);
 
-/****f* silcutil/SilcLogAPI/silc_log_flush_all
+/****f* silcutil/silc_log_flush_all
  *
  * SYNOPSIS
  *
@@ -442,7 +391,7 @@ void silc_log_reset_callbacks(void);
  ***/
 void silc_log_flush_all(void);
 
-/****f* silcutil/SilcLogAPI/silc_log_reset_all
+/****f* silcutil/silc_log_reset_all
  *
  * SYNOPSIS
  *
@@ -459,7 +408,7 @@ void silc_log_flush_all(void);
  ***/
 void silc_log_reset_all(void);
 
-/****f* silcutil/SilcLogAPI/silc_log_set_debug_callbacks
+/****f* silcutil/silc_log_set_debug_callbacks
  *
  * SYNOPSIS
  *
@@ -488,7 +437,7 @@ void silc_log_set_debug_callbacks(SilcLogDebugCb debug_cb,
 				  SilcLogHexdumpCb hexdump_cb,
 				  void *hexdump_context);
 
-/****f* silcutil/SilcLogAPI/silc_log_reset_debug_callbacks
+/****f* silcutil/silc_log_reset_debug_callbacks
  *
  * SYNOPSIS
  *
@@ -501,7 +450,7 @@ void silc_log_set_debug_callbacks(SilcLogDebugCb debug_cb,
  ***/
 void silc_log_reset_debug_callbacks(void);
 
-/****f* silcutil/SilcLogAPI/silc_log_set_debug_string
+/****f* silcutil/silc_log_set_debug_string
  *
  * SYNOPSIS
  *
@@ -516,7 +465,7 @@ void silc_log_reset_debug_callbacks(void);
  ***/
 void silc_log_set_debug_string(const char *debug_string);
 
-/****f* silcutil/SilcLogAPI/silc_log_timestamp
+/****f* silcutil/silc_log_timestamp
  *
  * NAME
  *
@@ -530,7 +479,7 @@ void silc_log_set_debug_string(const char *debug_string);
  ***/
 void silc_log_timestamp(SilcBool enable);
 
-/****f* silcutil/SilcLogAPI/silc_log_flushdelay
+/****f* silcutil/silc_log_flushdelay
  *
  * NAME
  *
@@ -543,7 +492,7 @@ void silc_log_timestamp(SilcBool enable);
  ***/
 void silc_log_flushdelay(SilcUInt32 flushdelay);
 
-/****f* silcutil/SilcLogAPI/silc_log_quick
+/****f* silcutil/silc_log_quick
  *
  * NAME
  *
@@ -567,7 +516,7 @@ void silc_log_flushdelay(SilcUInt32 flushdelay);
  ***/
 void silc_log_quick(SilcBool enable);
 
-/****v* silcutil/SilcLogAPI/silc_log_debug
+/****v* silcutil/silc_log_debug
  *
  * NAME
  *
@@ -585,7 +534,7 @@ void silc_log_quick(SilcBool enable);
  ***/
 void silc_log_debug(SilcBool enable);
 
-/****v* silcutil/SilcLogAPI/silc_log_debug_hexdump
+/****v* silcutil/silc_log_debug_hexdump
  *
  * NAME
  *

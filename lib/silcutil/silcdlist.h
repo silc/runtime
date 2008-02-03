@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2000 - 2007 Pekka Riikonen
+  Copyright (C) 2000 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 
 #include "silclist.h"
 
-/****h* silcutil/SILC Dynamic List Interface
+/****h* silcutil/Dynamic List Interface
  *
  * DESCRIPTION
  *
@@ -53,7 +53,7 @@
  *
  ***/
 
-/****s* silcutil/SilcDListAPI/SilcDList
+/****s* silcutil/SilcDList
  *
  * NAME
  *
@@ -81,7 +81,7 @@ typedef struct SilcDListEntryStruct {
   struct SilcDListEntryStruct *prev;
 } *SilcDListEntry;
 
-/****f* silcutil/SilcDListAPI/silc_dlist_init
+/****f* silcutil/silc_dlist_init
  *
  * SYNOPSIS
  *
@@ -109,7 +109,7 @@ SilcDList silc_dlist_init(void)
   return list;
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_sinit
+/****f* silcutil/silc_dlist_sinit
  *
  * SYNOPSIS
  *
@@ -143,7 +143,7 @@ SilcDList silc_dlist_sinit(SilcStack stack)
   return list;
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_uninit
+/****f* silcutil/silc_dlist_uninit
  *
  * SYNOPSIS
  *
@@ -175,7 +175,7 @@ void silc_dlist_uninit(SilcDList list)
   }
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_count
+/****f* silcutil/silc_dlist_count
  *
  * SYNOPSIS
  *
@@ -194,7 +194,7 @@ int silc_dlist_count(SilcDList list)
   return silc_list_count(list->list);
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_start
+/****f* silcutil/silc_dlist_start
  *
  * SYNOPSIS
  *
@@ -215,7 +215,7 @@ void silc_dlist_start(SilcDList list)
   list->current = list->prev = NULL;
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_end
+/****f* silcutil/silc_dlist_end
  *
  * SYNOPSIS
  *
@@ -236,7 +236,7 @@ void silc_dlist_end(SilcDList list)
   list->current = list->prev = NULL;
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_add
+/****f* silcutil/silc_dlist_add
  *
  * SYNOPSIS
  *
@@ -261,7 +261,7 @@ SilcBool silc_dlist_add(SilcDList list, void *context)
   return TRUE;
 }
 
-/****f* silcutil/SilcDList/silc_dlist_insert
+/****f* silcutil/silc_dlist_insert
  *
  * SYNOPSIS
  *
@@ -287,7 +287,7 @@ SilcBool silc_dlist_insert(SilcDList list, void *context)
   return TRUE;
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_del
+/****f* silcutil/silc_dlist_del
  *
  * SYNOPSIS
  *
@@ -322,7 +322,7 @@ void silc_dlist_del(SilcDList list, void *entry)
   }
 }
 
-/****f* silcutil/SilcDListAPI/silc_dlist_get
+/****f* silcutil/silc_dlist_get
  *
  * SYNOPSIS
  *

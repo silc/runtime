@@ -1,13 +1,13 @@
 <!--
- Index file for SILC Toolkit Reference Manual. This file is processed with
- the SILC Document generator.
+ Index file for SILC Runtime Toolkit Reference Manual. This file is 
+ processed with the SILC Document generator.
 -->
 
 <big><b>SILC Toolkit Reference Manual</b></big>
 <br />
 <small>
 Version: @VERSION@<br />
-Copyright &copy; 1997 - 2007 The SILC Project<br />
+Copyright &copy; 1997 - 2008 The SILC Project<br />
 Updated: @DATE@
 </small>
 <br /><br /><br />

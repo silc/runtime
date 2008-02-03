@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Types
+/****h* silcutil/Types and Definitions
  *
  * DESCRIPTION
  *
@@ -44,9 +44,7 @@
 #error "size of the short must be 2 bytes"
 #endif
 
-/******************************* Public API *********************************/
-
-/****d* silcutil/SILCTypes/SilcBool
+/****d* silcutil/SilcBool
  *
  * NAME
  *
@@ -59,7 +57,7 @@
  ***/
 typedef unsigned char SilcBool;
 
-/****d* silcutil/SILCTypes/TRUE
+/****d* silcutil/TRUE
  *
  * NAME
  *
@@ -76,7 +74,7 @@ typedef unsigned char SilcBool;
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/FALSE
+/****d* silcutil/FALSE
  *
  * NAME
  *
@@ -93,7 +91,7 @@ typedef unsigned char SilcBool;
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SilcUInt8
+/****d* silcutil/SilcUInt8
  *
  * NAME
  *
@@ -108,7 +106,7 @@ typedef unsigned char SilcBool;
 typedef unsigned char SilcUInt8;
 /***/
 
-/****d* silcutil/SILCTypes/SilcInt8
+/****d* silcutil/SilcInt8
  *
  * NAME
  *
@@ -123,7 +121,7 @@ typedef unsigned char SilcUInt8;
 typedef signed char SilcInt8;
 /***/
 
-/****d* silcutil/SILCTypes/SilcUInt16
+/****d* silcutil/SilcUInt16
  *
  * NAME
  *
@@ -138,7 +136,7 @@ typedef signed char SilcInt8;
 typedef unsigned short SilcUInt16;
 /***/
 
-/****d* silcutil/SILCTypes/SilcInt16
+/****d* silcutil/SilcInt16
  *
  * NAME
  *
@@ -153,7 +151,7 @@ typedef unsigned short SilcUInt16;
 typedef signed short SilcInt16;
 /***/
 
-/****d* silcutil/SILCTypes/SilcUInt32
+/****d* silcutil/SilcUInt32
  *
  * NAME
  *
@@ -183,7 +181,7 @@ typedef signed long long SilcInt32;
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SilcInt32
+/****d* silcutil/SilcInt32
  *
  * NAME
  *
@@ -195,7 +193,7 @@ typedef signed long long SilcInt32;
  *
  ***/
 
-/****d* silcutil/SILCTypes/SilcUInt64
+/****d* silcutil/SilcUInt64
  *
  * NAME
  *
@@ -227,7 +225,7 @@ typedef SilcInt32 SilcInt64;
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SilcInt64
+/****d* silcutil/SilcInt64
  *
  * NAME
  *
@@ -244,7 +242,7 @@ typedef SilcInt32 SilcInt64;
 typedef SilcUInt32 * void *;
 #endif
 
-/****d* silcutil/SILCTypes/SilcSocket
+/****d* silcutil/SilcSocket
  *
  * NAME
  *
@@ -268,7 +266,7 @@ typedef void * SilcSocket;
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SilcParam
+/****d* silcutil/SilcParam
  *
  * NAME
  *
@@ -334,7 +332,7 @@ typedef SilcUInt32 SilcParam;
 		    | ((SilcUInt32)(SilcUInt8)(cp)[3])
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 
-/****d* silcutil/SILCTypes/SILC_GET16_MSB
+/****d* silcutil/SILC_GET16_MSB
  *
  * NAME
  *
@@ -359,7 +357,7 @@ do {							\
 #endif /* (SILC_I386 || SILC_X86_64) && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_GET32_MSB
+/****d* silcutil/SILC_GET32_MSB
  *
  * NAME
  *
@@ -404,7 +402,7 @@ do {									\
     | ((SilcUInt32)(SilcUInt8)(cp)[3]);
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 
-/****d* silcutil/SILCTypes/SILC_GET64_MSB
+/****d* silcutil/SILC_GET64_MSB
  *
  * NAME
  *
@@ -429,7 +427,7 @@ do {								\
 #endif /* SILC_X86_64 && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_GET16_LSB
+/****d* silcutil/SILC_GET16_LSB
  *
  * NAME
  *
@@ -452,7 +450,7 @@ do {							\
 #endif /* SILC_I386 || SILC_X86_64 */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_GET32_LSB
+/****d* silcutil/SILC_GET32_LSB
  *
  * NAME
  *
@@ -488,7 +486,7 @@ do {							\
     | ((SilcUInt32)(SilcUInt8)(cp)[3] << 24)
 #endif /* SILC_I386 || SILC_X86_64 */
 
-/****d* silcutil/SILCTypes/SILC_PUT16_MSB
+/****d* silcutil/SILC_PUT16_MSB
  *
  * NAME
  *
@@ -513,7 +511,7 @@ do {						\
 #endif /* (SILC_I386 || SILC_X86_64) && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PUT32_MSB
+/****d* silcutil/SILC_PUT32_MSB
  *
  * NAME
  *
@@ -540,7 +538,7 @@ do {						\
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PUT64_MSB
+/****d* silcutil/SILC_PUT64_MSB
  *
  * NAME
  *
@@ -565,7 +563,7 @@ do {								\
 #endif /* SILC_X86_64 && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PUT16_LSB
+/****d* silcutil/SILC_PUT16_LSB
  *
  * NAME
  *
@@ -588,7 +586,7 @@ do  {						\
 #endif /* SILC_I386 || SILC_X86_64 */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PUT32_LSB
+/****d* silcutil/SILC_PUT32_LSB
  *
  * NAME
  *
@@ -613,7 +611,7 @@ do {						\
 #endif /* SILC_I386 || SILC_X86_64 */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_SWAB_16
+/****d* silcutil/SILC_SWAB_16
  *
  * NAME
  *
@@ -640,7 +638,7 @@ do {						\
 #endif /* (SILC_I386 || SILC_X86_64) && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_SWAB_32
+/****d* silcutil/SILC_SWAB_32
  *
  * NAME
  *
@@ -669,7 +667,7 @@ do {						\
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PTR_TO_32
+/****d* silcutil/SILC_PTR_TO_32
  *
  * NAME
  *
@@ -691,7 +689,7 @@ do {						\
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SILC_PTR_TO_64
+/****d* silcutil/SILC_PTR_TO_64
  *
  * NAME
  *
@@ -712,7 +710,7 @@ do {						\
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SILC_32_TO_PTR
+/****d* silcutil/SILC_32_TO_PTR
  *
  * NAME
  *
@@ -733,7 +731,7 @@ do {						\
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/SILC_64_TO_PTR
+/****d* silcutil/SILC_64_TO_PTR
  *
  * NAME
  *
@@ -755,7 +753,58 @@ do {						\
 #endif
 /***/
 
-/****d* silcutil/SILCTypes/silc_rol
+/****d* silcutil/SILC_ASSERT
+ *
+ * NAME
+ *
+ *    #define SILC_ASSERT(experssion)
+ *
+ * DESCRIPTION
+ *
+ *    Assert macro that prints error message to stderr and calls abort()
+ *    if the `expression' is false (ie. compares equal to zero).  If
+ *    SILC_DEBUG is not defined this macro has no effect.
+ *
+ * SOURCE
+ */
+#if defined(SILC_DEBUG)
+#define SILC_ASSERT(expr) assert((expr));
+#else
+#define SILC_ASSERT(expr) do { } while(0)
+#endif /* SILC_DEBUG */
+/***/
+
+/****d* silcutil/SILC_VERIFY
+ *
+ * NAME
+ *
+ *    #define SILC_VERIFY(experssion)
+ *
+ * DESCRIPTION
+ *
+ *    Verification macro that prints error message to stderr and calls
+ *    abort() if the `expression' is false (ie. compares equal to zero)
+ *    on debug builds (SILC_DEBUG defined), and prints error message to
+ *    stderr on release builds (SILC_DEBUG undefined) but does not abort().
+ *    This macro is always compiled even if debugging (SILC_DEBUG) is not
+ *    defined.
+ *
+ * SOURCE
+ */
+#if defined(SILC_DEBUG)
+#define SILC_VERIFY(expr) assert((expr));
+#else
+#define SILC_VERIFY(expr)						\
+  if (silc_unlikely(!(expr))) {						\
+    SILC_LOG_ERROR(("SILC_VERIFY %s:%s:%d",				\
+		    __FILE__, __FUNCTION__, __LINE__));			\
+    silc_set_errno_reason_nofail(SILC_ERR_ASSERT, "SILC_VERIFY %s:%s:%d", \
+				 __FILE__, __FUNCTION__, __LINE__);	\
+  }
+#endif /* SILC_DEBUG */
+/***/
+
+/****d* silcutil/silc_rol
  *
  * NAME
  *
@@ -779,7 +828,7 @@ static inline SilcUInt32 silc_rol(SilcUInt32 val, int num)
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 }
 
-/****d* silcutil/SILCTypes/silc_ror
+/****d* silcutil/silc_ror
  *
  * NAME
  *
@@ -803,7 +852,7 @@ static inline SilcUInt32 silc_ror(SilcUInt32 val, int num)
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 }
 
-/****d* silcutil/SILCTypes/silc_rol64
+/****d* silcutil/silc_rol64
  *
  * NAME
  *
@@ -827,7 +876,7 @@ static inline SilcUInt64 silc_rol64(SilcUInt64 val, int num)
 #endif /* SILC_X86_64 && __GNUC__ */
 }
 
-/****d* silcutil/SILCTypes/silc_ror64
+/****d* silcutil/silc_ror64
  *
  * NAME
  *
@@ -851,7 +900,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
 #endif /* SILC_X86_64 && __GNUC__ */
 }
 
-/****d* silcutil/SILCTypes/silc_offsetof
+/****d* silcutil/silc_offsetof
  *
  * NAME
  *
@@ -864,7 +913,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
  ***/
 #define silc_offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 
-/****d* silcutil/SILCTypes/silc_attribute
+/****d* silcutil/silc_attribute
  *
  * NAME
  *
@@ -887,7 +936,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
 #define silc_attribute(attrlist)
 #endif /* __GNUC__ */
 
-/****d* silcutil/SILCTypes/silc_likely
+/****d* silcutil/silc_likely
  *
  * NAME
  *
@@ -902,7 +951,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
  *
  ***/
 
-/****d* silcutil/SILCTypes/silc_unlikely
+/****d* silcutil/silc_unlikely
  *
  * NAME
  *
@@ -928,7 +977,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
    reading or writing if you think that the data will be needed soon after
    prefetching. */
 
-/****d* silcutil/SILCTypes/silc_prefetch
+/****d* silcutil/silc_prefetch
  *
  * NAME
  *
@@ -960,7 +1009,7 @@ void silc_prefetch(void *addr, int rw, int locality)
 #endif /* __GNUC__ */
 }
 
-/****d* silcutil/SILCTypes/silc_prefetch_block
+/****d* silcutil/silc_prefetch_block
  *
  * NAME
  *

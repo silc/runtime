@@ -4,7 +4,7 @@
 
   Author: Giovanni Giacobbi <giovanni@giacobbi.net>
 
-  Copyright (C) 2002 - 2003 Giovanni Giacobbi
+  Copyright (C) 2002 - 2003, 2008 Giovanni Giacobbi
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Config Interface
+/****h* silcutil/Config File Interface
  *
  * DESCRIPTION
  *
@@ -75,7 +75,7 @@
 #ifndef SILCCONFIG_H
 #define SILCCONFIG_H
 
-/****d* silcutil/SilcConfigAPI/SilcConfigErrno
+/****d* silcutil/SilcConfigErrno
  *
  * NAME
  *
@@ -111,7 +111,7 @@ enum {
 };
 /***/
 
-/****d* silcutil/SilcConfigAPI/SilcConfigType
+/****d* silcutil/SilcConfigType
  *
  * NAME
  *
@@ -138,7 +138,7 @@ typedef enum {
 } SilcConfigType;
 /***/
 
-/****f* silcutil/SilcConfigAPI/SilcConfigCallback
+/****f* silcutil/SilcConfigCallback
  *
  * SYNOPSIS
  *
@@ -157,7 +157,7 @@ typedef enum {
 typedef int (*SilcConfigCallback)(SilcConfigType type, const char *name,
 				  SilcUInt32 line, void *val, void *context);
 
-/****s* silcutil/SilcConfigAPI/SilcConfigTable
+/****s* silcutil/SilcConfigTable
  *
  * SYNOPSIS
  *
@@ -203,7 +203,7 @@ typedef struct SilcConfigTableStruct {
   const struct SilcConfigTableStruct *subtable;
 } SilcConfigTable;
 
-/****s* silcutil/SilcConfigAPI/SilcConfigFile
+/****s* silcutil/SilcConfigFile
  *
  * SYNOPSIS
  *
@@ -219,7 +219,7 @@ typedef struct SilcConfigTableStruct {
  ***/
 typedef struct SilcConfigFileObject SilcConfigFile;
 
-/****s* silcutil/SilcConfigAPI/SilcConfigEntity
+/****s* silcutil/SilcConfigEntity
  *
  * SYNOPSIS
  *
@@ -235,7 +235,7 @@ typedef struct SilcConfigEntityObject *SilcConfigEntity;
 
 /* Macros */
 
-/****d* silcutil/SilcConfigAPI/SILC_CONFIG_CALLBACK
+/****d* silcutil/SILC_CONFIG_CALLBACK
  *
  * NAME
  *
@@ -255,7 +255,7 @@ static int func(SilcConfigType type, const char *name,		\
 
 /* Prototypes */
 
-/****f* silcutil/SilcConfigAPI/silc_config_open
+/****f* silcutil/silc_config_open
  *
  * SYNOPSIS
  *
@@ -271,7 +271,7 @@ static int func(SilcConfigType type, const char *name,		\
  ***/
 SilcConfigFile *silc_config_open(const char *configfile);
 
-/****f* silcutil/SilcConfigAPI/silc_config_close
+/****f* silcutil/silc_config_close
  *
  * SYNOPSIS
  *
@@ -288,7 +288,7 @@ SilcConfigFile *silc_config_open(const char *configfile);
  ***/
 void silc_config_close(SilcConfigFile *file);
 
-/****f* silcutil/SilcConfigAPI/silc_config_init
+/****f* silcutil/silc_config_init
  *
  * SYNOPSIS
  *
@@ -306,7 +306,7 @@ void silc_config_close(SilcConfigFile *file);
  ***/
 SilcConfigEntity silc_config_init(SilcConfigFile *file);
 
-/****f* silcutil/SilcConfigAPI/silc_config_strerror
+/****f* silcutil/silc_config_strerror
  *
  * SYNOPSIS
  *
@@ -320,7 +320,7 @@ SilcConfigEntity silc_config_init(SilcConfigFile *file);
  ***/
 char *silc_config_strerror(int errnum);
 
-/****f* silcutil/SilcConfigAPI/silc_config_get_filename
+/****f* silcutil/silc_config_get_filename
  *
  * SYNOPSIS
  *
@@ -335,7 +335,7 @@ char *silc_config_strerror(int errnum);
  ***/
 char *silc_config_get_filename(SilcConfigFile *file);
 
-/****f* silcutil/SilcConfigAPI/silc_config_get_line
+/****f* silcutil/silc_config_get_line
  *
  * SYNOPSIS
  *
@@ -348,7 +348,7 @@ char *silc_config_get_filename(SilcConfigFile *file);
  ***/
 SilcUInt32 silc_config_get_line(SilcConfigFile *file);
 
-/****f* silcutil/SilcConfigAPI/silc_config_read_line
+/****f* silcutil/silc_config_read_line
  *
  * SYNOPSIS
  *
@@ -366,7 +366,7 @@ SilcUInt32 silc_config_get_line(SilcConfigFile *file);
  ***/
 char *silc_config_read_line(SilcConfigFile *file, SilcUInt32 line);
 
-/****f* silcutil/SilcConfigAPI/silc_config_read_current_line
+/****f* silcutil/silc_config_read_current_line
  *
  * SYNOPSIS
  *
@@ -382,7 +382,7 @@ char *silc_config_read_line(SilcConfigFile *file, SilcUInt32 line);
  ***/
 char *silc_config_read_current_line(SilcConfigFile *file);
 
-/****f* silcutil/SilcConfigAPI/silc_config_register
+/****f* silcutil/silc_config_register
  *
  * SYNOPSIS
  *
@@ -413,7 +413,7 @@ SilcBool silc_config_register(SilcConfigEntity ent, const char *name,
 			  SilcConfigType type, SilcConfigCallback cb,
 			  const SilcConfigTable *subtable, void *context);
 
-/****f* silcutil/SilcConfigAPI/silc_config_register_table
+/****f* silcutil/silc_config_register_table
  *
  * SYNOPSIS
  *
@@ -442,7 +442,7 @@ SilcBool silc_config_register(SilcConfigEntity ent, const char *name,
 SilcBool silc_config_register_table(SilcConfigEntity ent,
 				const SilcConfigTable table[], void *context);
 
-/****f* silcutil/SilcConfigAPI/silc_config_main
+/****f* silcutil/silc_config_main
  *
  * SYNOPSIS
  *

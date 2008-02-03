@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/Snprintf
+/****h* silcutil/Snprintf Interface
  *
  * DESCRIPTION
  *
@@ -29,7 +29,7 @@
 #ifndef SILCSNPRINTF_H
 #define SILCSNPRINTF_H
 
-/****f* silcutil/SilcSnprintf/SilcSnprintfRender
+/****f* silcutil/SilcSnprintfRender
  *
  * SYNOPSIS
  *
@@ -57,7 +57,7 @@
  ***/
 typedef char *(*SilcSnprintfRender)(void *data);
 
-/****f* silcutil/SilcSnprintf/silc_snprintf
+/****f* silcutil/silc_snprintf
  *
  * SYNOPSIS
  *
@@ -76,7 +76,7 @@ typedef char *(*SilcSnprintfRender)(void *data);
  ***/
 int silc_snprintf(char *str, size_t count, const char *fmt, ...);
 
-/****f* silcutil/SilcSnprintf/silc_vsnprintf
+/****f* silcutil/silc_vsnprintf
  *
  * SYNOPSIS
  *
@@ -91,7 +91,7 @@ int silc_snprintf(char *str, size_t count, const char *fmt, ...);
  ***/
 int silc_vsnprintf(char *str, size_t count, const char *fmt, va_list args);
 
-/****f* silcutil/SilcSnprintf/silc_asprintf
+/****f* silcutil/silc_asprintf
  *
  * SYNOPSIS
  *
@@ -105,7 +105,7 @@ int silc_vsnprintf(char *str, size_t count, const char *fmt, va_list args);
  ***/
 int silc_asprintf(char **ptr, const char *format, ...);
 
-/****f* silcutil/SilcSnprintf/silc_vasprintf
+/****f* silcutil/silc_vasprintf
  *
  * SYNOPSIS
  *

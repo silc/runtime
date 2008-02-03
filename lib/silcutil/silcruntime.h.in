@@ -17,6 +17,17 @@
 
 */
 
+/****h* silcutil/Runtime Toolkit Interface
+ *
+ * DESCRIPTION
+ *
+ * The SILC Runtime Toolkit API is used to initialize and uninitialize the
+ * Runtime Toolkit.  The application should call silc_runtime_init at the
+ * very start of the application and the silc_runtime_uninit at the very end
+ * of the application before it is exited.
+ *
+ ***/
+
 #ifndef SILCRUNTIME_H
 #define SILCRUNTIME_H
 
@@ -201,6 +212,54 @@ extern "C" {
 #include <silcfdstream.h>
 #include <silcmime.h>
 #include <silcrand.h>
+
+/* Runtime Toolkit API */
+
+/****f* silcutil/silc_runtime_init
+ *
+ * SYNOPSIS
+ *
+ *    static inline void silc_runtime_init(void)
+ *
+ * DESCRIPTION
+ *
+ *    Initializes the Runtime Toolkit.  Application should call this as the
+ *    very first call to the Runtime Toolkit.  The function initializes some
+ *    of the Toolkit features.
+ *
+ ***/
+static inline
+void silc_runtime_init(void)
+{
+  /* For now we don't have much here.  Strictly speaking, calling this
+     currently isn't required.  But in the future we may have something that
+     really must be initialized at the very start.  Even the Tls doesn't
+     actually require initialization since any routine using Tls currently
+     takes care of that. */
+
+  /* Initialize Tls for this thread (probably main process thread). */
+  silc_thread_tls_init();
+}
+
+/****f* silcutil/silc_runtime_uninit
+ *
+ * SYNOPSIS
+ *
+ *    static inline void silc_runtime_uninit(void)
+ *
+ * DESCRIPTION
+ *
+ *    Uninitializes the Runtime Toolkit.  Application should call this as the
+ *    very last call to the Runtime Toolkit.  The function uninitializes and
+ *    frees all allocated resources.
+ *
+ ***/
+static inline
+void silc_runtime_uninit(void)
+{
+  /* Uninitialize the whole Tls system (not just one thread). */
+  silc_thread_tls_uninit();
+}
 
 #ifdef __cplusplus
 }

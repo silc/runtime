@@ -17,17 +17,12 @@
 
 AUTOMAKE_OPTIONS = 1.0 no-dependencies foreign
 
-#ifdef SILC_DIST_TOOLKIT
 include_HEADERS = \
-	silc.h \
 	silcwin32.h \
-	silcsymbian.h \
-	silcversion.h
-#endif SILC_DIST_TOOLKIT
+	silcsymbian.h
 
 EXTRA_DIST = \
-	silc.h \
 	silcwin32.h \
 	silcsymbian.h \
-	silcversion.h.in \
+	silccompile.h \
 	silcdistdefs.h

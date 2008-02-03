@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Errno
+/****h* silcutil/Errno Interface
  *
  * DESCRIPTION
  *
@@ -53,7 +53,7 @@
 #ifndef SILCERRNO_H
 #define SILCERRNO_H
 
-/****d* silcutil/SilcErrnoAPI/SilcResult
+/****d* silcutil/SilcResult
  *
  * NAME
  *
@@ -140,7 +140,7 @@ typedef enum {
 } SilcResult;
 /***/
 
-/****d* silcutil/SilcErrnoAPI/silc_errno
+/****d* silcutil/silc_errno
  *
  * NAME
  *
@@ -154,7 +154,7 @@ typedef enum {
  ***/
 #define silc_errno silc_get_errno()
 
-/****f* silcutil/SilcErrnoAPI/silc_errno_string
+/****f* silcutil/silc_errno_string
  *
  * NAME
  *
@@ -168,7 +168,7 @@ typedef enum {
  ***/
 const char *silc_errno_string(SilcResult error);
 
-/****d* silcutil/SilcErrnoAPI/silc_errno_string
+/****d* silcutil/silc_errno_reason
  *
  * NAME
  *

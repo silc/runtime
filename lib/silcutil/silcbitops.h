@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,13 +17,15 @@
 
 */
 
-/****h* silcutil/SILC Bit Operations Interface
+/****h* silcutil/Bit Operations Interface
  *
  * DESCRIPTION
  *
  * Bit operations interface.  The interface can be used to set, clear and
  * find bits in an arbitrarily large bitmap.  The interface does not support
  * setting the bits atomically.
+ *
+ * EXAMPLE
  *
  * Example with a pre-allocated bitmap:
  *
@@ -53,7 +55,7 @@
 
 #define SILC_BIT_SIZE (SILC_SIZEOF_LONG * 8)
 
-/****d* silcutil/SilcBitOpAPI/SILC_BITMAP_DECLARE
+/****d* silcutil/SILC_BITMAP_DECLARE
  *
  * NAME
  *
@@ -68,7 +70,7 @@
 #define SILC_BITMAP_DECLARE(name, bits)		\
   unsigned long name[SILC_BITMAP_SIZE(bits)]
 
-/****d* silcutil/SilcBitOpAPI/SILC_BITMAP_SIZE
+/****d* silcutil/SILC_BITMAP_SIZE
  *
  * NAME
  *
@@ -83,7 +85,7 @@
  ***/
 #define SILC_BITMAP_SIZE(bits) (((bits) + SILC_BIT_SIZE) / SILC_BIT_SIZE)
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_set
+/****f* silcutil/silc_bit_set
  *
  * SYNOPSIS
  *
@@ -99,7 +101,7 @@
 SilcBool silc_bit_set(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 		      SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_clear
+/****f* silcutil/silc_bit_clear
  *
  * SYNOPSIS
  *
@@ -115,7 +117,7 @@ SilcBool silc_bit_set(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 SilcBool silc_bit_clear(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 			SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_toggle
+/****f* silcutil/silc_bit_toggle
  *
  * SYNOPSIS
  *
@@ -131,7 +133,7 @@ SilcBool silc_bit_clear(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 SilcBool silc_bit_toggle(volatile unsigned long *bitmap,
 			 SilcUInt32 bitmap_size, SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_test_and_set
+/****f* silcutil/silc_bit_test_and_set
  *
  * SYNOPSIS
  *
@@ -148,7 +150,7 @@ SilcBool silc_bit_toggle(volatile unsigned long *bitmap,
 int silc_bit_test_and_set(volatile unsigned long *bitmap,
 			  SilcUInt32 bitmap_size, SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_test_and_clear
+/****f* silcutil/silc_bit_test_and_clear
  *
  * SYNOPSIS
  *
@@ -165,7 +167,7 @@ int silc_bit_test_and_set(volatile unsigned long *bitmap,
 int silc_bit_test_and_clear(volatile unsigned long *bitmap,
 			    SilcUInt32 bitmap_size, SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_test_and_toggle
+/****f* silcutil/silc_bit_test_and_toggle
  *
  * SYNOPSIS
  *
@@ -182,7 +184,7 @@ int silc_bit_test_and_clear(volatile unsigned long *bitmap,
 int silc_bit_test_and_toggle(volatile unsigned long *bitmap,
 			     SilcUInt32 bitmap_size, SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_get
+/****f* silcutil/silc_bit_get
  *
  * SYNOPSIS
  *
@@ -198,7 +200,7 @@ int silc_bit_test_and_toggle(volatile unsigned long *bitmap,
 int silc_bit_get(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 		 SilcUInt32 bit);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_ffs
+/****f* silcutil/silc_bit_ffs
  *
  * SYNOPSIS
  *
@@ -213,7 +215,7 @@ int silc_bit_get(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
  ***/
 int silc_bit_ffs(volatile unsigned long *bitmap, SilcUInt32 bitmap_size);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_ffz
+/****f* silcutil/silc_bit_ffz
  *
  * SYNOPSIS
  *
@@ -228,7 +230,7 @@ int silc_bit_ffs(volatile unsigned long *bitmap, SilcUInt32 bitmap_size);
  ***/
 int silc_bit_ffz(volatile unsigned long *bitmap, SilcUInt32 bitmap_size);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_fns
+/****f* silcutil/silc_bit_fns
  *
  * SYNOPSIS
  *
@@ -245,7 +247,7 @@ int silc_bit_ffz(volatile unsigned long *bitmap, SilcUInt32 bitmap_size);
 int silc_bit_fns(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 		 SilcUInt32 offset);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_fnz
+/****f* silcutil/silc_bit_fnz
  *
  * SYNOPSIS
  *
@@ -262,7 +264,7 @@ int silc_bit_fns(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 int silc_bit_fnz(volatile unsigned long *bitmap, SilcUInt32 bitmap_size,
 		 SilcUInt32 offset);
 
-/****f* silcutil/SilcBitOpAPI/silc_bit_clear_bitmap
+/****f* silcutil/silc_bit_clear_bitmap
  *
  * SYNOPSIS
  *

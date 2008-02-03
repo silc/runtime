@@ -16,23 +16,26 @@
   GNU General Public License for more details.
 
 */
-/* $Id: silcbuffer.h,v 1.43 2008/01/15 06:36:54 priikone Exp $ */
 
-/****h* silcutil/SILC Buffer Interface
+/****h* silcutil/Buffer Interface
  *
  * DESCRIPTION
  *
- * SilcBuffer is very simple and easy to use, yet you can do to the
- * buffer almost anything you want with its method functions. The buffer
+ * Data buffer interface that provides buffer allocation and manipulation
+ * routines.  SilcBuffer is simple and easy to use, yet you can do to the
+ * buffer almost anything you want with its method functions.  The buffer
  * is constructed of four different data sections that in whole creates
- * the allocated data area.
+ * the allocated data area.  See the SilcBuffer context for more information.
+ *
+ * The SilcBuffer context is not thread-safe and if same context must be
+ * used from multiple threads concurrency control must be employed.
  *
  ***/
 
 #ifndef SILCBUFFER_H
 #define SILCBUFFER_H
 
-/****s* silcutil/SilcBufferAPI/SilcBuffer
+/****s* silcutil/SilcBuffer
  *
  * NAME
  *
@@ -43,14 +46,13 @@
  *    SILC Buffer object. Following short description of the fields
  *    of the buffer.
  *
- * EXAMPLE
- *
- *    unsiged char *head;
+ *     unsiged char *head;
  *
  *        Head of the allocated buffer. This is the start of the allocated
  *        data area and remains as same throughout the lifetime of the buffer.
  *        However, the end of the head area or the start of the currently valid
- *        data area is variable.
+ *        data area is variable.  Reallocating the buffer may change the
+ *        pointer.
  *
  *        --------------------------------
  *        | head  | data         | tail  |
@@ -59,7 +61,7 @@
  *
  *        Current head section in the buffer is sb->data - sb->head.
  *
- *    unsigned char *data;
+ *     unsigned char *data;
  *
  *        Currently valid data area. This is the start of the currently valid
  *        main data area. The data area is variable in all directions.
@@ -71,7 +73,7 @@
  *
  *        Current valid data area in the buffer is sb->tail - sb->data.
  *
- *     unsigned char *tail;
+ *      unsigned char *tail;
  *
  *        Tail of the buffer. This is the end of the currently valid data area
  *        or start of the tail area. The start of the tail area is variable.
@@ -83,7 +85,7 @@
  *
  *        Current tail section in the buffer is sb->end - sb->tail.
  *
- *    unsigned char *end;
+ *     unsigned char *end;
  *
  *        End of the allocated buffer. This is the end of the allocated data
  *        area and remains as same throughout the lifetime of the buffer.
@@ -97,30 +99,27 @@
  *
  *        Length of the entire buffer is (ie. truelen) sb->end - sb->head.
  *
- *     Currently valid data area is considered to be the main data area in
- *     the buffer. However, the entire buffer is of course valid data and can
- *     be used as such. Usually head section of the buffer includes different
- *     kind of headers or similar. Data section includes the main data of
- *     the buffer. Tail section can be seen as a reserve space of the data
- *     section. Tail section can be pulled towards end, and thus the data
- *     section becomes larger.
- *
- * SILC Buffer is not thread-safe.  If the same SilcBuffer context must be
- * used in multithreaded environment concurrency control must be employed.
+ *    Currently valid data area is considered to be the main data area in
+ *    the buffer. However, the entire buffer is of course valid data and can
+ *    be used as such. Usually head section of the buffer includes different
+ *    kind of headers or similar. Data section includes the main data of
+ *    the buffer. Tail section can be seen as a reserve space of the data
+ *    section. Tail section can be pulled towards end, and thus the data
+ *    section becomes larger.
  *
  * SOURCE
  */
 typedef struct SilcBufferObject {
-  unsigned char *head;
-  unsigned char *data;
-  unsigned char *tail;
-  unsigned char *end;
+  unsigned char *head;		/* Head of the allocated buffer area */
+  unsigned char *data;		/* Start of the data area */
+  unsigned char *tail;		/* Start of the tail area */
+  unsigned char *end;		/* End of the buffer */
 } *SilcBuffer, SilcBufferStruct;
 /***/
 
 /* Macros */
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_data
+/****f* silcutil/silc_buffer_data
  *
  * NAME
  *
@@ -135,7 +134,7 @@ typedef struct SilcBufferObject {
 #define silc_buffer_data(x) (x)->data
 /***/
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_tail
+/****f* silcutil/silc_buffer_tail
  *
  * NAME
  *
@@ -150,7 +149,7 @@ typedef struct SilcBufferObject {
 #define silc_buffer_tail(x) (x)->tail
 /***/
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_datalen
+/****f* silcutil/silc_buffer_datalen
  *
  * NAME
  *
@@ -176,7 +175,7 @@ typedef struct SilcBufferObject {
 
 /* Inline functions */
 
-/****d* silcutil/SilcBufferAPI/silc_buffer_truelen
+/****d* silcutil/silc_buffer_truelen
  *
  * NAME
  *
@@ -193,7 +192,7 @@ SilcUInt32 silc_buffer_truelen(SilcBuffer x)
   return (SilcUInt32)(x->end - x->head);
 }
 
-/****d* silcutil/SilcBufferAPI/silc_buffer_len
+/****d* silcutil/silc_buffer_len
  *
  * NAME
  *
@@ -210,7 +209,7 @@ SilcUInt32 silc_buffer_len(SilcBuffer x)
   return (SilcUInt32)(x->tail - x->data);
 }
 
-/****d* silcutil/SilcBufferAPI/silc_buffer_headlen
+/****d* silcutil/silc_buffer_headlen
  *
  * NAME
  *
@@ -227,7 +226,7 @@ SilcUInt32 silc_buffer_headlen(SilcBuffer x)
   return (SilcUInt32)(x->data - x->head);
 }
 
-/****d* silcutil/SilcBufferAPI/silc_buffer_taillen
+/****d* silcutil/silc_buffer_taillen
  *
  * NAME
  *
@@ -244,7 +243,7 @@ SilcUInt32 silc_buffer_taillen(SilcBuffer x)
   return (SilcUInt32)(x->end - x->tail);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_alloc
+/****f* silcutil/silc_buffer_alloc
  *
  * SYNOPSIS
  *
@@ -283,7 +282,7 @@ SilcBuffer silc_buffer_alloc(SilcUInt32 len)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_salloc
+/****f* silcutil/silc_buffer_salloc
  *
  * SYNOPSIS
  *
@@ -331,7 +330,7 @@ SilcBuffer silc_buffer_salloc(SilcStack stack, SilcUInt32 len)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_free
+/****f* silcutil/silc_buffer_free
  *
  * SYNOPSIS
  *
@@ -363,7 +362,7 @@ void silc_buffer_free(SilcBuffer sb)
   }
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_sfree
+/****f* silcutil/silc_buffer_sfree
  *
  * SYNOPSIS
  *
@@ -394,7 +393,7 @@ void silc_buffer_sfree(SilcStack stack, SilcBuffer sb)
   silc_buffer_free(sb);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_steal
+/****f* silcutil/silc_buffer_steal
  *
  * SYNOPSIS
  *
@@ -422,7 +421,7 @@ unsigned char *silc_buffer_steal(SilcBuffer sb, SilcUInt32 *data_len)
   return buf;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_purge
+/****f* silcutil/silc_buffer_purge
  *
  * SYNOPSIS
  *
@@ -449,7 +448,7 @@ void silc_buffer_purge(SilcBuffer sb)
   silc_free(silc_buffer_steal(sb, NULL));
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_spurge
+/****f* silcutil/silc_buffer_spurge
  *
  * SYNOPSIS
  *
@@ -479,7 +478,7 @@ void silc_buffer_spurge(SilcStack stack, SilcBuffer sb)
   silc_buffer_purge(sb);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_set
+/****f* silcutil/silc_buffer_set
  *
  * SYNOPSIS
  *
@@ -509,7 +508,7 @@ void silc_buffer_set(SilcBuffer sb, unsigned char *data, SilcUInt32 data_len)
   sb->tail = sb->end = data + data_len;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_pull
+/****f* silcutil/silc_buffer_pull
  *
  * SYNOPSIS
  *
@@ -557,7 +556,7 @@ unsigned char *silc_buffer_pull(SilcBuffer sb, SilcUInt32 len)
   return old_data;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_push
+/****f* silcutil/silc_buffer_push
  *
  * SYNOPSIS
  *
@@ -605,7 +604,7 @@ unsigned char *silc_buffer_push(SilcBuffer sb, SilcUInt32 len)
   return old_data;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_pull_tail
+/****f* silcutil/silc_buffer_pull_tail
  *
  * SYNOPSIS
  *
@@ -652,7 +651,7 @@ unsigned char *silc_buffer_pull_tail(SilcBuffer sb, SilcUInt32 len)
   return old_tail;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_push_tail
+/****f* silcutil/silc_buffer_push_tail
  *
  * SYNOPSIS
  *
@@ -700,7 +699,7 @@ unsigned char *silc_buffer_push_tail(SilcBuffer sb, SilcUInt32 len)
   return old_tail;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_put_head
+/****f* silcutil/silc_buffer_put_head
  *
  * SYNOPSIS
  *
@@ -751,7 +750,7 @@ unsigned char *silc_buffer_put_head(SilcBuffer sb,
   return (unsigned char *)memcpy(sb->head, data, len);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_put
+/****f* silcutil/silc_buffer_put
  *
  * SYNOPSIS
  *
@@ -802,7 +801,7 @@ unsigned char *silc_buffer_put(SilcBuffer sb,
   return (unsigned char *)memcpy(sb->data, data, len);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_put_tail
+/****f* silcutil/silc_buffer_put_tail
  *
  * SYNOPSIS
  *
@@ -853,7 +852,7 @@ unsigned char *silc_buffer_put_tail(SilcBuffer sb,
   return (unsigned char *)memcpy(sb->tail, data, len);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_alloc_size
+/****f* silcutil/silc_buffer_alloc_size
  *
  * SYNOPSIS
  *
@@ -878,7 +877,7 @@ SilcBuffer silc_buffer_alloc_size(SilcUInt32 len)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_salloc_size
+/****f* silcutil/silc_buffer_salloc_size
  *
  * SYNOPSIS
  *
@@ -909,7 +908,7 @@ SilcBuffer silc_buffer_salloc_size(SilcStack stack, SilcUInt32 len)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_reset
+/****f* silcutil/silc_buffer_reset
  *
  * SYNOPSIS
  *
@@ -930,7 +929,7 @@ void silc_buffer_reset(SilcBuffer sb)
   sb->data = sb->tail = sb->head;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_clear
+/****f* silcutil/silc_buffer_clear
  *
  * SYNOPSIS
  *
@@ -951,7 +950,7 @@ void silc_buffer_clear(SilcBuffer sb)
   silc_buffer_reset(sb);
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_start
+/****f* silcutil/silc_buffer_start
  *
  * SYNOPSIS
  *
@@ -971,7 +970,7 @@ void silc_buffer_start(SilcBuffer sb)
   sb->data = sb->head;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_end
+/****f* silcutil/silc_buffer_end
  *
  * SYNOPSIS
  *
@@ -993,7 +992,7 @@ void silc_buffer_end(SilcBuffer sb)
   sb->tail = sb->end;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_copy
+/****f* silcutil/silc_buffer_copy
  *
  * SYNOPSIS
  *
@@ -1021,7 +1020,7 @@ SilcBuffer silc_buffer_copy(SilcBuffer sb)
   return sb_new;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_scopy
+/****f* silcutil/silc_buffer_scopy
  *
  * SYNOPSIS
  *
@@ -1055,7 +1054,7 @@ SilcBuffer silc_buffer_scopy(SilcStack stack, SilcBuffer sb)
   return sb_new;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_clone
+/****f* silcutil/silc_buffer_clone
  *
  * SYNOPSIS
  *
@@ -1085,7 +1084,7 @@ SilcBuffer silc_buffer_clone(SilcBuffer sb)
   return sb_new;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_sclone
+/****f* silcutil/silc_buffer_sclone
  *
  * SYNOPSIS
  *
@@ -1121,7 +1120,7 @@ SilcBuffer silc_buffer_sclone(SilcStack stack, SilcBuffer sb)
   return sb_new;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_realloc
+/****f* silcutil/silc_buffer_realloc
  *
  * SYNOPSIS
  *
@@ -1167,7 +1166,7 @@ SilcBuffer silc_buffer_realloc(SilcBuffer sb, SilcUInt32 newsize)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_srealloc
+/****f* silcutil/silc_buffer_srealloc
  *
  * SYNOPSIS
  *
@@ -1226,7 +1225,7 @@ SilcBuffer silc_buffer_srealloc(SilcStack stack,
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_realloc_size
+/****f* silcutil/silc_buffer_realloc_size
  *
  * SYNOPSIS
  *
@@ -1251,7 +1250,7 @@ SilcBuffer silc_buffer_realloc_size(SilcBuffer sb, SilcUInt32 newsize)
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_srealloc_size
+/****f* silcutil/silc_buffer_srealloc_size
  *
  * SYNOPSIS
  *
@@ -1284,7 +1283,7 @@ SilcBuffer silc_buffer_srealloc_size(SilcStack stack,
   return sb;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_enlarge
+/****f* silcutil/silc_buffer_enlarge
  *
  * SYNOPSIS
  *
@@ -1317,7 +1316,7 @@ SilcBool silc_buffer_enlarge(SilcBuffer sb, SilcUInt32 size)
   return TRUE;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_senlarge
+/****f* silcutil/silc_buffer_senlarge
  *
  * SYNOPSIS
  *
@@ -1358,7 +1357,7 @@ SilcBool silc_buffer_senlarge(SilcStack stack, SilcBuffer sb, SilcUInt32 size)
   return TRUE;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_append
+/****f* silcutil/silc_buffer_append
  *
  * SYNOPSIS
  *
@@ -1404,7 +1403,7 @@ SilcBool silc_buffer_append(SilcBuffer sb, SilcUInt32 size)
   return TRUE;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_append
+/****f* silcutil/silc_buffer_sappend
  *
  * SYNOPSIS
  *
@@ -1458,7 +1457,7 @@ SilcBool silc_buffer_sappend(SilcStack stack, SilcBuffer sb, SilcUInt32 size)
   return TRUE;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_strchr
+/****f* silcutil/silc_buffer_strchr
  *
  * SYNOPSIS
  *
@@ -1511,7 +1510,7 @@ unsigned char *silc_buffer_strchr(SilcBuffer sb, int c, SilcBool first)
   return NULL;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_equal
+/****f* silcutil/silc_buffer_equal
  *
  * SYNOPSIS
  *
@@ -1533,7 +1532,7 @@ SilcBool silc_buffer_equal(SilcBuffer sb1, SilcBuffer sb2)
   return memcmp(sb1->data, sb2->data, silc_buffer_len(sb1)) == 0;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_memcmp
+/****f* silcutil/silc_buffer_memcmp
  *
  * SYNOPSIS
  *
@@ -1558,7 +1557,7 @@ SilcBool silc_buffer_memcmp(SilcBuffer buffer, const unsigned char *data,
   return memcmp(buffer->data, data, data_len) == 0;
 }
 
-/****f* silcutil/SilcBufferAPI/silc_buffer_printf
+/****f* silcutil/silc_buffer_printf
  *
  * SYNOPSIS
  *

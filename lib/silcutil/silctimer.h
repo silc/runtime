@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,12 +17,15 @@
 
 */
 
-/****h* silcutil/SILC Timer Interface
+/****h* silcutil/Timer Interface
  *
  * DESCRIPTION
  *
  * SILC Timer interface provides a simple way to measure time intervals.
  * The SILC Timer works with microsecond resolution, depending on platform.
+ *
+ * The interface also provides utility functions to get currenet CPU tick
+ * count and to delay process/thread execution.
  *
  * EXAMPLE
  *
@@ -38,7 +41,7 @@
 #ifndef SILCTIMER_H
 #define SILCTIMER_H
 
-/****s* silcutil/SilcTimerAPI/SilcTimer
+/****s* silcutil/SilcTimer
  *
  * NAME
  *
@@ -52,7 +55,7 @@
  ***/
 typedef struct SilcTimerObject *SilcTimer, SilcTimerStruct;
 
-/****f* silcutil/SilcTimerAPI/silc_timer_start
+/****f* silcutil/silc_timer_start
  *
  * SYNOPSIS
  *
@@ -75,7 +78,7 @@ typedef struct SilcTimerObject *SilcTimer, SilcTimerStruct;
  ***/
 void silc_timer_start(SilcTimer timer);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_stop
+/****f* silcutil/silc_timer_stop
  *
  * SYNOPSIS
  *
@@ -89,7 +92,7 @@ void silc_timer_start(SilcTimer timer);
  ***/
 void silc_timer_stop(SilcTimer timer);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_continue
+/****f* silcutil/silc_timer_continue
  *
  * SYNOPSIS
  *
@@ -102,7 +105,7 @@ void silc_timer_stop(SilcTimer timer);
  ***/
 void silc_timer_continue(SilcTimer timer);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_value
+/****f* silcutil/silc_timer_value
  *
  * SYNOPSIS
  *
@@ -121,7 +124,7 @@ void silc_timer_value(SilcTimer timer,
 		      SilcUInt64 *elapsed_time_seconds,
 		      SilcUInt32 *elapsed_time_microseconds);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_value_time
+/****f* silcutil/silc_timer_value_time
  *
  * SYNOPSIS
  *
@@ -137,7 +140,7 @@ void silc_timer_value(SilcTimer timer,
  ***/
 void silc_timer_value_time(SilcTimer timer, SilcTime ret_time);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_start_time
+/****f* silcutil/silc_timer_start_time
  *
  * SYNOPSIS
  *
@@ -150,7 +153,7 @@ void silc_timer_value_time(SilcTimer timer, SilcTime ret_time);
  ***/
 void silc_timer_start_time(SilcTimer timer, SilcTime ret_start_time);
 
-/****f* silcutil/SilcTimerAPI/silc_timer_is_running
+/****f* silcutil/silc_timer_is_running
  *
  * SYNOPSIS
  *
@@ -165,7 +168,7 @@ SilcBool silc_timer_is_running(SilcTimer timer);
 
 #include "silctimer_i.h"
 
-/****f* silcutil/SilcTimerAPI/silc_timer_tick
+/****f* silcutil/silc_timer_tick
  *
  * SYNOPSIS
  *
@@ -179,7 +182,7 @@ SilcBool silc_timer_is_running(SilcTimer timer);
  *    tick count.  If the `adjust' is TRUE and the silc_timer_synchronize
  *    has been called the returned value is adjusted to be more accurate.
  *
- * EXAMPLES
+ * EXAMPLE
  *
  *    // Synchronize timer for more accurate CPU tick counts
  *    silc_timer_synchronize(&timer);
@@ -226,7 +229,7 @@ SilcUInt64 silc_timer_tick(SilcTimer timer, SilcBool adjust)
 #endif /* __GNUC__ || __ICC */
 }
 
-/****f* silcutil/SilcTimerAPI/silc_timer_synchronize
+/****f* silcutil/silc_timer_synchronize
  *
  * SYNOPSIS
  *
@@ -284,6 +287,49 @@ void silc_timer_synchronize(SilcTimer timer)
   t1 = silc_timer_tick(timer, FALSE);
   t2 = silc_timer_tick(timer, TRUE);
   timer->sync_tdiff += (int)(t2 - t1);
+}
+
+/****f* silcutil/silc_usleep
+ *
+ * SYNOPSIS
+ *
+ *    void silc_usleep(unsigned long microseconds);
+ *
+ * DESCRIPTION
+ *
+ *    Delays the execution of process/thread for the specified amount of
+ *    time, which is in microseconds.
+ *
+ * NOTES
+ *
+ *    The delay is only approximate and on some platforms the resolution is
+ *    in fact milliseconds.
+ *
+ ***/
+static inline
+void silc_usleep(unsigned long microseconds)
+{
+#ifdef SILC_UNIX
+#ifdef HAVE_NANOSLEEP
+  struct timespec tv;
+  tv.tv_sec = 0;
+  tv.tv_nsec = microseconds * 1000;
+#endif /* HAVE_NANOSLEEP */
+#endif /* SILC_UNIX */
+
+#ifdef SILC_UNIX
+#ifdef HAVE_NANOSLEEP
+  nanosleep(&tv, NULL);
+#else
+  usleep(microseconds);
+#endif /* HAVE_NANOSLEEP */
+#endif /* SILC_UNIX */
+#ifdef SILC_WIN32
+  Sleep(microseconds / 1000);
+#endif /* SILC_WIN32 */
+#ifdef SILC_SYMBIAN
+  silc_symbian_usleep(microseconds);
+#endif /* SILC_SYMBIAN */
 }
 
 #endif /* SILCTIMER_H */

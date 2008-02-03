@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2003 - 2007 Pekka Riikonen
+  Copyright (C) 2003 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Time Interface
+/****h* silcutil/Time Interface
  *
  * DESCRIPTION
  *
@@ -30,7 +30,7 @@
 #ifndef SILCTIME_H
 #define SILCTIME_H
 
-/****s* silcutil/SilcTimeAPI/SilcTime
+/****s* silcutil/SilcTime
  *
  * NAME
  *
@@ -43,7 +43,7 @@
  *
  * SOURCE
  *
- ***/
+ */
 typedef struct SilcTimeObject {
   unsigned int year       : 15;	   /* Year,     0 - 32768 */
   unsigned int month      : 4;	   /* Month,    1 - 12 */
@@ -59,7 +59,7 @@ typedef struct SilcTimeObject {
 } *SilcTime, SilcTimeStruct;
 /***/
 
-/****f* silcutil/SilcTimeAPI/silc_time
+/****f* silcutil/silc_time
  *
  * SYNOPSIS
  *
@@ -73,7 +73,7 @@ typedef struct SilcTimeObject {
  ***/
 SilcInt64 silc_time(void);
 
-/****f* silcutil/SilcTimeAPI/silc_time_msec
+/****f* silcutil/silc_time_msec
  *
  * SYNOPSIS
  *
@@ -87,7 +87,7 @@ SilcInt64 silc_time(void);
  ***/
 SilcInt64 silc_time_msec(void);
 
-/****f* silcutil/SilcTimeAPI/silc_time_usec
+/****f* silcutil/silc_time_usec
  *
  * SYNOPSIS
  *
@@ -101,7 +101,7 @@ SilcInt64 silc_time_msec(void);
  ***/
 SilcInt64 silc_time_usec(void);
 
-/****f* silcutil/SilcTimeAPI/silc_time_string
+/****f* silcutil/silc_time_string
  *
  * SYNOPSIS
  *
@@ -118,7 +118,7 @@ SilcInt64 silc_time_usec(void);
  ***/
 const char *silc_time_string(SilcInt64 time_val_sec);
 
-/****f* silcutil/SilcTimeAPI/silc_time_value
+/****f* silcutil/silc_time_value
  *
  * SYNOPSIS
  *
@@ -134,7 +134,7 @@ const char *silc_time_string(SilcInt64 time_val_sec);
  ***/
 SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
 
-/****f* silcutil/SilcTimeAPI/silc_timezone
+/****f* silcutil/silc_timezone
  *
  * SYNOPSIS
  *
@@ -153,7 +153,7 @@ SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
  ***/
 SilcBool silc_timezone(char *timezone, SilcUInt32 timezone_size);
 
-/****f* silcutil/SilcTimeAPI/silc_time_universal
+/****f* silcutil/silc_time_universal
  *
  * SYNOPSIS
  *
@@ -179,7 +179,7 @@ SilcBool silc_timezone(char *timezone, SilcUInt32 timezone_size);
  ***/
 SilcBool silc_time_universal(const char *universal_time, SilcTime ret_time);
 
-/****f* silcutil/SilcTimeAPI/silc_time_universal_string
+/****f* silcutil/silc_time_universal_string
  *
  * SYNOPSIS
  *
@@ -195,7 +195,7 @@ SilcBool silc_time_universal(const char *universal_time, SilcTime ret_time);
 SilcBool silc_time_universal_string(SilcTime time_val, char *ret_string,
 				    SilcUInt32 ret_string_size);
 
-/****f* silcutil/SilcTimeAPI/silc_time_generalized
+/****f* silcutil/silc_time_generalized
  *
  * SYNOPSIS
  *
@@ -226,7 +226,7 @@ SilcBool silc_time_universal_string(SilcTime time_val, char *ret_string,
 SilcBool
 silc_time_generalized(const char *generalized_time, SilcTime ret_time);
 
-/****f* silcutil/SilcTimeAPI/silc_time_generalized_string
+/****f* silcutil/silc_time_generalized_string
  *
  * SYNOPSIS
  *
@@ -243,7 +243,7 @@ silc_time_generalized(const char *generalized_time, SilcTime ret_time);
 SilcBool silc_time_generalized_string(SilcTime time_val, char *ret_string,
 				      SilcUInt32 ret_string_size);
 
-/****f* silcutil/SilcTimeAPI/silc_compare_timeval
+/****f* silcutil/silc_compare_timeval
  *
  * SYNOPSIS
  *
@@ -258,7 +258,7 @@ SilcBool silc_time_generalized_string(SilcTime time_val, char *ret_string,
  ***/
 int silc_compare_timeval(struct timeval *t1, struct timeval *t2);
 
-/****f* silcutil/SilcTimeAPI/silc_gettimeofday
+/****f* silcutil/silc_gettimeofday
  *
  * SYNOPSIS
  *
@@ -271,48 +271,5 @@ int silc_compare_timeval(struct timeval *t1, struct timeval *t2);
  *
  ***/
 int silc_gettimeofday(struct timeval *p);
-
-/****f* silcutil/SilcTimeAPI/silc_usleep
- *
- * SYNOPSIS
- *
- *    void silc_usleep(unsigned long microseconds);
- *
- * DESCRIPTION
- *
- *    Delays the execution of process/thread for the specified amount of
- *    time, which is in microseconds.
- *
- * NOTES
- *
- *    The delay is only approximate and on some platforms the resolution is
- *    in fact milliseconds.
- *
- ***/
-static inline
-void silc_usleep(unsigned long microseconds)
-{
-#ifdef SILC_UNIX
-#ifdef HAVE_NANOSLEEP
-  struct timespec tv;
-  tv.tv_sec = 0;
-  tv.tv_nsec = microseconds * 1000;
-#endif /* HAVE_NANOSLEEP */
-#endif /* SILC_UNIX */
-
-#ifdef SILC_UNIX
-#ifdef HAVE_NANOSLEEP
-  nanosleep(&tv, NULL);
-#else
-  usleep(microseconds);
-#endif /* HAVE_NANOSLEEP */
-#endif /* SILC_UNIX */
-#ifdef SILC_WIN32
-  Sleep(microseconds / 1000);
-#endif /* SILC_WIN32 */
-#ifdef SILC_SYMBIAN
-  silc_symbian_usleep(microseconds);
-#endif /* SILC_SYMBIAN */
-}
 
 #endif /* SILCTIME_H */

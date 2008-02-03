@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC File Descriptor Stream Interface
+/****h* silcutil/Fd Stream Interface
  *
  * DESCRIPTION
  *
@@ -34,7 +34,7 @@
 #ifndef SILCFDSTREAM_H
 #define SILCFDSTREAM_H
 
-/****f* silcutil/SilcFDStreamAPI/silc_fd_stream_create
+/****f* silcutil/silc_fd_stream_create
  *
  * SYNOPSIS
  *
@@ -55,7 +55,7 @@
  ***/
 SilcStream silc_fd_stream_create(int fd, SilcStack stack);
 
-/****f* silcutil/SilcFDStreamAPI/silc_fd_stream_create2
+/****f* silcutil/silc_fd_stream_create2
  *
  * SYNOPSIS
  *
@@ -79,7 +79,7 @@ SilcStream silc_fd_stream_create(int fd, SilcStack stack);
  ***/
 SilcStream silc_fd_stream_create2(int read_fd, int write_fd, SilcStack stack);
 
-/****f* silcutil/SilcFDStreamAPI/silc_fd_stream_file
+/****f* silcutil/silc_fd_stream_file
  *
  * SYNOPSIS
  *
@@ -103,7 +103,7 @@ SilcStream silc_fd_stream_create2(int read_fd, int write_fd, SilcStack stack);
 SilcStream silc_fd_stream_file(const char *filename, SilcBool reading,
 			       SilcBool writing, SilcStack stack);
 
-/****f* silcutil/SilcFDStreamAPI/silc_fd_stream_file2
+/****f* silcutil/silc_fd_stream_file2
  *
  * SYNOPSIS
  *
@@ -127,7 +127,7 @@ SilcStream silc_fd_stream_file(const char *filename, SilcBool reading,
 SilcStream silc_fd_stream_file2(const char *read_file, const char *write_file,
 				SilcStack stack);
 
-/****f* silcutil/SilcFDStreamAPI/silc_fd_stream_get_info
+/****f* silcutil/silc_fd_stream_get_info
  *
  * SYNOPSIS
  *

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,10 +17,19 @@
 
 */
 
+/****h* silcutil/GetOpt Interface
+ *
+ * DESCRIPTION
+ *
+ * SILC GetOpt Interface provides portable interface to handle command
+ * line options.
+ *
+ ***/
+
 #ifndef SILCGETOPT_H
 #define SILCGETOPT_H
 
-/****s* silcutil/SilcGetOptAPI/SilcGetOpt
+/****s* silcutil/SilcGetOpt
  *
  * NAME
  *
@@ -44,7 +53,7 @@ typedef struct SilcGetOptObject {
 } *SilcGetOpt, SilcGetOptStruct;
 /***/
 
-/****d* silcutil/SilcGetOptAPI/SILC_GETOPT_INIT
+/****d* silcutil/SILC_GETOPT_INIT
  *
  * NAME
  *
@@ -61,7 +70,7 @@ typedef struct SilcGetOptObject {
  ***/
 #define SILC_GETOPT_INIT { 1, 0, NULL, TRUE, 1 }
 
-/****f* silcutil/SilcGetOptAPI/silc_getopt
+/****f* silcutil/silc_getopt
  *
  * SYNOPSIS
  *

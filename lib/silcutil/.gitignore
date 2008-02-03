@@ -1,8 +1,0 @@
-Makefile
-*.in
-*.am
-*.o
-*.lo
-*.la
-*.a
-*.pc

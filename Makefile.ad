@@ -25,6 +25,8 @@ SUBDIRS = 		\
 	doc
 
 EXTRA_DIST = 		\
+	srt.m4		\
+	srt.spec	\
 	silcdefs.h.in	\
 	symbian		\
 	CHANGES CREDITS

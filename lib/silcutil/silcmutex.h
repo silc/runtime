@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Mutex Interface
+/****h* silcutil/Mutex Interface
  *
  * DESCRIPTION
  *
@@ -30,7 +30,7 @@
 #ifndef SILCMUTEX_H
 #define SILCMUTEX_H
 
-/****s* silcutil/SilcMutexAPI/SilcMutex
+/****s* silcutil/SilcMutex
  *
  * NAME
  *
@@ -45,7 +45,7 @@
  ***/
 typedef struct SilcMutexStruct *SilcMutex;
 
-/****s* silcutil/SilcMutexAPI/SilcRwLock
+/****s* silcutil/SilcRwLock
  *
  * NAME
  *
@@ -60,7 +60,7 @@ typedef struct SilcMutexStruct *SilcMutex;
  ***/
 typedef struct SilcRwLockStruct *SilcRwLock;
 
-/****f* silcutil/SilcMutexAPI/silc_mutex_alloc
+/****f* silcutil/silc_mutex_alloc
  *
  * SYNOPSIS
  *
@@ -77,7 +77,7 @@ typedef struct SilcRwLockStruct *SilcRwLock;
  ***/
 SilcBool silc_mutex_alloc(SilcMutex *mutex);
 
-/****f* silcutil/SilcMutexAPI/silc_mutex_free
+/****f* silcutil/silc_mutex_free
  *
  * SYNOPSIS
  *
@@ -91,7 +91,7 @@ SilcBool silc_mutex_alloc(SilcMutex *mutex);
  ***/
 void silc_mutex_free(SilcMutex mutex);
 
-/****f* silcutil/SilcMutexAPI/silc_mutex_lock
+/****f* silcutil/silc_mutex_lock
  *
  * SYNOPSIS
  *
@@ -113,7 +113,7 @@ void silc_mutex_free(SilcMutex mutex);
  ***/
 void silc_mutex_lock(SilcMutex mutex);
 
-/****f* silcutil/SilcMutexAPI/silc_mutex_unlock
+/****f* silcutil/silc_mutex_unlock
  *
  * SYNOPSIS
  *
@@ -133,7 +133,7 @@ void silc_mutex_lock(SilcMutex mutex);
  ***/
 void silc_mutex_unlock(SilcMutex mutex);
 
-/****f* silcutil/SilcMutexAPI/silc_mutex_assert_locked
+/****f* silcutil/silc_mutex_assert_locked
  *
  * SYNOPSIS
  *
@@ -148,7 +148,7 @@ void silc_mutex_unlock(SilcMutex mutex);
  ***/
 void silc_mutex_assert_locked(SilcMutex mutex);
 
-/****f* silcutil/SilcMutexAPI/silc_rwlock_alloc
+/****f* silcutil/silc_rwlock_alloc
  *
  * SYNOPSIS
  *
@@ -164,7 +164,7 @@ void silc_mutex_assert_locked(SilcMutex mutex);
  ***/
 SilcBool silc_rwlock_alloc(SilcRwLock *rwlock);
 
-/****f* silcutil/SilcRwLockAPI/silc_rwlock_free
+/****f* silcutil/silc_rwlock_free
  *
  * SYNOPSIS
  *
@@ -178,7 +178,7 @@ SilcBool silc_rwlock_alloc(SilcRwLock *rwlock);
  ***/
 void silc_rwlock_free(SilcRwLock rwlock);
 
-/****f* silcutil/SilcRwLockAPI/silc_rwlock_rdlock
+/****f* silcutil/silc_rwlock_rdlock
  *
  * SYNOPSIS
  *
@@ -196,7 +196,7 @@ void silc_rwlock_free(SilcRwLock rwlock);
  ***/
 void silc_rwlock_rdlock(SilcRwLock rwlock);
 
-/****f* silcutil/SilcRwLockAPI/silc_rwlock_wrlock
+/****f* silcutil/silc_rwlock_wrlock
  *
  * SYNOPSIS
  *
@@ -214,7 +214,7 @@ void silc_rwlock_rdlock(SilcRwLock rwlock);
  ***/
 void silc_rwlock_wrlock(SilcRwLock rwlock);
 
-/****f* silcutil/SilcRwLockAPI/silc_rwlock_unlock
+/****f* silcutil/silc_rwlock_unlock
  *
  * SYNOPSIS
  *

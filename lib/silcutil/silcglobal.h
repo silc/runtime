@@ -29,8 +29,7 @@
  * EXAMPLE
  *
  * // Initialize global buffer
- * unsigned char buffer[256];
- * silc_global_set_va("somebuf", sizeof(buffer), NULL, FALSE);
+ * silc_global_set_var("somebuf", 256, NULL, FALSE);
  *
  * // Retrieve the buffer
  * unsigned char *buf = silc_global_get_var("somebuf", FALSE);
@@ -69,7 +68,7 @@
  *    If `tls' is FALSE the variable is visible to all threads in the process.
  *    If it is TRUE the variable is visible only in the current thread.  The
  *    variable can be retrieved using the same name by calling the
- *    silc_thread_global_get_var.
+ *    silc_global_get_var.
  *
  *    Returns NULL and sets silc_errno if the variable could not be added, or
  *    a pointer to the added variable otherwise.
@@ -77,8 +76,7 @@
  * EXAMPLE
  *
  *    // Initialize global buffer
- *    unsigned char buffer[256];
- *    silc_global_set_va("somebuf", sizeof(buffer), NULL, FALSE);
+ *    silc_global_set_var("somebuf", 256, NULL, FALSE);
  *
  *    // Retrieve the buffer
  *    unsigned char *buf = silc_global_get_var("somebuf", FALSE);
@@ -92,7 +90,7 @@
  *    *intptr = 200;
  *
  *    // Set structure as global in the thread
- *    silc_global_set_va("somestruct", sizeof(*context), NULL, TRUE);
+ *    silc_global_set_var("somestruct", sizeof(*context), NULL, TRUE);
  *
  *    // Retrieve the context
  *    context = silc_global_get_var("somestruct", TRUE);
@@ -130,7 +128,8 @@ void *silc_global_get_var(const char *name, SilcBool tls);
  *    deleted, FALSE if such variable does not exist and sets silc_errno.
  *
  *    If variable is not deleted before the process or thread is destroyed
- *    it will be deleted and freed automatically.
+ *    it will be deleted and freed automatically when the process or thread
+ *    is destroyed.
  *
  ***/
 SilcBool silc_global_del_var(const char *name, SilcBool tls);

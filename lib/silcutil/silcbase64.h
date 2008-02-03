@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Base64 API
+/****h* silcutil/Base64 Interface
  *
  * DESCRIPTION
  *
@@ -28,7 +28,7 @@
 #ifndef SILCBASE64_H
 #define SILCBASE64_H
 
-/****f* silcutil/SilcBase64API/silc_base64_encode
+/****f* silcutil/silc_base64_encode
  *
  * SYNOPSIS
  *
@@ -45,7 +45,7 @@
  ***/
 char *silc_base64_encode(SilcStack stack, unsigned char *data, SilcUInt32 len);
 
-/****f* silcutil/SilcBase64API/silc_base64_encode_file
+/****f* silcutil/silc_base64_encode_file
  *
  * SYNOPSIS
  *
@@ -63,7 +63,7 @@ char *silc_base64_encode(SilcStack stack, unsigned char *data, SilcUInt32 len);
 char *silc_base64_encode_file(SilcStack stack,
 			      unsigned char *data, SilcUInt32 data_len);
 
-/****f* silcutil/SilcBase64API/silc_base_decode
+/****f* silcutil/silc_base_decode
  *
  * SYNOPSIS
  *

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2007 Pekka Riikonen
+  Copyright (C) 2007 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@
 #ifndef SILCDLL_H
 #define SILCDLL_H
 
-/****s* silcutil/SilcDLLAPI/SilcDll
+/****s* silcutil/SilcDll
  *
  * NAME
  *
@@ -63,7 +63,7 @@ typedef HMODULE SilcDll;
 typedef void *SilcDll;
 #endif /* SILC_UNIX */
 
-/****f* silcutil/SilcDLLAPI/silc_dll_load
+/****f* silcutil/silc_dll_load
  *
  * SYNOPSIS
  *
@@ -80,7 +80,7 @@ typedef void *SilcDll;
  ***/
 SilcDll silc_dll_load(const char *object_path);
 
-/****f* silcutil/SilcDLLAPI/silc_dll_close
+/****f* silcutil/silc_dll_close
  *
  * SYNOPSIS
  *
@@ -95,7 +95,7 @@ SilcDll silc_dll_load(const char *object_path);
  ***/
 void silc_dll_close(SilcDll dll);
 
-/****f* silcutil/SilcDLLAPI/silc_dll_getsym
+/****f* silcutil/silc_dll_getsym
  *
  * SYNOPSIS
  *
@@ -110,7 +110,7 @@ void silc_dll_close(SilcDll dll);
  ***/
 void *silc_dll_getsym(SilcDll dll, const char *symbol);
 
-/****f* silcutil/SilcDLLAPI/silc_dll_error
+/****f* silcutil/silc_dll_error
  *
  * SYNOPSIS
  *

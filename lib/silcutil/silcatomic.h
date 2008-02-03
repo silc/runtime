@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2006 - 2007 Pekka Riikonen
+  Copyright (C) 2006 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Atomic Operations Interface
+/****h* silcutil/Atomic Operations Interface
  *
  * DESCRIPTION
  *
@@ -60,7 +60,7 @@
 #define SILC_SMP_LOCK
 #endif /* SILC_SMP */
 
-/****s* silcutil/SilcAtomicAPI/SilcAtomic32
+/****s* silcutil/SilcAtomic32
  *
  * NAME
  *
@@ -88,7 +88,7 @@
  *
  ***/
 
-/****s* silcutil/SilcAtomicAPI/SilcAtomic16
+/****s* silcutil/SilcAtomic16
  *
  * NAME
  *
@@ -116,7 +116,7 @@
  *
  ***/
 
-/****s* silcutil/SilcAtomicAPI/SilcAtomic8
+/****s* silcutil/SilcAtomic8
  *
  * NAME
  *
@@ -144,7 +144,7 @@
  *
  ***/
 
-/****s* silcutil/SilcAtomicAPI/SilcAtomicPointer
+/****s* silcutil/SilcAtomicPointer
  *
  * NAME
  *
@@ -227,7 +227,7 @@ typedef struct {
 } SilcAtomic8;
 #endif
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_init32
+/****f* silcutil/silc_atomic_init32
  *
  * SYNOPSIS
  *
@@ -242,7 +242,7 @@ typedef struct {
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_init16
+/****f* silcutil/silc_atomic_init16
  *
  * SYNOPSIS
  *
@@ -257,7 +257,7 @@ typedef struct {
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_init8
+/****f* silcutil/silc_atomic_init8
  *
  * SYNOPSIS
  *
@@ -272,7 +272,7 @@ typedef struct {
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_init_pointer
+/****f* silcutil/silc_atomic_init_pointer
  *
  * SYNOPSIS
  *
@@ -313,7 +313,7 @@ SILC_ATOMIC_INIT(16, 16, SilcUInt16)
 SILC_ATOMIC_INIT(32, 32, SilcUInt32)
 SILC_ATOMIC_INIT(_pointer, Pointer, void *)
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_uninit32
+/****f* silcutil/silc_atomic_uninit32
  *
  * SYNOPSIS
  *
@@ -327,7 +327,7 @@ SILC_ATOMIC_INIT(_pointer, Pointer, void *)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_uninit16
+/****f* silcutil/silc_atomic_uninit16
  *
  * SYNOPSIS
  *
@@ -341,7 +341,7 @@ SILC_ATOMIC_INIT(_pointer, Pointer, void *)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_uninit8
+/****f* silcutil/silc_atomic_uninit8
  *
  * SYNOPSIS
  *
@@ -355,7 +355,7 @@ SILC_ATOMIC_INIT(_pointer, Pointer, void *)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_uninit_pointer
+/****f* silcutil/silc_atomic_uninit_pointer
  *
  * SYNOPSIS
  *
@@ -391,7 +391,7 @@ SILC_ATOMIC_UNINIT(16, 16)
 SILC_ATOMIC_UNINIT(32, 32)
 SILC_ATOMIC_UNINIT(_pointer, Pointer)
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_set_int32
+/****f* silcutil/silc_atomic_set_int32
  *
  * SYNOPSIS
  *
@@ -404,7 +404,7 @@ SILC_ATOMIC_UNINIT(_pointer, Pointer)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_set_int16
+/****f* silcutil/silc_atomic_set_int16
  *
  * SYNOPSIS
  *
@@ -417,7 +417,7 @@ SILC_ATOMIC_UNINIT(_pointer, Pointer)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_set_int8
+/****f* silcutil/silc_atomic_set_int8
  *
  * SYNOPSIS
  *
@@ -493,7 +493,7 @@ SILC_ATOMIC_SET_INT(8, "b", "b")
 SILC_ATOMIC_SET_INT(16, "w", "w")
 SILC_ATOMIC_SET_INT(32, "l", "")
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_set_pointer
+/****f* silcutil/silc_atomic_set_pointer
  *
  * SYNOPSIS
  *
@@ -535,7 +535,7 @@ void silc_atomic_set_pointer(SilcAtomicPointer *atomic, void *pointer)
 #endif
 }
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_get_int32
+/****f* silcutil/silc_atomic_get_int32
  *
  * SYNOPSIS
  *
@@ -548,7 +548,7 @@ void silc_atomic_set_pointer(SilcAtomicPointer *atomic, void *pointer)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_get_int16
+/****f* silcutil/silc_atomic_get_int16
  *
  * SYNOPSIS
  *
@@ -561,7 +561,7 @@ void silc_atomic_set_pointer(SilcAtomicPointer *atomic, void *pointer)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_get_int8
+/****f* silcutil/silc_atomic_get_int8
  *
  * SYNOPSIS
  *
@@ -632,7 +632,7 @@ SILC_ATOMIC_GET_INT(8)
 SILC_ATOMIC_GET_INT(16)
 SILC_ATOMIC_GET_INT(32)
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_get_pointer
+/****f* silcutil/silc_atomic_get_pointer
  *
  * SYNOPSIS
  *
@@ -677,7 +677,7 @@ void *silc_atomic_get_pointer(SilcAtomicPointer *atomic)
 #endif
 }
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_add_int32
+/****f* silcutil/silc_atomic_add_int32
  *
  * SYNOPSIS
  *
@@ -691,7 +691,7 @@ void *silc_atomic_get_pointer(SilcAtomicPointer *atomic)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_add_int16
+/****f* silcutil/silc_atomic_add_int16
  *
  * SYNOPSIS
  *
@@ -705,7 +705,7 @@ void *silc_atomic_get_pointer(SilcAtomicPointer *atomic)
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_add_int8
+/****f* silcutil/silc_atomic_add_int8
  *
  * SYNOPSIS
  *
@@ -804,7 +804,7 @@ SILC_ATOMIC_ADD_INT(8, "b")
 SILC_ATOMIC_ADD_INT(16, "w")
 SILC_ATOMIC_ADD_INT(32, "l")
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_sub_int32
+/****f* silcutil/silc_atomic_sub_int32
  *
  * SYNOPSIS
  *
@@ -818,7 +818,7 @@ SILC_ATOMIC_ADD_INT(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_sub_int16
+/****f* silcutil/silc_atomic_sub_int16
  *
  * SYNOPSIS
  *
@@ -832,7 +832,7 @@ SILC_ATOMIC_ADD_INT(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_sub_int8
+/****f* silcutil/silc_atomic_sub_int8
  *
  * SYNOPSIS
  *
@@ -850,7 +850,7 @@ SILC_ATOMIC_ADD_INT(32, "l")
 #define silc_atomic_sub_int16(a, v) silc_atomic_add_int16(a, (-v))
 #define silc_atomic_sub_int32(a, v) silc_atomic_add_int32(a, (-v))
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_inc32
+/****f* silcutil/silc_atomic_inc32
  *
  * SYNOPSIS
  *
@@ -863,7 +863,7 @@ SILC_ATOMIC_ADD_INT(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_inc16
+/****f* silcutil/silc_atomic_inc16
  *
  * SYNOPSIS
  *
@@ -876,7 +876,7 @@ SILC_ATOMIC_ADD_INT(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_inc8
+/****f* silcutil/silc_atomic_inc8
  *
  * SYNOPSIS
  *
@@ -956,7 +956,7 @@ SILC_ATOMIC_INC(8, "b")
 SILC_ATOMIC_INC(16, "w")
 SILC_ATOMIC_INC(32, "l")
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_dec32
+/****f* silcutil/silc_atomic_dec32
  *
  * SYNOPSIS
  *
@@ -969,7 +969,7 @@ SILC_ATOMIC_INC(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_dec16
+/****f* silcutil/silc_atomic_dec16
  *
  * SYNOPSIS
  *
@@ -982,7 +982,7 @@ SILC_ATOMIC_INC(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_dec8
+/****f* silcutil/silc_atomic_dec8
  *
  * SYNOPSIS
  *
@@ -1062,7 +1062,7 @@ SILC_ATOMIC_DEC(8, "b")
 SILC_ATOMIC_DEC(16, "w")
 SILC_ATOMIC_DEC(32, "l")
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_cas32
+/****f* silcutil/silc_atomic_cas32
  *
  * SYNOPSIS
  *
@@ -1079,7 +1079,7 @@ SILC_ATOMIC_DEC(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_cas16
+/****f* silcutil/silc_atomic_cas16
  *
  * SYNOPSIS
  *
@@ -1096,7 +1096,7 @@ SILC_ATOMIC_DEC(32, "l")
  *
  ***/
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_cas8
+/****f* silcutil/silc_atomic_cas8
  *
  * SYNOPSIS
  *
@@ -1190,7 +1190,7 @@ SILC_ATOMIC_CAS(8, "b")
 SILC_ATOMIC_CAS(16, "w")
 SILC_ATOMIC_CAS(32, "l")
 
-/****f* silcutil/SilcAtomicAPI/silc_atomic_cas_pointer
+/****f* silcutil/silc_atomic_cas_pointer
  *
  * SYNOPSIS
  *

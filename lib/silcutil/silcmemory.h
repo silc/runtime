@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1999 - 2007 Pekka Riikonen
+  Copyright (C) 1999 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,13 +17,11 @@
 
 */
 
-/****h* silcutil/SILC Memory Interface
+/****h* silcutil/Memory Interface
  *
  * DESCRIPTION
  *
- * Basic utility functions for allocating memory. All SILC routines, and
- * applications use these functions when they need to allocate, manipulate
- * and free memory.
+ * Routines for allocating and freeing memory.
  *
  ***/
 
@@ -34,7 +32,7 @@
 
 #ifndef SILC_STACKTRACE
 
-/****f* silcutil/SilcMemoryAPI/silc_malloc
+/****f* silcutil/silc_malloc
  *
  * SYNOPSIS
  *
@@ -49,7 +47,7 @@
  ***/
 void *silc_malloc(size_t size);
 
-/****f* silcutil/SilcMemoryAPI/silc_calloc
+/****f* silcutil/silc_calloc
  *
  * SYNOPSIS
  *
@@ -65,7 +63,7 @@ void *silc_malloc(size_t size);
  ***/
 void *silc_calloc(size_t items, size_t size);
 
-/****f* silcutil/SilcMemoryAPI/silc_realloc
+/****f* silcutil/silc_realloc
  *
  * SYNOPSIS
  *
@@ -87,7 +85,7 @@ void *silc_calloc(size_t items, size_t size);
  ***/
 void *silc_realloc(void *ptr, size_t size);
 
-/****f* silcutil/SilcMemoryAPI/silc_free
+/****f* silcutil/silc_free
  *
  * SYNOPSIS
  *
@@ -101,7 +99,7 @@ void *silc_realloc(void *ptr, size_t size);
  ***/
 void silc_free(void *ptr);
 
-/****f* silcutil/SilcMemoryAPI/silc_memdup
+/****f* silcutil/silc_memdup
  *
  * SYNOPSIS
  *
@@ -118,7 +116,7 @@ void silc_free(void *ptr);
  ***/
 void *silc_memdup(const void *ptr, size_t size);
 
-/****f* silcutil/SilcMemoryAPI/silc_strdup
+/****f* silcutil/silc_strdup
  *
  * SYNOPSIS
  *
@@ -143,7 +141,7 @@ char *silc_strdup(const char *str);
 
 /* Following functions that use SilcStack as memory source. */
 
-/****f* silcutil/SilcMemoryAPI/silc_smalloc
+/****f* silcutil/silc_smalloc
  *
  * SYNOPSIS
  *
@@ -167,7 +165,7 @@ char *silc_strdup(const char *str);
  ***/
 void *silc_smalloc(SilcStack stack, SilcUInt32 size);
 
-/****f* silcutil/SilcMemoryAPI/silc_scalloc
+/****f* silcutil/silc_scalloc
  *
  * SYNOPSIS
  *
@@ -190,7 +188,7 @@ void *silc_smalloc(SilcStack stack, SilcUInt32 size);
  ***/
 void *silc_scalloc(SilcStack stack, SilcUInt32 items, SilcUInt32 size);
 
-/****f* silcutil/SilcMemoryAPI/silc_srealloc
+/****f* silcutil/silc_srealloc
  *
  * SYNOPSIS
  *
@@ -217,7 +215,7 @@ void *silc_scalloc(SilcStack stack, SilcUInt32 items, SilcUInt32 size);
 void *silc_srealloc(SilcStack stack, SilcUInt32 old_size,
 		    void *ptr, SilcUInt32 size);
 
-/****f* silcutil/SilcMemoryAPI/silc_smemdup
+/****f* silcutil/silc_smemdup
  *
  * SYNOPSIS
  *
@@ -243,7 +241,7 @@ void *silc_srealloc(SilcStack stack, SilcUInt32 old_size,
  ***/
 void *silc_smemdup(SilcStack stack, const void *ptr, SilcUInt32 size);
 
-/****f* silcutil/SilcMemoryAPI/silc_sfree
+/****f* silcutil/silc_sfree
  *
  * SYNOPSIS
  *
@@ -258,7 +256,7 @@ void *silc_smemdup(SilcStack stack, const void *ptr, SilcUInt32 size);
  ***/
 void silc_sfree(SilcStack stack, void *ptr);
 
-/****f* silcutil/SilcMemoryAPI/silc_sstrdup
+/****f* silcutil/silc_sstrdup
  *
  * SYNOPSIS
  *

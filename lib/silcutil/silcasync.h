@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Async Operation Interface
+/****h* silcutil/Async Operation Interface
  *
  * DESCRIPTION
  *
@@ -66,7 +66,7 @@
 #ifndef SILCASYNC_H
 #define SILCASYNC_H
 
-/****s* silcutil/SilcAsyncOperationAPI/SilcAsyncOperation
+/****s* silcutil/SilcAsyncOperation
  *
  * NAME
  *
@@ -84,7 +84,7 @@
  ***/
 typedef struct SilcAsyncOperationObject *SilcAsyncOperation;
 
-/****s* silcutil/SilcAsyncOperationAPI/SilcAsyncOperationStruct
+/****s* silcutil/SilcAsyncOperationStruct
  *
  * NAME
  *
@@ -101,7 +101,7 @@ typedef struct SilcAsyncOperationObject *SilcAsyncOperation;
  ***/
 typedef struct SilcAsyncOperationObject SilcAsyncOperationStruct;
 
-/****f* silcutil/SilcAsyncOperationAPI/SilcAsyncOperationAbort
+/****f* silcutil/SilcAsyncOperationAbort
  *
  * SYNOPSIS
  *
@@ -122,7 +122,7 @@ typedef struct SilcAsyncOperationObject SilcAsyncOperationStruct;
 typedef void (*SilcAsyncOperationAbort)(SilcAsyncOperation op,
 					void *context);
 
-/****f* silcutil/SilcAsyncOperationAPI/SilcAsyncOperationPause
+/****f* silcutil/SilcAsyncOperationPause
  *
  * SYNOPSIS
  *
@@ -150,7 +150,7 @@ typedef SilcBool (*SilcAsyncOperationPause)(SilcAsyncOperation op,
    that has received SilcAsyncOperation context can control the async
    operation with these functions. */
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_halt
+/****f* silcutil/silc_async_halt
  *
  * SYNOPSIS
  *
@@ -169,7 +169,7 @@ typedef SilcBool (*SilcAsyncOperationPause)(SilcAsyncOperation op,
  ***/
 SilcBool silc_async_halt(SilcAsyncOperation op);
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_resume
+/****f* silcutil/silc_async_resume
  *
  * SYNOPSIS
  *
@@ -187,7 +187,7 @@ SilcBool silc_async_halt(SilcAsyncOperation op);
  ***/
 SilcBool silc_async_resume(SilcAsyncOperation op);
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_abort
+/****f* silcutil/silc_async_abort
  *
  * SYNOPSIS
  *
@@ -214,7 +214,7 @@ void silc_async_abort(SilcAsyncOperation op,
 /* The operation layer functions.  The layer that performs the async
    operation use these functions. */
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_alloc
+/****f* silcutil/silc_async_alloc
  *
  * SYNOPSIS
  *
@@ -261,7 +261,7 @@ SilcAsyncOperation silc_async_alloc(SilcAsyncOperationAbort abort_cb,
 				    SilcAsyncOperationPause pause_cb,
 				    void *context);
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_init
+/****f* silcutil/silc_async_init
  *
  * SYNOPSIS
  *
@@ -291,7 +291,7 @@ SilcBool silc_async_init(SilcAsyncOperation op,
 			 SilcAsyncOperationPause pause_cb,
 			 void *context);
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_free
+/****f* silcutil/silc_async_free
  *
  * SYNOPSIS
  *
@@ -310,7 +310,7 @@ SilcBool silc_async_init(SilcAsyncOperation op,
  ***/
 void silc_async_free(SilcAsyncOperation op);
 
-/****f* silcutil/SilcAsyncOperationAPI/silc_async_get_context
+/****f* silcutil/silc_async_get_context
  *
  * SYNOPSIS
  *

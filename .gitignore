@@ -3,6 +3,7 @@ autodist.dist
 autodist.log
 makedist.log
 Makefile
+Makefile.in
 Makefile.defines
 Makefile.defines_int
 acconfig.h
@@ -27,5 +28,4 @@ stamp-h*
 stamp-h*.in
 *.o
 *.lo
-*.am
-*.in
+TAGS

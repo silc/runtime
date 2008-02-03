@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/Environment Manipulation Interface
+/****h* silcutil/Environment Interface
  *
  * DESCRIPTION
  *
@@ -30,7 +30,7 @@
 #ifndef SILCENV_H
 #define SILCENV_H
 
-/****f* silcutil/SilcEnvAPI/silc_setenv
+/****f* silcutil/silc_setenv
  *
  * SYNOPSIS
  *
@@ -46,7 +46,7 @@
  ***/
 SilcBool silc_setenv(const char *variable, const char *value);
 
-/****f* silcutil/SilcEnvAPI/silc_getenv
+/****f* silcutil/silc_getenv
  *
  * SYNOPSIS
  *
@@ -60,7 +60,7 @@ SilcBool silc_setenv(const char *variable, const char *value);
  ***/
 const char *silc_getenv(const char *variable);
 
-/****f* silcutil/SilcEnvAPI/silc_unsetenv
+/****f* silcutil/silc_unsetenv
  *
  * SYNOPSIS
  *
@@ -75,7 +75,7 @@ const char *silc_getenv(const char *variable);
  ***/
 SilcBool silc_unsetenv(const char *variable);
 
-/****f* silcutil/SilcEnvAPI/silc_clearenv
+/****f* silcutil/silc_clearenv
  *
  * SYNOPSIS
  *

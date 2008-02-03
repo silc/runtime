@@ -21,13 +21,12 @@
  *
  * DESCRIPTION
  *
- * Implementation of collision resistant hash table. This is a hash table
- * that provides a reliable (what you add there stays there, and duplicate
- * keys are allowed) with as fast reference to the key as possible. If
- * there are a lot of duplicate keys in the hash table the lookup slows down.
- * However, this is reliable and no data is lost at any point. If you know
- * that you never have duplicate keys then this is as fast as any simple hash
- * table.
+ * A collision resistant hash table API. This is a hash table that provides
+ * a reliable hash table (what you add there stays there, and duplicate keys
+ * are allowed) with as fast reference to the key as possible. If there are
+ * a lot of duplicate keys in the hash table the lookup slows down.  However,
+ * this is reliable and no data is lost at any point. If you know that you
+ * never have duplicate keys then this is as fast as any simple hash table.
  *
  * The interface provides many ways to search the hash table including
  * an extended interface where caller can specify their own hash and comparison

@@ -7,6 +7,7 @@ int main(int argc, char **argv)
   SilcBool success = FALSE;
   unsigned char *vbuf, *vbuf2;
   unsigned char init[20];
+  SilcUInt32 gint, *gintptr;
 
   if (argc > 1 && !strcmp(argv[1], "-d")) {
     silc_log_debug(TRUE);
@@ -14,6 +15,18 @@ int main(int argc, char **argv)
     silc_log_debug_hexdump(TRUE);
     silc_log_set_debug_string("*global*");
   }
+
+  SILC_LOG_DEBUG(("Set global var"));
+  gint = 100;
+  if (!silc_global_set_var("gint", 4, &gint, FALSE))
+    goto err;
+
+  SILC_LOG_DEBUG(("Retrieve var"));
+  gintptr = silc_global_get_var("gint", FALSE);
+  if (!gintptr)
+    goto err;
+  if (*gintptr != 100)
+    goto err;
 
   SILC_LOG_DEBUG(("Set global var"));
   if (!silc_global_set_var("vbuf", 10, NULL, FALSE))

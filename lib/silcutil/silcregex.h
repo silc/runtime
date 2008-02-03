@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Regular Expression Interface
+/****h* silcutil/Regex Interface
  *
  * DESCRIPTION
  *
@@ -90,12 +90,19 @@
  * // Free the compiled regular expression
  * silc_regex_free(&reg);
  *
+ * // Simple match
+ * if (!silc_regex("foobar", "foo.", NULL))
+ *   no_match;
+ *
+ * // Replace all foos with bar on all lines in the buffer
+ * silc_subst(buffer, "s/foo/bar/g");
+ *
  ***/
 
 #ifndef SILCREGEX_H
 #define SILCREGEX_H
 
-/****s* silcutil/SilcRegexAPI/SilcRegex
+/****s* silcutil/SilcRegex
  *
  * NAME
  *
@@ -122,7 +129,7 @@ typedef struct SilcRegexObject {
   char anchor;		       /* anchor: 0=none 1=begline 2=begbuf */
 } *SilcRegex, SilcRegexStruct;
 
-/****s* silcutil/SilcRegexAPI/SilcRegexMatch
+/****s* silcutil/SilcRegexMatch
  *
  * NAME
  *
@@ -142,7 +149,7 @@ typedef struct SilcRegexMatchObject {
 } *SilcRegexMatch, SilcRegexMatchStruct;
 /***/
 
-/****d* silcutil/SilcRegexAPI/SilcRegexFlags
+/****d* silcutil/SilcRegexFlags
  *
  * NAME
  *
@@ -169,7 +176,7 @@ typedef enum {
 } SilcRegexFlags;
 /***/
 
-/****f* silcutil/SilcRegexAPI/silc_regex_compile
+/****f* silcutil/silc_regex_compile
  *
  * SYNOPSIS
  *
@@ -190,7 +197,7 @@ typedef enum {
 SilcBool silc_regex_compile(SilcRegex regexp, const char *regex,
 			    SilcRegexFlags flags);
 
-/****f* silcutil/SilcRegexAPI/silc_regex_compile
+/****f* silcutil/silc_regex_match
  *
  * SYNOPSIS
  *
@@ -245,7 +252,7 @@ SilcBool silc_regex_match(SilcRegex regexp, const char *string,
 			  SilcUInt32 string_len, SilcUInt32 num_match,
 			  SilcRegexMatch match, SilcRegexFlags flags);
 
-/****f* silcutil/SilcRegexAPI/silc_regex_free
+/****f* silcutil/silc_regex_free
  *
  * SYNOPSIS
  *
@@ -260,7 +267,7 @@ SilcBool silc_regex_match(SilcRegex regexp, const char *string,
  ***/
 void silc_regex_free(SilcRegex regexp);
 
-/****f* silcutil/SilcRegexAPI/silc_regex
+/****f* silcutil/silc_regex
  *
  * SYNOPSIS
  *
@@ -305,7 +312,7 @@ void silc_regex_free(SilcRegex regexp);
 SilcBool silc_regex(const char *string, const char *regex,
 		    SilcBuffer match, ...);
 
-/****f* silcutil/SilcRegexAPI/silc_regex_buffer
+/****f* silcutil/silc_regex_buffer
  *
  * SYNOPSIS
  *
@@ -323,7 +330,7 @@ SilcBool silc_regex(const char *string, const char *regex,
 SilcBool silc_regex_buffer(SilcBuffer buffer, const char *regex,
 			   SilcBuffer match, ...);
 
-/****f* silcutil/SilcRegexAPI/silc_subst
+/****f* silcutil/silc_subst
  *
  * SYNOPSIS
  *
@@ -336,12 +343,12 @@ SilcBool silc_regex_buffer(SilcBuffer buffer, const char *regex,
  *    Sed (Stream Editor) style substitution interface.  The `subst' may
  *    be of following formats:
  *
- *    's/REGEXP/REPLACEMENT/FLAGS'
+ *     's/REGEXP/REPLACEMENT/FLAGS'
  *
  *    Matches regular expression REGEXP in each line in the buffer and
  *    substitutes the match with REPLACEMENT.
  *
- *    'ADDRs/REGEXP/REPLACEMENT/FLAGS'
+ *     'ADDRs/REGEXP/REPLACEMENT/FLAGS'
  *
  *    Selects lines in the buffer matching the address ADDR and matches the
  *    regular expression REGEXP in the line and substitutes the match with
@@ -349,14 +356,14 @@ SilcBool silc_regex_buffer(SilcBuffer buffer, const char *regex,
  *
  *    The ADDR may be of following format:
  *
- *    /REGEXP/       Matches only lines matching the regular expression
- *    NUMBER         Matches only the specified line number (1-n)
- *    $              Matches only the last line
+ *     /REGEXP/       Matches only lines matching the regular expression
+ *     NUMBER         Matches only the specified line number (1-n)
+ *     $              Matches only the last line
  *
  *    The FLAGS may be of following format:
  *
- *    no FLAGS       Finds first match in the line and replaces that
- *    g              Finds and replaces all matches in the line
+ *     no FLAGS       Finds first match in the line and replaces that
+ *     g              Finds and replaces all matches in the line
  *
  *    An '!' may precede the 's'.  In that case the ADDR is not matched.
  *

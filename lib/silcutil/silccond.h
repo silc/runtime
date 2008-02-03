@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2006 - 2007 Pekka Riikonen
+  Copyright (C) 2006 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Condition Variable Interface
+/****h* silcutil/Condition Variable Interface
  *
  * DESCRIPTION
  *
@@ -49,7 +49,7 @@
 #ifndef SILCCOND_H
 #define SILCCOND_H
 
-/****s* silcutil/SilcCondAPI/SilcCond
+/****s* silcutil/SilcCond
  *
  * NAME
  *
@@ -64,7 +64,7 @@
  ***/
 typedef struct SilcCondStruct *SilcCond;
 
-/****s* silcutil/SilcCondAPI/silc_cond_alloc
+/****f* silcutil/silc_cond_alloc
  *
  * SYNOPSIS
  *
@@ -81,7 +81,7 @@ typedef struct SilcCondStruct *SilcCond;
  ***/
 SilcBool silc_cond_alloc(SilcCond *cond);
 
-/****s* silcutil/SilcCondAPI/silc_cond_free
+/****f* silcutil/silc_cond_free
  *
  * SYNOPSIS
  *
@@ -95,7 +95,7 @@ SilcBool silc_cond_alloc(SilcCond *cond);
  ***/
 void silc_cond_free(SilcCond cond);
 
-/****s* silcutil/SilcCondAPI/silc_cond_wait
+/****f* silcutil/silc_cond_wait
  *
  * SYNOPSIS
  *
@@ -120,7 +120,7 @@ void silc_cond_free(SilcCond cond);
  ***/
 void silc_cond_wait(SilcCond cond, SilcMutex mutex);
 
-/****s* silcutil/SilcCondAPI/silc_cond_timedwait
+/****f* silcutil/silc_cond_timedwait
  *
  * SYNOPSIS
  *
@@ -140,7 +140,7 @@ void silc_cond_wait(SilcCond cond, SilcMutex mutex);
  ***/
 SilcBool silc_cond_timedwait(SilcCond cond, SilcMutex mutex, int timeout);
 
-/****s* silcutil/SilcCondAPI/silc_cond_signal
+/****f* silcutil/silc_cond_signal
  *
  * SYNOPSIS
  *
@@ -167,7 +167,7 @@ SilcBool silc_cond_timedwait(SilcCond cond, SilcMutex mutex, int timeout);
  ***/
 void silc_cond_signal(SilcCond cond);
 
-/****s* silcutil/SilcCondAPI/silc_cond_broadcast
+/****f* silcutil/silc_cond_broadcast
  *
  * SYNOPSIS
  *

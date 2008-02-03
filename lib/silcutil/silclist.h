@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2002 - 2007 Pekka Riikonen
+  Copyright (C) 2002 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC List Interface
+/****h* silcutil/List Interface
  *
  * DESCRIPTION
  *
@@ -45,7 +45,7 @@
 #ifndef SILCLIST_H
 #define SILCLIST_H
 
-/****s* silcutil/SilcList/SilcList
+/****s* silcutil/SilcList
  *
  * NAME
  *
@@ -68,11 +68,11 @@ typedef struct SilcListStruct {
   unsigned int count       : 30;     /* Number of entries in the list */
 } SilcList;
 
-/****d* silcutil/SilcList/SILC_LIST_END
+/****d* silcutil/SILC_LIST_END
  *
  * NAME
  *
- *    #define SILC_LIST_END ...
+ *    #define SILC_LIST_END NULL
  *
  * DESCRIPTION
  *
@@ -84,7 +84,7 @@ typedef struct SilcListStruct {
 #define SILC_LIST_END NULL
 /***/
 
-/****f* silcutil/SilcList/silc_list_init
+/****f* silcutil/silc_list_init
  *
  * SYNOPSIS
  *
@@ -121,7 +121,7 @@ do {							\
   (list).head = (list).tail = (list).current = NULL;	\
 } while(0)
 
-/****f* silcutil/SilcList/silc_list_init_prev
+/****f* silcutil/silc_list_init_prev
  *
  * SYNOPSIS
  *
@@ -161,7 +161,7 @@ do {								\
   (list).head = (list).tail = (list).current = NULL;		\
 } while(0)
 
-/****f* silcutil/SilcList/silc_list_count
+/****f* silcutil/silc_list_count
  *
  * SYNOPSIS
  *
@@ -174,7 +174,7 @@ do {								\
  ***/
 #define silc_list_count(list) (list).count
 
-/****f* silcutil/SilcList/silc_list_start
+/****f* silcutil/silc_list_start
  *
  * SYNOPSIS
  *
@@ -189,7 +189,7 @@ do {								\
 #define silc_list_start(list)				\
   ((list).current = (list).head, (list).end_set = 0)
 
-/****f* silcutil/SilcList/silc_list_end
+/****f* silcutil/silc_list_end
  *
  * SYNOPSIS
  *
@@ -215,7 +215,7 @@ do {								\
 #define __silc_list_prev(list, pos)				\
   ((void **)((unsigned char *)(pos) + (list).prev_offset))
 
-/****f* silcutil/SilcList/silc_list_add
+/****f* silcutil/silc_list_add
  *
  * SYNOPSIS
  *
@@ -240,7 +240,7 @@ do {							\
   (list).count++;					\
 } while(0)
 
-/****f* silcutil/SilcList/silc_list_insert
+/****f* silcutil/silc_list_insert
  *
  * SYNOPSIS
  *
@@ -282,7 +282,7 @@ do {									 \
   (list).count++;							 \
 } while(0)
 
-/****f* silcutil/SilcList/silc_list_del
+/****f* silcutil/silc_list_del
  *
  * SYNOPSIS
  *
@@ -313,7 +313,7 @@ do {									\
     (list).tail = prev;							\
 } while(0)
 
-/****f* silcutil/SilcList/silc_list_get
+/****f* silcutil/silc_list_get
  *
  * SYNOPSIS
  *

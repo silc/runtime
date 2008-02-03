@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Stream Interface
+/****h* silcutil/Stream Interface
  *
  * DESCRIPTION
  *
@@ -26,8 +26,9 @@
  * other stream API derived from this API can use this same interface for
  * reading and writing.
  *
- * The SilcStream is an abstraction.  It can represent any stream, socket
- * stream, file descriptor stream, packet stream, etc.
+ * The SilcStream is an abstraction.  It can represent any stream; socket
+ * stream, file descriptor stream, packet stream, etc.  See examples in
+ * silcsocketstream.h and silcfdstream.h.
  *
  * Note that stream implementations usually are not thread-safe.  Always
  * verify whether a stream implementation is thread-safe by checking their
@@ -38,7 +39,7 @@
 #ifndef SILCSTREAM_H
 #define SILCSTREAM_H
 
-/****s* silcutil/SilcStreamAPI/SilcStream
+/****s* silcutil/SilcStream
  *
  * NAME
  *
@@ -54,7 +55,7 @@
  ***/
 typedef void *SilcStream;
 
-/****d* silcutil/SilcStreamAPI/SilcStreamStatus
+/****d* silcutil/SilcStreamStatus
  *
  * NAME
  *
@@ -74,7 +75,7 @@ typedef enum {
 } SilcStreamStatus;
 /***/
 
-/****f* silcutil/SilcStreamAPI/SilcStreamNotifier
+/****f* silcutil/SilcStreamNotifier
  *
  * SYNOPSIS
  *
@@ -94,7 +95,7 @@ typedef void (*SilcStreamNotifier)(SilcStream stream,
 				   SilcStreamStatus status,
 				   void *context);
 
-/****s* silcutil/SilcStreamAPI/SilcStreamOps
+/****s* silcutil/SilcStreamOps
  *
  * NAME
  *
@@ -120,7 +121,7 @@ typedef void (*SilcStreamNotifier)(SilcStream stream,
  *    } *SilcFooStream;
  *
  *    SilcFooStream foo;
- *    silc_stream_write(foo, data, data_len);
+ *    silc_stream_write((SilcStream)foo, data, data_len);
  *
  * SOURCE
  */
@@ -156,7 +157,7 @@ typedef struct {
 } SilcStreamOps;
 /***/
 
-/****f* silcutil/SilcStreamAPI/silc_stream_read
+/****f* silcutil/silc_stream_read
  *
  * SYNOPSIS
  *
@@ -178,7 +179,7 @@ typedef struct {
 int silc_stream_read(SilcStream stream, unsigned char *buf,
 		     SilcUInt32 buf_len);
 
-/****f* silcutil/SilcStreamAPI/silc_stream_write
+/****f* silcutil/silc_stream_write
  *
  * SYNOPSIS
  *
@@ -200,7 +201,7 @@ int silc_stream_read(SilcStream stream, unsigned char *buf,
 int silc_stream_write(SilcStream stream, const unsigned char *data,
 		      SilcUInt32 data_len);
 
-/****f* silcutil/SilcStreamAPI/silc_stream_close
+/****f* silcutil/silc_stream_close
  *
  * SYNOPSIS
  *
@@ -216,7 +217,7 @@ int silc_stream_write(SilcStream stream, const unsigned char *data,
  ***/
 SilcBool silc_stream_close(SilcStream stream);
 
-/****f* silcutil/SilcStreamAPI/silc_stream_destroy
+/****f* silcutil/silc_stream_destroy
  *
  * SYNOPSIS
  *
@@ -233,7 +234,7 @@ SilcBool silc_stream_close(SilcStream stream);
  ***/
 void silc_stream_destroy(SilcStream stream);
 
-/****f* silcutil/SilcStreamAPI/silc_stream_set_notifier
+/****f* silcutil/silc_stream_set_notifier
  *
  * SYNOPSIS
  *
@@ -261,7 +262,7 @@ void silc_stream_destroy(SilcStream stream);
 SilcBool silc_stream_set_notifier(SilcStream stream, SilcSchedule schedule,
 				  SilcStreamNotifier notifier, void *context);
 
-/****f* silcutil/SilcStreamAPI/silc_stream_get_schedule
+/****f* silcutil/silc_stream_get_schedule
  *
  * SYNOPSIS
  *

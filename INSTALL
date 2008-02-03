@@ -1,18 +1,11 @@
 Quick Installation
 ==================
 
-   To configure and compile SILC package give the commands:
+   To configure and compile SILC Runtime Toolkit give the commands:
 
 	./configure
-	make (or gmake)
+	make
 	make install
-
-   This will install the SILC binaries and configuration files into the
-/usr/local/silc/ directory.  System wide configuration files are installed
-into the /etc/silc/ directory.
-
-You may need to add the /usr/local/silc path to your PATH environment
-variable after the installation.
 
 Configuration Options
 =====================
@@ -21,16 +14,6 @@ Configuration Options
 give --help command to the `configure' to see all of them.  Here is listed
 few options that you might want to use.  Please refer to the rest of this
 file for more generic installation instructions.
-
-`--with-gmp[=DIR]'
-
-   If you wish to use GMP library for arbitrary precision arithmetic
-library instead of using the MPI library included in the package, you can
-give the --with-gmp[=DIR] option to the `configure'.  The DIR is the upper
-path in your system which contains lib/ and include/ for GMP library.
-   Note that MPI is the prefered arbitrary precision arithmetic library and
-GMP can be used as a fall-back if you have problems with the MPI library
-included within this package.
 
 `--with-iconv[=DIR]'
 
@@ -52,11 +35,6 @@ package or does not want to use them, you can give the --disable-asm
 option to the `configure' script.  This will assure that assembler
 optimized code is not compiled in.
 
-`--enabled-shared'
-
-   If you wish to compile and install shared libraries then enable this
-option.  By default all libraries are compiled as static libraries.
-
 `--enable-debug'
 
    If you would like to enable the debugging for the compiled programs
@@ -67,6 +45,16 @@ you can give this option to the `configure'.
    The `configure' will attempt to check for IPv6 support in your system.
 However, if it fails, but you still want to compile in the IPv6 support
 you can give --enable-ipv6 option to force the IPv6 support.
+
+`--disable-cpu-optimizations'
+ 
+   By default the configure script will attempt to detect the type of your 
+CPU and enable any features specific to your CPU that could optimize the 
+performance of the Toolkit. If you are creating binary package that should 
+work on any CPU (and not only your CPU) you should diable these 
+optimizations. If you compile it for yourself only, keeping the 
+optimizations enabled is recommended.
+ 
 
 Basic Installation
 ==================

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2004 - 2007 Pekka Riikonen
+  Copyright (C) 2004 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC UTF-8 Interface
+/****h* silcutil/UTF-8 Interface
  *
  * DESCRIPTION
  *
@@ -30,7 +30,7 @@
 #ifndef SILCUTF8_H
 #define SILCUTF8_H
 
-/****f* silcutil/SilcUTF8API/silc_utf8_encode
+/****f* silcutil/silc_utf8_encode
  *
  * SYNOPSIS
  *
@@ -51,7 +51,7 @@ SilcUInt32 silc_utf8_encode(const unsigned char *bin, SilcUInt32 bin_len,
 			    SilcStringEncoding bin_encoding,
 			    unsigned char *utf8, SilcUInt32 utf8_size);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_decode
+/****f* silcutil/silc_utf8_decode
  *
  * SYNOPSIS
  *
@@ -74,7 +74,7 @@ SilcUInt32 silc_utf8_decode(const unsigned char *utf8, SilcUInt32 utf8_len,
 			    SilcStringEncoding bin_encoding,
 			    unsigned char *bin, SilcUInt32 bin_size);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_c2w
+/****f* silcutil/silc_utf8_c2w
  *
  * SYNOPSIS
  *
@@ -98,7 +98,7 @@ SilcUInt32 silc_utf8_decode(const unsigned char *utf8, SilcUInt32 utf8_len,
 SilcUInt32 silc_utf8_c2w(const unsigned char *utf8, SilcUInt32 utf8_len,
 			 SilcUInt16 *utf8_wide, SilcUInt32 utf8_wide_size);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_w2c
+/****f* silcutil/silc_utf8_w2c
  *
  * SYNOPSIS
  *
@@ -119,7 +119,7 @@ SilcUInt32 silc_utf8_c2w(const unsigned char *utf8, SilcUInt32 utf8_len,
 SilcUInt32 silc_utf8_w2c(const SilcUInt16 *wide_str, SilcUInt32 wide_str_len,
 			 unsigned char *utf8, SilcUInt32 utf8_size);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_encoded_len
+/****f* silcutil/silc_utf8_encoded_len
  *
  * SYNOPSIS
  *
@@ -137,7 +137,7 @@ SilcUInt32 silc_utf8_w2c(const SilcUInt16 *wide_str, SilcUInt32 wide_str_len,
 SilcUInt32 silc_utf8_encoded_len(const unsigned char *bin, SilcUInt32 bin_len,
 				 SilcStringEncoding bin_encoding);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_decoded_len
+/****f* silcutil/silc_utf8_decoded_len
  *
  * SYNOPSIS
  *
@@ -155,7 +155,7 @@ SilcUInt32 silc_utf8_encoded_len(const unsigned char *bin, SilcUInt32 bin_len,
 SilcUInt32 silc_utf8_decoded_len(const unsigned char *bin, SilcUInt32 bin_len,
 				 SilcStringEncoding bin_encoding);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_valid
+/****f* silcutil/silc_utf8_valid
  *
  * SYNOPSIS
  *
@@ -169,7 +169,7 @@ SilcUInt32 silc_utf8_decoded_len(const unsigned char *bin, SilcUInt32 bin_len,
  ***/
 SilcBool silc_utf8_valid(const unsigned char *utf8, SilcUInt32 utf8_len);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_strcasecmp
+/****f* silcutil/silc_utf8_strcasecmp
  *
  * SYNOPSIS
  *
@@ -188,7 +188,7 @@ SilcBool silc_utf8_valid(const unsigned char *utf8, SilcUInt32 utf8_len);
  ***/
 SilcBool silc_utf8_strcasecmp(const char *s1, const char *s2);
 
-/****f* silcutil/SilcStrUtilAPI/silc_utf8_strncasecmp
+/****f* silcutil/silc_utf8_strncasecmp
  *
  * SYNOPSIS
  *

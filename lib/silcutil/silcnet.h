@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 1997 - 2007 Pekka Riikonen
+  Copyright (C) 1997 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,14 +17,25 @@
 
 */
 
-/****h* silcutil/SILC Net Interface
+/****h* silcutil/Network Interface
  *
  * DESCRIPTION
  *
- * SILC Net API provides various network routines for applications. It
- * can be used to create TCP/IP and UDP/IP connections and listeners.
- * Various utility functions for resolving various information is also
- * provided.
+ * SILC Net API provides various network routines for applications. It can
+ * be used to create TCP/IP and UDP/IP connections and listeners.  Various
+ * utility functions for resolving various information is also provided.
+ * The interface supports both IPv4 and IPv6.
+ *
+ * EXAMPLE
+ *
+ * // Create TCP connection to example.com at port 25
+ * silc_net_tcp_connect(NULL, "example.com", 25, schedule, connected_cb, ctx);
+ *
+ * // Create UDP listener on local interface 10.2.1.7 on port 500
+ * SilcStream udpstream;
+ *
+ * udpstream = silc_net_udp_connect("10.2.1.7", 500, NULL, 0, schedule);
+ * silc_stream_set_notifier(udpstream, schedule, receive_callback, ctx);
  *
  ***/
 
@@ -33,7 +44,7 @@
 
 /* Prototypes */
 
-/****s* silcutil/SilcNetAPI/SilcNetListener
+/****s* silcutil/SilcNetListener
  *
  * NAME
  *
@@ -48,7 +59,7 @@
  ***/
 typedef struct SilcNetListenerStruct *SilcNetListener;
 
-/****f* silcutil/SilcNetAPI/SilcNetCallback
+/****f* silcutil/SilcNetCallback
  *
  * SYNOPSIS
  *
@@ -73,7 +84,7 @@ typedef struct SilcNetListenerStruct *SilcNetListener;
 typedef void (*SilcNetCallback)(SilcResult status,
 				SilcStream stream, void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_tcp_create_listener
+/****f* silcutil/silc_net_tcp_create_listener
  *
  * SYNOPSIS
  *
@@ -109,7 +120,7 @@ silc_net_tcp_create_listener(const char **local_ip_addr,
 			     SilcSchedule schedule,
 			     SilcNetCallback callback, void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_tcp_create_listener2
+/****f* silcutil/silc_net_tcp_create_listener2
  *
  * SYNOPSIS
  *
@@ -149,11 +160,12 @@ silc_net_tcp_create_listener2(const char *local_ip_addr, int *ports,
 			      SilcSchedule schedule,
 			      SilcNetCallback callback, void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_listener_get_port
+/****f* silcutil/silc_net_listener_get_port
  *
  * SYNOPSIS
  *
- *    SilcUInt16 silc_net_listener_get_port(SilcNetListener listener);
+ *    SilcUInt16 *silc_net_listener_get_port(SilcNetListener listener,
+ *                                           SilcUInt32 *port_count);
  *
  * DESCRIPTION
  *
@@ -162,13 +174,13 @@ silc_net_tcp_create_listener2(const char *local_ip_addr, int *ports,
  *    Returns an array of ports of size of `port_count'.  The caller must
  *    free the array with silc_free.  There are as many ports in the array
  *    as there were IP addresses provided in silc_net_tcp_create_listener,
- *    as there were ports provided in silc_net_tcp_create_listener2.
+ *    or as there were ports provided in silc_net_tcp_create_listener2.
  *
  ***/
 SilcUInt16 *silc_net_listener_get_port(SilcNetListener listener,
 				       SilcUInt32 *port_count);
 
-/****f* silcutil/SilcNetAPI/silc_net_listener_get_ip
+/****f* silcutil/silc_net_listener_get_ip
  *
  * SYNOPSIS
  *
@@ -178,14 +190,14 @@ SilcUInt16 *silc_net_listener_get_port(SilcNetListener listener,
  * DESCRIPTION
  *
  *    Returns the IP's to where the `listener' is bound.  Returns an array
- *    of IP addresses of size of `port_count'.  The caller must free the
+ *    of IP addresses of size of `ip_count'.  The caller must free the
  *    array and its strings with silc_free.
  *
  ***/
 char **silc_net_listener_get_ip(SilcNetListener listener,
 				SilcUInt32 *ip_count);
 
-/****f* silcutil/SilcNetAPI/silc_net_listener_get_hostname
+/****f* silcutil/silc_net_listener_get_hostname
  *
  * SYNOPSIS
  *
@@ -195,14 +207,14 @@ char **silc_net_listener_get_ip(SilcNetListener listener,
  * DESCRIPTION
  *
  *    Returns the hostnames to where the `listener' is bound.  Returns an
- *    array of hostnames of size of `port_count'.  The caller must free the
- *    array and its strings with silc_free.
+ *    array of hostnames of size of `hostname_count'.  The caller must free
+ *    the array and its strings with silc_free.
  *
  ***/
 char **silc_net_listener_get_hostname(SilcNetListener listener,
 				      SilcUInt32 *hostname_count);
 
-/****f* silcutil/SilcNetAPI/silc_net_close_listener
+/****f* silcutil/silc_net_close_listener
  *
  * SYNOPSIS
  *
@@ -215,7 +227,7 @@ char **silc_net_listener_get_hostname(SilcNetListener listener,
  ***/
 void silc_net_close_listener(SilcNetListener listener);
 
-/****f* silcutil/SilcNetAPI/silc_net_tcp_connect
+/****f* silcutil/silc_net_tcp_connect
  *
  * SYNOPSIS
  *
@@ -251,7 +263,7 @@ SilcAsyncOperation silc_net_tcp_connect(const char *local_ip_addr,
 					SilcNetCallback callback,
 					void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_udp_connect
+/****f* silcutil/silc_net_udp_connect
  *
  * SYNOPSIS
  *
@@ -276,8 +288,8 @@ SilcAsyncOperation silc_net_tcp_connect(const char *local_ip_addr,
  *
  *    To receive packets the silc_stream_set_notifier must be called for the
  *    returned SilcStream.  The packets are always received in the notifier
- *    callback when the SILC_STREAM_CAN_READ is returned to the callback
- *    To read the packet use silc_stream_read if the remote address was
+ *    callback when the SILC_STREAM_CAN_READ is returned to the callback.
+ *    To read the packet use silc_stream_read if the `remote_ip_addr' was
  *    provided, and silc_net_udp_receive if it was not.
  *
  *    Supports IPv6 if the platform supports it.  If `schedule' is NULL this
@@ -305,7 +317,7 @@ SilcStream silc_net_udp_connect(const char *local_ip_addr, int local_port,
 				const char *remote_ip_addr, int remote_port,
 				SilcSchedule schedule);
 
-/****f* silcutil/SilcNetAPI/silc_net_udp_receive
+/****f* silcutil/silc_net_udp_receive
  *
  * SYNOPSIS
  *
@@ -321,13 +333,16 @@ SilcStream silc_net_udp_connect(const char *local_ip_addr, int local_port,
  *    pointer.  The packet data is returned into the `ret_data' buffer.
  *
  *    Returns the length of the packet, or -1 on error or 0 in case of EOF.
+ *    In case of error the silc_errno will indicate the error.  If the
+ *    error is SILC_ERR_WOULD_BLOCK data is not currently available from the
+ *    `stream'.
  *
  ***/
 int silc_net_udp_receive(SilcStream stream, char *remote_ip_addr,
 			 SilcUInt32 remote_ip_addr_size, int *remote_port,
 			 unsigned char *ret_data, SilcUInt32 data_size);
 
-/****f* silcutil/SilcNetAPI/silc_net_udp_send
+/****f* silcutil/silc_net_udp_send
  *
  * SYNOPSIS
  *
@@ -339,9 +354,11 @@ int silc_net_udp_receive(SilcStream stream, char *remote_ip_addr,
  *
  *    Sends an UDP packet to remote host `remote_ip_addr' on `remote_port'.
  *    This may be used with UDP streams that are not connected to any
- *    specific remote host.  With those stream silc_stream_write cannot be
- *    used.  In those cases, this function must be used.  This may also be
- *    used even if the stream is connected.
+ *    specific remote host.  With those streams silc_stream_write cannot be
+ *    used.  In those cases, this function must be used.  However, this may
+ *    also be used even if the stream is in connected state.
+ *
+ *    You can create the `stream' by calling silc_net_udp_connect.
  *
  *    Returns the amount of data written, -1 if data could not be written
  *    at this moment, or -2 if error occurred.  If -1 is returned the
@@ -353,7 +370,7 @@ int silc_net_udp_send(SilcStream stream,
 		      const char *remote_ip_addr, int remote_port,
 		      const unsigned char *data, SilcUInt32 data_len);
 
-/****f* silcutil/SilcNetAPI/silc_net_close_connection
+/****f* silcutil/silc_net_close_connection
  *
  * SYNOPSIS
  *
@@ -367,7 +384,7 @@ int silc_net_udp_send(SilcStream stream,
  ***/
 void silc_net_close_connection(int sock);
 
-/****f* silcutil/SilcNetAPI/silc_net_accept_connection
+/****f* silcutil/silc_net_accept_connection
  *
  * SYNOPSIS
  *
@@ -382,7 +399,7 @@ void silc_net_close_connection(int sock);
  ***/
 int silc_net_accept_connection(int sock);
 
-/****f* silcutil/SilcNetAPI/silc_net_set_socket_opt
+/****f* silcutil/silc_net_set_socket_opt
  *
  * SYNOPSIS
  *
@@ -398,7 +415,7 @@ int silc_net_accept_connection(int sock);
  ***/
 int silc_net_set_socket_opt(int sock, int level, int option, int on);
 
-/****f* silcutil/SilcNetAPI/silc_net_get_socket_opt
+/****f* silcutil/silc_net_get_socket_opt
  *
  * SYNOPSIS
  *
@@ -415,7 +432,7 @@ int silc_net_set_socket_opt(int sock, int level, int option, int on);
 int silc_net_get_socket_opt(int sock, int level, int option,
 			    void *optval, int *opt_len);
 
-/****f* silcutil/SilcNetAPI/silc_net_set_socket_nonblock
+/****f* silcutil/silc_net_set_socket_nonblock
  *
  * SYNOPSIS
  *
@@ -428,7 +445,7 @@ int silc_net_get_socket_opt(int sock, int level, int option,
  ***/
 int silc_net_set_socket_nonblock(SilcSocket sock);
 
-/****f* silcutil/SilcNetAPI/silc_net_is_ip4
+/****f* silcutil/silc_net_is_ip4
  *
  * SYNOPSIS
  *
@@ -441,7 +458,7 @@ int silc_net_set_socket_nonblock(SilcSocket sock);
  ***/
 SilcBool silc_net_is_ip4(const char *addr);
 
-/****f* silcutil/SilcNetAPI/silc_net_is_ip6
+/****f* silcutil/silc_net_is_ip6
  *
  * SYNOPSIS
  *
@@ -454,7 +471,7 @@ SilcBool silc_net_is_ip4(const char *addr);
  ***/
 SilcBool silc_net_is_ip6(const char *addr);
 
-/****f* silcutil/SilcNetAPI/silc_net_is_ip
+/****f* silcutil/silc_net_is_ip
  *
  * SYNOPSIS
  *
@@ -468,7 +485,7 @@ SilcBool silc_net_is_ip6(const char *addr);
  ***/
 SilcBool silc_net_is_ip(const char *addr);
 
-/****f* silcutil/SilcNetAPI/silc_net_addr2bin
+/****f* silcutil/silc_net_addr2bin
  *
  * SYNOPSIS
  *
@@ -484,7 +501,7 @@ SilcBool silc_net_is_ip(const char *addr);
  ***/
 SilcBool silc_net_addr2bin(const char *addr, void *bin, SilcUInt32 bin_len);
 
-/****f* silcutil/SilcNetAPI/SilcNetResolveCallback
+/****f* silcutil/SilcNetResolveCallback
  *
  * SYNOPSIS
  *
@@ -500,7 +517,7 @@ SilcBool silc_net_addr2bin(const char *addr, void *bin, SilcUInt32 bin_len);
  ***/
 typedef void (*SilcNetResolveCallback)(const char *result, void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_gethostbyname
+/****f* silcutil/silc_net_gethostbyname
  *
  * SYNOPSIS
  *
@@ -521,7 +538,7 @@ typedef void (*SilcNetResolveCallback)(const char *result, void *context);
 SilcBool silc_net_gethostbyname(const char *name, SilcBool prefer_ipv6,
 				char *address, SilcUInt32 address_len);
 
-/****f* silcutil/SilcNetAPI/silc_net_gethostbyname_async
+/****f* silcutil/silc_net_gethostbyname_async
  *
  * SYNOPSIS
  *
@@ -550,7 +567,7 @@ void silc_net_gethostbyname_async(const char *name,
 				  SilcNetResolveCallback completion,
 				  void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_gethostbyaddr
+/****f* silcutil/silc_net_gethostbyaddr
  *
  * SYNOPSIS
  *
@@ -568,7 +585,7 @@ x * DESCRIPTION
 SilcBool silc_net_gethostbyaddr(const char *addr, char *name,
 				SilcUInt32 name_len);
 
-/****f* silcutil/SilcNetAPI/silc_net_gethostbyaddr_async
+/****f* silcutil/silc_net_gethostbyaddr_async
  *
  * SYNOPSIS
  *
@@ -591,7 +608,7 @@ void silc_net_gethostbyaddr_async(const char *addr,
 				  SilcNetResolveCallback completion,
 				  void *context);
 
-/****f* silcutil/SilcNetAPI/silc_net_check_host_by_sock
+/****f* silcutil/silc_net_check_host_by_sock
  *
  * SYNOPSIS
  *
@@ -607,7 +624,7 @@ void silc_net_gethostbyaddr_async(const char *addr,
 SilcBool silc_net_check_host_by_sock(SilcSocket sock, char **hostname,
 				     char **ip);
 
-/****f* silcutil/SilcNetAPI/silc_net_check_local_by_sock
+/****f* silcutil/silc_net_check_local_by_sock
  *
  * SYNOPSIS
  *
@@ -623,7 +640,7 @@ SilcBool silc_net_check_host_by_sock(SilcSocket sock, char **hostname,
 SilcBool silc_net_check_local_by_sock(SilcSocket sock, char **hostname,
 				      char **ip);
 
-/****f* silcutil/SilcNetAPI/silc_net_get_remote_port
+/****f* silcutil/silc_net_get_remote_port
  *
  * SYNOPSIS
  *
@@ -636,7 +653,7 @@ SilcBool silc_net_check_local_by_sock(SilcSocket sock, char **hostname,
  ***/
 SilcUInt16 silc_net_get_remote_port(SilcSocket sock);
 
-/****f* silcutil/SilcNetAPI/silc_net_get_local_port
+/****f* silcutil/silc_net_get_local_port
  *
  * SYNOPSIS
  *
@@ -649,7 +666,7 @@ SilcUInt16 silc_net_get_remote_port(SilcSocket sock);
  ***/
 SilcUInt16 silc_net_get_local_port(SilcSocket sock);
 
-/****f* silcutil/SilcNetAPI/silc_net_localhost
+/****f* silcutil/silc_net_localhost
  *
  * SYNOPSIS
  *
@@ -665,7 +682,7 @@ SilcUInt16 silc_net_get_local_port(SilcSocket sock);
  ***/
 char *silc_net_localhost(void);
 
-/****f* silcutil/SilcNetAPI/silc_net_localip
+/****f* silcutil/silc_net_localip
  *
  * SYNOPSIS
  *

@@ -29,14 +29,6 @@ typedef struct {
 
 /************************ Static utility functions **************************/
 
-/* MIME fields destructor */
-
-static void silc_mime_field_dest(void *key, void *context, void *user_context)
-{
-  silc_free(key);
-  silc_free(context);
-}
-
 /* Assembler fragment destructor */
 
 static void silc_mime_assembler_dest(void *key, void *context,
@@ -91,7 +83,7 @@ SilcMime silc_mime_alloc(void)
 
   mime->fields = silc_hash_table_alloc(NULL, 0, silc_hash_string_case, mime,
 				       silc_hash_string_case_compare, mime,
-				       silc_mime_field_dest, mime, TRUE);
+				       silc_hash_destructor, mime, TRUE);
   if (!mime->fields) {
     silc_mime_free(mime);
     return NULL;

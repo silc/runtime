@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Thread Queue Interface
+/****h* silcutil/Thread Queue Interface
  *
  * DESCRIPTION
  *
@@ -48,7 +48,7 @@
 #ifndef SILCTHREADQUEUE_H
 #define SILCTHREADQUEUE_H
 
-/****s* silcutil/SilcThreadQueueAPI/SilcThreadQueue
+/****s* silcutil/SilcThreadQueue
  *
  * NAME
  *
@@ -62,7 +62,7 @@
  ***/
 typedef struct SilcThreadQueueStruct *SilcThreadQueue;
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_alloc
+/****f* silcutil/silc_thread_queue_alloc
  *
  * SYNOPSIS
  *
@@ -79,7 +79,7 @@ typedef struct SilcThreadQueueStruct *SilcThreadQueue;
  ***/
 SilcThreadQueue silc_thread_queue_alloc(void);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_connect
+/****f* silcutil/silc_thread_queue_connect
  *
  * SYNOPSIS
  *
@@ -95,7 +95,7 @@ SilcThreadQueue silc_thread_queue_alloc(void);
  ***/
 void silc_thread_queue_connect(SilcThreadQueue queue);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_disconnect
+/****f* silcutil/silc_thread_queue_disconnect
  *
  * SYNOPSIS
  *
@@ -112,7 +112,7 @@ void silc_thread_queue_connect(SilcThreadQueue queue);
  ***/
 void silc_thread_queue_disconnect(SilcThreadQueue queue);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_push
+/****f* silcutil/silc_thread_queue_push
  *
  * SYNOPSIS
  *
@@ -126,7 +126,7 @@ void silc_thread_queue_disconnect(SilcThreadQueue queue);
  ***/
 void silc_thread_queue_push(SilcThreadQueue queue, void *data);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_pop
+/****f* silcutil/silc_thread_queue_pop
  *
  * SYNOPSIS
  *
@@ -142,7 +142,7 @@ void silc_thread_queue_push(SilcThreadQueue queue, void *data);
  ***/
 void *silc_thread_queue_pop(SilcThreadQueue queue, SilcBool block);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_timed_pop
+/****f* silcutil/silc_thread_queue_timed_pop
  *
  * SYNOPSIS
  *
@@ -159,7 +159,7 @@ void *silc_thread_queue_pop(SilcThreadQueue queue, SilcBool block);
 void *silc_thread_queue_timed_pop(SilcThreadQueue queue,
 				  int timeout_msec);
 
-/****f* silcutil/SilcThreadQueueAPI/silc_thread_queue_pop_list
+/****f* silcutil/silc_thread_queue_pop_list
  *
  * SYNOPSIS
  *

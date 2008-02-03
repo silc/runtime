@@ -1187,6 +1187,26 @@ fi
 
 
 ##
+## Native WIN32 compilation under cygwin
+##
+AC_MSG_CHECKING(whether to compile native WIN32 code)
+AC_ARG_WITH(win32,
+  [  --with-win32            compile native WIN32 (MinGW) code (-mno-cygwin)],
+  [
+    AC_MSG_RESULT(yes)
+    AC_DEFINE([SILC_WIN32], [], [SILC_WIN32])
+    win32_support=true
+    CFLAGS="-mno-cygwin $CFLAGS"
+    LIBS="$LIBS -lwsock32"
+  ],
+  [
+    AC_MSG_RESULT(no)
+    win32_support=false
+  ])
+AM_CONDITIONAL(SILC_WIN32, test x$win32_support = xtrue)
+
+
+##
 ## Outputs and substitutions
 ##
 
@@ -1198,9 +1218,6 @@ AC_SUBST(SILC_LIB_INCLUDES)
 AC_SUBST(__SILC_ENABLE_DEBUG)
 AC_SUBST(__SILC_HAVE_PTHREAD)
 AC_SUBST(__RUNTIME_PACKAGE_VERSION)
-
-# Native Windows support (disabled by default)
-AM_CONDITIONAL(SILC_WIN32, test xfalse = xtrue)
 
 # Native Symbian OS support (disabled by default)
 AM_CONDITIONAL(SILC_SYMBIAN, test xfalse = xtrue)
@@ -1219,6 +1236,9 @@ AC_DEFINE_UNQUOTED([SILC_DOCDIR], "$DOCDIR", [SILC_DOCDIR])
 INCLUDE_DEFINES_INT="include \$(top_srcdir)/Makefile.defines_int"
 AC_SUBST(INCLUDE_DEFINES_INT)
 
+DATE=`date`
+AC_SUBST(DATE)
+
 
 #
 # Makefile outputs
@@ -1226,11 +1246,10 @@ AC_SUBST(INCLUDE_DEFINES_INT)
 AC_CONFIG_FILES(
 Makefile
 doc/Makefile
+doc/runtime.in/index.html
 Makefile.defines
 Makefile.defines_int
 includes/Makefile
-includes/silcversion.h
-includes/silc.h
 apps/Makefile
 win32/Makefile
 )

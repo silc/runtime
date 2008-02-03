@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2001 - 2007 Pekka Riikonen
+  Copyright (C) 2001 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Thread Interface
+/****h* silcutil/Thread Interface
  *
  * DESCRIPTION
  *
@@ -42,7 +42,7 @@
 
 /* Prototypes */
 
-/****s* silcutil/SilcThreadAPI/SilcThread
+/****s* silcutil/SilcThread
  *
  * NAME
  *
@@ -58,7 +58,7 @@
  ***/
 typedef void *SilcThread;
 
-/****f* silcutil/SilcThreadAPI/SilcThreadStart
+/****f* silcutil/SilcThreadStart
  *
  * SYNOPSIS
  *
@@ -76,7 +76,7 @@ typedef void *SilcThread;
  ***/
 typedef void *(*SilcThreadStart)(void *context);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_create
+/****f* silcutil/silc_thread_create
  *
  * SYNOPSIS
  *
@@ -109,7 +109,7 @@ typedef void *(*SilcThreadStart)(void *context);
 SilcThread silc_thread_create(SilcThreadStart start_func, void *context,
 			      SilcBool waitable);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_exit
+/****f* silcutil/silc_thread_exit
  *
  * SYNOPSIS
  *
@@ -126,7 +126,7 @@ SilcThread silc_thread_create(SilcThreadStart start_func, void *context,
  ***/
 void silc_thread_exit(void *exit_value);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_self
+/****f* silcutil/silc_thread_self
  *
  * SYNOPSIS
  *
@@ -139,7 +139,7 @@ void silc_thread_exit(void *exit_value);
  ***/
 SilcThread silc_thread_self(void);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_wait
+/****f* silcutil/silc_thread_wait
  *
  * SYNOPSIS
  *
@@ -157,7 +157,7 @@ SilcThread silc_thread_self(void);
  ***/
 SilcBool silc_thread_wait(SilcThread thread, void **exit_value);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_yield
+/****f* silcutil/silc_thread_yield
  *
  * SYNOPSIS
  *
@@ -171,7 +171,7 @@ SilcBool silc_thread_wait(SilcThread thread, void **exit_value);
  ***/
 void silc_thread_yield(void);
 
-/****s* silcutil/SilcThreadAPI/SilcThreadPool
+/****s* silcutil/SilcThreadPool
  *
  * NAME
  *
@@ -187,7 +187,7 @@ void silc_thread_yield(void);
  ***/
 typedef struct SilcThreadPoolStruct *SilcThreadPool;
 
-/****f* silcutil/SilcThreadAPI/SilcThreadPoolFunc
+/****f* silcutil/SilcThreadPoolFunc
  *
  * SYNOPSIS
  *
@@ -204,7 +204,7 @@ typedef struct SilcThreadPoolStruct *SilcThreadPool;
  ***/
 typedef void (*SilcThreadPoolFunc)(SilcSchedule schedule, void *context);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_alloc
+/****f* silcutil/silc_thread_pool_alloc
  *
  * SYNOPSIS
  *
@@ -243,7 +243,7 @@ SilcThreadPool silc_thread_pool_alloc(SilcStack stack,
 				      SilcUInt32 max_threads,
 				      SilcBool start_min_threads);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_free
+/****f* silcutil/silc_thread_pool_free
  *
  * SYNOPSIS
  *
@@ -258,7 +258,7 @@ SilcThreadPool silc_thread_pool_alloc(SilcStack stack,
  ***/
 void silc_thread_pool_free(SilcThreadPool tp, SilcBool wait_unfinished);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_run
+/****f* silcutil/silc_thread_pool_run
  *
  * SYNOPSIS
  *
@@ -294,7 +294,7 @@ SilcBool silc_thread_pool_run(SilcThreadPool tp,
 			      SilcTaskCallback completion,
 			      void *completion_context);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_set_max_threads
+/****f* silcutil/silc_thread_pool_set_max_threads
  *
  * SYNOPSIS
  *
@@ -310,7 +310,7 @@ SilcBool silc_thread_pool_run(SilcThreadPool tp,
 void silc_thread_pool_set_max_threads(SilcThreadPool tp,
 				      SilcUInt32 max_threads);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_get_max_threads
+/****f* silcutil/silc_thread_pool_get_max_threads
  *
  * SYNOPSIS
  *
@@ -323,7 +323,7 @@ void silc_thread_pool_set_max_threads(SilcThreadPool tp,
  ***/
 SilcUInt32 silc_thread_pool_get_max_threads(SilcThreadPool tp);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_num_free_threads
+/****f* silcutil/silc_thread_pool_num_free_threads
  *
  * SYNOPSIS
  *
@@ -337,7 +337,7 @@ SilcUInt32 silc_thread_pool_get_max_threads(SilcThreadPool tp);
  ***/
 SilcUInt32 silc_thread_pool_num_free_threads(SilcThreadPool tp);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_pool_purge
+/****f* silcutil/silc_thread_pool_purge
  *
  * SYNOPSIS
  *
@@ -352,7 +352,7 @@ SilcUInt32 silc_thread_pool_num_free_threads(SilcThreadPool tp);
  ***/
 void silc_thread_pool_purge(SilcThreadPool tp);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_tls_set
+/****f* silcutil/silc_thread_tls_set
  *
  * SYNOPSIS
  *
@@ -370,7 +370,7 @@ void silc_thread_pool_purge(SilcThreadPool tp);
  ***/
 void silc_thread_tls_set(void *context);
 
-/****f* silcutil/SilcThreadAPI/silc_thread_tls_get
+/****f* silcutil/silc_thread_tls_get
  *
  * SYNOPSIS
  *

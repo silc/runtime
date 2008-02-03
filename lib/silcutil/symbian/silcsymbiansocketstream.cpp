@@ -5,7 +5,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2006 - 2007 Pekka Riikonen
+  Copyright (C) 2006 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
    socket, which is done automatically by the Active Scheduler in blocking
    mode. */
 
-#include "silc.h"
+#include "silcruntime.h"
 #include "silcsymbiansocketstream.h"
 
 /***************************** Socket Classes *******************************/

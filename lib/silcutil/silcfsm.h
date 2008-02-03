@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005, 2006, 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Finite State Machine
+/****h* silcutil/Finite State Machine
  *
  * DESCRIPTION
  *
@@ -44,7 +44,7 @@
 #ifndef SILCFSM_H
 #define SILCFSM_H
 
-/****s* silcutil/SilcFSMAPI/SilcFSM
+/****s* silcutil/SilcFSM
  *
  * NAME
  *
@@ -60,7 +60,7 @@
  ***/
 typedef struct SilcFSMObject *SilcFSM;
 
-/****s* silcutil/SilcFSMAPI/SilcFSMStruct
+/****s* silcutil/SilcFSMStruct
  *
  * NAME
  *
@@ -75,7 +75,7 @@ typedef struct SilcFSMObject *SilcFSM;
  ***/
 typedef struct SilcFSMObject SilcFSMStruct;
 
-/****s* silcutil/SilcFSMAPI/SilcFSMThread
+/****s* silcutil/SilcFSMThread
  *
  * NAME
  *
@@ -94,7 +94,7 @@ typedef struct SilcFSMObject SilcFSMStruct;
  ***/
 typedef struct SilcFSMObject *SilcFSMThread;
 
-/****s* silcutil/SilcFSMAPI/SilcFSMThreadStruct
+/****s* silcutil/SilcFSMThreadStruct
  *
  * NAME
  *
@@ -109,7 +109,7 @@ typedef struct SilcFSMObject *SilcFSMThread;
  ***/
 typedef struct SilcFSMObject SilcFSMThreadStruct;
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_CONTINUE
+/****d* silcutil/SILC_FSM_CONTINUE
  *
  * NAME
  *
@@ -139,7 +139,7 @@ typedef struct SilcFSMObject SilcFSMThreadStruct;
 #define SILC_FSM_CONTINUE SILC_FSM_ST_CONTINUE;
 #endif /* SILC_DEBUG */
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_YIELD
+/****d* silcutil/SILC_FSM_YIELD
  *
  * NAME
  *
@@ -155,7 +155,7 @@ typedef struct SilcFSMObject SilcFSMThreadStruct;
  ***/
 #define SILC_FSM_YIELD SILC_FSM_ST_YIELD;
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_WAIT
+/****d* silcutil/SILC_FSM_WAIT
  *
  * NAME
  *
@@ -170,7 +170,7 @@ typedef struct SilcFSMObject SilcFSMThreadStruct;
  ***/
 #define SILC_FSM_WAIT SILC_FSM_ST_WAIT
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_FINISH
+/****d* silcutil/SILC_FSM_FINISH
  *
  * NAME
  *
@@ -186,7 +186,7 @@ typedef struct SilcFSMObject SilcFSMThreadStruct;
  ***/
 #define SILC_FSM_FINISH SILC_FSM_ST_FINISH
 
-/****f* silcutil/SilcFSMAPI/SilcFSMDestructor
+/****f* silcutil/SilcFSMDestructor
  *
  * SYNOPSIS
  *
@@ -206,7 +206,7 @@ typedef struct SilcFSMObject SilcFSMThreadStruct;
 typedef void (*SilcFSMDestructor)(SilcFSM fsm, void *fsm_context,
                                   void *destructor_context);
 
-/****f* silcutil/SilcFSMAPI/SilcFSMThreadDestructor
+/****f* silcutil/SilcFSMThreadDestructor
  *
  * SYNOPSIS
  *
@@ -234,7 +234,7 @@ typedef void (*SilcFSMThreadDestructor)(SilcFSMThread thread,
 					void *thread_context,
 					void *destructor_context);
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_STATE
+/****d* silcutil/SILC_FSM_STATE
  *
  * NAME
  *
@@ -259,7 +259,7 @@ typedef int (*SilcFSMStateCallback)(struct SilcFSMObject *fsm,
 				    void *fsm_context,
 				    void *state_context);
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_CALL
+/****d* silcutil/SILC_FSM_CALL
  *
  * NAME
  *
@@ -298,7 +298,7 @@ do {						\
   return SILC_FSM_WAIT;				\
 } while(0)
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_CALL_CONTINUE
+/****d* silcutil/SILC_FSM_CALL_CONTINUE
  *
  * NAME
  *
@@ -325,7 +325,7 @@ do {						\
     silc_fsm_continue(fsm);			\
 } while(0)
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_CALL_CONTINUE_SYNC
+/****d* silcutil/SILC_FSM_CALL_CONTINUE_SYNC
  *
  * NAME
  *
@@ -354,7 +354,7 @@ do {						\
     silc_fsm_continue_sync(fsm);		\
 } while(0)
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_THREAD_WAIT
+/****d* silcutil/SILC_FSM_THREAD_WAIT
  *
  * NAME
  *
@@ -387,7 +387,7 @@ do {						\
   return SILC_FSM_WAIT;				\
 } while(0)
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_alloc
+/****f* silcutil/silc_fsm_alloc
  *
  * SYNOPSIS
  *
@@ -434,7 +434,7 @@ SilcFSM silc_fsm_alloc(void *fsm_context,
                        void *destructor_context,
                        SilcSchedule schedule);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_init
+/****f* silcutil/silc_fsm_init
  *
  * SYNOPSIS
  *
@@ -469,7 +469,7 @@ SilcBool silc_fsm_init(SilcFSM fsm,
                        void *destructor_context,
                        SilcSchedule schedule);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_thread_alloc
+/****f* silcutil/silc_fsm_thread_alloc
  *
  * SYNOPSIS
  *
@@ -532,7 +532,7 @@ SilcFSMThread silc_fsm_thread_alloc(SilcFSM fsm,
 				    void *destructor_context,
 				    SilcBool real_thread);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_thread_init
+/****f* silcutil/silc_fsm_thread_init
  *
  * SYNOPSIS
  *
@@ -571,7 +571,7 @@ void silc_fsm_thread_init(SilcFSMThread thread,
 			  void *destructor_context,
 			  SilcBool real_thread);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_free
+/****f* silcutil/silc_fsm_free
  *
  * SYNOPSIS
  *
@@ -591,7 +591,7 @@ void silc_fsm_thread_init(SilcFSMThread thread,
  ***/
 void silc_fsm_free(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_start
+/****f* silcutil/silc_fsm_start
  *
  * SYNOPSIS
  *
@@ -615,7 +615,7 @@ void silc_fsm_free(void *fsm);
  ***/
 void silc_fsm_start(void *fsm, SilcFSMStateCallback start_state);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_start_sync
+/****f* silcutil/silc_fsm_start_sync
  *
  * SYNOPSIS
  *
@@ -635,7 +635,7 @@ void silc_fsm_start(void *fsm, SilcFSMStateCallback start_state);
  ***/
 void silc_fsm_start_sync(void *fsm, SilcFSMStateCallback start_state);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_next
+/****f* silcutil/silc_fsm_next
  *
  * SYNOPSIS
  *
@@ -660,7 +660,7 @@ void silc_fsm_start_sync(void *fsm, SilcFSMStateCallback start_state);
  ***/
 void silc_fsm_next(void *fsm, SilcFSMStateCallback next_state);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_next_later
+/****f* silcutil/silc_fsm_next_later
  *
  * SYNOPSIS
  *
@@ -695,7 +695,7 @@ void silc_fsm_next(void *fsm, SilcFSMStateCallback next_state);
 void silc_fsm_next_later(void *fsm, SilcFSMStateCallback next_state,
 			 SilcUInt32 seconds, SilcUInt32 useconds);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_continue
+/****f* silcutil/silc_fsm_continue
  *
  * SYNOPSIS
  *
@@ -713,7 +713,7 @@ void silc_fsm_next_later(void *fsm, SilcFSMStateCallback next_state,
  ***/
 void silc_fsm_continue(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_continue_sync
+/****f* silcutil/silc_fsm_continue_sync
  *
  * SYNOPSIS
  *
@@ -731,7 +731,7 @@ void silc_fsm_continue(void *fsm);
  ***/
 void silc_fsm_continue_sync(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_finish
+/****f* silcutil/silc_fsm_finish
  *
  * SYNOPSIS
  *
@@ -752,7 +752,7 @@ void silc_fsm_continue_sync(void *fsm);
  ***/
 void silc_fsm_finish(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_set_context
+/****f* silcutil/silc_fsm_set_context
  *
  * SYNOPSIS
  *
@@ -768,7 +768,7 @@ void silc_fsm_finish(void *fsm);
  ***/
 void silc_fsm_set_context(void *fsm, void *fsm_context);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_get_context
+/****f* silcutil/silc_fsm_get_context
  *
  * SYNOPSIS
  *
@@ -784,7 +784,7 @@ void silc_fsm_set_context(void *fsm, void *fsm_context);
  ***/
 void *silc_fsm_get_context(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_set_state_context
+/****f* silcutil/silc_fsm_set_state_context
  *
  * SYNOPSIS
  *
@@ -800,7 +800,7 @@ void *silc_fsm_get_context(void *fsm);
  ***/
 void silc_fsm_set_state_context(void *fsm, void *state_context);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_get_state_context
+/****f* silcutil/silc_fsm_get_state_context
  *
  * SYNOPSIS
  *
@@ -815,7 +815,7 @@ void silc_fsm_set_state_context(void *fsm, void *state_context);
  ***/
 void *silc_fsm_get_state_context(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_get_schedule
+/****f* silcutil/silc_fsm_get_schedule
  *
  * SYNOPSIS
  *
@@ -840,7 +840,7 @@ void *silc_fsm_get_state_context(void *fsm);
  ***/
 SilcSchedule silc_fsm_get_schedule(void *fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_get_machine
+/****f* silcutil/silc_fsm_get_machine
  *
  * SYNOPSIS
  *
@@ -853,7 +853,7 @@ SilcSchedule silc_fsm_get_schedule(void *fsm);
  ***/
 SilcFSM silc_fsm_get_machine(SilcFSMThread thread);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_is_started
+/****f* silcutil/silc_fsm_is_started
  *
  * SYNOPSIS
  *
@@ -870,7 +870,7 @@ SilcBool silc_fsm_is_started(void *fsm);
 
 /* FSM Events */
 
-/****s* silcutil/SilcFSMAPI/SilcFSMEvent
+/****s* silcutil/SilcFSMEvent
  *
  * NAME
  *
@@ -885,7 +885,7 @@ SilcBool silc_fsm_is_started(void *fsm);
  ***/
 typedef struct SilcFSMEventObject *SilcFSMEvent;
 
-/****s* silcutil/SilcFSMAPI/SilcFSMEventStruct
+/****s* silcutil/SilcFSMEventStruct
  *
  * NAME
  *
@@ -900,7 +900,7 @@ typedef struct SilcFSMEventObject *SilcFSMEvent;
  ***/
 typedef struct SilcFSMEventObject SilcFSMEventStruct;
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_event_alloc
+/****f* silcutil/silc_fsm_event_alloc
  *
  * SYNOPSIS
  *
@@ -924,7 +924,7 @@ typedef struct SilcFSMEventObject SilcFSMEventStruct;
  ***/
 SilcFSMEvent silc_fsm_event_alloc(SilcFSM fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_event_init
+/****f* silcutil/silc_fsm_event_init
  *
  * SYNOPSIS
  *
@@ -940,7 +940,7 @@ SilcFSMEvent silc_fsm_event_alloc(SilcFSM fsm);
  ***/
 void silc_fsm_event_init(SilcFSMEvent event, SilcFSM fsm);
 
-/****f* silcutil/SilcFSMAPI/silc_fsm_event_free
+/****f* silcutil/silc_fsm_event_free
  *
  * SYNOPSIS
  *
@@ -953,7 +953,7 @@ void silc_fsm_event_init(SilcFSMEvent event, SilcFSM fsm);
  ***/
 void silc_fsm_event_free(SilcFSMEvent event);
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_EVENT_WAIT
+/****d* silcutil/SILC_FSM_EVENT_WAIT
  *
  * NAME
  *
@@ -993,7 +993,7 @@ do {						\
     return SILC_FSM_WAIT;			\
 } while(0)
 
-/****d* silcutil/SilcFSMAPI/SILC_FSM_EVENT_TIMEDWAIT
+/****d* silcutil/SILC_FSM_EVENT_TIMEDWAIT
  *
  * NAME
  *
@@ -1038,7 +1038,7 @@ do {									\
     return SILC_FSM_WAIT;						\
 } while(0)
 
-/****f* silcutil/SilcFSMAPI/SILC_FSM_EVENT_SIGNAL
+/****f* silcutil/SILC_FSM_EVENT_SIGNAL
  *
  * SYNOPSIS
  *

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2002 - 2007 Pekka Riikonen
+  Copyright (C) 2002 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC String Utilities
+/****h* silcutil/String Utilities
  *
  * DESCRIPTION
  *
@@ -28,7 +28,7 @@
 #ifndef SILCSTRUTIL_H
 #define SILCSTRUTIL_H
 
-/****d* silcutil/SilcStrUtilAPI/SilcStringEncoding
+/****d* silcutil/SilcStringEncoding
  *
  * NAME
  *
@@ -65,7 +65,7 @@ typedef enum {
 } SilcStringEncoding;
 /***/
 
-/****f* silcutil/SilcStrStrUtilAPI/silc_strncat
+/****f* silcutil/silc_strncat
  *
  * SYNOPSIS
  *
@@ -82,7 +82,7 @@ typedef enum {
 char *silc_strncat(char *dest, SilcUInt32 dest_size,
 		   const char *src, SilcUInt32 src_len);
 
-/****f* silcutil/SilcStrUtilAPI/silc_string_regexify
+/****f* silcutil/silc_string_regexify
  *
  * SYNOPSIS
  *
@@ -97,7 +97,7 @@ char *silc_strncat(char *dest, SilcUInt32 dest_size,
  ***/
 char *silc_string_regexify(const char *string);
 
-/****f* silcutil/SilcStrUtilAPI/silc_string_match
+/****f* silcutil/silc_string_match
  *
  * SYNOPSIS
  *
@@ -111,7 +111,7 @@ char *silc_string_regexify(const char *string);
  ***/
 int silc_string_match(const char *string1, const char *string2);
 
-/****f* silcutil/SilcStrUtilAPI/silc_string_compare
+/****f* silcutil/silc_string_compare
  *
  * SYNOPSIS
  *
@@ -125,7 +125,7 @@ int silc_string_match(const char *string1, const char *string2);
  ***/
 int silc_string_compare(char *string1, char *string2);
 
-/****f* silcutil/SilcStrUtilAPI/silc_string_split
+/****f* silcutil/silc_string_split
  *
  * SYNOPSIS
  *

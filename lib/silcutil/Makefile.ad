@@ -121,7 +121,8 @@ include_HEADERS =	\
 	silcregex.h	\
 	silcthreadqueue.h \
 	silcrand.h	\
-	silcglobal.h
+	silcglobal.h	\
+	silcruntime.h
 
 SILC_EXTRA_DIST =
 

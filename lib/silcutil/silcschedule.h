@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Schedule Interface
+/****h* silcutil/Scheduler Interface
  *
  * DESCRIPTION
  *
@@ -25,22 +25,18 @@
  * the application's main loop that can handle incoming data, outgoing data,
  * timeouts and dispatch different kind of tasks.
  *
- * The SILC Scheduler supports file descriptor based tasks and timeout tasks.
- * File descriptor tasks are tasks that perform some operation over the
- * specified file descriptor. These include network connections, for example.
- * The timeout tasks are timeouts that are executed after the specified
- * timeout has elapsed.
+ * The SILC Scheduler supports file descriptor based tasks, timeout tasks and
+ * asynchronous event tasks.  File descriptor tasks are tasks that perform
+ * some operation over the specified file descriptor or socket.  The timeout
+ * tasks are timeouts that are executed after the specified timeout has
+ * elapsed.  Asynchronous event tasks are tasks that can be connected to
+ * and signalled to deliver messages and data to all connected entities.
  *
  * The SILC Scheduler is designed to be the sole main loop of the application
  * so that the application does not need any other main loop.  However,
  * SILC Scheduler does support running the scheduler only one iteration, so
  * that the scheduler does not block, and thus providing a possiblity that some
  * external main loop is run over the SILC Scheduler.
- *
- * Typical application first initializes the scheduler and then register
- * the very first tasks to the scheduler and then run the scheduler.  After
- * the scheduler's run function returns the application is considered to be
- * ended.
  *
  * On Windows systems the SILC Scheduler is too designed to work as the main
  * loop of the GUI application. It can handle all Windows messages and
@@ -50,22 +46,22 @@
  * WSAEVENT handle objects created by Winsock2 routines and arbitrary
  * WIN32 HANDLE objects.
  *
- * The SILC Scheduler supports multi-threads as well. The actual scheduler
- * must be run in single-thread but other threads may register new tasks
- * and unregister old tasks.  However, it is enforced that the actual
- * task is always run in the main thread.  The scheduler is context based
- * which makes it possible to allocate several schedulers for one application.
- * Since the scheduler must be run in single-thread, a multi-threaded
- * application could be created by allocating own scheduler for each of the
- * worker threads.  Each scheduler in worker thread should be a child
- * scheduler created from the main thread's parent schedule.
+ * On Symbian OS the SILC Scheduler can work in cooperation with the Active
+ * Scheduler.  However, the Symbian OS Active Scheduler must be started
+ * before starting SILC Scheduler.
+ *
+ * The SILC Scheduler supports multi-threads.  Each thread can have their
+ * own scheduler.  Tasks registered to a scheduler are always executed in
+ * that same thread.  However, tasks may be added to and removed from any
+ * scheduler from any thread.  Each scheduler in worker thread should be
+ * a child scheduler created from the main thread's parent scheduler.
  *
  ***/
 
 #ifndef SILCSCHEDULE_H
 #define SILCSCHEDULE_H
 
-/****s* silcutil/SilcScheduleAPI/SilcSchedule
+/****s* silcutil/SilcSchedule
  *
  * NAME
  *
@@ -81,7 +77,7 @@
  ***/
 typedef struct SilcScheduleStruct *SilcSchedule;
 
-/****s* silcutil/SilcScheduleAPI/SilcTask
+/****s* silcutil/SilcTask
  *
  * NAME
  *
@@ -96,7 +92,7 @@ typedef struct SilcScheduleStruct *SilcSchedule;
  ***/
 typedef struct SilcTaskStruct *SilcTask;
 
-/****d* silcutil/SilcScheduleAPI/SilcTaskEvent
+/****d* silcutil/SilcTaskEvent
  *
  * NAME
  *
@@ -123,7 +119,7 @@ typedef enum {
 } SilcTaskEvent;
 /***/
 
-/****f* silcutil/SilcScheduleAPI/SilcTaskCallback
+/****f* silcutil/SilcTaskCallback
  *
  * SYNOPSIS
  *
@@ -159,7 +155,7 @@ typedef void (*SilcTaskCallback)(SilcSchedule schedule, void *app_context,
 				 SilcTaskEvent type, SilcUInt32 fd,
 				 void *context);
 
-/****f* silcutil/SilcScheduleAPI/SilcTaskEventCallback
+/****f* silcutil/SilcTaskEventCallback
  *
  * SYNOPSIS
  *
@@ -192,7 +188,7 @@ typedef SilcBool (*SilcTaskEventCallback)(SilcSchedule schedule,
 					  SilcTask task, void *context,
 					  va_list va);
 
-/****f* silcutil/SilcScheduleAPI/SilcTaskNotifyCb
+/****f* silcutil/SilcTaskNotifyCb
  *
  * SYNOPSIS
  *
@@ -237,7 +233,7 @@ typedef void (*SilcTaskNotifyCb)(SilcSchedule schedule,
 
 /* Macros */
 
-/****d* silcutil/SilcScheduleAPI/SILC_ALL_TASKS
+/****d* silcutil/SILC_ALL_TASKS
  *
  * NAME
  *
@@ -253,7 +249,7 @@ typedef void (*SilcTaskNotifyCb)(SilcSchedule schedule,
 #define SILC_ALL_TASKS ((SilcTask)1)
 /***/
 
-/****d* silcutil/SilcScheduleAPI/SILC_TASK_CALLBACK
+/****d* silcutil/SILC_TASK_CALLBACK
  *
  * NAME
  *
@@ -271,7 +267,7 @@ void func(SilcSchedule schedule, void *app_context, SilcTaskEvent type,	\
 	  SilcUInt32 fd, void *context)
 /***/
 
-/****d* silcutil/SilcScheduleAPI/SILC_TASK_EVENT_CALLBACK
+/****d* silcutil/SILC_TASK_EVENT_CALLBACK
  *
  * NAME
  *
@@ -294,7 +290,7 @@ SilcBool func(SilcSchedule schedule, void *app_context,			\
 
 #include "silcschedule_i.h"
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_init
+/****f* silcutil/silc_schedule_init
  *
  * SYNOPSIS
  *
@@ -333,7 +329,7 @@ SilcBool func(SilcSchedule schedule, void *app_context,			\
 SilcSchedule silc_schedule_init(int max_tasks, void *app_context,
 				SilcStack stack, SilcSchedule parent);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_uninit
+/****f* silcutil/silc_schedule_uninit
  *
  * SYNOPSIS
  *
@@ -353,7 +349,7 @@ SilcSchedule silc_schedule_init(int max_tasks, void *app_context,
  ***/
 SilcBool silc_schedule_uninit(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_stop
+/****f* silcutil/silc_schedule_stop
  *
  * SYNOPSIS
  *
@@ -371,7 +367,7 @@ SilcBool silc_schedule_uninit(SilcSchedule schedule);
  ***/
 void silc_schedule_stop(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule
+/****f* silcutil/silc_schedule
  *
  * SYNOPSIS
  *
@@ -395,7 +391,7 @@ void silc_schedule_stop(SilcSchedule schedule);
  ***/
 void silc_schedule(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_one
+/****f* silcutil/silc_schedule_one
  *
  * SYNOPSIS
  *
@@ -418,7 +414,7 @@ void silc_schedule(SilcSchedule schedule);
  ***/
 SilcBool silc_schedule_one(SilcSchedule schedule, int timeout_usecs);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_wakeup
+/****f* silcutil/silc_schedule_wakeup
  *
  * SYNOPSIS
  *
@@ -435,7 +431,7 @@ SilcBool silc_schedule_one(SilcSchedule schedule, int timeout_usecs);
  ***/
 void silc_schedule_wakeup(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_get_parent
+/****f* silcutil/silc_schedule_get_parent
  *
  * SYNOPSIS
  *
@@ -448,7 +444,7 @@ void silc_schedule_wakeup(SilcSchedule schedule);
  ***/
 SilcSchedule silc_schedule_get_parent(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_get_context
+/****f* silcutil/silc_schedule_get_context
  *
  * SYNOPSIS
  *
@@ -464,7 +460,7 @@ SilcSchedule silc_schedule_get_parent(SilcSchedule schedule);
  ***/
 void *silc_schedule_get_context(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_get_stack
+/****f* silcutil/silc_schedule_get_stack
  *
  * SYNOPSIS
  *
@@ -480,7 +476,7 @@ void *silc_schedule_get_context(SilcSchedule schedule);
  ***/
 SilcStack silc_schedule_get_stack(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_set_notify
+/****f* silcutil/silc_schedule_set_notify
  *
  * SYNOPSIS
  *
@@ -496,7 +492,7 @@ SilcStack silc_schedule_get_stack(SilcSchedule schedule);
 void silc_schedule_set_notify(SilcSchedule schedule,
 			      SilcTaskNotifyCb notify, void *context);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_set_global
+/****f* silcutil/silc_schedule_set_global
  *
  * SYNOPSIS
  *
@@ -523,7 +519,7 @@ void silc_schedule_set_notify(SilcSchedule schedule,
  ***/
 void silc_schedule_set_global(SilcSchedule schedule);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_get_global
+/****f* silcutil/silc_schedule_get_global
  *
  * SYNOPSIS
  *
@@ -537,7 +533,7 @@ void silc_schedule_set_global(SilcSchedule schedule);
  ***/
 SilcSchedule silc_schedule_get_global(void);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_add_fd
+/****f* silcutil/silc_schedule_task_add_fd
  *
  * SYNOPSIS
  *
@@ -565,7 +561,7 @@ SilcSchedule silc_schedule_get_global(void);
 #define silc_schedule_task_add_fd(schedule, fd, callback, context)	\
   silc_schedule_task_add(schedule, fd, callback, context, 0, 0,	SILC_TASK_FD)
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_add_timeout
+/****f* silcutil/silc_schedule_task_add_timeout
  *
  * SYNOPSIS
  *
@@ -590,7 +586,7 @@ SilcSchedule silc_schedule_get_global(void);
   silc_schedule_task_add(schedule, 0, callback, context, s, u,		\
                          SILC_TASK_TIMEOUT)
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_add_signal
+/****f* silcutil/silc_schedule_task_add_signal
  *
  * SYNOPSIS
  *
@@ -622,7 +618,7 @@ SilcSchedule silc_schedule_get_global(void);
   silc_schedule_task_add(schedule, sig, callback, context, 0, 0,	\
 			 SILC_TASK_SIGNAL)
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_add_event
+/****f* silcutil/silc_schedule_task_add_event
  *
  * SYNOPSIS
  *
@@ -653,14 +649,16 @@ SilcSchedule silc_schedule_get_global(void);
  *
  *    The variable argument list is used to describe the arguments of the
  *    event.  The variable arguments are a list of zero or more SilcParam
- *    values.  This function returns the event task context or NULL on error.
+ *    values.  The list must be ended with SILC_PARAM_END.  This function
+ *    returns the event task context or NULL on error.
  *
  * EXAMPLE
  *
  *    // Register 'connected' event
  *    silc_schedule_task_add_event(schedule, "connected",
  *                                 SILC_PARAM_UINT32,
- *                                 SILC_PARAM_BUFFER);
+ *                                 SILC_PARAM_BUFFER,
+ *                                 SILC_PARAM_END);
  *
  *    // Connect to 'connected' event
  *    silc_schedule_event_connect(schedule, "connected", NULL,
@@ -685,7 +683,7 @@ SilcSchedule silc_schedule_get_global(void);
 SilcTask silc_schedule_task_add_event(SilcSchedule schedule,
 				      const char *event, ...);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del
+/****f* silcutil/silc_schedule_task_del
  *
  * SYNOPSIS
  *
@@ -708,7 +706,7 @@ SilcTask silc_schedule_task_add_event(SilcSchedule schedule,
  ***/
 SilcBool silc_schedule_task_del(SilcSchedule schedule, SilcTask task);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del_by_fd
+/****f* silcutil/silc_schedule_task_del_by_fd
  *
  * SYNOPSIS
  *
@@ -730,7 +728,7 @@ SilcBool silc_schedule_task_del(SilcSchedule schedule, SilcTask task);
  ***/
 SilcBool silc_schedule_task_del_by_fd(SilcSchedule schedule, SilcUInt32 fd);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del_by_callback
+/****f* silcutil/silc_schedule_task_del_by_callback
  *
  * SYNOPSIS
  *
@@ -754,7 +752,7 @@ SilcBool silc_schedule_task_del_by_fd(SilcSchedule schedule, SilcUInt32 fd);
 SilcBool silc_schedule_task_del_by_callback(SilcSchedule schedule,
 					    SilcTaskCallback callback);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del_by_context
+/****f* silcutil/silc_schedule_task_del_by_context
  *
  * SYNOPSIS
  *
@@ -777,7 +775,7 @@ SilcBool silc_schedule_task_del_by_callback(SilcSchedule schedule,
 SilcBool silc_schedule_task_del_by_context(SilcSchedule schedule,
 					   void *context);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del_by_all
+/****f* silcutil/silc_schedule_task_del_by_all
  *
  * SYNOPSIS
  *
@@ -802,7 +800,7 @@ SilcBool silc_schedule_task_del_by_all(SilcSchedule schedule, int fd,
 				       SilcTaskCallback callback,
 				       void *context);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_task_del_event
+/****f* silcutil/silc_schedule_task_del_event
  *
  * SYNOPSIS
  *
@@ -822,7 +820,7 @@ SilcBool silc_schedule_task_del_by_all(SilcSchedule schedule, int fd,
 SilcBool silc_schedule_task_del_event(SilcSchedule schedule,
 				      const char *event);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_set_listen_fd
+/****f* silcutil/silc_schedule_set_listen_fd
  *
  * SYNOPSIS
  *
@@ -857,7 +855,7 @@ SilcBool silc_schedule_task_del_event(SilcSchedule schedule,
 SilcBool silc_schedule_set_listen_fd(SilcSchedule schedule, SilcUInt32 fd,
 				     SilcTaskEvent mask, SilcBool send_events);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_get_fd_events
+/****f* silcutil/silc_schedule_get_fd_events
  *
  * SYNOPSIS
  *
@@ -876,7 +874,7 @@ SilcBool silc_schedule_set_listen_fd(SilcSchedule schedule, SilcUInt32 fd,
 SilcTaskEvent silc_schedule_get_fd_events(SilcSchedule schedule,
 					  SilcUInt32 fd);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_unset_listen_fd
+/****f* silcutil/silc_schedule_unset_listen_fd
  *
  * SYNOPSIS
  *
@@ -894,7 +892,7 @@ SilcTaskEvent silc_schedule_get_fd_events(SilcSchedule schedule,
  ***/
 void silc_schedule_unset_listen_fd(SilcSchedule schedule, SilcUInt32 fd);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_event_connect
+/****f* silcutil/silc_schedule_event_connect
  *
  * SYNOPSIS
  *
@@ -928,7 +926,7 @@ SilcBool silc_schedule_event_connect(SilcSchedule schedule,
 				     SilcTaskEventCallback callback,
 				     void *context);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_event_disconnect
+/****f* silcutil/silc_schedule_event_disconnect
  *
  * SYNOPSIS
  *
@@ -952,7 +950,7 @@ SilcBool silc_schedule_event_disconnect(SilcSchedule schedule,
 					SilcTaskEventCallback callback,
 					void *context);
 
-/****f* silcutil/SilcScheduleAPI/silc_schedule_event_signal
+/****f* silcutil/silc_schedule_event_signal
  *
  * SYNOPSIS
  *
@@ -964,12 +962,15 @@ SilcBool silc_schedule_event_disconnect(SilcSchedule schedule,
  *
  *    Signals an event task.  The `event' or `task' must be non-NULL.  If
  *    `event' is non-NULL it is the name of the event to signal.  If the `task'
- *    is non-NULL it is the task to be signalled.  It is marginally faster
- *    to use the `task' pointer directly instead of `event' to send the signal.
+ *    is non-NULL it is the event task to be signalled.  It is marginally
+ *    faster to use the `task' pointer directly instead of `event' to send
+ *    the signal.
  *
  *    The variable arguments are the arguments to be sent in the signal to
  *    the connected entities.  The silc_schedule_task_add_event defines what
- *    arguments must be sent to each signal.
+ *    arguments must be sent to each signal.  The variable argument list
+ *    must not be ended with SILC_PARAM_END even though it is ended with that
+ *    in silc_schedule_task_add_event.
  *
  *    Signal delivery is synchronous; the signal is delivered inside this
  *    function.  If a receiver was originally in another thread, the signal

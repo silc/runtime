@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2004 - 2005 Pekka Riikonen
+  Copyright (C) 2004 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Stringprep
+/****h* silcutil/Stringprep Interface
  *
  * DESCRIPTION
  *
@@ -32,7 +32,7 @@
 #ifndef SILCSTRINGPREP_H
 #define SILCSTRINGPREP_H
 
-/****d* silcutil/SilcStringprep/SilcStringprepStatus
+/****d* silcutil/SilcStringprepStatus
  *
  * NAME
  *
@@ -60,7 +60,7 @@ typedef enum {
 } SilcStringprepStatus;
 /***/
 
-/****d* silcutil/SilcStringprep/SilcStringprepFlags
+/****d* silcutil/SilcStringprepFlags
  *
  * NAME
  *
@@ -85,7 +85,7 @@ typedef enum {
 #define SILC_IDENTIFIER_CH_PREP "silc-identifier-ch-prep"
 #define SILC_CASEFOLD_PREP "silc-casefold-prep"
 
-/****f* silcutil/SilcStringprep/silc_stringprep
+/****f* silcutil/silc_stringprep
  *
  * SYNOPSIS
  *

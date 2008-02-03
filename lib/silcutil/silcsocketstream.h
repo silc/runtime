@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Socket Stream Interface
+/****h* silcutil/Socket Stream Interface
  *
  * DESCRIPTION
  *
@@ -35,7 +35,7 @@
 #ifndef SILCSOCKETSTREAM_H
 #define SILCSOCKETSTREAM_H
 
-/****f* silcutil/SilcSocketStreamAPI/SilcSocketStreamCallback
+/****f* silcutil/SilcSocketStreamCallback
  *
  * SYNOPSIS
  *
@@ -62,7 +62,7 @@
 typedef void (*SilcSocketStreamCallback)(SilcResult status,
 					 SilcStream stream, void *context);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_tcp_stream_create
+/****f* silcutil/silc_socket_tcp_stream_create
  *
  * SYNOPSIS
  *
@@ -104,7 +104,7 @@ silc_socket_tcp_stream_create(SilcSocket sock, SilcBool lookup,
 			      SilcSocketStreamCallback callback,
 			      void *context);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_udp_stream_create
+/****f* silcutil/silc_socket_udp_stream_create
  *
  * SYNOPSIS
  *
@@ -146,7 +146,7 @@ SilcStream silc_socket_udp_stream_create(SilcSocket sock,
 					 SilcBool connected,
 					 SilcSchedule schedule);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_stream_is_udp
+/****f* silcutil/silc_socket_stream_is_udp
  *
  * SYNOPSIS
  *
@@ -165,7 +165,7 @@ SilcStream silc_socket_udp_stream_create(SilcSocket sock,
  ***/
 SilcBool silc_socket_stream_is_udp(SilcStream stream, SilcBool *connected);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_stream_get_info
+/****f* silcutil/silc_socket_stream_get_info
  *
  * SYNOPSIS
  *
@@ -185,7 +185,7 @@ SilcBool silc_socket_stream_get_info(SilcStream stream,
 				     SilcSocket *sock, const char **hostname,
 				     const char **ip, SilcUInt16 *port);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_stream_set_info
+/****f* silcutil/silc_socket_stream_set_info
  *
  * SYNOPSIS
  *
@@ -210,7 +210,7 @@ SilcBool silc_socket_stream_set_info(SilcStream stream,
 				     const char *hostname,
 				     const char *ip, SilcUInt16 port);
 
-/****f* silcutil/SilcSocketStreamAPI/silc_socket_stream_set_qos
+/****f* silcutil/silc_socket_stream_set_qos
  *
  * SYNOPSIS
  *

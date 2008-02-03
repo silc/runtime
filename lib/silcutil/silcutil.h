@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC Utilities
+/****h* silcutil/Misc Utilities
  *
  * DESCRIPTION
  *
@@ -28,7 +28,7 @@
 #ifndef SILCUTIL_H
 #define SILCUTIL_H
 
-/****f* silcutil/SilcUtilAPI/silc_gets
+/****f* silcutil/silc_gets
  *
  * SYNOPSIS
  *
@@ -44,7 +44,7 @@
  ***/
 int silc_gets(char *dest, int destlen, const char *src, int srclen, int begin);
 
-/****f* silcutil/SilcUtilAPI/silc_to_upper
+/****f* silcutil/silc_to_upper
  *
  * SYNOPSIS
  *
@@ -58,7 +58,7 @@ int silc_gets(char *dest, int destlen, const char *src, int srclen, int begin);
  ***/
 SilcBool silc_to_upper(const char *string, char *dest, SilcUInt32 dest_size);
 
-/****f* silcutil/SilcUtilAPI/silc_to_lower
+/****f* silcutil/silc_to_lower
  *
  * SYNOPSIS
  *
@@ -72,7 +72,7 @@ SilcBool silc_to_upper(const char *string, char *dest, SilcUInt32 dest_size);
  ***/
 SilcBool silc_to_lower(const char *string, char *dest, SilcUInt32 dest_size);
 
-/****f* silcutil/SilcUtilAPI/silc_parse_userfqdn
+/****f* silcutil/silc_parse_userfqdn
  *
  * SYNOPSIS
  *
@@ -91,7 +91,7 @@ int silc_parse_userfqdn(const char *string,
 			char *user, SilcUInt32 user_size,
 			char *fqdn, SilcUInt32 fqdn_size);
 
-/****f* silcutil/SilcUtilAPI/silc_parse_command_line
+/****f* silcutil/silc_parse_command_line
  *
  * SYNOPSIS
  *
@@ -117,7 +117,7 @@ void silc_parse_command_line(unsigned char *buffer,
 			     SilcUInt32 *parsed_num,
 			     SilcUInt32 max_args);
 
-/****f* silcutil/SilcUtilAPI/silc_format
+/****f* silcutil/silc_format
  *
  * SYNOPSIS
  *
@@ -131,7 +131,7 @@ void silc_parse_command_line(unsigned char *buffer,
  ***/
 char *silc_format(char *fmt, ...);
 
-/****f* silcutil/SilcUtilAPI/silc_fingerprint
+/****f* silcutil/silc_fingerprint
  *
  * SYNOPSIS
  *
@@ -147,7 +147,7 @@ char *silc_format(char *fmt, ...);
  ***/
 char *silc_fingerprint(const unsigned char *data, SilcUInt32 data_len);
 
-/****f* silcutil/SilcUtilAPI/silc_string_is_ascii
+/****f* silcutil/silc_string_is_ascii
  *
  * SYNOPSIS
  *
@@ -161,7 +161,7 @@ char *silc_fingerprint(const unsigned char *data, SilcUInt32 data_len);
  ***/
 SilcBool silc_string_is_ascii(const unsigned char *data, SilcUInt32 data_len);
 
-/****f* silcutil/SilcUtilAPI/silc_get_input
+/****f* silcutil/silc_get_input
  *
  * SYNOPSIS
  *
@@ -176,7 +176,7 @@ char *silc_get_input(const char *prompt, SilcBool echo_off);
 
 /* System dependant prototypes */
 
-/****f* silcutil/SilcUtilAPI/silc_get_username
+/****f* silcutil/silc_get_username
  *
  * SYNOPSIS
  *
@@ -193,7 +193,7 @@ char *silc_get_input(const char *prompt, SilcBool echo_off);
  ***/
 char *silc_get_username();
 
-/****f* silcutil/SilcUtilAPI/silc_get_real_name
+/****f* silcutil/silc_get_real_name
  *
  * SYNOPSIS
  *
@@ -209,7 +209,7 @@ char *silc_get_username();
  ***/
 char *silc_get_real_name();
 
-/****f* silcutil/SilcUtilAPI/silc_va_copy
+/****f* silcutil/silc_va_copy
  *
  * SYNOPSIS
  *
@@ -233,7 +233,7 @@ char *silc_get_real_name();
 #define silc_va_copy(dest, src) dest = src;
 #endif
 
-/****f* silcutil/SilcUtilAPI/silc_hexdump
+/****f* silcutil/silc_hexdump
  *
  * SYNOPSIS
  *
@@ -249,7 +249,7 @@ char *silc_get_real_name();
 void silc_hexdump(const unsigned char *data, SilcUInt32 data_len,
 		  FILE *output);
 
-/****f* silcutil/SilcUtilAPI/silc_hex2data
+/****f* silcutil/silc_hex2data
  *
  * SYNOPSIS
  *
@@ -265,7 +265,7 @@ void silc_hexdump(const unsigned char *data, SilcUInt32 data_len,
 SilcBool silc_hex2data(const char *hex, unsigned char *data,
 		       SilcUInt32 data_size, SilcUInt32 *ret_data_len);
 
-/****f* silcutil/SilcUtilAPI/silc_data2hex
+/****f* silcutil/silc_data2hex
  *
  * SYNOPSIS
  *

@@ -4,7 +4,7 @@
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
-  Copyright (C) 2005 - 2007 Pekka Riikonen
+  Copyright (C) 2005 - 2008 Pekka Riikonen
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 */
 
-/****h* silcutil/SILC MIME Interface
+/****h* silcutil/MIME Interface
  *
  * DESCRIPTION
  *
@@ -33,7 +33,7 @@
 #ifndef SILCMIME_H
 #define SILCMIME_H
 
-/****s* silcutil/SILCMIMEAPI/SilcMime
+/****s* silcutil/SilcMime
  *
  * NAME
  *
@@ -48,7 +48,7 @@
  ***/
 typedef struct SilcMimeStruct *SilcMime;
 
-/****s* silcutil/SILCMIMEAPI/SilcMimeAssembler
+/****s* silcutil/SilcMimeAssembler
  *
  * NAME
  *
@@ -63,7 +63,7 @@ typedef struct SilcMimeStruct *SilcMime;
  ***/
 typedef struct SilcMimeAssemblerStruct *SilcMimeAssembler;
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_alloc
+/****f* silcutil/silc_mime_alloc
  *
  * SYNOPSIS
  *
@@ -77,7 +77,7 @@ typedef struct SilcMimeAssemblerStruct *SilcMimeAssembler;
  ***/
 SilcMime silc_mime_alloc(void);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_free
+/****f* silcutil/silc_mime_free
  *
  * SYNOPSIS
  *
@@ -90,7 +90,7 @@ SilcMime silc_mime_alloc(void);
  ***/
 void silc_mime_free(SilcMime mime);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_assembler_alloc
+/****f* silcutil/silc_mime_assembler_alloc
  *
  * SYNOPSIS
  *
@@ -104,7 +104,7 @@ void silc_mime_free(SilcMime mime);
  ***/
 SilcMimeAssembler silc_mime_assembler_alloc(void);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_assembler_free
+/****f* silcutil/silc_mime_assembler_free
  *
  * SYNOPSIS
  *
@@ -117,7 +117,7 @@ SilcMimeAssembler silc_mime_assembler_alloc(void);
  ***/
 void silc_mime_assembler_free(SilcMimeAssembler assembler);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_assembler_purge
+/****f* silcutil/silc_mime_assembler_purge
  *
  * SYNOPSIS
  *
@@ -140,7 +140,7 @@ void silc_mime_assembler_free(SilcMimeAssembler assembler);
 void silc_mime_assembler_purge(SilcMimeAssembler assembler,
 			       SilcUInt32 purge_minutes);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_decode
+/****f* silcutil/silc_mime_decode
  *
  * SYNOPSIS
  *
@@ -171,7 +171,7 @@ void silc_mime_assembler_purge(SilcMimeAssembler assembler,
 SilcMime silc_mime_decode(SilcMime mime, const unsigned char *data,
 			  SilcUInt32 data_len);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_encode
+/****f* silcutil/silc_mime_encode
  *
  * SYNOPSIS
  *
@@ -190,7 +190,7 @@ SilcMime silc_mime_decode(SilcMime mime, const unsigned char *data,
  ***/
 unsigned char *silc_mime_encode(SilcMime mime, SilcUInt32 *encoded_len);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_assemble
+/****f* silcutil/silc_mime_assemble
  *
  * SYNOPSIS
  *
@@ -220,7 +220,7 @@ unsigned char *silc_mime_encode(SilcMime mime, SilcUInt32 *encoded_len);
  ***/
 SilcMime silc_mime_assemble(SilcMimeAssembler assembler, SilcMime partial);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_encode_partial
+/****f* silcutil/silc_mime_encode_partial
  *
  * SYNOPSIS
  *
@@ -240,7 +240,7 @@ SilcMime silc_mime_assemble(SilcMimeAssembler assembler, SilcMime partial);
  ***/
 SilcDList silc_mime_encode_partial(SilcMime mime, int max_size);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_partial_free
+/****f* silcutil/silc_mime_partial_free
  *
  * SYNOPSIS
  *
@@ -254,7 +254,7 @@ SilcDList silc_mime_encode_partial(SilcMime mime, int max_size);
  ***/
 void silc_mime_partial_free(SilcDList partials);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_add_field
+/****f* silcutil/silc_mime_add_field
  *
  * SYNOPSIS
  *
@@ -275,7 +275,7 @@ void silc_mime_partial_free(SilcDList partials);
  ***/
 void silc_mime_add_field(SilcMime mime, const char *field, const char *value);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_get_field
+/****f* silcutil/silc_mime_get_field
  *
  * SYNOPSIS
  *
@@ -289,7 +289,7 @@ void silc_mime_add_field(SilcMime mime, const char *field, const char *value);
  ***/
 const char *silc_mime_get_field(SilcMime mime, const char *field);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_add_data
+/****f* silcutil/silc_mime_add_data
  *
  * SYNOPSIS
  *
@@ -304,7 +304,7 @@ const char *silc_mime_get_field(SilcMime mime, const char *field);
 void silc_mime_add_data(SilcMime mime, const unsigned char *data,
 			SilcUInt32 data_len);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_get_data
+/****f* silcutil/silc_mime_get_data
  *
  * SYNOPSIS
  *
@@ -318,7 +318,7 @@ void silc_mime_add_data(SilcMime mime, const unsigned char *data,
  ***/
 const unsigned char *silc_mime_get_data(SilcMime mime, SilcUInt32 *data_len);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_steal_data
+/****f* silcutil/silc_mime_steal_data
  *
  * SYNOPSIS
  *
@@ -334,7 +334,7 @@ const unsigned char *silc_mime_get_data(SilcMime mime, SilcUInt32 *data_len);
  ***/
 unsigned char *silc_mime_steal_data(SilcMime mime, SilcUInt32 *data_len);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_is_partial
+/****f* silcutil/silc_mime_is_partial
  *
  * SYNOPSIS
  *
@@ -347,7 +347,7 @@ unsigned char *silc_mime_steal_data(SilcMime mime, SilcUInt32 *data_len);
  ***/
 SilcBool silc_mime_is_partial(SilcMime mime);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_set_multipart
+/****f* silcutil/silc_mime_set_multipart
  *
  * SYNOPSIS
  *
@@ -364,7 +364,7 @@ SilcBool silc_mime_is_partial(SilcMime mime);
 void silc_mime_set_multipart(SilcMime mime, const char *type,
 			     const char *boundary);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_add_multipart
+/****f* silcutil/silc_mime_add_multipart
  *
  * SYNOPSIS
  *
@@ -394,7 +394,7 @@ void silc_mime_set_multipart(SilcMime mime, const char *type,
  ***/
 SilcBool silc_mime_add_multipart(SilcMime mime, SilcMime part);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_is_multipart
+/****f* silcutil/silc_mime_is_multipart
  *
  * SYNOPSIS
  *
@@ -408,7 +408,7 @@ SilcBool silc_mime_add_multipart(SilcMime mime, SilcMime part);
  ***/
 SilcBool silc_mime_is_multipart(SilcMime mime);
 
-/****f* silcutil/SILCMIMEAPI/silc_mime_get_multiparts
+/****f* silcutil/silc_mime_get_multiparts
  *
  * SYNOPSIS
  *
