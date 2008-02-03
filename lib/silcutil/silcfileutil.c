@@ -165,6 +165,11 @@ char *silc_file_readfile(const char *filename, SilcUInt32 *return_len,
   }
 
   buffer = silc_calloc(filelen + 1, sizeof(*buffer));
+  if (!buffer) {
+    silc_set_errno_posix(errno);
+    silc_file_close(fd);
+    return NULL;
+  }
 
   if ((silc_file_read(fd, buffer, filelen)) == -1) {
     memset(buffer, 0, sizeof(buffer));
@@ -183,26 +188,169 @@ char *silc_file_readfile(const char *filename, SilcUInt32 *return_len,
   return (char *)buffer;
 }
 
-/* Returns the size of `filename'. Returns 0 on error. */
+/* Returns the size of `filename'. */
 
 SilcUInt64 silc_file_size(const char *filename)
 {
-  int ret;
-  struct stat stats;
+  SilcFileStatStruct status;
 
-#ifdef SILC_WIN32
-  ret = stat(filename, &stats);
-#endif /* SILC_WIN32 */
-#ifdef SILC_UNIX
-  ret = lstat(filename, &stats);
-#endif /* SILC_UNIX */
-#ifdef SILC_SYMBIAN
-  ret = stat(filename, &stats);
-#endif /* SILC_SYMBIAN */
-  if (ret < 0) {
-    silc_set_errno_posix(errno);
+  if (!silc_file_stat(filename, FALSE, &status))
     return 0;
+
+  return status.size;
+}
+
+/* Return file size */
+
+SilcUInt64 silc_file_fsize(int fd)
+{
+  SilcFileStatStruct status;
+
+  if (!silc_file_fstat(fd, &status))
+    return 0;
+
+  return status.size;
+}
+
+/* Fill file status context */
+
+static void silc_file_fill_stat(struct stat *status,
+				SilcFileStat return_stat)
+{
+  memset(return_stat, 0, sizeof(*return_stat));
+
+  silc_time_value(status->st_atime * 1000, &return_stat->last_access);
+  silc_time_value(status->st_mtime * 1000, &return_stat->last_mod);
+  silc_time_value(status->st_ctime * 1000, &return_stat->last_change);
+
+  return_stat->rdev = status->st_rdev;
+  return_stat->dev = status->st_dev;
+  return_stat->nlink = status->st_nlink;
+  return_stat->gid = status->st_gid;
+  return_stat->uid = status->st_uid;
+  return_stat->size = status->st_size;
+
+#if defined(S_IFSOCK)
+  if (status->st_mode & S_IFSOCK)
+    return_stat->mode |= SILC_FILE_IFSOCK;
+#endif /* S_IFSOCK */
+#if defined(S_IFLNK)
+  if (status->st_mode & S_IFLNK)
+    return_stat->mode |= SILC_FILE_IFLNK;
+#endif /* S_IFLNK */
+#if defined(S_IFREG)
+  if (status->st_mode & S_IFREG)
+    return_stat->mode |= SILC_FILE_IFREG;
+#endif /* S_IFREG */
+#if defined(S_IFBLK)
+  if (status->st_mode & S_IFBLK)
+    return_stat->mode |= SILC_FILE_IFBLK;
+#endif /* S_IFBLK */
+#if defined(S_IFDIR)
+  if (status->st_mode & S_IFDIR)
+    return_stat->mode |= SILC_FILE_IFDIR;
+#endif /* S_IFDIR */
+#if defined(S_IFCHR)
+  if (status->st_mode & S_IFCHR)
+    return_stat->mode |= SILC_FILE_IFCHR;
+#endif /* S_IFCHR */
+#if defined(S_IFIFO)
+  if (status->st_mode & S_IFIFO)
+    return_stat->mode |= SILC_FILE_IFIFO;
+#endif /* S_IFIFO */
+#if defined(S_IRUSR)
+  if (status->st_mode & S_IRUSR)
+    return_stat->mode |= SILC_FILE_IRUSR;
+#endif /* S_IRUSR */
+#if defined(S_IWUSR)
+  if (status->st_mode & S_IWUSR)
+    return_stat->mode |= SILC_FILE_IWUSR;
+#endif /* S_IWUSR */
+#if defined(S_IXUSR)
+  if (status->st_mode & S_IXUSR)
+    return_stat->mode |= SILC_FILE_IXUSR;
+#endif /* S_IXUSR */
+#if defined(S_IRGRP)
+  if (status->st_mode & S_IRGRP)
+    return_stat->mode |= SILC_FILE_IRGRP;
+#endif /* S_IRGRP */
+#if defined(S_IWGRP)
+  if (status->st_mode & S_IWGRP)
+    return_stat->mode |= SILC_FILE_IWGRP;
+#endif /* S_IWGRP */
+#if defined(S_IXGRP)
+  if (status->st_mode & S_IXGRP)
+    return_stat->mode |= SILC_FILE_IXGRP;
+#endif /* S_IXGRP */
+#if defined(S_IROTH)
+  if (status->st_mode & S_IROTH)
+    return_stat->mode |= SILC_FILE_IROTH;
+#endif /* S_IROTH */
+#if defined(S_IWOTH)
+  if (status->st_mode & S_IWOTH)
+    return_stat->mode |= SILC_FILE_IWOTH;
+#endif /* S_IWOTH */
+#if defined(S_IXOTH)
+  if (status->st_mode & S_IXOTH)
+    return_stat->mode |= SILC_FILE_IXOTH;
+#endif /* S_IXOTH */
+}
+
+/* Return file status information */
+
+SilcBool silc_file_stat(const char *filename, SilcBool follow_symlinks,
+			SilcFileStat return_stat)
+{
+  struct stat status;
+
+  if (silc_unlikely(!filename || !return_stat)) {
+    silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
+    return FALSE;
   }
 
-  return (SilcUInt64)stats.st_size;
+  SILC_LOG_DEBUG(("Get status for file '%s'", filename));
+
+  if (!follow_symlinks) {
+    if (silc_unlikely(stat(filename, &status) != 0)) {
+      silc_set_errno_posix(errno);
+      return FALSE;
+    }
+  } else {
+#ifdef HAVE_LSTAT
+    if (silc_unlikely(lstat(filename, &status) != 0)) {
+      silc_set_errno_posix(errno);
+      return FALSE;
+    }
+#else
+    if (silc_unlikely(stat(filename, &status) != 0)) {
+      silc_set_errno_posix(errno);
+      return FALSE;
+    }
+#endif /* HAVE_LSTAT */
+  }
+
+  silc_file_fill_stat(&status, return_stat);
+
+  return TRUE;
+}
+
+/* Return file status information. */
+
+SilcBool silc_file_fstat(int fd, SilcFileStat return_stat)
+{
+  struct stat status;
+
+  if (silc_unlikely(!return_stat)) {
+    silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
+    return FALSE;
+  }
+
+  if (silc_unlikely(fstat(fd, &status) != 0)) {
+    silc_set_errno_posix(errno);
+    return FALSE;
+  }
+
+  silc_file_fill_stat(&status, return_stat);
+
+  return TRUE;
 }

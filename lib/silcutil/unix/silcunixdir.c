@@ -24,7 +24,7 @@
 /* Directory entry context */
 struct SilcDirEntryStruct {
   struct dirent *entry;			  /* Entry */
-  SilcDirEntryStatStruct status;	  /* Status */
+  SilcFileStatStruct status;		  /* Status */
 };
 
 /* The directory context */
@@ -89,7 +89,7 @@ void silc_dir_close(SilcDir dir)
 
 /* Read next entry in the directory */
 
-SilcDirEntry silc_dir_read(SilcDir dir, SilcDirEntryStat *status)
+SilcDirEntry silc_dir_read(SilcDir dir, SilcFileStat status)
 {
   if (!dir) {
     silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
@@ -105,8 +105,13 @@ SilcDirEntry silc_dir_read(SilcDir dir, SilcDirEntryStat *status)
     return NULL;
   }
 
-  if (status)
-    *status = silc_dir_entry_stat(dir, &dir->entry);
+  if (status) {
+    char *name = NULL;
+    silc_asprintf(&name, "%s/%s", dir->name, dir->entry.entry->d_name);
+    if (name)
+      silc_file_stat(name, TRUE, status);
+    silc_free(name);
+  }
 
   return (SilcDirEntry)&dir->entry;
 }
@@ -145,110 +150,4 @@ const char *silc_dir_entry_name(SilcDirEntry entry)
   }
 
   return (const char *)entry->entry->d_name;
-}
-
-/* Return entry status information */
-
-SilcDirEntryStat silc_dir_entry_stat(SilcDir dir, SilcDirEntry entry)
-{
-  struct stat status;
-  char *name = NULL;
-
-  if (!dir || !entry) {
-    silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
-    return NULL;
-  }
-
-  silc_asprintf(&name, "%s/%s", dir->name, entry->entry->d_name);
-  if (!name)
-    return NULL;
-
-  SILC_LOG_DEBUG(("Get status for entry '%s'", name));
-
-  if (lstat(name, &status) != 0) {
-    silc_set_errno_posix(errno);
-    silc_free(name);
-    return NULL;
-  }
-
-  silc_free(name);
-
-  memset(&entry->status, 0, sizeof(entry->status));
-
-  silc_time_value(status.st_atime * 1000, &entry->status.last_access);
-  silc_time_value(status.st_mtime * 1000, &entry->status.last_mod);
-  silc_time_value(status.st_ctime * 1000, &entry->status.last_change);
-
-  entry->status.dev = status.st_dev;
-  entry->status.nlink = status.st_nlink;
-  entry->status.gid = status.st_gid;
-  entry->status.uid = status.st_uid;
-  entry->status.size = status.st_size;
-
-#if defined(S_IFSOCK)
-  if (status.st_mode & S_IFSOCK)
-    entry->status.mode |= SILC_DIR_ENTRY_IFSOCK;
-#endif /* S_IFSOCK */
-#if defined(S_IFLNK)
-  if (status.st_mode & S_IFLNK)
-    entry->status.mode |= SILC_DIR_ENTRY_IFLNK;
-#endif /* S_IFLNK */
-#if defined(S_IFREG)
-  if (status.st_mode & S_IFREG)
-    entry->status.mode |= SILC_DIR_ENTRY_IFREG;
-#endif /* S_IFREG */
-#if defined(S_IFBLK)
-  if (status.st_mode & S_IFBLK)
-    entry->status.mode |= SILC_DIR_ENTRY_IFBLK;
-#endif /* S_IFBLK */
-#if defined(S_IFDIR)
-  if (status.st_mode & S_IFDIR)
-    entry->status.mode |= SILC_DIR_ENTRY_IFDIR;
-#endif /* S_IFDIR */
-#if defined(S_IFCHR)
-  if (status.st_mode & S_IFCHR)
-    entry->status.mode |= SILC_DIR_ENTRY_IFCHR;
-#endif /* S_IFCHR */
-#if defined(S_IFIFO)
-  if (status.st_mode & S_IFIFO)
-    entry->status.mode |= SILC_DIR_ENTRY_IFIFO;
-#endif /* S_IFIFO */
-#if defined(S_IRUSR)
-  if (status.st_mode & S_IRUSR)
-    entry->status.mode |= SILC_DIR_ENTRY_IRUSR;
-#endif /* S_IRUSR */
-#if defined(S_IWUSR)
-  if (status.st_mode & S_IWUSR)
-    entry->status.mode |= SILC_DIR_ENTRY_IWUSR;
-#endif /* S_IWUSR */
-#if defined(S_IXUSR)
-  if (status.st_mode & S_IXUSR)
-    entry->status.mode |= SILC_DIR_ENTRY_IXUSR;
-#endif /* S_IXUSR */
-#if defined(S_IRGRP)
-  if (status.st_mode & S_IRGRP)
-    entry->status.mode |= SILC_DIR_ENTRY_IRGRP;
-#endif /* S_IRGRP */
-#if defined(S_IWGRP)
-  if (status.st_mode & S_IWGRP)
-    entry->status.mode |= SILC_DIR_ENTRY_IWGRP;
-#endif /* S_IWGRP */
-#if defined(S_IXGRP)
-  if (status.st_mode & S_IXGRP)
-    entry->status.mode |= SILC_DIR_ENTRY_IXGRP;
-#endif /* S_IXGRP */
-#if defined(S_IROTH)
-  if (status.st_mode & S_IROTH)
-    entry->status.mode |= SILC_DIR_ENTRY_IROTH;
-#endif /* S_IROTH */
-#if defined(S_IWOTH)
-  if (status.st_mode & S_IWOTH)
-    entry->status.mode |= SILC_DIR_ENTRY_IWOTH;
-#endif /* S_IWOTH */
-#if defined(S_IXOTH)
-  if (status.st_mode & S_IXOTH)
-    entry->status.mode |= SILC_DIR_ENTRY_IXOTH;
-#endif /* S_IXOTH */
-
-  return (SilcDirEntryStat)&entry->status;
 }
