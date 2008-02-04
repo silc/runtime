@@ -99,12 +99,21 @@ extern "C" {
 #include <silcsymbian.h>
 #endif
 
-#if defined(HAVE_SILCDEFS_H)
+#ifndef DLLAPI
+#define DLLAPI
+#endif
+
+/* We except all systems to have these include files */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#if defined(HAVE_RUNTIMEDEFS_H)
 
 /* Automatically generated configuration header.  These are included only
    when the SILC Runtime Toolkit itself is compiled. */
 #ifndef SILC_SYMBIAN
-#include "silcdefs.h"
+#include "runtimedefs.h"
 #else
 #include "../../symbian/silcdefs.h"
 #endif /* SILC_SYMBIAN */
@@ -168,7 +177,18 @@ extern "C" {
 #define SILC_ALIGNMENT SILC_SIZEOF_VOID_P
 #endif /* SILC_ALIGNMENT */
 
-#endif /* HAVE_SILCDEFS_H */
+#endif /* HAVE_RUNTIMEDEFS_H */
+
+/* Feature defines */
+#ifdef __SILC_HAVE_PTHREAD
+#undef SILC_THREADS
+#define SILC_THREADS 1
+#endif /* __SILC_HAVE_PTHREAD */
+
+#ifdef __SILC_ENABLE_DEBUG
+#undef SILC_DEBUG
+#define SILC_DEBUG 1
+#endif /* __SILC_ENABLE_DEBUG */
 
 /* SILC Runtime Toolkit includes */
 #include <silcerrno.h>

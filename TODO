@@ -50,6 +50,8 @@ Runtime library, lib/silcutil/
 
  o mmap API
 
+ o Multicast support.
+
  o silc_file_readfile and silc_file_writefile should perhaps do the thing
    with mmap, as it's probably a bit faster.
 

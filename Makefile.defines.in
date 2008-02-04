@@ -40,7 +40,7 @@
 #
 # INCLUDE defines
 #
-INCLUDES = $(ADD_INCLUDES) $(SILC_CFLAGS) -DHAVE_SILCDEFS_H \
+INCLUDES = $(ADD_INCLUDES) $(SILC_CFLAGS) -DHAVE_RUNTIMEDEFS_H \
 	-I$(srcdir) -I$(top_srcdir) \
 	-I$(silc_top_srcdir) $(SILC_LIB_INCLUDES) \
 	-I$(silc_top_srcdir)/includes \

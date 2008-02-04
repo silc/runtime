@@ -75,13 +75,4 @@ pkgconfig_DATA = srt.pc
 
 EXTRA_DIST = srt.pc.in
 
-#srt-install:
-#	-mkdir -p $(docdir)/toolkit/
-#	-$(INSTALL_DATA) $(top_srcdir)/doc/toolkit/* $(docdir)/toolkit
-#	-$(INSTALL_DATA) $(top_srcdir)/lib/doc/*.gif $(docdir)/toolkit
-#	-cp -R $(top_srcdir)/tutorial $(docdir)
-
-#install-data-hook:	\
-#	srt-install
-
 include $(top_srcdir)/Makefile.defines.in
