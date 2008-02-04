@@ -128,3 +128,30 @@ SilcBool silc_timer_is_running(SilcTimer timer)
 {
   return timer->running;
 }
+
+/* Delay execution */
+
+void silc_usleep(unsigned long microseconds)
+{
+#ifdef SILC_UNIX
+#ifdef HAVE_NANOSLEEP
+  struct timespec tv;
+  tv.tv_sec = 0;
+  tv.tv_nsec = microseconds * 1000;
+#endif /* HAVE_NANOSLEEP */
+#endif /* SILC_UNIX */
+
+#ifdef SILC_UNIX
+#ifdef HAVE_NANOSLEEP
+  nanosleep(&tv, NULL);
+#else
+  usleep(microseconds);
+#endif /* HAVE_NANOSLEEP */
+#endif /* SILC_UNIX */
+#ifdef SILC_WIN32
+  Sleep(microseconds / 1000);
+#endif /* SILC_WIN32 */
+#ifdef SILC_SYMBIAN
+  silc_symbian_usleep(microseconds);
+#endif /* SILC_SYMBIAN */
+}

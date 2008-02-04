@@ -53,6 +53,18 @@
  *    silc_timer_* functions.
  *
  ***/
+/****s* silcutil/SilcTimerStruct
+ *
+ * NAME
+ *
+ *    typedef struct SilcTimerObject *SilcTimer, SilcTimerStruct;
+ *
+ * DESCRIPTION
+ *
+ *    The timer context.  The context is given as argument to all
+ *    silc_timer_* functions.
+ *
+ ***/
 typedef struct SilcTimerObject *SilcTimer, SilcTimerStruct;
 
 /****f* silcutil/silc_timer_start
@@ -219,6 +231,9 @@ SilcUInt64 silc_timer_tick(SilcTimer timer, SilcBool adjust)
                 : "=r" (hi), "=r" (lo), "=r" (tmp));
   x = ((SilcUInt64)lo | ((SilcUInt64)hi << 32));
   return adjust ? x - timer->sync_tdiff : x;
+
+#else
+  return 0;
 #endif /* SILC_I486 */
 
 #elif defined(SILC_WIN32)
@@ -306,30 +321,6 @@ void silc_timer_synchronize(SilcTimer timer)
  *    in fact milliseconds.
  *
  ***/
-static inline
-void silc_usleep(unsigned long microseconds)
-{
-#ifdef SILC_UNIX
-#ifdef HAVE_NANOSLEEP
-  struct timespec tv;
-  tv.tv_sec = 0;
-  tv.tv_nsec = microseconds * 1000;
-#endif /* HAVE_NANOSLEEP */
-#endif /* SILC_UNIX */
-
-#ifdef SILC_UNIX
-#ifdef HAVE_NANOSLEEP
-  nanosleep(&tv, NULL);
-#else
-  usleep(microseconds);
-#endif /* HAVE_NANOSLEEP */
-#endif /* SILC_UNIX */
-#ifdef SILC_WIN32
-  Sleep(microseconds / 1000);
-#endif /* SILC_WIN32 */
-#ifdef SILC_SYMBIAN
-  silc_symbian_usleep(microseconds);
-#endif /* SILC_SYMBIAN */
-}
+void silc_usleep(unsigned long microseconds);
 
 #endif /* SILCTIMER_H */
