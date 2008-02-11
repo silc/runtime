@@ -23,7 +23,6 @@
 
 SilcBool silc_setenv(const char *variable, const char *value)
 {
-  SILC_LOG_DEBUG(("Set %s=%s", variable, value));
 #if defined(HAVE_SETENV)
   return setenv(variable, value, TRUE) == 0;
 #elif defined (HAVE_PUTENV)
@@ -38,7 +37,6 @@ SilcBool silc_setenv(const char *variable, const char *value)
 
 const char *silc_getenv(const char *variable)
 {
-  SILC_LOG_DEBUG(("Get %s value", variable));
 #if defined(HAVE_GETENV)
   return (const char *)getenv(variable);
 #endif /* HAVE_GETENV */
@@ -49,7 +47,6 @@ const char *silc_getenv(const char *variable)
 
 SilcBool silc_unsetenv(const char *variable)
 {
-  SILC_LOG_DEBUG(("Unset %s value", variable));
 #if defined(HAVE_UNSETENV)
   return unsetenv(variable) == 0;
 #endif /* HAVE_GETENV */
@@ -60,7 +57,6 @@ SilcBool silc_unsetenv(const char *variable)
 
 SilcBool silc_clearenv(void)
 {
-  SILC_LOG_DEBUG(("Clear allenvironment variables"));
 #if defined(HAVE_CLEARENV)
   return clearenv() == 0;
 #endif /* HAVE_GETENV */
