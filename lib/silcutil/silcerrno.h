@@ -185,22 +185,76 @@ const char *silc_errno_reason(void);
 
 /* Low-level routines for the error handling. */
 
-/* Return last error */
-SilcResult silc_get_errno(void);
-
-/* Set error */
+/****d* silcutil/silc_set_errno
+ *
+ * NAME
+ *
+ *    void silc_set_errno(SilcResult error);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error for current thread.
+ *
+ ***/
 void silc_set_errno(SilcResult error);
 
-/* Set error, cannot fail. */
+/****d* silcutil/silc_set_errno_nofail
+ *
+ * NAME
+ *
+ *    void silc_set_errno_nofail(SilcResult error);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error for current thread.  This call
+ *    itself cannot cause setting of errno.
+ *
+ ***/
 void silc_set_errno_nofail(SilcResult error);
 
-/* Set error and reason string. */
+/****d* silcutil/silc_set_errno_reason
+ *
+ * NAME
+ *
+ *    void silc_set_errno_reason(SilcResult error, const char *format, ...);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error reason for current thread.
+ *
+ ***/
 void silc_set_errno_reason(SilcResult error, const char *format, ...);
 
-/* Set error and reason string, cannot fail. */
+/****d* silcutil/silc_set_errno_reason_nofail
+ *
+ * NAME
+ *
+ *    void silc_set_errno_reason_nofail(SilcResult error,
+ *                                      const char *format, ...);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error reason for current thread.  This
+ *    call itself cannot cause setting of errno.
+ *
+ ***/
 void silc_set_errno_reason_nofail(SilcResult error, const char *format, ...);
 
-/* Set error from POSIX errno */
+/****d* silcutil/silc_set_errno_posix
+ *
+ * NAME
+ *
+ *    void silc_set_errno_posix(int error);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error for current thread from POSIX
+ *    errno.
+ *
+ ***/
 void silc_set_errno_posix(int error);
+
+/* Return last error */
+SilcResult silc_get_errno(void);
 
 #endif /* SILCERRNO_H */
