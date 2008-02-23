@@ -821,7 +821,31 @@ static inline SilcUInt32 silc_rol(SilcUInt32 val, int num)
 {
 #if (defined(SILC_I386) || defined(SILC_X86_64)) && defined(__GNUC__)
   asm volatile ("roll %%cl, %0"
-		: "=q" (val) : "0" (val), "c" (num));
+		: "=r" (val) : "0" (val), "c" (num));
+  return val;
+#else
+  return ((val << (SilcUInt32)num) | (val >> (32 - (SilcUInt32)num)));
+#endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
+}
+
+/****d* silcutil/silc_rolc
+ *
+ * NAME
+ *
+ *    static inline SilcUInt32 silc_rolc(SilcUInt32 val, const int num);
+ *
+ * DESCRIPTION
+ *
+ *    Rotate 32-bit integer's bits to left `num' times.  Bits pushed to the
+ *    left will appear from the right side of the integer, thus rotating.
+ *    Returns the rotated value.
+ *
+ ***/
+static inline SilcUInt32 silc_rolc(SilcUInt32 val, const int num)
+{
+#if (defined(SILC_I386) || defined(SILC_X86_64)) && defined(__GNUC__)
+  asm volatile ("roll %2, %0"
+		: "=r" (val) : "0" (val), "I" (num));
   return val;
 #else
   return ((val << (SilcUInt32)num) | (val >> (32 - (SilcUInt32)num)));
@@ -845,7 +869,31 @@ static inline SilcUInt32 silc_ror(SilcUInt32 val, int num)
 {
 #if (defined(SILC_I386) || defined(SILC_X86_64)) && defined(__GNUC__)
   asm volatile ("rorl %%cl, %0"
-		: "=q" (val) : "0" (val), "c" (num));
+		: "=r" (val) : "0" (val), "c" (num));
+  return val;
+#else
+  return ((val >> (SilcUInt32)num) | (val << (32 - (SilcUInt32)num)));
+#endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
+}
+
+/****d* silcutil/silc_rorc
+ *
+ * NAME
+ *
+ *    static inline SilcUInt32 silc_ror(SilcUInt32 val, const int num);
+ *
+ * DESCRIPTION
+ *
+ *    Rotate 32-bit integer's bits to right `num' times.  Bits pushed to the
+ *    right will appear from the left side of the integer, thus rotating.
+ *    Returns the rotated value.
+ *
+ ***/
+static inline SilcUInt32 silc_rorc(SilcUInt32 val, const int num)
+{
+#if (defined(SILC_I386) || defined(SILC_X86_64)) && defined(__GNUC__)
+  asm volatile ("rorl %2, %0"
+		: "=r" (val) : "0" (val), "I" (num));
   return val;
 #else
   return ((val >> (SilcUInt32)num) | (val << (32 - (SilcUInt32)num)));
@@ -869,7 +917,31 @@ static inline SilcUInt64 silc_rol64(SilcUInt64 val, int num)
 {
 #if defined(SILC_X86_64) && defined(__GNUC__)
   asm volatile ("rolq %%cl, %0"
-		: "=q" (val) : "0" (val), "c" (num));
+		: "=r" (val) : "0" (val), "c" (num));
+  return val;
+#else
+  return ((val << (SilcUInt64)num) | (val >> (64 - (SilcUInt64)num)));
+#endif /* SILC_X86_64 && __GNUC__ */
+}
+
+/****d* silcutil/silc_rolc64
+ *
+ * NAME
+ *
+ *    static inline SilcUInt64 silc_rolc64(SilcUInt64 val, const int num);
+ *
+ * DESCRIPTION
+ *
+ *    Rotate 64-bit integer's bits to left `num' times.  Bits pushed to the
+ *    left will appear from the right side of the integer, thus rotating.
+ *    Returns the rotated value.
+ *
+ ***/
+static inline SilcUInt64 silc_rolc64(SilcUInt64 val, const int num)
+{
+#if defined(SILC_X86_64) && defined(__GNUC__)
+  asm volatile ("rolq %2, %0"
+		: "=r" (val) : "0" (val), "J" (num));
   return val;
 #else
   return ((val << (SilcUInt64)num) | (val >> (64 - (SilcUInt64)num)));
@@ -893,7 +965,31 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
 {
 #if defined(SILC_X86_64) && defined(__GNUC__)
   asm volatile ("rorq %%cl, %0"
-		: "=q" (val) : "0" (val), "c" (num));
+		: "=r" (val) : "0" (val), "c" (num));
+  return val;
+#else
+  return ((val >> (SilcUInt64)num) | (val << (64 - (SilcUInt64)num)));
+#endif /* SILC_X86_64 && __GNUC__ */
+}
+
+/****d* silcutil/silc_rorc64
+ *
+ * NAME
+ *
+ *    static inline SilcUInt64 silc_rorc64(SilcUInt64 val, const int num);
+ *
+ * DESCRIPTION
+ *
+ *    Rotate 64-bit integer's bits to right `num' times.  Bits pushed to the
+ *    right will appear from the left side of the integer, thus rotating.
+ *    Returns the rotated value.
+ *
+ ***/
+static inline SilcUInt64 silc_rorc64(SilcUInt64 val, const int num)
+{
+#if defined(SILC_X86_64) && defined(__GNUC__)
+  asm volatile ("rorq %2, %0"
+		: "=r" (val) : "0" (val), "J" (num));
   return val;
 #else
   return ((val >> (SilcUInt64)num) | (val << (64 - (SilcUInt64)num)));
@@ -931,7 +1027,7 @@ static inline SilcUInt64 silc_ror64(SilcUInt64 val, int num)
  *
  ***/
 #if defined(__GNUC__)
-#define silc_attribute(attrlist) __attribute__(attrlist)
+#define silc_attribute(attrlist) __attribute__ (attrlist)
 #else
 #define silc_attribute(attrlist)
 #endif /* __GNUC__ */

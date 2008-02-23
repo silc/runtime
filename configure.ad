@@ -197,17 +197,15 @@ if test x$want_cpu_optimizations = xtrue; then
   # Set some compiler options based on CPU
   if test "x$CC" = "xicc"; then
     # ICC flags
-    if test x$x_have_cpu_sse2 = xtrue; then
-      SILC_ADD_CFLAGS(-axW)
-    fi
-    if test x$x_have_cpu_sse3 = xtrue; then
-      SILC_ADD_CFLAGS(-axP)
+    if test x$x_have_cpu_sse4 = xtrue; then
+      SILC_ADD_CFLAGS(-axS)
     fi
     if test x$x_have_cpu_ssse3 = xtrue; then
       SILC_ADD_CFLAGS(-axT)
-    fi
-    if test x$x_have_cpu_sse4 = xtrue; then
-      SILC_ADD_CFLAGS(-axS)
+    elif test x$x_have_cpu_pni = xtrue; then
+      SILC_ADD_CFLAGS(-axP)
+    elif test x$x_have_cpu_sse2 = xtrue; then
+      SILC_ADD_CFLAGS(-axW)
     fi
   else
     # Other compilers
