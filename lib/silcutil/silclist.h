@@ -165,7 +165,7 @@ do {								\
  *
  * SYNOPSIS
  *
- *    #define silc_list_count(list) ...
+ *    SilcUInt32 silc_list_count(SilcList list);
  *
  * DESCRIPTION
  *
@@ -178,7 +178,7 @@ do {								\
  *
  * SYNOPSIS
  *
- *    #define silc_list_start(list) ...
+ *    void silc_list_start(SilcList list);
  *
  * DESCRIPTION
  *
@@ -193,7 +193,7 @@ do {								\
  *
  * SYNOPSIS
  *
- *    #define silc_list_end(list) ...
+ *    void silc_list_end(SilcList list);
  *
  * DESCRIPTION
  *
@@ -219,7 +219,7 @@ do {								\
  *
  * SYNOPSIS
  *
- *    #define silc_list_add(list, entry) ...
+ *    void silc_list_add(SilcList list, void *entry);
  *
  * DESCRIPTION
  *
@@ -244,7 +244,7 @@ do {							\
  *
  * SYNOPSIS
  *
- *    #define silc_list_insert(list, current, entry) ...
+ *    void silc_list_insert(SilcList list, void *current, void *entry);
  *
  * DESCRIPTION
  *
@@ -286,7 +286,7 @@ do {									 \
  *
  * SYNOPSIS
  *
- *    #define silc_list_del(list, entry) ...
+ *    void silc_list_del(SilcListlist, void *entry);
  *
  * DESCRIPTION
  *
@@ -300,7 +300,7 @@ do {									\
   for (p = &(list).head; *p; p = __silc_list_next(list, *p)) {		\
     if (*p == (entry)) {						\
       *p = *__silc_list_next(list, entry);				\
-      if (*p && (list).prev_set)					\
+      if ((list).prev_set && *p)					\
         *__silc_list_prev(list, *p) = *__silc_list_prev(list, entry);	\
       if ((list).current == (entry))					\
         (list).current = *p;						\
@@ -317,7 +317,7 @@ do {									\
  *
  * SYNOPSIS
  *
- *    #define silc_list_get(list) ...
+ *    void *silc_list_get(SilcList list);
  *
  * DESCRIPTION
  *
@@ -355,4 +355,43 @@ void *__silc_list_get(SilcList *list)
   return pos;
 }
 
-#endif
+/****f* silcutil/silc_list_pop
+ *
+ * SYNOPSIS
+ *
+ *    void *silc_list_pop(SilcList list);
+ *
+ * DESCRIPTION
+ *
+ *    Pops the head of the list.  Removes the head of the list and returns
+ *    the removed head.  This will always remove the head of the list even
+ *    if silc_list_end was called.  Calling silc_list_start is not necessary.
+ *    Returns SILC_LIST_END if the list is empty.
+ *
+ ***/
+#define silc_list_pop(x) __silc_list_pop(&(x))
+static inline
+void *__silc_list_pop(SilcList *list)
+{
+  void *head, **p;
+
+  if (!list->head)
+    return NULL;
+
+  head = list->head;
+  p = &list->head;
+  *p = *__silc_list_next(*list, head);
+  if (list->prev_set && *p)
+    *__silc_list_prev(*list, *p) = *__silc_list_prev(*list, head);
+
+  if (list->current == head)
+    list->current = *p;
+  if (head == list->tail)
+    list->tail = NULL;
+
+  list->count--;
+
+  return head;
+}
+
+#endif /* SILCLIST_H */

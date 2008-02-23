@@ -155,6 +155,13 @@ int main(int argc, char **argv)
 		   f->prev));
   }
 
+  while ((f = silc_list_pop(list)) != SILC_LIST_END) {
+    SILC_LOG_DEBUG(("POPPED entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
+		   f->prev));
+  }
+  if (silc_list_count(list))
+    goto err;
+
   success = TRUE;
 
  err:
