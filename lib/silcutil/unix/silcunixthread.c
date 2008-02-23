@@ -200,6 +200,19 @@ void silc_mutex_unlock(SilcMutex mutex)
 #endif /* SILC_THREADS */
 }
 
+SilcBool silc_mutex_trylock(SilcMutex mutex)
+{
+#ifdef SILC_THREADS
+  if (mutex) {
+    if (pthread_mutex_trylock(&mutex->mutex) == 0) {
+      mutex->locked = TRUE;
+      return TRUE;
+    }
+  }
+#endif /* SILC_THREADS */
+  return FALSE;
+}
+
 void silc_mutex_assert_locked(SilcMutex mutex)
 {
 #ifdef SILC_THREADS

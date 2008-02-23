@@ -133,6 +133,22 @@ void silc_mutex_lock(SilcMutex mutex);
  ***/
 void silc_mutex_unlock(SilcMutex mutex);
 
+/****f* silcutil/silc_mutex_trylock
+ *
+ * SYNOPSIS
+ *
+ *    SilcBool silc_mutex_trylock(SilcMutex mutex);
+ *
+ * DESCRIPTION
+ *
+ *    Attempts to lock the `mutex'.  Returns TRUE if the caller was able
+ *    to acquire the lock and FALSE if the mutex is already locked.  If the
+ *    mutex is already locked the caller cannot acquire the lock at this
+ *    time.
+ *
+ ***/
+SilcBool silc_mutex_trylock(SilcMutex mutex);
+
 /****f* silcutil/silc_mutex_assert_locked
  *
  * SYNOPSIS
