@@ -17,7 +17,7 @@ SILC_FSM_STATE(test_st_start)
 
   SILC_LOG_DEBUG(("test_st_start"));
 
-  queue = silc_thread_queue_alloc();
+  queue = silc_thread_queue_alloc(1, FALSE);
   if (!queue) {
     silc_fsm_next(fsm, test_st_finish);
     return SILC_FSM_CONTINUE;
@@ -43,7 +43,7 @@ SILC_FSM_STATE(test_st_wait)
   SILC_LOG_DEBUG(("Wait for data"));
 
   /* Wait for data */
-  data = silc_thread_queue_pop(queue, TRUE);
+  data = silc_thread_queue_pop(queue, 0, TRUE);
   if (!data || data != (void *)100) {
     silc_fsm_next(fsm, test_st_finish);
     return SILC_FSM_CONTINUE;
@@ -62,7 +62,7 @@ SILC_FSM_STATE(test_st_thread_start)
 
   /* Send data */
   SILC_LOG_DEBUG(("Send data"));
-  silc_thread_queue_push(queue, (void *)100);
+  silc_thread_queue_push(queue, 0, (void *)100, FALSE);
 
   silc_thread_queue_disconnect(queue);
   return SILC_FSM_FINISH;
@@ -90,6 +90,8 @@ int main(int argc, char **argv)
 {
   SilcFSM fsm;
 
+  silc_runtime_init();
+
   if (argc > 1 && !strcmp(argv[1], "-d")) {
     silc_log_debug(TRUE);
     silc_log_debug_hexdump(TRUE);
@@ -115,6 +117,8 @@ int main(int argc, char **argv)
  err:
   SILC_LOG_DEBUG(("Testing was %s", success ? "SUCCESS" : "FAILURE"));
   fprintf(stderr, "Testing was %s\n", success ? "SUCCESS" : "FAILURE");
+
+  silc_runtime_uninit();
 
   return !success;
 }

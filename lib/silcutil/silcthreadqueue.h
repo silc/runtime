@@ -27,13 +27,17 @@
  * takes the data from the queue or blocks until more data is available
  * in the queue.
  *
+ * The queue itself can have one ore more pipes, allowing user to use one
+ * queue to pass different information in different pipes, if each pipe
+ * need to be dedicated to specific type of data.
+ *
  * EXAMPLE
  *
  * Thread 1:
  *
  * // Create queue and push data into it
- * SilcThreadQueue queue = silc_thread_queue_alloc();
- * silc_thread_queue_push(queue, data);
+ * SilcThreadQueue queue = silc_thread_queue_alloc(1, FALSE);
+ * silc_thread_queue_push(queue, 0, data, FALSE);
  *
  * Thread 2:
  *
@@ -41,7 +45,7 @@
  * silc_thread_queue_connect(queue);
  *
  * // Block here until data is available from the queue
- * data = silc_thread_queue_pop(queue, TRUE);
+ * data = silc_thread_queue_pop(queue, 0, TRUE);
  *
  ***/
 
@@ -66,7 +70,7 @@ typedef struct SilcThreadQueueStruct *SilcThreadQueue;
  *
  * SYNOPSIS
  *
- *    SilcThreadQueue silc_thread_queue_alloc(void);
+ *    SilcThreadQueue silc_thread_queue_alloc(int num_pipes, SilcBool fifo);
  *
  * DESCRIPTION
  *
@@ -76,8 +80,20 @@ typedef struct SilcThreadQueueStruct *SilcThreadQueue;
  *    queue it must first connect to it by calling silc_thread_queue_connect.
  *    The thread that creates the queue automatically connects to the queue.
  *
+ *    The 'num_pipes' specifies the number of pipes that exist in the queue.
+ *    If `num_pipes' is 0, the 0 is ignored and one pipe is created anyway.
+ *    By default, caller should create one pipe, unless more are needed.
+ *    The pipes are referenced by index.  First pipe has index 0, second
+ *    index 1, and so on.  The index is given as argument when pushing
+ *    and popping from the queue.
+ *
+ *    By default data popped from the queue is done in last-in-first-out
+ *    order; the most recently added data is popped first.  If `fifo' is
+ *    set to TRUE the order is first-in-first-out; the first added data is
+ *    popped first.
+ *
  ***/
-SilcThreadQueue silc_thread_queue_alloc(void);
+SilcThreadQueue silc_thread_queue_alloc(int num_pipes, SilcBool fifo);
 
 /****f* silcutil/silc_thread_queue_connect
  *
@@ -99,7 +115,7 @@ void silc_thread_queue_connect(SilcThreadQueue queue);
  *
  * SYNOPSIS
  *
- *    void silc_thread_queue_disconnect(SilcThreadQueue queue);
+ *    SilcBool silc_thread_queue_disconnect(SilcThreadQueue queue);
  *
  * DESCRIPTION
  *
@@ -107,30 +123,41 @@ void silc_thread_queue_connect(SilcThreadQueue queue);
  *    called after the thread has finished using the thread queue.
  *
  *    When the last thread has disconnected from the queue the queue is
- *    destroyed.
+ *    destroyed and this returns FALSE.  Otherwise this returns TRUE as
+ *    long as there are threads connected to the queue.
  *
  ***/
-void silc_thread_queue_disconnect(SilcThreadQueue queue);
+SilcBool silc_thread_queue_disconnect(SilcThreadQueue queue);
 
 /****f* silcutil/silc_thread_queue_push
  *
  * SYNOPSIS
  *
- *    void silc_thread_queue_push(SilcThreadQueue queue, void *data);
+ *    void silc_thread_queue_push(SilcThreadQueue queue, int pipe_index,
+ *                                void *data, SilcBool demux);
  *
  * DESCRIPTION
  *
  *    Pushes the `data' into the thread queue.  The data will become
- *    immediately available in the queue for other threads.
+ *    immediately available in the queue for other threads.  The `pipe_index'
+ *    specifies the pipe to push the data into.  First pipe has index 0,
+ *    second has index 1, and so on.  If there is only one pipe the index
+ *    is always 0.
+ *
+ *    If the `demux' is TRUE this will perform demuxing; data pushed to one
+ *    pipe will be pushed to all pipes.  In this case the `pipe_index' is
+ *    ignored.  Each pipe will return the same data when popped.
  *
  ***/
-void silc_thread_queue_push(SilcThreadQueue queue, void *data);
+void silc_thread_queue_push(SilcThreadQueue queue, int pipe_index, void *data,
+			    SilcBool demux);
 
 /****f* silcutil/silc_thread_queue_pop
  *
  * SYNOPSIS
  *
- *    void *silc_thread_queue_pop(SilcThreadQueue queue, SilcBool block);
+ *    void *silc_thread_queue_pop(SilcThreadQueue queue, int pipe_index,
+ *                                SilcBool block);
  *
  * DESCRIPTION
  *
@@ -139,15 +166,20 @@ void silc_thread_queue_push(SilcThreadQueue queue, void *data);
  *    If `block' is FALSE and data is not available this will return NULL.
  *    If `block' is TRUE this will never return NULL.
  *
+ *    The `pipe_index' specifies the pipe from which to pop the data.
+ *    First pipe has index 0, second has index 1, and so on.  If there is
+ *    only one pipe the index is always 0.
+ *
  ***/
-void *silc_thread_queue_pop(SilcThreadQueue queue, SilcBool block);
+void *silc_thread_queue_pop(SilcThreadQueue queue, int pipe_index,
+			    SilcBool block);
 
 /****f* silcutil/silc_thread_queue_timed_pop
  *
  * SYNOPSIS
  *
  *    void *silc_thread_queue_timed_pop(SilcThreadQueue queue,
- *                                      int timeout_msec);
+ *                                      int pipe_index, int timeout_msec);
  *
  * DESCRIPTION
  *
@@ -155,8 +187,12 @@ void *silc_thread_queue_pop(SilcThreadQueue queue, SilcBool block);
  *    milliseconds for the data to arrive.  If data is not available when
  *    the timeout occurrs this returns NULL.
  *
+ *    The `pipe_index' specifies the pipe from which to pop the data.
+ *    First pipe has index 0, second has index 1, and so on.  If there is
+ *    only one pipe the index is always 0.
+ *
  ***/
-void *silc_thread_queue_timed_pop(SilcThreadQueue queue,
+void *silc_thread_queue_timed_pop(SilcThreadQueue queue, int pipe_index,
 				  int timeout_msec);
 
 /****f* silcutil/silc_thread_queue_pop_list
@@ -164,7 +200,7 @@ void *silc_thread_queue_timed_pop(SilcThreadQueue queue,
  * SYNOPSIS
  *
  *    SilcDList silc_thread_queue_pop_list(SilcThreadQueue queue,
- *                                         SilcBool block);
+ *                                         int pipe_index, SilcBool block);
  *
  * DESCRIPTION
  *
@@ -174,7 +210,12 @@ void *silc_thread_queue_timed_pop(SilcThreadQueue queue,
  *    immediately.  If `block' is TRUE this will block if the queue is
  *    empty.
  *
+ *    The `pipe_index' specifies the pipe from which to pop the list.
+ *    First pipe has index 0, second has index 1, and so on.  If there is
+ *    only one pipe the index is always 0.
+ *
  ***/
-SilcDList silc_thread_queue_pop_list(SilcThreadQueue queue, SilcBool block);
+SilcDList silc_thread_queue_pop_list(SilcThreadQueue queue, int pipe_index,
+				     SilcBool block);
 
 #endif /* SILCTHREADQUEUE_H */

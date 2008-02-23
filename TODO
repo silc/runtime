@@ -164,10 +164,21 @@ Runtime library, lib/silcutil/
    rwlock implementation using atomic operations.) not for now.
 
 
-lib/silcutil/symbian/
-=====================
+Windows Support
+===============
+
+
+Symbian OS Support
+==================
 
  o Something needs to be thought to the logging globals as well,
    like silc_debug etc.  They won't work on EPOC.  Perhaps logging
    and debugging is to be disabled on EPOC.  The logging currently works
-   by it cannot be controlled, same with debugging.
+   by it cannot be controlled, same with debugging.  SILC Global API
+   MUST be used with all globals on Symbian.
+
+ o gethostname() returns "Function not implemented".  Others may return
+   the same.  We should fix that probably to use RHostResolver and
+   GetHostName().
+
+ o silc_thread_exit should call User::Exit().
