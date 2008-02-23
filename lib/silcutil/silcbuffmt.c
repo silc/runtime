@@ -1244,11 +1244,12 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
   return -1;
 
  ok:
+  len = src->data - start_ptr;
+
   /* Push the buffer back to the start. */
-  if (process && !advance) {
-    len = src->data - start_ptr;
+  if (process && !advance)
     silc_buffer_push(src, len);
-  }
+
   return len;
 }
 
