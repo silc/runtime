@@ -52,6 +52,8 @@ Runtime library, lib/silcutil/
 
  o Multicast support.
 
+ o Implement silc_get_num_cpu.
+
  o silc_file_readfile and silc_file_writefile should perhaps do the thing
    with mmap, as it's probably a bit faster.
 

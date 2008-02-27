@@ -33,6 +33,7 @@ struct SilcStackStruct {
   void *oom_context;			      /* OOM handler context */
   SilcUInt32 stack_size;		      /* Default stack size */
   SilcUInt32 alignment;			      /* Memory alignment */
+  SilcAtomic32 refcnt;			      /* Reference counter */
 #ifdef SILC_DIST_INPLACE
   /* Statistics */
   SilcUInt32 snum_malloc;
@@ -211,6 +212,12 @@ SilcStack silc_stack_alloc(SilcUInt32 stack_size, SilcStack parent)
       return NULL;
     }
 
+    /* Reference parent */
+    SILC_LOG_DEBUG(("Reference stack %p, refcnt %d > %d", stack->parent,
+		    silc_atomic_get_int32(&stack->parent->refcnt),
+		    silc_atomic_get_int32(&stack->parent->refcnt) + 1));
+    silc_atomic_add_int32(&stack->parent->refcnt, 1);
+
     /* Set the initial stack */
     stack->stack = e;
   } else {
@@ -257,6 +264,8 @@ SilcStack silc_stack_alloc(SilcUInt32 stack_size, SilcStack parent)
     silc_mutex_alloc(&stack->lock);
   }
 
+  silc_atomic_init32(&stack->refcnt, 1);
+
   /* Use the allocated stack in first stack frame */
   stack->frame = &stack->frames[0];
   stack->frame->prev = NULL;
@@ -279,7 +288,13 @@ void silc_stack_free(SilcStack stack)
   if (!stack)
     return;
 
-  SILC_LOG_DEBUG(("Free stack %p", stack));
+  SILC_LOG_DEBUG(("Free stack %p, refcnt %d > %d", stack,
+		  silc_atomic_get_int32(&stack->refcnt),
+		  silc_atomic_get_int32(&stack->refcnt) - 1));
+
+  /* Unreference */
+  if (silc_atomic_sub_int32(&stack->refcnt, 1) > 0)
+    return;
 
   if (!stack->parent) {
     silc_list_start(stack->stacks);
@@ -296,6 +311,8 @@ void silc_stack_free(SilcStack stack)
     if (stack->lock)
       silc_mutex_free(stack->lock);
 
+    silc_atomic_uninit32(&stack->refcnt);
+
     silc_free(stack);
   } else {
     /* Return all stack blocks to the parent */
@@ -304,6 +321,9 @@ void silc_stack_free(SilcStack stack)
       silc_stack_unref_stack(stack->parent, e);
 
     silc_stack_unref_stack(stack->parent, stack->stack);
+
+    /* Unreference parent */
+    silc_stack_free(stack->parent);
   }
 }
 
