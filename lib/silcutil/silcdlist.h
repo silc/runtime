@@ -57,7 +57,7 @@
  *
  * NAME
  *
- *    typedef struct { ... } *SilcDList;
+ *    typedef struct { ... } *SilcDList, SilcDListStruct;
  *
  * DESCRIPTION
  *
@@ -66,12 +66,12 @@
  *    Dynamic List Interface functions.
  *
  ***/
-typedef struct SilcDListStruct {
+typedef struct SilcDListObject {
   SilcStack stack;
   SilcList list;
   void *current;
   void *prev;
-} *SilcDList;
+} *SilcDList, SilcDListStruct;
 
 /* SilcDListEntry structure, one entry in the list. This MUST NOT be used
    directly by the application. */
@@ -143,6 +143,26 @@ SilcDList silc_dlist_sinit(SilcStack stack)
   return list;
 }
 
+/****f* silcutil/silc_dlist_init_static
+ *
+ * SYNOPSIS
+ *
+ *    static inline
+ *    void silc_dlist_init_static(SilcDlist list);
+ *
+ * DESCRIPTION
+ *
+ *    Initialize a pre-allocated allocated SilcDList.
+ *
+ ***/
+
+static inline
+void silc_dlist_init_static(SilcDList list)
+{
+  list->stack = list->current = list->prev = NULL;
+  silc_list_init_prev(list->list, struct SilcDListEntryStruct, next, prev);
+}
+
 /****f* silcutil/silc_dlist_uninit
  *
  * SYNOPSIS
@@ -172,6 +192,34 @@ void silc_dlist_uninit(SilcDList list)
     }
     silc_sfree(stack, list);
     silc_stack_free(stack);
+  }
+}
+
+/****f* silcutil/silc_dlist_uninit_static
+ *
+ * SYNOPSIS
+ *
+ *    static inline
+ *    void silc_dlist_uninit_static(SilcDList list);
+ *
+ * DESCRIPTION
+ *
+ *    Uninits and frees all memory. Must be called to free memory. Does NOT
+ *    free the contexts saved by caller.  Used to uninit a list initialized
+ *    with silc_dlist_init_static.
+ *
+ ***/
+
+static inline
+void silc_dlist_uninit_static(SilcDList list)
+{
+  if (list) {
+    SilcDListEntry e;
+    silc_list_start(list->list);
+    while ((e = (SilcDListEntry)silc_list_get(list->list)) != SILC_LIST_END) {
+      silc_list_del(list->list, e);
+      silc_free(e);
+    }
   }
 }
 
