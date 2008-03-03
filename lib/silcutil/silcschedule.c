@@ -126,7 +126,7 @@ static void silc_schedule_dispatch_timeout(SilcSchedule schedule,
     silc_schedule_task_remove(schedule, t);
 
     /* Balance when we have lots of small timeouts */
-    if (silc_unlikely((++count) > 40))
+    if (silc_unlikely((++count) > 60))
       break;
   } while (silc_likely((task = silc_list_get(schedule->timeout_queue))));
 }
