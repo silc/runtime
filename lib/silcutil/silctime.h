@@ -44,20 +44,6 @@
  * SOURCE
  *
  */
-/****s* silcutil/SilcTimeStruct
- *
- * NAME
- *
- *    typedef struct { ... } *SilcTime, SilcTimeStruct;
- *
- * DESCRIPTION
- *
- *    This context represents time value.  It includes date and time
- *    down to millisecond precision.  The structure size is 64 bits.
- *
- * SOURCE
- *
- */
 typedef struct SilcTimeObject {
   unsigned int year       : 15;	   /* Year,     0 - 32768 */
   unsigned int month      : 4;	   /* Month,    1 - 12 */
@@ -72,6 +58,19 @@ typedef struct SilcTimeObject {
   unsigned int dst        : 1;	   /* Set if daylight saving time */
 } *SilcTime, SilcTimeStruct;
 /***/
+
+/****s* silcutil/SilcTimeStruct
+ *
+ * NAME
+ *
+ *    typedef struct { ... } *SilcTime, SilcTimeStruct;
+ *
+ * DESCRIPTION
+ *
+ *    This context represents time value.  It includes date and time
+ *    down to millisecond precision.  The structure size is 64 bits.
+ *
+ ***/
 
 /****f* silcutil/silc_time
  *
