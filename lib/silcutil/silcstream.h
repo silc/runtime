@@ -157,6 +157,11 @@ typedef struct {
 } SilcStreamOps;
 /***/
 
+/* Stream header */
+typedef struct SilcStreamHeaderObject {
+  SilcStreamOps *ops;
+} *SilcStreamHeader, SilcStreamHeaderStruct;
+
 /****f* silcutil/silc_stream_read
  *
  * SYNOPSIS
@@ -176,8 +181,13 @@ typedef struct {
  *    If error occurred the error code can be retrieved with silc_errno.
  *
  ***/
+static inline
 int silc_stream_read(SilcStream stream, unsigned char *buf,
-		     SilcUInt32 buf_len);
+		     SilcUInt32 buf_len)
+{
+  SilcStreamHeader h = stream;
+  return h->ops->read(stream, buf, buf_len);
+}
 
 /****f* silcutil/silc_stream_write
  *
@@ -198,8 +208,13 @@ int silc_stream_read(SilcStream stream, unsigned char *buf,
  *    If error occurred the error code can be retrieved with silc_errno.
  *
  ***/
+static inline
 int silc_stream_write(SilcStream stream, const unsigned char *data,
-		      SilcUInt32 data_len);
+		      SilcUInt32 data_len)
+{
+  SilcStreamHeader h = stream;
+  return h->ops->write(stream, data, data_len);
+}
 
 /****f* silcutil/silc_stream_close
  *
@@ -215,7 +230,12 @@ int silc_stream_write(SilcStream stream, const unsigned char *data,
  *    callback may be called with an error status.
  *
  ***/
-SilcBool silc_stream_close(SilcStream stream);
+static inline
+SilcBool silc_stream_close(SilcStream stream)
+{
+  SilcStreamHeader h = stream;
+  return h->ops->close(stream);
+}
 
 /****f* silcutil/silc_stream_destroy
  *
@@ -232,7 +252,12 @@ SilcBool silc_stream_close(SilcStream stream);
  *    function will call it.
  *
  ***/
-void silc_stream_destroy(SilcStream stream);
+static inline
+void silc_stream_destroy(SilcStream stream)
+{
+  SilcStreamHeader h = stream;
+  h->ops->destroy(stream);
+}
 
 /****f* silcutil/silc_stream_set_notifier
  *
@@ -259,8 +284,13 @@ void silc_stream_destroy(SilcStream stream);
  *    Returns TRUE on success.  The `schedule' must always be non-NULL.
  *
  ***/
+static inline
 SilcBool silc_stream_set_notifier(SilcStream stream, SilcSchedule schedule,
-				  SilcStreamNotifier notifier, void *context);
+				  SilcStreamNotifier notifier, void *context)
+{
+  SilcStreamHeader h = stream;
+  return h->ops->notifier(stream, schedule, notifier, context);
+}
 
 /****f* silcutil/silc_stream_get_schedule
  *
@@ -274,6 +304,11 @@ SilcBool silc_stream_set_notifier(SilcStream stream, SilcSchedule schedule,
  *    NULL if one has not been set for the `stream'.
  *
  ***/
-SilcSchedule silc_stream_get_schedule(SilcStream stream);
+static inline
+SilcSchedule silc_stream_get_schedule(SilcStream stream)
+{
+  SilcStreamHeader h = stream;
+  return h->ops->get_schedule(stream);
+}
 
 #endif /* SILCSTREAM_H */

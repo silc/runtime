@@ -48,7 +48,6 @@ libsilcutil_la_SOURCES = \
 	silchashtable.c \
 	silcutf8.c	\
 	silcstringprep.c \
-	silcstream.c	\
 	silcfdstream.c	\
 	silcsocketstream.c \
 	silcfsm.c	\
