@@ -1,7 +1,7 @@
-Compiling SILC Toolkit on WIN32
-===============================
+Compiling SILC Runtime Toolkit on WIN32
+=======================================
 
-SILC Toolkit works on native WIN32 systems as well.  This document is
+SILC Runtime works on native WIN32 systems as well.  This document is
 intended for those who needs to compile the Toolkit for native WIN32
 systems.  The Toolkit can be compiled for native WIN32 systems using
 generally any compiler.  However, the compilation environment is designed
@@ -9,8 +9,8 @@ to currently work with the MSVC++ (version 6.0) and with the MinGW (under
 cygwin).
 
 
-Compiling SILC Toolkit with MSVC++
-==================================
+Compiling SILC Runtime Toolkit with MSVC++
+===========================================
 
 The MSVC++ workspace and project files resides in the win32/ subdirectory
 of the Toolkit package.  The `silc.dsw' file is the workspace file that
@@ -33,8 +33,10 @@ SILC Toolkit with debugging which you can conditionally use in your client
 application by setting the global variable silc_debug to TRUE or FALSE.
 
 
-Compiling SILC Toolkit with MinGW
-=================================
+Compiling SILC Runtime Toolkit with MinGW
+=========================================
+
+Note that this method is not officially supported and may not work at all.
 
 To compile the Toolkit with MinGW you first need to install the cygwin and
 the MinGW into your system.  After that you can just normally give the
@@ -62,8 +64,10 @@ the lib/ directory.  It will also generate silc.lib and silcclient.lib
 files for linking against a client application.
 
 
-Compiling SILC Toolkit with Cygwin
-==================================
+Compiling SILC Runtime Toolkit with Cygwin
+==========================================
+
+Note that this method is not officially supported and may not work at all.
 
 Compiling the Toolkit with Cygwin is equivalent to compiling with MinGW
 except that the ./configure does not take the --with-win32 option.  In this

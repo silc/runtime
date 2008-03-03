@@ -35,14 +35,15 @@ This document describes the implementation issues with different platforms
 that the SILC Runtime Toolkit support.  Some of the supported platforms 
 does not support all the features delivered with the Toolkit or they may 
 behave differently from other platforms.
+<br />
 
-<br />&nbsp;<br />
+<ul class="toc_entries">
 <li><a href="#unix">Unix & Linux Implementation</a><br />
 <li><a href="#windows">Windows Implementation</a><br />
 <li><a href="#macosx">Mac OS X Implementation</a>
 <li><a href="#symbian">Symbian OS Implementation</a>
+</ul>
 
-<br />&nbsp;<br />&nbsp;<br />
 <b>Supported Platforms</b>
 
 <br />&nbsp;<br />
@@ -67,8 +68,9 @@ supported on Windows.  However, there are some certain issues with the
 Windows version of the Toolkit.
 
 <br />&nbsp;<br />
+<ul>
 <li>Some of the network routines do not support IPv6.
-
+</ul>
 
 <br />&nbsp;<br />&nbsp;<br />
 <b><a name="macosx"></a>Mac OS X Implementation</b>
@@ -88,7 +90,7 @@ features and components delivered with the Toolkit are supported and
 should work on Symbian.  However, there are some issues with the Symbian 
 version of the Toolkit of what Symbian developers need to be aware.
 
-<br />&nbsp;<br />
+<ul>
 <li>The function <tt>silc_schedule</tt> on Symbian will allocate new Active 
 Scheduler Waiter and will block the calling thread.  The caller should 
 allocate Active Scheduler before calling <tt>silc_schedule</tt>.
@@ -107,7 +109,9 @@ be written.
 <li>The function <tt>silc_thread_create</tt> on Symbian will install Active 
 Scheduler and allocate Cleanup Stack for the new thread.  The created 
 thread always shares heap with the parent thread.
+</ul>
 
+<br />&nbsp;<br />
 </div> <!-- content -->
 
 </div> <!-- contentwrapper -->

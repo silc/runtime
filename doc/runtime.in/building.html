@@ -31,29 +31,31 @@
 <big><b>Building the Toolkit</b></big>
 
 <br />&nbsp;<br />
-SILC Runtime Toolkit works on various platforms, such as on several Unix 
-systems and on Windows.  Building of the Toolkit on some platform may 
-differ from the other.  This document describes how to build the Toolkit 
-from the sources, to create linkable libraries and binaries, on all 
+SILC Runtime Toolkit works on various platforms, such as on several Unix
+systems and on Windows.  Building of the Toolkit on some platform may
+differ from the other.  This document describes how to build the Toolkit
+from the sources, to create linkable libraries and binaries, on all
 platforms the Toolkit support.
 
 <br />&nbsp;<br />
 The building instructions for all platforms are also included in the Toolkit
 package.  Please refer to the INSTALL file for general building instructions
-for Unix systems, README.WIN32 for building on Windows systems, and
-README.MACOSX for building on Mac OS X.
+for Unix systems, README.WIN32 for building on Windows systems,
+README.MACOSX for building on Mac OS X, and README_SYMBIAN for building on
+Symbian OS.
+<br />
 
-<br />&nbsp;<br />
+<ul class="toc_entries">
 <li><a href="#unix">Building on Unix & Linux</a><br />
 <li><a href="#windows">Building on Windows</a><br />
 <li><a href="#macosx">Building on Mac OS X</a>
 <li><a href="#symbian">Building on Symbian OS</a>
+</ul>
 
-<br />&nbsp;<br />&nbsp;<br />
 <b><a name="unix"></a>Building on Unix & Linux</b>
 
 <br />&nbsp;<br />
-On Unix systems both statically and dynamically linkable libraries are 
+On Unix systems both statically and dynamically linkable libraries are
 built by default.
 
 <br />&nbsp;<br />
@@ -125,11 +127,11 @@ you can give --enable-ipv6 option to force the IPv6 support.
 <tt>--disable-cpu-optimizations</tt>
 
 <br />&nbsp;<br />
-By default the configure script will attempt to detect the type of your 
-CPU and enable any features specific to your CPU that could optimize the 
-performance of the Toolkit.  If you are creating binary package that 
-should work on any CPU (and not only your CPU) you should diable these 
-optimizations.  If you compile it for yourself only, keeping the 
+By default the configure script will attempt to detect the type of your
+CPU and enable any features specific to your CPU that could optimize the
+performance of the Toolkit.  If you are creating binary package that
+should work on any CPU (and not only your CPU) you should diable these
+optimizations.  If you compile it for yourself only, keeping the
 optimizations enabled is recommended.
 
 <br />&nbsp;<br />
@@ -155,7 +157,7 @@ The Toolkit package includes ready MSVC++ Workspace files, that will
 automatically compile the Toolkit.  The MSVC++ workspace and project files
 resides in the win32/ subdirectory of the Toolkit package.  The `srt.dsw'
 file is the workspace file that automatically supports compiling the Toolkit
-and to generate the SILC Runtime DLL (libsrt.dll).  You may also compile 
+and to generate the SILC Runtime DLL (libsrt.dll).  You may also compile
 debug version by selecteing the Debug compilation method.
 
 <br />&nbsp;<br />&nbsp;<br />
@@ -225,9 +227,10 @@ After installation import the Toolkit project to Carbide.c++ from the
 symbian/ subdirectory in the Toolkit package.
 
 <br />&nbsp;<br />
-Please read the README.SYMBIAN from the SILC Runtime Toolkit package for 
+Please read the README.SYMBIAN from the SILC Runtime Toolkit package for
 complete building instructions.
 
+<br />&nbsp;<br />
 </div> <!-- content -->
 
 </div> <!-- contentwrapper -->
@@ -246,4 +249,3 @@ complete building instructions.
 
 </body>
 </html>
-

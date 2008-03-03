@@ -1,12 +1,12 @@
-Compiling SILC Toolkit for Symbian OS
-=====================================
+Compiling SILC Runtime Toolkit for Symbian OS
+=============================================
 
-The SILC Toolkit works on Symbian OS.  This document is intended for those
-that want to compile the SILC Toolkit by themselves for Symbian OS, or for
-Symbian OS emulator.  The building environment expects Carbide.c++ and
-WINSCW compiler for emulator target and GCCE (variant of GCC) for device
-target.  The SILC Toolkit has not been tested with other compilers or
-build systems.  The build environment expects MS Windows.
+The SRT works on Symbian OS.  This document is intended for those that
+want to compile the SRT by themselves for Symbian OS, or for Symbian OS
+emulator.  The building environment expects Carbide.c++ and WINSCW compiler
+for emulator target and GCCE (variant of GCC) for device target.  The SRT
+has not been tested with other compilers or build systems.  The build
+environment expects MS Windows.
 
 
 Requirements
@@ -19,39 +19,37 @@ Requirements
 Installing Build Environment
 ============================
 
-If you do not have a working Carbide.c++ and Symbian OS SDK environment 
+If you do not have a working Carbide.c++ and Symbian OS SDK environment
 installed in your MS Windows system it needs to be done first.
 
 1) Download the freely available Carbide.c++ from Nokia at
-   http://forum.nokia.com.  The exact hyperlink location changes often, so 
+   http://forum.nokia.com.  The exact hyperlink location changes often, so
    it is not referenced here.  It is usually under "Tools and SDKs" link.
 
-2) After installation a web browser is opened automatically by the 
-   Carbide.c++ installer.  Follow its instructions by installing the Perl, 
-   CTags and the SDK.  Perl and the SDK are required, but CTags is 
+2) After installation a web browser is opened automatically by the
+   Carbide.c++ installer.  Follow its instructions by installing the Perl,
+   CTags and the SDK.  Perl and the SDK are required, but CTags is
    optional and if necessary can be omitted.
 
-3) The SILC Toolkit is generic C and C++ code and should work with any
-   SDK.  If you don't have SDK already installed, install the latest 
-   version you can find.  The links to SDKs are found in the Carbide.c++ 
-   instructions after installation.  If you already have SDK in your 
+3) The SILC Runtime is generic C and C++ code and should work with any
+   SDK.  If you don't have SDK already installed, install the latest
+   version you can find.  The links to SDKs are found in the Carbide.c++
+   instructions after installation.  If you already have SDK in your
    system, you should use that.
 
-4) After installation the environment should be ready for SILC Toolkit 
-   building.
+4) After installation the environment should be ready for SRT building.
 
 
 Building with Carbide.c++
 =========================
 
-After starting the Carbide.c++ you will need to import the SILC Toolkit 
-project.  Go to File -> Import -> Symbian OS -> Symbian OS Bld.inf file, 
-and go to the extracted SILC Toolkit source tree and find symbian\bld.inf 
-file and import it.  When Carbide.c++ asks for the Root Directory, select 
-the root of the extracted SILC Toolkit source tree, if not already 
-selected.
+After starting the Carbide.c++ you will need to import the SRT project.
+Go to File -> Import -> Symbian OS -> Symbian OS Bld.inf file, and go
+to the extracted SRT source tree and find symbian\bld.inf file and import
+it.  When Carbide.c++ asks for the Root Directory, select the root of the
+extracted SRT source tree, if not already selected.
 
-After importing the project it is immediately ready for building.  By 
+After importing the project it is immediately ready for building.  By
 default, it will build the following libraries:
 
 	silc.dll		- SILC Core DLL
@@ -63,10 +61,10 @@ Before building select the target for which you want to build.  Possible
 targets are Emulator or Phone with Debug or Release.
 
 
-Using SILC Toolkit in Your Project
+Using SILC Runtime in Your Project
 ==================================
 
-When linking with SILC libraries your application will need to also link 
+When linking with SRT libraries your application will need to also link
 the following Symbian libraries:
 
 	estlib
@@ -74,5 +72,5 @@ the following Symbian libraries:
 	insock
 	esock
 
-You will also need to include the \epoc32\include\libc into your system 
+You will also need to include the \epoc32\include\libc into your system
 include path in your project, if not already included.

@@ -1,7 +1,7 @@
-Compiling SILC Toolkit on MAC OS X
+Compiling SILC Runtime on MAC OS X
 ==================================
 
-SILC Toolkit works on MAC OS X as well, as that is Unix based operating 
+SILC Runtime works on MAC OS X as well, as that is Unix based operating
 system.  Some compilation issues however must be taken into consideration.
 
 To compile the Toolkit on MAC OS X give the following commands:
@@ -15,8 +15,8 @@ compilation which you can simply start by giving the command:
 
 	make
 
-This will compile the libraries and applications.  If you do not want to 
-compile the applications, before giving make command go to the lib/ 
+This will compile the libraries and applications.  If you do not want to
+compile the applications, before giving make command go to the lib/
 directory, and give make there:
 
 	cd lib

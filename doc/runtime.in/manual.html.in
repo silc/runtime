@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./runtime.css" type="text/css" />
+<title>SILC Runtime Toolkit</title>
+</head>
+<body>
+
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+</div> <!-- navigation -->
+<div id="content">
+<h2>SILC Runtime Toolkit Reference Manual</h2>
+<p>
+Version: @VERSION@<br />
+Copyright &copy; 1997 - 2008 The SILC Project<br />
+Updated: @DATE@
+</p>
+<p>
+Welcome to the SILC Runtime Toolkit Reference Manual.  The manual is a 
+complete developer guide and reference for the application programmer.  
+The manual is intended for programmers who would like to use the SILC 
+Runtime Toolkit as their primary runtime in their application.</p>
+<p>
+The application programming interfaces are automatically generated from the
+Toolkit sources, and the documentation is constantly evolving.  New versions
+of the Toolkit always delivers the latest version of this reference manual.
+</p>
+
+<p class="item_name">GUIDES</p>
+<ul class="toc_entries">
+
+<li class="toc_entries"><a href="intro.html">Introduction</a><br />
+<li class="toc_entries"><a href="platforms.html">Supported Platforms</a>
+<li class="toc_entries"><a href="building.html">Building the Toolkit</a>
+</ul>
+
+<p class="item_name">TOOLKIT REFERENCE</p>
+<ul class="toc_entries">
+
+<li class="toc_entries"><a href="./silcruntime_hsilcutil2FRuntime20Toolkit20Interface.html" >Runtime Toolkit Interface</a>
+<li class="toc_entries"><a href="./silcasync_hsilcutil2FAsync20Operation20Interface.html" >Async Operation Interface</a>
+<li class="toc_entries"><a href="./silcatomic_hsilcutil2FAtomic20Operations20Interface.html" >Atomic Operations Interface</a>
+<li class="toc_entries"><a href="./silcbase64_hsilcutil2FBase6420Interface.html" >Base64 Interface</a>
+<li class="toc_entries"><a href="./silcbitops_hsilcutil2FBit20Operations20Interface.html" >Bit Operations Interface</a>
+<li class="toc_entries"><a href="./silcbuffmt_hsilcutil2FBuffer20Format20Interface.html" >Buffer Format Interface</a>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2FBuffer20Interface.html" >Buffer Interface</a>
+<li class="toc_entries"><a href="./silccond_hsilcutil2FCondition20Variable20Interface.html" >Condition Variable Interface</a>
+<li class="toc_entries"><a href="./silcconfig_hsilcutil2FConfig20File20Interface.html" >Config File Interface</a>
+<li class="toc_entries"><a href="./silcdir_hsilcutil2FDirectory20Interface.html" >Directory Interface</a>
+<li class="toc_entries"><a href="./silcdlist_hsilcutil2FDynamic20List20Interface.html" >Dynamic List Interface</a>
+<li class="toc_entries"><a href="./silcenv_hsilcutil2FEnvironment20Interface.html" >Environment Interface</a>
+<li class="toc_entries"><a href="./silcerrno_hsilcutil2FErrno20Interface.html" >Errno Interface</a>
+<li class="toc_entries"><a href="./silcfdstream_hsilcutil2FFd20Stream20Interface.html" >Fd Stream Interface</a>
+<li class="toc_entries"><a href="./silcfileutil_hsilcutil2FFile20Util20Interface.html" >File Util Interface</a>
+<li class="toc_entries"><a href="./silcfsm_hsilcutil2FFinite20State20Machine.html" >Finite State Machine</a>
+<li class="toc_entries"><a href="./silcgetopt_hsilcutil2FGetOpt20Interface.html" >GetOpt Interface</a>
+<li class="toc_entries"><a href="./silcglobal_hsilcutil2FGlobal20Variable20Interface.html" >Global Variable Interface</a>
+<li class="toc_entries"><a href="./silchashtable_hsilcutil2FHash20Table20Interface.html" >Hash Table Interface</a>
+<li class="toc_entries"><a href="./silclist_hsilcutil2FList20Interface.html" >List Interface</a>
+<li class="toc_entries"><a href="./silclog_hsilcutil2FLogging20Interface.html" >Logging Interface</a>
+<li class="toc_entries"><a href="./silcmemory_hsilcutil2FMemory20Interface.html" >Memory Interface</a>
+<li class="toc_entries"><a href="./silcstack_hsilcutil2FMemory20Pool20Interface.html" >Memory Pool Interface</a>
+<li class="toc_entries"><a href="./silcmime_hsilcutil2FMIME20Interface.html" >MIME Interface</a>
+<li class="toc_entries"><a href="./silcutil_hsilcutil2FMisc20Utilities.html" >Misc Utilities</a>
+<li class="toc_entries"><a href="./silcmutex_hsilcutil2FMutex20Interface.html" >Mutex Interface</a>
+<li class="toc_entries"><a href="./silcnet_hsilcutil2FNetwork20Interface.html" >Network Interface</a>
+<li class="toc_entries"><a href="./silcrand_hsilcutil2FRandom20Number20Interface.html" >Random Number Interface</a>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2FRegex20Interface.html" >Regex Interface</a>
+<li class="toc_entries"><a href="./silcschedule_hsilcutil2FScheduler20Interface.html" >Scheduler Interface</a>
+<li class="toc_entries"><a href="./silcdll_hsilcutil2FShared20Object20Interface.html" >Shared Object Interface</a>
+<li class="toc_entries"><a href="./silcsnprintf_hsilcutil2FSnprintf20Interface.html" >Snprintf Interface</a>
+<li class="toc_entries"><a href="./silcsocketstream_hsilcutil2FSocket20Stream20Interface.html" >Socket Stream Interface</a>
+<li class="toc_entries"><a href="./silcstream_hsilcutil2FStream20Interface.html" >Stream Interface</a>
+<li class="toc_entries"><a href="./silcstrutil_hsilcutil2FString20Utilities.html" >String Utilities</a>
+<li class="toc_entries"><a href="./silcstringprep_hsilcutil2FStringprep20Interface.html" >Stringprep Interface</a>
+<li class="toc_entries"><a href="./silcthread_hsilcutil2FThread20Interface.html" >Thread Interface</a>
+<li class="toc_entries"><a href="./silcthreadqueue_hsilcutil2FThread20Queue20Interface.html" >Thread Queue Interface</a>
+<li class="toc_entries"><a href="./silctime_hsilcutil2FTime20Interface.html" >Time Interface</a>
+<li class="toc_entries"><a href="./silctimer_hsilcutil2FTimer20Interface.html" >Timer Interface</a>
+<li class="toc_entries"><a href="./silctypes_hsilcutil2FTypes20and20Definitions.html" >Types and Definitions</a>
+<li class="toc_entries"><a href="./silcutf8_hsilcutil2FUTF2D820Interface.html" >UTF-8 Interface</a>
+
+<li class="toc_entries"><a href="masterindex.html">Toolkit Index</a><br />
+</ul>
+
+</div> <!-- content -->
+
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+</body>
+</html>
