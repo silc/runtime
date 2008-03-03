@@ -50,7 +50,7 @@ SRT is free software and is dual-licensed with GNU GPL and BSD licenses.
 <li class="toc_entries"><a href="http://silcnet.org/download/srt/rpm/">Download SRT RPM binaries</a>
 <li class="toc_entries"><a href="http://silcnet.org/download/srt/win32/">Download SRT Windows binaries</a>
 <li class="toc_entries"><a href="http://silcnet.org/download/srt/symbian/">Download SRT Symbian OS binaries</a>
-<li class="toc_entries"><a href="../../ChangeLog">Release Notes</a>
+<li class="toc_entries"><a href="ChangeLog">Release Notes</a>
 </ul>
 
 <p class="item_name">DOCUMENTATION</p>
