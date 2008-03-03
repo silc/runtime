@@ -674,11 +674,9 @@ SilcDList silc_mime_encode_partial(SilcMime mime, int max_size)
   if (buf_len > max_size) {
     memset(id, 0, sizeof(id));
     memset(type, 0, sizeof(type));
-    gethostname(type, sizeof(type) - 1);
-    srand((time(NULL) + buf_len) ^ rand());
-    silc_snprintf(id, sizeof(id) - 1, "%X%X%X%s",
-	     (unsigned int)rand(), (unsigned int)time(NULL),
-	     (unsigned int)buf_len, type);
+    silc_snprintf(id, sizeof(id) - 1, "%X%x%X%x",
+		  (unsigned int)silc_rand(), (unsigned int)silc_time_usec(),
+		  (unsigned int)buf_len, (unsigned int)silc_rand());
 
     SILC_LOG_DEBUG(("Fragment ID %s", id));
 
