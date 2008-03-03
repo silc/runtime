@@ -24,7 +24,8 @@
 #error "Do not include internal header file directly"
 #endif
 
-#if defined(__GNUC__) && defined(HAVE_EXECINFO_H) && defined(HAVE_BACKTRACE)
+#if (defined(__GNUC__) && defined(HAVE_EXECINFO_H) && 			\
+     defined(HAVE_BACKTRACE)) || defined(__SILC_ENABLE_STACKTRACE)
 
 #undef strdup
 #define silc_malloc(s)      silc_st_malloc((s), __FILE__, __LINE__)
