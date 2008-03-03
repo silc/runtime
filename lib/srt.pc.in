@@ -7,4 +7,4 @@ Name: @PACKAGE@
 Description: SILC Runtime Toolkit
 Version: @VERSION@
 Libs: -L${libdir} -lsrt @LIBS@
-Cflags: -I${includedir}
+Cflags: -I${includedir} @PC_CFLAGS@
