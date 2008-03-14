@@ -147,6 +147,17 @@ int main(int argc, char **argv)
                            SILC_STR_END, SILC_STR_END) < 0)
     goto err;
 
+  SILC_LOG_DEBUG(("Print all lines"));
+  silc_snprintf(string, sizeof(string),
+	"Rfoo\n\n\nbazfoobar\nRbarfoofoo\nRbar\nbaz\nRbazfoo");
+  silc_buffer_set(&buf, string, strlen(string));
+  SILC_LOG_DEBUG(("string: %s", string));
+  if (silc_buffer_unformat(&buf,
+                           SILC_STR_REGEX("", SILC_STR_REGEX_NL),
+			     SILC_STR_FUNC(print, NULL, NULL),
+                           SILC_STR_END, SILC_STR_END) < 0)
+    goto err;
+
   success = TRUE;
 
  err:

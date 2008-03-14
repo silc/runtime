@@ -173,6 +173,26 @@ SilcBool silc_time_value(SilcInt64 time_val, SilcTime ret_time)
   return TRUE;
 }
 
+/* SilcTime to epoch */
+
+SilcUInt64 silc_time_epoch(SilcTime timeval)
+{
+  struct tm val;
+
+  if (!timeval)
+    return 0;
+
+  val.tm_sec = timeval->second;
+  val.tm_min = timeval->minute;
+  val.tm_hour = timeval->hour;
+  val.tm_mday = timeval->day;
+  val.tm_mon = timeval->month - 1;
+  val.tm_year = timeval->year - 1900;
+  val.tm_isdst = timeval->dst;
+
+  return (SilcUInt64)mktime(&val);
+}
+
 /* Returns timezone */
 
 SilcBool silc_timezone(char *timezone, SilcUInt32 timezone_size)

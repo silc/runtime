@@ -135,7 +135,7 @@ const char *silc_time_string(SilcInt64 time_val_sec);
  *
  * SYNOPSIS
  *
- *   SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
+ *    SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
  *
  * DESCRIPTION
  *
@@ -146,6 +146,20 @@ const char *silc_time_string(SilcInt64 time_val_sec);
  *
  ***/
 SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
+
+/****f* silcutil/silc_time_value
+ *
+ * SYNOPSIS
+ *
+ *    SilcUInt64 silc_time_epoch(SilcTime timeval);
+ *
+ * DESCRIPTION
+ *
+ *    Converts SilcTime into Epoch time value and returns the converted
+ *    value.
+ *
+ ***/
+SilcUInt64 silc_time_epoch(SilcTime timeval);
 
 /****f* silcutil/silc_timezone
  *
