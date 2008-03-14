@@ -630,3 +630,83 @@ char *silc_net_localip(void)
 
   return silc_strdup(ip_addr);
 }
+
+/* Convert network byte order IP to string */
+
+SilcBool silc_net_bin2addr(const void *bin, SilcUInt32 bin_len,
+			   char *addr, SilcUInt32 addr_size)
+{
+  if (!addr || !addr_size)
+    return TRUE;
+
+  if (bin_len == 16) {
+#ifdef HAVE_IPV6
+    struct sockaddr_in6 ipv6;
+    memset(&ipv6, 0, sizeof(ipv6));
+    ipv6.sin6_family = AF_INET6;
+    memcpy(&ipv6.sin6_addr, bin, sizeof(ipv6.sin6_addr));
+    if (!getnameinfo((struct sockaddr *)&ipv6, sizeof(ipv6),
+		     addr, addr_size, NULL, 0, NI_NUMERICHOST))
+    return TRUE;
+#else
+    return FALSE;
+#endif /* HAVE_IPV6 */
+  } else if (bin_len == 4) {
+    struct in_addr ipv4;
+    char *a;
+
+    memcpy(&ipv4.s_addr, bin, 4);
+    a = inet_ntoa(ipv4);
+    if (!a)
+      return FALSE;
+
+    silc_snprintf(addr, addr_size, a);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/* Host to network byte order */
+
+SilcUInt32 silc_htonl(SilcUInt32 host)
+{
+#ifdef WORDS_BIGENDIAN
+  return host;
+#else
+  return SILC_SWAB_32(host);
+#endif /* WORDS_BIGENDIAN */
+}
+
+/* Network to host byte order */
+
+SilcUInt32 silc_ntohl(SilcUInt32 net)
+{
+#ifdef WORDS_BIGENDIAN
+  return net;
+#else
+  return SILC_SWAB_32(net);
+#endif /* WORDS_BIGENDIAN */
+}
+
+/* Host to network byte order */
+
+SilcUInt16 silc_htons(SilcUInt16 host)
+{
+#ifdef WORDS_BIGENDIAN
+  return net;
+#else
+  return SILC_SWAB_16(host);
+#endif /* WORDS_BIGENDIAN */
+}
+
+/* Network to host byte order */
+
+SilcUInt16 silc_ntohs(SilcUInt16 net)
+{
+#ifdef WORDS_BIGENDIAN
+  return net;
+#else
+  return SILC_SWAB_16(net);
+#endif /* WORDS_BIGENDIAN */
+}

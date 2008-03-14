@@ -501,6 +501,22 @@ SilcBool silc_net_is_ip(const char *addr);
  ***/
 SilcBool silc_net_addr2bin(const char *addr, void *bin, SilcUInt32 bin_len);
 
+/****f* silcutil/silc_net_bin2addr
+ *
+ * SYNOPSIS
+ *
+ *    SilcBool silc_net_bin2addr(const void *bin, SilcUInt32 bin_len,
+ *                               char *addr, SilcUInt32 addr_size);
+ *
+ * DESCRIPTION
+ *
+ *    Converts network byte ordered IP address into a numbers-and-dots
+ *    string notation.  The `bin' address can be either IPv4 or IPv6 address.
+ *
+ ***/
+SilcBool silc_net_bin2addr(const void *bin, SilcUInt32 bin_len,
+			   char *addr, SilcUInt32 addr_size);
+
 /****f* silcutil/SilcNetResolveCallback
  *
  * SYNOPSIS
@@ -694,6 +710,58 @@ char *silc_net_localhost(void);
  *
  ***/
 char *silc_net_localip(void);
+
+/****f* silcutil/silc_htonl
+ *
+ * SYNOPSIS
+ *
+ *    SilcUInt32 silc_htonl(SilcUInt32 host);
+ *
+ * DESCRIPTION
+ *
+ *    Converts integer `host' from host byte order to network byte order.
+ *
+ ***/
+SilcUInt32 silc_htonl(SilcUInt32 host);
+
+/****f* silcutil/silc_ntohl
+ *
+ * SYNOPSIS
+ *
+ *    SilcUInt32 silc_ntohl(SilcUInt32 net);
+ *
+ * DESCRIPTION
+ *
+ *    Converts integer `net' from network byte order to host byte order.
+ *
+ ***/
+SilcUInt32 silc_ntohl(SilcUInt32 net);
+
+/****f* silcutil/silc_htonl
+ *
+ * SYNOPSIS
+ *
+ *    SilcUInt16 silc_htons(SilcUInt16 host);
+ *
+ * DESCRIPTION
+ *
+ *    Converts integer `host' from host byte order to network byte order.
+ *
+ ***/
+SilcUInt16 silc_htons(SilcUInt16 host);
+
+/****f* silcutil/silc_ntohl
+ *
+ * SYNOPSIS
+ *
+ *    SilcUInt16 silc_ntohs(SilcUInt16 net);
+ *
+ * DESCRIPTION
+ *
+ *    Converts integer `net' from network byte order to host byte order.
+ *
+ ***/
+SilcUInt16 silc_ntohs(SilcUInt16 net);
 
 #include "silcnet_i.h"
 
