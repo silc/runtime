@@ -223,15 +223,7 @@ char *silc_get_real_name();
  *    each copied list.
  *
  ***/
-#if defined(HAVE_VA_COPY)
-#define silc_va_copy(dest, src) va_copy(dest, src);
-#elif defined(HAVE___VA_COPY)
-#define silc_va_copy(dest, src) __va_copy(dest, src);
-#elif defined(SILC_VA_COPY_ARRAY)
-#define silc_va_copy(dest, src) memmove(dest, src, sizeof(va_list));
-#else
-#define silc_va_copy(dest, src) dest = src;
-#endif
+#define silc_va_copy(dest, src) __SILC_VA_COPY(dest, src)
 
 /****f* silcutil/silc_hexdump
  *
@@ -280,5 +272,19 @@ SilcBool silc_hex2data(const char *hex, unsigned char *data,
  ***/
 SilcBool silc_data2hex(const unsigned char *data, SilcUInt32 data_len,
 		       char *hex, SilcUInt32 hex_size);
+
+/****f* silcutil/silc_get_num_cpu
+ *
+ * SYNOPSIS
+ *
+ *    int silc_get_num_cpu(void);
+ *
+ * DESCRIPTION
+ *
+ *    Returns the number of CPU cores in the current machine.  Returns 0
+ *    if the routine could not determine the number of cores.
+ *
+ ***/
+int silc_get_num_cpu(void);
 
 #endif	/* !SILCUTIL_H */
