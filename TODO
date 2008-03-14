@@ -11,39 +11,12 @@ on some of the TODO entries simply let us know about it by dropping a note
 to silc-devel mailing list or appear on 'silc' channel on SILCNet.
 
 
-General
-=======
-
- o Create apps/tutorial containing various Toolkit API tutorials.
-
- o The Toolkit split.  The Toolkit is to be splitted in parts.  How many
-   parts and what the parts are isn't decided yet.  Each part is a separate
-   software package.  Current thinking is of the following:
-
-   SILC Toolkit			SILC protocol, client and server library
-   SILC Runtime Toolkit		runtime library
-   SILC Crypto Toolkit		crypto, asn1, math, skr, pgp, etc.
-
-   The rationale for this is of course that other than SILC projects
-   might like to use the various libraries SILC Toolkit provides, but
-   naturally they don't want the bloat of SILC protocol related stuff.
-
-   The Runtime library in SILC Toolkit is a general purpose runtime library,
-   like Glib and APR are.  The runtime library is to be developed further
-   to provide alternative to Glib and APR.
-
-   The Crypto library in SILC Toolkit is a general purpose crypto library
-   providing pretty nice APIs compared to many other crypto libraries,
-   especially OpenSSL.  The Crypto library is to be developed further
-   to include support for OpenPGP, X.509 and SSH2.
-
-
 Runtime library, lib/silcutil/
 ==============================
 
- o Unix socket support to Socket Stream API (local socket stream).
+ o Add SILC Zip API, compression.
 
- o Simple SILC Rand API for pseudo-random numbers.  (***DONE)
+ o Unix socket support to Socket Stream API (local socket stream).
 
  o file removing, chmod, rmmod, etc. chdir, rmdir, stat, etc. to
    lib/silcutil/silcfileutil.h.
@@ -70,6 +43,8 @@ Runtime library, lib/silcutil/
  o Add builtin SOCKS and HTTP Proxy support, well the SOCKS at least.
    SILC currently supports SOCKS4 and SOCKS5 but it needs to be compiled
    in separately.
+
+ o Simple SILC Rand API for pseudo-random numbers.  (***DONE)
 
  o Add directory opening/traversing functions (***DONE, TODO Windows & Symbian)
 
@@ -151,10 +126,6 @@ Runtime library, lib/silcutil/
    Add silc_stream_get_root and add get_root stream operation.  It
    returns the root of the stream or NULL if stream doesn't have root.) maybe
 
- (o Compression routines are missing.  The protocol supports packet
-   compression thus it must be implemented.  SILC Zip API must be
-   defined.) maybe
-
  (o SilcIpAddr abstraction.  Ipv4 and Ipv6 support to the abstaction.)
   maybe
 
@@ -164,6 +135,19 @@ Runtime library, lib/silcutil/
 
  (o Fast mutex implementation.  Fast rwlock implementation.  Mutex and
    rwlock implementation using atomic operations.) not for now.
+
+
+SILC XML Library, lib/silcxml/
+==============================
+
+ o SILC XML API (wrapper to expat).  Look at the expat API and simplify
+   it.  The SILC XML API should have at most 8-10 API functions.  It should
+   be possible to create full XML parser with only one function.  And, it
+   should be possible to have a function that is able to parse an entire
+   XML document.  It should also have a parser function to be able to
+   parse a stream of XML data (SilcStream).  It MUST NOT have operations
+   that require multiple function calls to be able to execute that one
+   operation (like creating parser).
 
 
 Windows Support

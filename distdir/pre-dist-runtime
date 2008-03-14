@@ -13,9 +13,19 @@ fi
 sed -e "s/SILC_VERSION/$dist_version/" -e "s/SILC_RELEASE/$release/" \
   srt.spec.in > srt.spec
 
+# First configure with debug and stacktrace and run all tests
+./configure --enable-debug --enable-stack-trace
+make clean
+make -j4
+make check -j4
+
+# Then actual configuration and making
 ./configure
+make clean
+make -j4
+make check -j4
 
 cd doc
 make toolkit-ref-html
 cd ..
-ln -s ../../ChangeLog doc/runtime/ChangeLog
+cp ChangeLog doc/runtime/ChangeLog

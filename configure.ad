@@ -149,20 +149,16 @@ case "$host_cpu" in
     SILC_CPU_FLAG(sse2, true, AC_DEFINE([SILC_CPU_SSE2], [], [SILC_CPU_SSE2]), [])
     SILC_CPU_FLAG(pni, true, AC_DEFINE([SILC_CPU_SSE3], [], [SILC_CPU_SSE3]), [])
     SILC_CPU_FLAG(ssse3, true, AC_DEFINE([SILC_CPU_SSSE3], [], [SILC_CPU_SSSE3]), [])
-    SILC_CPU_FLAG(sse4, true, AC_DEFINE([SILC_CPU_SSE4], [], [SILC_CPU_SSE4]), [])
+    SILC_CPU_FLAG(sse4a, true, AC_DEFINE([SILC_CPU_SSE4A], [], [SILC_CPU_SSE4A]), [])
+    SILC_CPU_FLAG(sse4_1, true, AC_DEFINE([SILC_CPU_SSE41], [], [SILC_CPU_SSE41]), [])
+    SILC_CPU_FLAG(sse4_2, true, AC_DEFINE([SILC_CPU_SSE42], [], [SILC_CPU_SSE42]), [])
+    SILC_CPU_FLAG(sse5, true, AC_DEFINE([SILC_CPU_SSE5], [], [SILC_CPU_SSE5]), [])
     ;;
 
   # Intel IA-64, 64-bit CPU (not x86_64 compatible)
   ia64)
     AC_DEFINE([SILC_IA64], [], [SILC_IA64])
     cpu_ia64=true
-
-    # Check for specific CPU features
-    SILC_CPU_FLAG(mmx, true, AC_DEFINE([SILC_CPU_MMX], [], [SILC_CPU_MMX]), [])
-    SILC_CPU_FLAG(sse2, true, AC_DEFINE([SILC_CPU_SSE2], [], [SILC_CPU_SSE2]), [])
-    SILC_CPU_FLAG(pni, true, AC_DEFINE([SILC_CPU_SSE3], [], [SILC_CPU_SSE3]), [])
-    SILC_CPU_FLAG(ssse3, true, AC_DEFINE([SILC_CPU_SSSE3], [], [SILC_CPU_SSSE3]), [])
-    SILC_CPU_FLAG(sse4, true, AC_DEFINE([SILC_CPU_SSE4], [], [SILC_CPU_SSE4]), [])
     ;;
 
   # AMD/Intel x86_64, 64-bit CPU
@@ -175,7 +171,10 @@ case "$host_cpu" in
     SILC_CPU_FLAG(sse2, true, AC_DEFINE([SILC_CPU_SSE2], [], [SILC_CPU_SSE2]), [])
     SILC_CPU_FLAG(pni, true, AC_DEFINE([SILC_CPU_SSE3], [], [SILC_CPU_SSE3]), [])
     SILC_CPU_FLAG(ssse3, true, AC_DEFINE([SILC_CPU_SSSE3], [], [SILC_CPU_SSSE3]), [])
-    SILC_CPU_FLAG(sse4, true, AC_DEFINE([SILC_CPU_SSE4], [], [SILC_CPU_SSE4]), [])
+    SILC_CPU_FLAG(sse4a, true, AC_DEFINE([SILC_CPU_SSE4A], [], [SILC_CPU_SSE4A]), [])
+    SILC_CPU_FLAG(sse4_1, true, AC_DEFINE([SILC_CPU_SSE41], [], [SILC_CPU_SSE41]), [])
+    SILC_CPU_FLAG(sse4_2, true, AC_DEFINE([SILC_CPU_SSE42], [], [SILC_CPU_SSE42]), [])
+    SILC_CPU_FLAG(sse5, true, AC_DEFINE([SILC_CPU_SSE5], [], [SILC_CPU_SSE5]), [])
     ;;
 
   # PowerPC, 32-bit and 64-bit CPUs
@@ -197,7 +196,7 @@ if test x$want_cpu_optimizations = xtrue; then
   # Set some compiler options based on CPU
   if test "x$CC" = "xicc"; then
     # ICC flags
-    if test x$x_have_cpu_sse4 = xtrue; then
+    if test x$x_have_cpu_sse4_1 = xtrue; then
       SILC_ADD_CFLAGS(-axS)
     fi
     if test x$x_have_cpu_ssse3 = xtrue; then
@@ -218,7 +217,7 @@ if test x$want_cpu_optimizations = xtrue; then
     if test x$x_have_cpu_ssse3 = xtrue; then
       SILC_ADD_CFLAGS(-mssse3)
     fi
-    if test x$x_have_cpu_sse4 = xtrue; then
+    if test x$x_have_cpu_sse4_1 = xtrue; then
       SILC_ADD_CFLAGS(-msse4)
     fi
   fi
@@ -435,6 +434,7 @@ AC_CHECK_FUNC(epoll_wait,
 
 # Check for va_copy
 va_copy=false
+__SILC_VA_COPY="#define __SILC_VA_COPY(dest, src) dest = src"
 AC_MSG_CHECKING(for va_copy)
 AC_TRY_COMPILE(
   [
@@ -459,7 +459,7 @@ AC_TRY_COMPILE(
     }
   ],
   [
-    AC_DEFINE([HAVE_VA_COPY], [], [HAVE_VA_COPY])
+    __SILC_VA_COPY="#define __SILC_VA_COPY(dest, src) va_copy(dest, src)"
     AC_MSG_RESULT(yes)
     va_copy=true
   ],
@@ -494,7 +494,7 @@ if test x$va_copy = xfalse; then
     }
   ],
   [
-    AC_DEFINE([HAVE___VA_COPY], [], [HAVE___VA_COPY])
+    __SILC_VA_COPY="#define __SILC_VA_COPY(dest, src) __va_copy(dest, src)"
     AC_MSG_RESULT(yes)
     va_copy=true
   ],
@@ -529,10 +529,12 @@ if test x$va_copy = xfalse; then
     [va_copy=false],
     [
       AC_DEFINE([SILC_VA_COPY_ARRAY], [], [SILC_VA_COPY_ARRAY])
+      __SILC_VA_COPY="#define __SILC_VA_COPY(dest, src) memmove(dest, src, sizeof(va_list))"
     ],
     [va=copy=false]
   )
 fi
+AC_SUBST(__SILC_VA_COPY)
 
 # Check for timezone and tm_gmtoff for timezone information
 AC_MSG_CHECKING(whether system has timezone)
