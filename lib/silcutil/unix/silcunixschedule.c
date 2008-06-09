@@ -287,6 +287,7 @@ SilcBool silc_schedule_internal_schedule_fd(SilcSchedule schedule,
       SILC_LOG_DEBUG(("epoll_ctl (DEL): %s", strerror(errno)));
       return FALSE;
     }
+    task->scheduled = FALSE;
     return TRUE;
   }
 

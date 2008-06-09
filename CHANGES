@@ -1,3 +1,185 @@
+Thu Mar 13 13:31:35 EET 2008  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed silcd crash in NEW_CLIENT packet handling when nickname
+	  is not present in the packet.  Affected files are
+	  apps/silcd/packet_receive.c.
+
+Fri Feb 22 16:12:27 EET 2008  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed partial encryption in CTR mode in AES.  Change does not
+	  affect interoperability in SILC due to the way CTR is used in
+	  SILC.  But, fixed anyway.  Affected files are
+	  lib/silccrypt/aes.c and rijndael_internal.h.
+
+Tue Jan  8 09:41:57 EET 2008  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed printable fingerprint bufferoverlfow, RedHat bug 372021.
+	  Affected file is lib/silcutil/silcutil.c.
+
+Sun Dec 30 14:00:46 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed unix signal delivery in SILC scheduler.  Affected file
+	  is lib/silcutil/unix/silcunixschedule.c.
+
+Sun Nov 18 16:43:04 CET 2007  Jochen Eisinger <coffee@silcnet.org>
+
+	* Add -avoid-version and -rpath flags when compiling the plugin.
+	  Affected file is apps/irssi/src/fe-common/silc/Makefile.in
+
+Thu Nov 15 18:03:53 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Reprocess JOIN command synchronously after resolving channel
+	  user list.  Affected file is lib/silcclient/command_reply.c.
+
+	* In JOIN command reply check if the channel key is already
+	  saved.  If it is we have received new key from server while
+	  resolving user and must not save the old key.  Affected file
+	  is lib/silcclient/command_reply.c.
+
+	* Remove all channel keys and hmacs after giving LEAVE command.
+	  Affected file is lib/silcclient/command_reply.c.
+
+Tue Nov 13 18:24:56 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Added missing channel unreferencing in CMODE, CUMODE,
+	  TOPIC, INVITE, BAN and KICK command replies.  Affected
+	  file is lib/silcclient/command_reply.c.
+
+Sun Nov 11 23:04:54 EET 2007 Pekka Riikonen <priikone@silcnet.org>
+
+	* Free stream data and abort ongoing protocols correctly
+	  for primary router connections receiving end of stream.
+	  Affected file is apps/silcd/server.c.
+
+Sun Nov 11 16:02:12 EET 2007 Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Server 1.1 Beta4.
+
+Sun Nov 11 14:15:48 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Toolkit 1.1.5.
+
+Sun Nov 11 11:22:35 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed connection authentication with public keys to use
+	  correct public key as responder.  Affected file is
+	  lib/silcske/silcconnauth.c.
+
+	* Fixed public key authentication in server.  Affected file is
+	  apps/silcd/serverconfig.c.
+
+	* Fixed OPER and SILCOPER public key authentication.  Affected
+	  file is apps/silcd/server.c.
+
+	* Fixed prefer_passphrase_auth flag in server.  Fixed
+	  disconnection of unauthenticated connection.  Affected file is
+	  apps/silcd/server.c.
+
+	* Fixed client resuming in server.  Affected file is
+	  apps/silcd/packet_receive.c.
+
+	* Fixed IDENTIFY and WHOWAS command reply to correctly update
+	  client entries (fixes a crash).  Affected file is
+	  apps/silcd/command_reply.c.
+
+Tue Nov  6 16:39:20 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Client 1.1.3.
+
+Mon Nov  5 23:07:58 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Zero tail of CTR mode IV in IV Included mode.  Change does
+	  not cause compatibility issues.  Affected file is
+	  lib/silcske/silcske.c.
+
+Mon Nov  5 22:24:25 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Toolkit 1.1.4.
+
+	* Fixed CTR mode rekey.  Affected file is lib/silcske/silcske.c.
+
+	* Rewrote the IV Included CTR mode encryption/decryption in
+	  packet engine.  Affected file is lib/silccore/silcpacket.c.
+
+Sun Nov  4 15:20:25 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Removed module_path and module options from the server
+	  config file format.  Affected file is apps/silcd/serverconfig.c.
+
+	* Fixed non-IPv6 compilation error.  Affected file is
+	  lib/silcutil/unix/silcunixnet.c.
+
+Sat Nov  3 23:23:38 EET 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Do not free packet engine before uninitializing scheduler.
+	  Do not disconnct already disconnected streams.  Affected
+	  files are in apps/silcd/.
+
+	* Fixed setting correct ID for re-encrypted channel messages
+	  in router-to-router connections.  Affected file is
+	  apps/silcd/packet_send.c.
+
+Sun Sep 30 15:16:18 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed channel private key deleting when deleting the channel.
+	  Affected file is lib/silcclient/client_channel.c.
+
+Sun Sep  9 17:52:49 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Toolkit 1.1.3.
+
+	* Fixed possible buffer overflows from SILC Config code.
+	  Patch from Jérémy Bobbio.  Affected file is
+	  lib/silcutil/silcconfig.c.
+
+Sun Aug 26 12:28:49 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed TIMEOUT handling in user info resolving during JOINing,
+	  fixes crash.  Affected file is lib/silcclient/client_notify.c.
+
+	* Fixed mandatory UN and HN SILC public key identifier checking
+	  (both must be present).  Affected file is
+	  lib/silccrypt/silcpk.c.
+
+Tue Aug  7 20:56:06 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed alignment issues with 64-bit CPUs.  Affected files
+	  are lib/silcutil/silcschedule.c and unix/silcunixschedule.c.
+
+	* Added "There are now xx nick's" to "are xx nicks".  Affected
+	  file is apps/irssi/src/fe-common/silc/module-formats.c.
+
+Sat Aug 4 18:37:22 EEST 2007 Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed USERS command user mode handling (integer overflow).
+	  Affected file is lib/silcclient/command_reply.c.
+
+Thu Jul 19 21:08:49 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* Fixed big-endian issues from aes implementation.  Affected
+	  files are lib/silccrypt/aes.c.
+
+	* Fixed lib/silcutil/silcatomic.h compilation on IA64.  Patch
+	  from Jérémy Bobbio.
+
+	* Fixed public key identifier parsing to check lengths
+	  correctly.  Affected file is lib/silccrypt/silcpk.c.
+
+Wed Jul  4 08:06:38 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* SILC Toolkit 1.1.2.
+
+	* SILC Client 1.1.2.
+
+Mon Jul  2 17:28:47 CEST 2007  Pekka Riikonen <priikone@silcnet.org>
+
+	* In silc_client_free check that scheduler is allocated before
+	  trying to free it.  Affected file is lib/silcclient/client.c.
+
+	* Fixed buffer overflow in NICK_CHANGE notify.  The destination
+	  buffer for old nickname was too small.  Affected file is
+	  lib/silclient/client_notify.c.
+
 Sun Jul  1 19:15:15 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 
 	* SILC Server 1.1 Beta1.
@@ -61,7 +243,7 @@ Mon Jun 18 23:47:22 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 	* Use SILC_VERIFY to assert that silc_rwlock_wrlock can be
 	  called only once per thread on Unix.  Affected file is
 	  lib/silcutil/unix/silcunixthread.c.  Added same for mutex
-	  as well.   Documented same on the API in 
+	  as well.   Documented same on the API in
 	  lib/silcutil/silcmutex.h.
 
 	* Fixed USERS command reply write-lock unlocking.  Affected file
@@ -84,7 +266,7 @@ Thu Jun 14 21:15:31 CEST 2007  Jochen Eisinger <coffee@silcnet.org>
 	  apps/irssi/src/core/modules-load.c
 
 	* Don't delete hilight entry (because it's just a pointer, not a
-	  copy).  Affected file is 
+	  copy).  Affected file is
 	  apps/irssi/src/fe-common/silc/fe-silc-messages.c
 
 Mon Jun 11 22:10:17 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
@@ -135,7 +317,7 @@ Thu Jun  7 21:25:31 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 
 Wed Jun  6 18:33:05 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 
-	* Added notify callback to silc_schedule_init which can be used to 
+	* Added notify callback to silc_schedule_init which can be used to
 	  set a notify callback for scheduler which is called when task is
 	  added to scheduler or deleted from scheduler.  Affected file
 	  is lib/silcutil/silcschedule.[ch].
@@ -144,7 +326,7 @@ Wed Jun  6 18:33:05 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 	  was very short.  Affected file is lib/silcutil/silcschedule.c.
 
 	* Rewrote the SILC scheduler handling in SILC Client to not poll
-	  every few msecs but to use the new notify callback.  Affected 
+	  every few msecs but to use the new notify callback.  Affected
 	  file is apps/irssi/src/silc/core/silc-core.c.
 
 	* Fixed SFTP client library read buffer size which was too small.
@@ -320,7 +502,7 @@ Fri May 18 18:10:36 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 	  better.  Affected file is lib/silccilent/client_entry.c.
 
 	* Added "foo#2 appears as foo" support to SILC Client when user
-	  leaves or quits and one formatted nickname remain.  Affected file 
+	  leaves or quits and one formatted nickname remain.  Affected file
 	  is apps/irssi/src/silc/core/client_ops.c.
 
 	* Send SilcChannelEntry to application in SILC_NOTIFY_TYPE_SIGNOFF.
@@ -382,7 +564,7 @@ Wed May 16 09:34:10 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 Tue May 15 23:55:41 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 
 	* Added SILC_VERIFY macro which is equivalent to SILC_ASSERT
-	  but is compiled always in.  Affected file is 
+	  but is compiled always in.  Affected file is
 	  lib/silcutil/silclog.h.
 
 	* Use SILC_VERIFY in FSM macros instead of SILC_ASSERT which is
@@ -461,7 +643,7 @@ Wed May  9 19:51:28 EEST 2007  Pekka Riikonen <priikone@silcnet.org>
 	  on WIN32.  Affected files are lib/silcutil/silclog_i.h and
 	  silclog.c.
 
-	* Rewrote WIN32 SILC Scheduler.  It now handles non-blocking file 
+	* Rewrote WIN32 SILC Scheduler.  It now handles non-blocking file
 	  descriptors and sockets better.  Though, room for optimization
 	  remains.  Affected file is lib/silcutil/win32/silcwin32schedule.c.
 

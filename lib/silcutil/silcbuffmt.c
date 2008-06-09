@@ -781,7 +781,8 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
 	UNFORMAT_HAS_SPACE(src, len2);
 	if (silc_likely(len2 && x)) {
 	  *x = silc_scalloc(stack, len2 + 1, sizeof(unsigned char));
-	  memcpy(*x, src->data, len2);
+	  if (*x)
+	    memcpy(*x, src->data, len2);
 	}
 	silc_buffer_pull(src, len2);
 	break;
@@ -969,7 +970,8 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
 	UNFORMAT_HAS_SPACE(src, len2);
 	if (silc_likely(x && len2)) {
 	  *x = silc_scalloc(stack, len2 + 1, sizeof(unsigned char));
-	  memcpy(*x, src->data, len2);
+	  if (*x)
+	    memcpy(*x, src->data, len2);
 	}
 	silc_buffer_pull(src, len2);
 	break;
@@ -1007,7 +1009,8 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
 	UNFORMAT_HAS_SPACE(src, len2);
 	if (silc_likely(x && len2)) {
 	  *x = silc_scalloc(stack, len2 + 1, sizeof(unsigned char));
-	  memcpy(*x, src->data, len2);
+	  if (*x)
+	    memcpy(*x, src->data, len2);
 	}
 	silc_buffer_pull(src, len2);
 	break;
@@ -1095,7 +1098,8 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
 	  *len3 = len2;
 	if (x && len2) {
 	  *x = silc_scalloc(stack, len2 + 1, sizeof(unsigned char));
-	  memcpy(*x, src->data, len2);
+	  if (*x)
+	    memcpy(*x, src->data, len2);
 	}
 	silc_buffer_pull(src, len2);
 	break;
@@ -1174,9 +1178,10 @@ int silc_buffer_sunformat_vp_i(SilcStack stack, SilcBuffer src, va_list ap,
 	SILC_GET32_MSB(len2, src->data);
 	silc_buffer_pull(src, 4);
 	UNFORMAT_HAS_SPACE(src, len2);
-	silc_buffer_sformat(stack, x,
-			    SILC_STR_DATA(src->data, len2),
-			    SILC_STR_END);
+	if (silc_buffer_sformat(stack, x,
+				SILC_STR_DATA(src->data, len2),
+				SILC_STR_END) < 0)
+	  goto fail;
 	silc_buffer_pull(src, len2);
       }
       break;

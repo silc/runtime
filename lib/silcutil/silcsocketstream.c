@@ -355,6 +355,7 @@ SilcBool silc_socket_stream_set_qos(SilcStream stream,
       !limit_sec && !limit_usec) {
     silc_schedule_task_del_by_context(socket_stream->schedule,
 				      socket_stream->qos);
+    silc_free(socket_stream->qos->buffer);
     silc_free(socket_stream->qos);
     socket_stream->qos = NULL;
     return TRUE;
@@ -375,7 +376,8 @@ SilcBool silc_socket_stream_set_qos(SilcStream stream,
   socket_stream->qos->cur_rate = 0;
   socket_stream->qos->sock = socket_stream;
 
-  socket_stream->qos->buffer = silc_malloc(read_limit_bytes);
+  socket_stream->qos->buffer = silc_realloc(socket_stream->qos->buffer,
+					    read_limit_bytes);
   if (!socket_stream->qos->buffer)
     return FALSE;
 

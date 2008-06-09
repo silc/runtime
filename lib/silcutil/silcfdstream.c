@@ -21,7 +21,7 @@
 
 /************************** Types and definitions ***************************/
 
-#define SILC_IS_FD_STREAM(s) (s->ops == &silc_fd_stream_ops)
+#define SILC_IS_FD_STREAM(s) (s && s->ops == &silc_fd_stream_ops)
 
 const SilcStreamOps silc_fd_stream_ops;
 

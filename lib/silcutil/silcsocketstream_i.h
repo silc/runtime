@@ -55,8 +55,8 @@ struct SilcSocketStreamStruct {
   unsigned int connected : 1;	    /* UDP connected state */
 };
 
-#define SILC_IS_SOCKET_STREAM(s) (s->ops == &silc_socket_stream_ops)
-#define SILC_IS_SOCKET_STREAM_UDP(s) (s->ops == &silc_socket_udp_stream_ops)
+#define SILC_IS_SOCKET_STREAM(s) (s && s->ops == &silc_socket_stream_ops)
+#define SILC_IS_SOCKET_STREAM_UDP(s) (s && s->ops == &silc_socket_udp_stream_ops)
 
 extern const SilcStreamOps silc_socket_stream_ops;
 extern const SilcStreamOps silc_socket_udp_stream_ops;

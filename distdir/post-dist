@@ -6,8 +6,8 @@ package=$3
 distdir=$4
 
 if test -f $distdir.tar.gz; then
-  sha1sum $distdir.tar.gz > $distdir.tar.gz.sha1
+  sha512sum $distdir.tar.gz > $distdir.tar.gz.sum
 fi
 if test -f $distdir.tar.bz2; then
-  sha1sum $distdir.tar.bz2 > $distdir.tar.bz2.sha1
+  sha512sum $distdir.tar.bz2 > $distdir.tar.bz2.sum
 fi
