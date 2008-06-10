@@ -53,7 +53,7 @@
  * DESCRIPTION
  *
  *    The network listenr context.  This context is created with the
- *    silc_net_create_listener function and destroyed with
+ *    silc_net_tcp_create_listener function and destroyed with
  *    silc_net_close_listener function.
  *
  ***/
@@ -737,7 +737,7 @@ SilcUInt32 silc_htonl(SilcUInt32 host);
  ***/
 SilcUInt32 silc_ntohl(SilcUInt32 net);
 
-/****f* silcutil/silc_htonl
+/****f* silcutil/silc_htons
  *
  * SYNOPSIS
  *
@@ -750,7 +750,7 @@ SilcUInt32 silc_ntohl(SilcUInt32 net);
  ***/
 SilcUInt16 silc_htons(SilcUInt16 host);
 
-/****f* silcutil/silc_ntohl
+/****f* silcutil/silc_ntohs
  *
  * SYNOPSIS
  *

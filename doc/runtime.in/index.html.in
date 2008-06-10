@@ -25,17 +25,17 @@
 <div id="content">
 <h2>SILC Runtime Toolkit @VERSION@</h2>
 <p>
-SILC Runtime Toolkit (SRT) provides useful utility functions for 
-application programmers.  SRT can be used as the sole and main runtime 
-in any application.  It provides application main loop, hash table, lists, 
-atomic operations, threads, locks, queues, file descriptor stream, socket 
-stream, network routines, a finite state machine, memory pool, random 
-number generator, buffers, regular expressions, and many many other 
+SILC Runtime Toolkit (SRT) provides useful utility functions for
+application programmers.  SRT can be used as the sole and main runtime
+in any application.  It provides application main loop, hash table, lists,
+atomic operations, threads, locks, queues, file descriptor stream, socket
+stream, network routines, a finite state machine, memory pool, random
+number generator, buffers, regular expressions, and many many other
 features.
 </p>
 <p>
-SRT natively supports multiple platforms; Unix/Linux, Windows, Mac OS X 
-and Symbian OS, and all APIs work identically or nearly identically on all 
+SRT natively supports multiple platforms; Unix/Linux, Windows, Mac OS X
+and Symbian OS, and all APIs work identically or nearly identically on all
 support platforms.  SRT and all of its APIs are entirely reentrant and some
 APIs are completely thread safe.
 </p>
@@ -68,6 +68,11 @@ To clone SRT repository give one of the following commands:
  git clone git://git.silc.fi/runtime
  git clone http://git.silc.fi/runtime.in
 </pre>
+</p>
+
+<p class="item_name">CONTACT</p>
+<p>
+If you have any questions or comments you may contact us at <a href="mailto: info [at} silc [dot} fi">info (at) silc (dot) fi</a>
 </p>
 
 </div> <!-- content -->

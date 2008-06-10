@@ -147,7 +147,7 @@ const char *silc_time_string(SilcInt64 time_val_sec);
  ***/
 SilcBool silc_time_value(SilcInt64 time_val_msec, SilcTime ret_time);
 
-/****f* silcutil/silc_time_value
+/****f* silcutil/silc_time_epoch
  *
  * SYNOPSIS
  *
