@@ -25,7 +25,8 @@ RUNTIME_AGE=@RUNTIME_AGE@
 # SILC Library dirs
 RUNTIME_DIRS = 		\
 	contrib 	\
-	silcutil
+	silcutil	\
+	silchttp
 
 if SILC_ENABLE_SHARED
 if SILC_WIN32

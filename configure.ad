@@ -856,6 +856,7 @@ LDFLAGS="-L\$(silc_top_srcdir)/lib $LDFLAGS"
 
 SILC_LIB_INCLUDES="$SILC_LIB_INCLUDES -I$SILC_TOP_SRCDIR/lib/contrib"
 SILC_LIB_INCLUDES="$SILC_LIB_INCLUDES -I$SILC_TOP_SRCDIR/lib/silcutil"
+SILC_LIB_INCLUDES="$SILC_LIB_INCLUDES -I$SILC_TOP_SRCDIR/lib/silchttp"
 
 
 # Check for iconv support
@@ -1272,6 +1273,8 @@ lib/silcutil/tests/Makefile
 lib/silcutil/unix/Makefile
 lib/silcutil/win32/Makefile
 lib/silcutil/symbian/Makefile
+lib/silchttp/Makefile
+lib/silchttp/tests/Makefile
 lib/srt.pc
 )
 
