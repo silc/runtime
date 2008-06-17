@@ -239,6 +239,7 @@ extern "C" {
 #include <silcfdstream.h>
 #include <silcmime.h>
 #include <silcrand.h>
+#include <silcbufferstream.h>
 #include <silchttpserver.h>
 #include <silchttpphp.h>
 
