@@ -37,7 +37,10 @@ typedef struct SilcTlsObject {
   void *thread_context;		            /* Context set with SILC Tls API */
   void *platform_context;	            /* Platform specific context */
   char error_reason[256];		    /* Reason for the error */
+  char filename[256];			    /* File where error occurred */
   SilcResult error;			    /* Errno, last error */
+  SilcUInt32 cur_line;			    /* Line number of error */
+  SilcUInt32 cur_column;		    /* Column number of error */
   unsigned int shared_data     : 1;	    /* Set when shares data with other
 					       threads in the Tls. */
 } *SilcTls, SilcTlsStruct;

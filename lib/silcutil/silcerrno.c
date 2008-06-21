@@ -45,6 +45,7 @@ void silc_set_errno(SilcResult error)
   }
 
   tls->error_reason[0] = '\0';
+  tls->filename[0] = '\0';
   tls->error = error;
 }
 
@@ -58,6 +59,7 @@ void silc_set_errno_nofail(SilcResult error)
     return;
 
   tls->error_reason[0] = '\0';
+  tls->filename[0] = '\0';
   tls->error = error;
 }
 
@@ -75,9 +77,11 @@ void silc_set_errno_reason(SilcResult error, const char *format, ...)
       return;
   }
 
-  va_start(va, format);
-  silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
-  va_end(va);
+  if (format) {
+    va_start(va, format);
+    silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
+    va_end(va);
+  }
 
   tls->error = error;
 }
@@ -92,9 +96,11 @@ void silc_set_errno_reason_nofail(SilcResult error, const char *format, ...)
   if (!tls)
     return;
 
-  va_start(va, format);
-  silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
-  va_end(va);
+  if (format) {
+    va_start(va, format);
+    silc_vsnprintf(tls->error_reason, sizeof(tls->error_reason), format, va);
+    va_end(va);
+  }
 
   tls->error = error;
 }
@@ -434,4 +440,44 @@ const char *silc_errno_string(SilcResult error)
     return (const char *)"";
 
   return silc_errno_strings[error];
+}
+
+/* Set error location */
+
+void silc_set_errno_location(const char *filename,
+			     SilcUInt32 current_line_number,
+			     SilcUInt32 current_column_number)
+{
+  SilcTls tls = silc_thread_get_tls();
+
+  if (!tls)
+    return;
+
+  if (filename)
+    silc_snprintf(tls->filename, sizeof(tls->filename), filename);
+  tls->cur_line = current_line_number;
+  tls->cur_column = current_column_number;
+}
+
+/* Get error location */
+
+SilcBool silc_errno_location(const char **filename,
+			     SilcUInt32 *current_line,
+			     SilcUInt32 *current_column)
+{
+  SilcTls tls = silc_thread_get_tls();
+
+  if (!tls)
+    return FALSE;
+  if (tls->filename[0] == '\0' && !tls->cur_line && !tls->cur_column)
+    return FALSE;
+
+  if (filename)
+    *filename = tls->filename;
+  if (current_line)
+    *current_line = tls->cur_line;
+  if (current_column)
+    *current_column = tls->cur_column;
+
+  return TRUE;
 }

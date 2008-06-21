@@ -183,6 +183,28 @@ const char *silc_errno_string(SilcResult error);
  ***/
 const char *silc_errno_reason(void);
 
+/****d* silcutil/silc_errno_location
+ *
+ * NAME
+ *
+ *    SilcBool silc_errno_location(const char **filename,
+ *                                 SilcUInt32 *current_line,
+ *                                 SilcUInt32 *current_column);
+ *
+ * DESCRIPTION
+ *
+ *    Returns the error location information.  The filename where the error
+ *    occurred is returned to `filename'.  The line and columns where the
+ *    error occurred is returned to `current_line' and `current_column',
+ *    respectively, or 0 is returned if the information is not present.
+ *
+ *    Returns FALSE if the location information is not available.
+ *
+ ***/
+SilcBool silc_errno_location(const char **filename,
+			     SilcUInt32 *current_line,
+			     SilcUInt32 *current_column);
+
 /* Low-level routines for the error handling. */
 
 /****d* silcutil/silc_set_errno
@@ -253,6 +275,27 @@ void silc_set_errno_reason_nofail(SilcResult error, const char *format, ...);
  *
  ***/
 void silc_set_errno_posix(int error);
+
+/****d* silcutil/silc_set_errno_location
+ *
+ * NAME
+ *
+ *    void silc_set_errno_location(const char *filename,
+ *                                 SilcUInt32 current_line_number,
+ *                                 SilcUInt32 current_column_number);
+ *
+ * DESCRIPTION
+ *
+ *    A low level routine to set the error location in a file indicated by
+ *    the `filename'.  The `current_line_number' is the line where the
+ *    error occurred.  The `current_column_number' number if the column in
+ *    the line where the error occurred or 0 if so such information is
+ *    present.  The errno must be set before calling this function.
+ *
+ ***/
+void silc_set_errno_location(const char *filename,
+			     SilcUInt32 current_line_number,
+			     SilcUInt32 current_column_number);
 
 /* Return last error */
 SilcResult silc_get_errno(void);
