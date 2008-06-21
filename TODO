@@ -44,6 +44,10 @@ Runtime library, lib/silcutil/
    SILC currently supports SOCKS4 and SOCKS5 but it needs to be compiled
    in separately.
 
+ o Add silc_xml_parse_stream to parse SilcStream XML stream.
+
+ o SILC XML API (wrapper to expat). (***DONE)
+
  o Bring silchttp HTTP server library to SRT.  (***DONE)
 
  o Simple SILC Rand API for pseudo-random numbers.  (***DONE)
@@ -137,19 +141,6 @@ Runtime library, lib/silcutil/
 
  (o Fast mutex implementation.  Fast rwlock implementation.  Mutex and
    rwlock implementation using atomic operations.) not for now.
-
-
-SILC XML Library, lib/silcxml/
-==============================
-
- o SILC XML API (wrapper to expat).  Look at the expat API and simplify
-   it.  The SILC XML API should have at most 8-10 API functions.  It should
-   be possible to create full XML parser with only one function.  And, it
-   should be possible to have a function that is able to parse an entire
-   XML document.  It should also have a parser function to be able to
-   parse a stream of XML data (SilcStream).  It MUST NOT have operations
-   that require multiple function calls to be able to execute that one
-   operation (like creating parser).
 
 
 Windows Support

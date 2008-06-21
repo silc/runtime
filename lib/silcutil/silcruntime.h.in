@@ -198,8 +198,8 @@ extern "C" {
 #endif /* __SILC_ENABLE_STACKTRACE */
 
 /* SILC Runtime Toolkit includes */
-#include <silcerrno.h>
 #include <silctypes.h>
+#include <silcerrno.h>
 #include <silcbitops.h>
 #include <silcmutex.h>
 #include <silcatomic.h>
@@ -240,6 +240,7 @@ extern "C" {
 #include <silcmime.h>
 #include <silcrand.h>
 #include <silcbufferstream.h>
+#include <silcxml.h>
 #include <silchttpserver.h>
 #include <silchttpphp.h>
 

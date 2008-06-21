@@ -1193,6 +1193,30 @@ if test x$has_threads = xtrue; then
 fi
 
 
+# Check for Expat
+AC_ARG_WITH(expat,
+  [[  --with-expat[=DIR]      use Expat XML [search in DIR/include and DIR/lib]]],
+  [
+    case "${withval}" in
+      no)
+        ;;
+      *)
+        if test -d $withval/include; then
+          CPPFLAGS="$CPPFLAGS -I$withval/include"
+          CFLAGS="$CFLAGS -I$withval/include"
+        fi
+        if test -d $withval/lib; then
+          LDFLAGS="$LDFLAGS -L$withval/lib"
+        fi
+        ;;
+    esac
+  ])
+
+AC_CHECK_HEADERS(expat.h,
+  [ LIBS="$LIBS -lexpat" ],
+  [ AC_MSG_ERROR(Expat XML Library is required to compile SRT) ])
+
+
 ##
 ## Native WIN32 compilation under cygwin
 ##
