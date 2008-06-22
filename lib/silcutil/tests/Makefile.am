@@ -24,7 +24,8 @@ check_PROGRAMS = \
 	test_silcatomic test_silcmutex test_silctime test_silcthread \
 	test_silcdll test_silcenv test_silctimer test_silcbitops \
 	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue \
-	test_silcrand test_silcglobal test_silcbufferstream test_silcxml
+	test_silcrand test_silcglobal test_silcbufferstream test_silcxml \
+	test_silclocalnetstream
 
 TESTS = test_silcstrutil test_silcstringprep test_silchashtable \
 	test_silclist test_silcfsm test_silcasync test_silcschedule \
@@ -32,7 +33,8 @@ TESTS = test_silcstrutil test_silcstringprep test_silchashtable \
 	test_silcatomic test_silctime test_silcthread \
 	test_silcdll test_silcenv test_silctimer test_silcbitops \
 	test_silcregex test_silcbuffmt test_silcdir test_silcthreadqueue \
-	test_silcrand test_silcglobal test_silcbufferstream
+	test_silcrand test_silcglobal test_silcbufferstream \
+	test_silclocalnetstream
 
 LIBS = $(SILC_COMMON_LIBS)
 LDADD = -L.. -L../.. -lsrt

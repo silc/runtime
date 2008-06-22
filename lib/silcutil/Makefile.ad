@@ -69,6 +69,7 @@ libsilcutil_la_SOURCES = \
 	silcrand.c	\
 	silcglobal.c	\
 	silcbufferstream.c \
+	silclocalnetstream.c \
 	silcxml.c
 
 include_HEADERS =	\
@@ -126,6 +127,7 @@ include_HEADERS =	\
 	silcruntime.h	\
 	silcdir.h	\
 	silcbufferstream.h \
+	silclocalnetstream.h \
 	silcxml.h
 
 SILC_EXTRA_DIST =

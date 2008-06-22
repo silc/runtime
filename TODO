@@ -16,8 +16,6 @@ Runtime library, lib/silcutil/
 
  o Add SILC Zip API, compression.
 
- o Unix socket support to Socket Stream API (local socket stream).
-
  o file removing, chmod, rmmod, etc. chdir, rmdir, stat, etc. to
    lib/silcutil/silcfileutil.h.
 

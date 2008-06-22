@@ -240,6 +240,7 @@ extern "C" {
 #include <silcmime.h>
 #include <silcrand.h>
 #include <silcbufferstream.h>
+#include <silclocalnetstream.h>
 #include <silcxml.h>
 #include <silchttpserver.h>
 #include <silchttpphp.h>
