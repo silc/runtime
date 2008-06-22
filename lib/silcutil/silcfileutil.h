@@ -217,8 +217,7 @@ char *silc_file_readfile(const char *filename, SilcUInt32 *return_len,
  *
  * DESCRIPTION
  *
- *    Writes a buffer to the file.  If the file is created specific mode is
- *    set to the file.
+ *    Writes a buffer to the file.  Returns 0 on success and -1 on error.
  *
  ***/
 int silc_file_writefile(const char *filename, const char *buffer,
@@ -234,7 +233,7 @@ int silc_file_writefile(const char *filename, const char *buffer,
  * DESCRIPTION
  *
  *    Writes a buffer to the file.  If the file is created the specified `mode'
- *    is set to the file.
+ *    is set to the file.  Returns 0 on success and -1 on error.
  *
  ***/
 int silc_file_writefile_mode(const char *filename, const char *buffer,

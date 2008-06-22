@@ -303,7 +303,7 @@ SilcBool silc_file_stat(const char *filename, SilcBool follow_symlinks,
 {
   struct stat status;
 
-  if (silc_unlikely(!filename || !return_stat)) {
+  if (silc_unlikely(!filename)) {
     silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
     return FALSE;
   }
@@ -329,7 +329,8 @@ SilcBool silc_file_stat(const char *filename, SilcBool follow_symlinks,
 #endif /* HAVE_LSTAT */
   }
 
-  silc_file_fill_stat(&status, return_stat);
+  if (return_stat)
+    silc_file_fill_stat(&status, return_stat);
 
   return TRUE;
 }
@@ -340,17 +341,13 @@ SilcBool silc_file_fstat(int fd, SilcFileStat return_stat)
 {
   struct stat status;
 
-  if (silc_unlikely(!return_stat)) {
-    silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
-    return FALSE;
-  }
-
   if (silc_unlikely(fstat(fd, &status) != 0)) {
     silc_set_errno_posix(errno);
     return FALSE;
   }
 
-  silc_file_fill_stat(&status, return_stat);
+  if (return_stat)
+    silc_file_fill_stat(&status, return_stat);
 
   return TRUE;
 }
