@@ -22,33 +22,78 @@
  * DESCRIPTION
  *
  * Local network stream interface enables two or more processes to communicate
- * with each other in the local machine using local network start.  The
+ * with each other in the local machine using the local network.  The
  * interface provides a form of interprocess communication (IPC) using network
- * sockets.
+ * sockets (TCP).
+ *
+ * Since the implementation uses real TCP network socket the listener can be
+ * used for any TCP communication, however connections may be estalished only
+ * from the local machine.  The connections use the loopback network.
+ *
+ * EXAMPLE
+ *
+ * // Create listener
+ * listener = silc_local_net_create_listener("/tmp/conn1", 0, schedule,
+ *                                           accept_callback, ctx);
+ *
+ * // Connect to the listener
+ * silc_local_net_connect("/tmp/conn1", schedule, connected_callback, ctx);
+ *
+ * // Close listener
+ * silc_local_net_close_listener(listener);
  *
  ***/
 
 #ifndef SILCLOCALNETSTREAM_H
 #define SILCLOCALNETSTREAM_H
 
+/****d* silcutil/SilcLocalNetSecurity
+ *
+ * NAME
+ *
+ *    typedef enum { ... } SilcLocalNetSecurity
+ *
+ * DESCRIPTION
+ *
+ *    The security flags for the local network listener.  They specify
+ *    how the listener can be accessed.  The flags are a bitmasks and can
+ *    be combined.  Note that, these flags apply only when this API is
+ *    used.  Anyone in local machine is able to see the network listener
+ *    port by checking all bound network listeners and thus are able to
+ *    connect to it.
+ *
+ * SOURCE
+ */
+typedef enum {
+  SILC_LOCAL_NET_ALL    = 0x0000,     /* Anyone in local machine can connect */
+  SILC_LOCAL_NET_USER   = 0x0001,     /* Same user can connect */
+  SILC_LOCAL_NET_GROUP  = 0x0002,     /* Same group can connect */
+} SilcLocalNetSecurity;
+/***/
+
 /****f* silcutil/silc_local_net_create_listener
  *
  * SYNOPSIS
  *
- *    SilcNetListener silc_local_net_create_listener(const char *filepath,
- *                                                   SilcSchedule schedule,
- *                                                   SilcNetCallback callback,
- *                                                   void *context);
+ *    SilcNetListener
+ *    silc_local_net_create_listener(const char *filepath,
+ *                                   SilcLocalNetSecurity security,
+ *                                   SilcSchedule schedule,
+ *                                   SilcNetCallback callback,
+ *                                   void *context);
  *
  * DESCRIPTION
  *
  *    Creates a local network stream listener and returns a network server.
  *    The `filepath' is a local filepath that must be used by the clients to
- *    connect to the server.
+ *    connect to the server.  The `security' specify the access method to
+ *    the listener.  It can specify for example that only the user creating
+ *    the listener is able to connect to it.
  *
  *    The `callback' will be called when a client connects to the listener
- *    with the `context'.  The returned listener must be closed by calling
- *    silc_local_net_close_listener.
+ *    with the `context'.  The returned stream to the `callback' is a
+ *    socket stream (silcsocketstream.h).  The returned listener must be
+ *    closed by calling silc_local_net_close_listener.
  *
  *    Clients can connect to the listener by calling the
  *    silc_local_net_connect.
@@ -58,6 +103,7 @@
  *
  ***/
 SilcNetListener silc_local_net_create_listener(const char *filepath,
+					       SilcLocalNetSecurity security,
 					       SilcSchedule schedule,
 					       SilcNetCallback callback,
 					       void *context);
@@ -91,7 +137,9 @@ void silc_local_net_close_listener(SilcNetListener local_listener);
  *    the connection will fail.
  *
  *    The `callback' with `context' will be called once the connection has
- *    been created.
+ *    been created.  The stream returned to `callback' is a socket stream
+ *    (silcsocketstream.h).  SilcStream API can be used with the returned
+ *    stream.  The stream must be destroyed by calling silc_stream_destroy.
  *
  *    If `schedule' is NULL this will call silc_schedule_get_global to try
  *    to get global scheduler.

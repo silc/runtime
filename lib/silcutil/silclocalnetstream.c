@@ -60,6 +60,7 @@ static void silc_local_net_accept(SilcResult result, SilcStream stream,
 /* Create listener */
 
 SilcNetListener silc_local_net_create_listener(const char *filepath,
+					       SilcLocalNetSecurity security,
 					       SilcSchedule schedule,
 					       SilcNetCallback callback,
 					       void *context)
@@ -68,6 +69,7 @@ SilcNetListener silc_local_net_create_listener(const char *filepath,
   SilcUInt16 *local_port;
   const char *addr = "127.0.0.1";
   char port[8];
+  int mode = 0;
 
   SILC_LOG_DEBUG(("Creating local network stream listener %s", filepath));
 
@@ -111,9 +113,17 @@ SilcNetListener silc_local_net_create_listener(const char *filepath,
     return NULL;
   }
 
+  /* Set mode */
+  if (!security)
+    mode = 0644;
+  if (security & SILC_LOCAL_NET_USER)
+    mode = 0600;
+  if (security & SILC_LOCAL_NET_GROUP)
+    mode += 040;
+
   /* Create the file */
   silc_snprintf(port, sizeof(port), "%d", *local_port);
-  if (silc_file_writefile(filepath, port, strlen(port) + 1)) {
+  if (silc_file_writefile_mode(filepath, port, strlen(port) + 1, mode)) {
     silc_free(local_port);
     silc_net_close_listener(listener->listener);
     silc_free(listener);
@@ -138,6 +148,7 @@ void silc_local_net_close_listener(SilcNetListener local_listener)
 
   unlink(listener->filepath);
   silc_net_close_listener(listener->listener);
+  silc_free(listener->filepath);
   silc_free(listener);
 }
 

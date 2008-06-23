@@ -83,6 +83,8 @@ SILC_FSM_STATE(test_st_start)
 
   SILC_LOG_DEBUG(("Creating local network listener"));
   f->server = silc_local_net_create_listener("local_net",
+					     SILC_LOCAL_NET_USER |
+					     SILC_LOCAL_NET_GROUP,
 					     silc_fsm_get_schedule(fsm),
 					     test_accept_connection, f);
   if (!f->server) {
