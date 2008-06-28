@@ -74,10 +74,6 @@ static void silc_xml_expat_start_element(void *userData,
 			      silc_hash_utf8_compare, NULL,
 			      NULL, NULL, TRUE);
     if (!t) {
-      silc_set_errno(SILC_ERR_OUT_OF_MEMORY);
-      silc_set_errno_location(NULL,
-			      XML_GetCurrentLineNumber(parser->parser),
-			      XML_GetCurrentColumnNumber(parser->parser));
       XML_StopParser(parser->parser, FALSE);
       return;
     }
@@ -237,6 +233,7 @@ SilcBool silc_xml_parse_file(SilcXMLParser parser,
 
   ret = silc_xml_parse(parser, data, data_len);
   if (!ret) {
+    silc_free(data);
     silc_set_errno_reason(silc_xml_expat_error(parser->parser),
 			  silc_xml_get_error(parser));
     silc_set_errno_location(filename,

@@ -61,6 +61,7 @@ of the Toolkit always delivers the latest version of this reference manual.
 <li class="toc_entries"><a href="./silcbitops_hsilcutil2FBit20Operations20Interface.html" >Bit Operations Interface</a>
 <li class="toc_entries"><a href="./silcbuffmt_hsilcutil2FBuffer20Format20Interface.html" >Buffer Format Interface</a>
 <li class="toc_entries"><a href="./silcbuffer_hsilcutil2FBuffer20Interface.html" >Buffer Interface</a>
+<li class="toc_entries"><a href="./silcbufferstream_hsilcutil2FBuffer20Stream20Interface.html" >Buffer Stream Interface</a>
 <li class="toc_entries"><a href="./silccond_hsilcutil2FCondition20Variable20Interface.html" >Condition Variable Interface</a>
 <li class="toc_entries"><a href="./silcconfig_hsilcutil2FConfig20File20Interface.html" >Config File Interface</a>
 <li class="toc_entries"><a href="./silcdir_hsilcutil2FDirectory20Interface.html" >Directory Interface</a>
@@ -81,6 +82,7 @@ of the Toolkit always delivers the latest version of this reference manual.
 <li class="toc_entries"><a href="./silcutil_hsilcutil2FMisc20Utilities.html" >Misc Utilities</a>
 <li class="toc_entries"><a href="./silcmutex_hsilcutil2FMutex20Interface.html" >Mutex Interface</a>
 <li class="toc_entries"><a href="./silcnet_hsilcutil2FNetwork20Interface.html" >Network Interface</a>
+<li class="toc_entries"><a href="./silclocalnetstream_hsilcutil2FLocal20Network20Stream20Interface.html" >Local Network Stream Interface</a>
 <li class="toc_entries"><a href="./silcrand_hsilcutil2FRandom20Number20Interface.html" >Random Number Interface</a>
 <li class="toc_entries"><a href="./silcregex_hsilcutil2FRegex20Interface.html" >Regex Interface</a>
 <li class="toc_entries"><a href="./silcschedule_hsilcutil2FScheduler20Interface.html" >Scheduler Interface</a>
@@ -96,6 +98,9 @@ of the Toolkit always delivers the latest version of this reference manual.
 <li class="toc_entries"><a href="./silctimer_hsilcutil2FTimer20Interface.html" >Timer Interface</a>
 <li class="toc_entries"><a href="./silctypes_hsilcutil2FTypes20and20Definitions.html" >Types and Definitions</a>
 <li class="toc_entries"><a href="./silcutf8_hsilcutil2FUTF2D820Interface.html" >UTF-8 Interface</a>
+<li class="toc_entries"><a href="./silcxml_hsilcutil2FXML20Interface.html" >XML Interface</a>
+<li class="toc_entries"><a href="./silchttpserver_hsilchttp2FHTTP20Server20Interface.html" >HTTP Server Interface</a>
+<li class="toc_entries"><a href="./silchttpphp_hsilchttp2FHTTP20PHP20Translator.html" >HTTP PHP Translator</a>
 
 <li class="toc_entries"><a href="masterindex.html">Toolkit Index</a><br />
 </ul>

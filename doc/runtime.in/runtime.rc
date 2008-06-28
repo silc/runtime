@@ -1,11 +1,10 @@
 options:
-	--src ../../lib/silcutil
+	--src ../../lib/
 	--doc .
 	--html
 	--sectionnameonly
 	--syntaxcolors
 	--nopre
-	--nodesc
 	--no_subdirectories
 	--index
 	--documenttitle "SILC Runtime Toolkit"

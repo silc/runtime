@@ -262,7 +262,7 @@ typedef float SilcFloat32;
  *    64-bit floating point number.
  *
  ***/
-typedef double SilcFloat64
+typedef double SilcFloat64;
 
 #if SILC_SIZEOF_VOID_P < 4
 typedef SilcUInt32 * void *;

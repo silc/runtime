@@ -590,7 +590,7 @@ void silc_net_gethostbyname_async(const char *name,
  *   SilcBool silc_net_gethostbyaddr(const char *addr, char *name,
  *                                   SilcUInt32 name_len);
  *
-x * DESCRIPTION
+ * DESCRIPTION
  *
  *    Resolves the hostname for the IP address indicated by the `addr'
  *    This returns TRUE and the resolved hostname to the `name' buffer,

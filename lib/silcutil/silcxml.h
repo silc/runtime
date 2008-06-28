@@ -125,6 +125,7 @@ typedef struct SilcXMLParamsObject {
   /* Do not process XML namespaces. */
   SilcBool no_namespace;
 } *SilcXMLParams, SilcXMLParamsStruct;
+/***/
 
 /****f* silcutil/silc_xml_parser_create
  *
@@ -221,7 +222,7 @@ const char *silc_xml_get_attribute(SilcXMLParser parser,
 				   SilcHashTable attributes,
 				   const char *name);
 
-/****f* silcutil/silc_xml_get_attribute
+/****f* silcutil/silc_xml_current_location
  *
  * SYNOPSIS
  *
