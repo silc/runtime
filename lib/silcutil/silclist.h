@@ -394,4 +394,64 @@ void *__silc_list_pop(SilcList *list)
   return head;
 }
 
+/****f* silcutil/silc_list_sort
+ *
+ * SYNOPSIS
+ *
+ *    void silc_list_sort(SilcList *list,
+ *                        int (*compare)(void *entry1, void *entry2,
+ *                                       void *context), void *context);
+ *
+ * DESCRIPTION
+ *
+ *    Sort the list.  The `compare' function will be called with `context'
+ *    to do comparison between the entries.  The `compare' must return
+ *    less than, equal to, or greater than zero if the first argument is
+ *    considered to be respectively less than, equal to, or greater than
+ *    the second.  The entries are then sorted in ascending order.
+ *
+ * NOTES
+ *
+ *    The list must be initialized with silc_list_init_prev for sorting
+ *    to work.
+ *
+ ***/
+#define silc_list_sort(x, comp, ctx) __silc_list_sort(&(x), comp, ctx)
+static inline
+void __silc_list_sort(SilcList *list,
+		      int (*compare)(void *entry1, void *entry2,
+				     void *context), void *context)
+{
+  void *c_cur, *c_prev;
+
+  SILC_ASSERT(list->prev_set);
+  if (!list->prev_set)
+    return;
+
+  if (silc_list_count(*list) < 2)
+    return;
+
+  /* Gnome sort */
+  silc_list_start(*list);
+  c_prev = silc_list_get(*list);
+  while ((c_cur = silc_list_get(*list))) {
+    if (compare(c_prev, c_cur, context) > 0) {
+      list->current = *__silc_list_prev(*list, c_prev);
+      silc_list_del(*list, c_prev);
+      silc_list_insert(*list, c_cur, c_prev);
+
+      if (list->current) {
+        c_prev = list->current;
+        list->current = c_cur;
+        continue;
+      }
+      list->current = c_cur;
+      silc_list_get(*list);
+    }
+    c_prev = c_cur;
+  }
+
+  list->current = NULL;
+}
+
 #endif /* SILCLIST_H */

@@ -8,11 +8,21 @@ struct foo {
   struct foo *prev;
 };
 
+static int compare(void *e1, void *e2, void *context)
+{
+  struct foo *ee1 = e1, *ee2 = e2;
+  SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", ee1->i, ee1, ee1->next,
+		   ee1->prev));
+  SILC_LOG_DEBUG(("> entry %d, %p, next=%p, prev=%p", ee2->i, ee2, ee2->next,
+		   ee2->prev));
+  return ee1->i - ee2->i;
+}
+
 int main(int argc, char **argv)
 {
   SilcBool success = FALSE;
   SilcList list;
-  struct foo *f, *f1, *f2, *f3, *f4;
+  struct foo *f, *f1, *f2, *f3, *f4, *f5, *f6, *f7;
 
   if (argc > 1 && !strcmp(argv[1], "-d")) {
     silc_log_debug(TRUE);
@@ -37,6 +47,18 @@ int main(int argc, char **argv)
   if (!f4)
     goto err;
   f4->i = 4;
+  f5 = silc_calloc(1, sizeof(*f4));
+  if (!f5)
+    goto err;
+  f5->i = 5;
+  f6 = silc_calloc(1, sizeof(*f4));
+  if (!f6)
+    goto err;
+  f6->i = 6;
+  f7 = silc_calloc(1, sizeof(*f4));
+  if (!f7)
+    goto err;
+  f7->i = 7;
 
   SILC_LOG_DEBUG(("Add one entry"));
   silc_list_add(list, f1);
@@ -161,6 +183,31 @@ int main(int argc, char **argv)
   }
   if (silc_list_count(list))
     goto err;
+
+  /* Sort */
+  silc_list_init_prev(list, struct foo, next, prev);
+  silc_list_add(list, f2);
+  silc_list_add(list, f7);
+  silc_list_add(list, f4);
+  silc_list_add(list, f6);
+  silc_list_add(list, f5);
+  silc_list_add(list, f1);
+  silc_list_add(list, f3);
+
+  SILC_LOG_DEBUG(("Unsorted list"));
+  silc_list_start(list);
+  while ((f = silc_list_get(list)) != SILC_LIST_END)
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
+		   f->prev));
+
+  SILC_LOG_DEBUG(("Sorting"));  
+  silc_list_sort(list, compare, NULL);
+
+  SILC_LOG_DEBUG(("Sorted list"));
+  silc_list_start(list);
+  while ((f = silc_list_get(list)) != SILC_LIST_END)
+    SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
+		   f->prev));
 
   success = TRUE;
 
