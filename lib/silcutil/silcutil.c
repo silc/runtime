@@ -106,8 +106,10 @@ int silc_parse_userfqdn(const char *string,
     return 0;
   }
 
-  memset(user, 0, user_size);
-  memset(fqdn, 0, fqdn_size);
+  if (user)
+    memset(user, 0, user_size);
+  if (fqdn)
+    memset(fqdn, 0, fqdn_size);
 
   if (!string) {
     silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
