@@ -208,6 +208,7 @@ extern "C" {
 #include <silcmemory.h>
 #include <silclist.h>
 #include <silcdlist.h>
+#include <silctree.h>
 #include <silcsnprintf.h>
 #include <silctime.h>
 #include <silctimer.h>

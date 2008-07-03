@@ -75,6 +75,7 @@ of the Toolkit always delivers the latest version of this reference manual.
 <li class="toc_entries"><a href="./silcglobal_hsilcutil2FGlobal20Variable20Interface.html" >Global Variable Interface</a>
 <li class="toc_entries"><a href="./silchashtable_hsilcutil2FHash20Table20Interface.html" >Hash Table Interface</a>
 <li class="toc_entries"><a href="./silclist_hsilcutil2FList20Interface.html" >List Interface</a>
+<li class="toc_entries"><a href="./silctree_hsilcutil2FBinary20Search20Tree20Interface.html" >Binary Search Tree Interface</a>
 <li class="toc_entries"><a href="./silclog_hsilcutil2FLogging20Interface.html" >Logging Interface</a>
 <li class="toc_entries"><a href="./silcmemory_hsilcutil2FMemory20Interface.html" >Memory Interface</a>
 <li class="toc_entries"><a href="./silcstack_hsilcutil2FMemory20Pool20Interface.html" >Memory Pool Interface</a>
