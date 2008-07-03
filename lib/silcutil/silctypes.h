@@ -358,6 +358,32 @@ typedef SilcUInt32 SilcParam;
 		    | ((SilcUInt32)(SilcUInt8)(cp)[3])
 #endif /* (SILC_I486 || SILC_X86_64) && __GNUC__ */
 
+/****d* silcutil/SILC_MAX
+ *
+ * NAME
+ *
+ *    #define SILC_MAX(a, b)
+ *
+ * DESCRIPTION
+ *
+ *    Return `a' if it is bigger than `b', otherwise return `b'.
+ *
+ ***/
+#define SILC_MAX(a, b) ((a) > (b) ? (a) : (b))
+
+/****d* silcutil/SILC_MIN
+ *
+ * NAME
+ *
+ *    #define SILC_MIN(a, b)
+ *
+ * DESCRIPTION
+ *
+ *    Return `a' if it is smaller than `b', otherwise return `b'.
+ *
+ ***/
+#define SILC_MIN(a, b) ((a) < (b) ? (a) : (b))
+
 /****d* silcutil/SILC_GET16_MSB
  *
  * NAME
