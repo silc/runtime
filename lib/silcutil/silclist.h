@@ -398,17 +398,17 @@ void *__silc_list_pop(SilcList *list)
  *
  * SYNOPSIS
  *
- *    void silc_list_sort(SilcList *list,
- *                        int (*compare)(void *entry1, void *entry2,
- *                                       void *context), void *context);
+ *    void silc_list_sort(SilcList list, SilcCompare compare, context);
  *
  * DESCRIPTION
  *
  *    Sort the list.  The `compare' function will be called with `context'
  *    to do comparison between the entries.  The `compare' must return
- *    less than, equal to, or greater than zero if the first argument is
- *    considered to be respectively less than, equal to, or greater than
- *    the second.  The entries are then sorted in ascending order.
+ *    SILC_COMPARE_LESS_THAN, SILC_COMPARE_EQUAL_TO, or
+ *    SILC_COMPARE_GREATER_THAN zero if the first argument is considered to
+ *    be respectively less than, equal to, or greater than the second.
+ *    The entries are then sorted in ascending order.  The function must not
+ *    return SILC_COMPARE_STOP.
  *
  * NOTES
  *
@@ -418,9 +418,7 @@ void *__silc_list_pop(SilcList *list)
  ***/
 #define silc_list_sort(x, comp, ctx) __silc_list_sort(&(x), comp, ctx)
 static inline
-void __silc_list_sort(SilcList *list,
-		      int (*compare)(void *entry1, void *entry2,
-				     void *context), void *context)
+void __silc_list_sort(SilcList *list, SilcCompare compare, void *context)
 {
   void *c_cur, *c_prev;
 
@@ -435,7 +433,7 @@ void __silc_list_sort(SilcList *list,
   silc_list_start(*list);
   c_prev = silc_list_get(*list);
   while ((c_cur = silc_list_get(*list))) {
-    if (compare(c_prev, c_cur, context) > 0) {
+    if (compare(c_prev, c_cur, context) == SILC_COMPARE_GREATER_THAN) {
       list->current = *__silc_list_prev(*list, c_prev);
       silc_list_del(*list, c_prev);
       silc_list_insert(*list, c_cur, c_prev);
@@ -446,12 +444,54 @@ void __silc_list_sort(SilcList *list,
         continue;
       }
       list->current = c_cur;
-      silc_list_get(*list);
+      __silc_list_get(list);
     }
     c_prev = c_cur;
   }
 
   list->current = NULL;
+}
+
+/****f* silcutil/silc_list_find
+ *
+ * SYNOPSIS
+ *
+ *    void *silc_list_find(SilcList list, void *entry1, SilcCompare compare,
+ *                         void *context);
+ *
+ * DESCRIPTION
+ *
+ *    Find an entry from the `list'.  The `compare' function will be called
+ *    with `context' to do comparison between the entries.  If `compare'
+ *    returns 0 the `entry1' is considered to be equal to `entry2' and the
+ *    found entry is returned.  Returns NULL if the entry could not be found.
+ *
+ *    The silc_list_start or silc_list_end must be called before calling this
+ *    if the finding should be started from the beginning or from the end.
+ *    Calling it however is not required.  The founding can be started at
+ *    any point of the list.  The silc_list_find can be called many times
+ *    to find more entries following the previously found entries.
+ *
+ *    The list can be enumerated by calling silc_list_get after the found
+ *    entry.  The silc_list_get will return the next entry after the found
+ *    entry.
+ *
+ ***/
+#define silc_list_find(x, e, comp, ctx) __silc_list_find(&(x), (e), comp, ctx)
+static inline
+void *__silc_list_find(SilcList *list, void *entry1, SilcCompare compare,
+		       void *context)
+{
+  void *entry2;
+  int ret;
+  while ((entry2 = __silc_list_get(list))) {
+    ret = compare(entry1, entry2, context);
+    if (ret == SILC_COMPARE_EQUAL_TO)
+      return entry2;
+    if (ret == SILC_COMPARE_STOP)
+      break;
+  }
+  return NULL;
 }
 
 #endif /* SILCLIST_H */
