@@ -71,23 +71,6 @@ typedef struct SilcTreeStruct SilcTree;
  ***/
 typedef struct SilcTreeHeaderStruct SilcTreeHeader;
 
-/****f* silcutil/SilcTreeCompare
- *
- * SYNOPSIS
- *
- *    typedef int (*SilcTreeCompare)(void *entry1, void *entry2,
- *                                   void *context);
- *
- * DESCRIPTION
- *
- *    Callback function of this type is called to compare values in the
- *    tree.  If the `entry1' is smaller, equal to or greater than `entry2'
- *    this function must return less than, equal to, or greater than zero,
- *    respectively.
- *
- ***/
-typedef int (*SilcTreeCompare)(void *entry1, void *entry2, void *context);
-
 /****d* silcutil/SilcTreeType
  *
  * NAME
@@ -117,7 +100,7 @@ extern DLLAPI const struct SilcTreeOpsStruct silc_tree_avl_ops;
  * SYNOPSIS
  *
  *    SilcBool silc_tree_init(SilcTree tree, SilcTreeType type,
- *                            SilcTreeCompare compare, void *context,
+ *                            SilcCompare compare, void *context,
  *                            SilcUInt16 offset, SilcBool duplicates);
  *
  * DESCRIPTION
@@ -161,7 +144,7 @@ extern DLLAPI const struct SilcTreeOpsStruct silc_tree_avl_ops;
   __silc_tree_init(&(tree), type, compare, context, offset, d)
 static inline
 SilcBool __silc_tree_init(SilcTree *tree,
-			  SilcTreeType type, SilcTreeCompare compare,
+			  SilcTreeType type, SilcCompare compare,
 			  void *context, SilcUInt32 offset,
 			  SilcBool duplicates)
 {
@@ -194,7 +177,7 @@ SilcBool __silc_tree_init(SilcTree *tree,
  * DESCRIPTION
  *
  *    Add `entry' to the `tree'.  Returns TRUE after the entry has been
- *    added to the tree.  If the `tree' does not allocate duplicate entries
+ *    added to the tree.  If the `tree' does not allow duplicate entries
  *    this will return FALSE if same value as `entry' is already in the
  *    tree.
  *
@@ -278,7 +261,7 @@ SilcBool __silc_tree_init(SilcTree *tree,
  * SYNOPSIS
  *
  *    void *silc_tree_find_ext(SilcTree *tree, void *entry,
- *                             SilcTreeCompare compare, void *context);
+ *                             SilcCompare compare, void *context);
  *
  * DESCRIPTION
  *

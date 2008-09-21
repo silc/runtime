@@ -142,10 +142,10 @@ static int silc_avl_tree_rot_right(SilcTree *tree, SilcTreeHeader *h)
 /* Find entry */
 
 void *silc_avl_tree_find(SilcTree *tree, void *entry,
-			 SilcTreeCompare compare, void *context)
+			 SilcCompare compare, void *context)
 {
   SilcTreeHeader *h;
-  SilcTreeCompare cmp = compare ? compare : tree->compare;
+  SilcCompare cmp = compare ? compare : tree->compare;
   void *cmp_context = compare ? context : tree->context;
   int ret;
 
@@ -154,10 +154,12 @@ void *silc_avl_tree_find(SilcTree *tree, void *entry,
   h = tree->root;
   while (h) {
     ret = cmp(entry, SILC_TREE_GET_ENTRY(tree, h), cmp_context);
-    if (!ret) {
+    if (ret == SILC_COMPARE_EQUAL_TO) {
       SILC_LOG_DEBUG(("Found %p", SILC_TREE_GET_ENTRY(tree, h)));
       return SILC_TREE_GET_ENTRY(tree, h);
     }
+    if (ret == SILC_COMPARE_STOP)
+      return NULL;
     h = ret > 0 ? h->right : h->left;
   }
 
@@ -199,13 +201,13 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
     }
 
     ret = tree->compare(entry, SILC_TREE_GET_ENTRY(tree, h), tree->context);
-    if (!tree->duplicates && ret == 0) {
+    if (!tree->duplicates && ret == SILC_COMPARE_EQUAL_TO) {
       silc_set_errno(SILC_ERR_ALREADY_EXISTS);
       return FALSE;
     }
 
     /* Duplicate entry, add to list */
-    if (ret == 0) {
+    if (ret == SILC_COMPARE_EQUAL_TO) {
       q = SILC_TREE_GET_HEADER(tree, entry);
       q->duplicate = TRUE;
       q->parent = h;
