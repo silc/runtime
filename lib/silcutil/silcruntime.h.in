@@ -109,6 +109,7 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #if defined(HAVE_RUNTIMEDEFS_H)
 

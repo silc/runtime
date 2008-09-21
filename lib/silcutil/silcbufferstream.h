@@ -32,6 +32,9 @@
  * Packet API which would be more desriptive name but that API name is already
  * used by another SILC distribution.
  *
+ * Buffer stream is not thread-safe.  If the same buffer stream must be
+ * used in multithreaded environment concurrency control must be employed.
+ *
  ***/
 
 #ifndef SILCBUFFERSTREAM_H
