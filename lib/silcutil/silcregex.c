@@ -2411,6 +2411,7 @@ SilcBool silc_regex_va(const char *string, SilcUInt32 string_len,
       silc_regex_free(&reg);
       return FALSE;
     }
+    silc_buffer_set(match, NULL, 0);
     rets[c++] = match;
 
     while ((buf = va_arg(va, SilcBuffer))) {
@@ -2421,6 +2422,7 @@ SilcBool silc_regex_va(const char *string, SilcUInt32 string_len,
 	silc_regex_free(&reg);
 	return FALSE;
       }
+      silc_buffer_set(buf, NULL, 0);
       rets[c++] = buf;
     }
 
@@ -2444,10 +2446,8 @@ SilcBool silc_regex_va(const char *string, SilcUInt32 string_len,
 
   /* Return matches */
   for (i = 0; i < c; i++) {
-    if (m[i].start == -1) {
-      silc_buffer_set(rets[i], NULL, 0);
+    if (m[i].start == -1)
       continue;
-    }
     silc_buffer_set(rets[i], (unsigned char *)string + m[i].start,
 		    m[i].end - m[i].start);
   }
