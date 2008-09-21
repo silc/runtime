@@ -341,6 +341,44 @@ typedef SilcUInt32 SilcParam;
 #define SILC_PARAM_ALLOC         0x00010000     /* Allocate, bitmask */
 #define SILC_PARAM_REPLACE       0x00020000	/* Replace, bitmask */
 
+/****d* silcutil/SilcCompareValue
+ *
+ * NAME
+ *
+ *    typedef enum { ... } SilcCompareValue
+ *
+ * DESCRIPTION
+ *
+ *    Values that can be returned by the SilcCompare function.  Note that
+ *    not all routines may respect all of the return values.
+ *
+ * SOURCE
+ */
+typedef enum {
+  SILC_COMPARE_LESS_THAN_EQUAL_TO    = -2,  /* Value 1 <= value 2 */
+  SILC_COMPARE_LESS_THAN             = -1,  /* Value 1 < value 2 */
+  SILC_COMPARE_EQUAL_TO              = 0,   /* Value 1 == value 2 */
+  SILC_COMPARE_GREATER_THAN          = 1,   /* Value 1 > value 2 */
+  SILC_COMPARE_GREATER_THAN_EQUAL_TO = 2,   /* Value 1 >= value 2 */
+  SILC_COMPARE_STOP                  = 3,   /* Stop comparison */
+} SilcCompareValue;
+/***/
+
+/****f* silcutil/SilcCompare
+ *
+ * SYNOPSIS
+ *
+ *    typedef SilcCompareValue (*SilcCompare)(void *value1, void *value2,
+ *                                            void *context);
+ *
+ * DESCRIPTION
+ *
+ *   A comparison function used by many routines in SILC Runtime Toolkit.
+ *
+ ***/
+typedef SilcCompareValue (*SilcCompare)(void *value1, void *value2,
+					void *context);
+
 /* Macros */
 
 #if (defined(SILC_I486) || defined(SILC_X86_64)) && defined(__GNUC__)

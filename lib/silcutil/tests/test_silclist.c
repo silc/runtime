@@ -8,14 +8,18 @@ struct foo {
   struct foo *prev;
 };
 
-static int compare(void *e1, void *e2, void *context)
+static SilcCompareValue compare(void *e1, void *e2, void *context)
 {
   struct foo *ee1 = e1, *ee2 = e2;
   SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", ee1->i, ee1, ee1->next,
 		   ee1->prev));
   SILC_LOG_DEBUG(("> entry %d, %p, next=%p, prev=%p", ee2->i, ee2, ee2->next,
 		   ee2->prev));
-  return ee1->i - ee2->i;
+  if (ee1->i > ee2->i)
+    return SILC_COMPARE_GREATER_THAN;
+  if (ee1->i < ee2->i)
+    return SILC_COMPARE_LESS_THAN;
+  return SILC_COMPARE_EQUAL_TO;
 }
 
 int main(int argc, char **argv)
@@ -200,7 +204,7 @@ int main(int argc, char **argv)
     SILC_LOG_DEBUG(("entry %d, %p, next=%p, prev=%p", f->i, f, f->next,
 		   f->prev));
 
-  SILC_LOG_DEBUG(("Sorting"));  
+  SILC_LOG_DEBUG(("Sorting"));
   silc_list_sort(list, compare, NULL);
 
   SILC_LOG_DEBUG(("Sorted list"));
