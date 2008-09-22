@@ -1574,7 +1574,8 @@ SilcBool silc_buffer_memcmp(SilcBuffer buffer, const unsigned char *data,
 static inline
 void silc_buffer_printf(SilcBuffer sb, SilcBool newline)
 {
-  silc_file_write(1, silc_buffer_data(sb), silc_buffer_len(sb));
+  silc_file_write(1, (const char *)silc_buffer_data(sb),
+		  silc_buffer_len(sb));
   if (newline)
     printf("\n");
   fflush(stdout);
