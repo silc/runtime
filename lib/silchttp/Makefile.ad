@@ -23,13 +23,11 @@ libsilchttp_la_SOURCES = 	\
 	silchttpserver.c	\
 	silchttpphp.c
 
-#ifdef SILC_DIST_TOOLKIT
 include_HEADERS =		\
 	silchttpserver.h	\
 	silchttpphp.h
 
 SILC_EXTRA_DIST = tests
-#endif SILC_DIST_TOOLKIT
 
 EXTRA_DIST = *.h $(SILC_EXTRA_DIST)
 
