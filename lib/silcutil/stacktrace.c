@@ -36,6 +36,10 @@
      By setting SILC_MALLOC_DUMP the memory is dummped to help and see
      what it contains.
 
+   o Can detect if the memory is read or written out of bounds (overflow)
+     and abort immediately the with the backtrace when the illegal access
+     occurs.  This can be enabled by using SILC_MALLOC_PROTECT.
+
    The following environment variables can be used:
 
    SILC_MALLOC_NO_FREE
@@ -51,6 +55,13 @@
      When set to value 1, in case of fatal error, dumps the memory location,
      if possible.  This can help see what the memory contains.
 
+   SILC_MALLOC_PROTECT
+
+     When set to value 1 each allocation will have an inaccesible memory
+     page following the allocated memory area.  This will detect if the
+     the memory is accessed (read or write) beyond its boundaries.  This
+     will help to identify the place where illegal memory access occurs.
+
    To work correctly this of course expects that code uses SILC memory
    allocation and access routines.
 
@@ -60,14 +71,17 @@
 
 #ifdef SILC_STACKTRACE
 #include <execinfo.h>
+#include <signal.h>
+#include <malloc.h>
+#include <sys/mman.h>
 
 static void *st_blocks = NULL;
 static unsigned long st_blocks_count = 0;
 static unsigned long st_num_malloc = 0;
 static SilcBool dump = FALSE;
-static SilcBool malloc_check = FALSE;
 static SilcBool no_free = FALSE;
 static SilcBool dump_mem = FALSE;
+static SilcUInt32 pg = 0;
 static SilcMutex lock = NULL;
 
 #ifdef SILC_DEBUG
@@ -100,6 +114,16 @@ typedef struct SilcStBlockStruct {
 			    sizeof(struct SilcStBlockStruct))
 #define SILC_ST_GET_BOUND(p, size) (SilcUInt32 *)(((unsigned char *)p) + \
 				    SILC_ST_GET_SIZE(size) - 4)
+
+#define SILC_ST_ALIGN(bytes, align) (((bytes) + (align - 1)) & ~(align - 1))
+#define SILC_ST_GET_SIZE_ALIGN(size, align) \
+  SILC_ST_ALIGN(SILC_ST_GET_SIZE(size) - 4, align)
+#define SILC_ST_GET_PTR_ALIGN(stack, align)				  \
+  (((unsigned char *)stack) - (SILC_ST_GET_SIZE_ALIGN(stack->size, pg) -  \
+			       SILC_ST_GET_SIZE(stack->size)) - 4)
+#define SILC_ST_GET_STACK_ALIGN(p, size, align)				    \
+  ((SilcStBlock)(((unsigned char *)p) + (SILC_ST_GET_SIZE_ALIGN(size, pg) - \
+					 SILC_ST_GET_SIZE(size)) + 4))
 
 void silc_st_abort(SilcStBlock stack, const char *file, int line,
 		   char *fmt, ...)
@@ -164,45 +188,98 @@ void silc_st_abort(SilcStBlock stack, const char *file, int line,
   abort();
 }
 
-void silc_st_stacktrace(SilcStBlock stack)
+void silc_st_sigsegv(int sig, siginfo_t *si, void *context)
 {
-  if (!dump) {
-    atexit(silc_st_dump);
-    dump = TRUE;
+  SilcStBlock orig, stack = (SilcStBlock)si->si_addr;
+
+  /* Make the page accessible again */
+  mprotect(si->si_addr, pg, PROT_READ | PROT_WRITE);
+
+  /* Get the original page from the violated page */
+  orig = (SilcStBlock)(((unsigned char *)si->si_addr) -
+			SILC_ST_GET_SIZE_ALIGN(stack->size, pg));
+  stack = SILC_ST_GET_STACK_ALIGN(orig, stack->size, pg);
+
+  silc_st_abort(stack, __FILE__, __LINE__,
+		"SILC_MALLOC: access violation (overflow)\n");
+}
+
+void silc_st_stacktrace_init(void)
+{
+  const char *var;
+
+  atexit(silc_st_dump);
+  dump = TRUE;
+
+  var = silc_getenv("SILC_MALLOC_NO_FREE");
+  if (var && *var == '1')
+    no_free = TRUE;
+
+  var = silc_getenv("SILC_MALLOC_DUMP");
+  if (var && *var == '1')
+    dump_mem = TRUE;
+
+  var = silc_getenv("SILC_MALLOC_PROTECT");
+  if (var && *var == '1') {
+    struct sigaction sa;
+
+    sa.sa_flags = SA_SIGINFO;
+    sa.sa_sigaction = silc_st_sigsegv;
+    sigemptyset(&sa.sa_mask);
+    sigaction(SIGSEGV, &sa, NULL);
+
+#if defined(_SC_PAGESIZE)
+    pg = sysconf(_SC_PAGESIZE);
+#elif defined(_SC_PAGE_SIZE)
+    pg = sysconf(_SC_PAGE_SIZE);
+#else
+    pg = getpagesize();
+#endif /* _SC_PAGESIZE */
   }
 
-  if (!malloc_check) {
-    const char *var;
+  /* Linux libc malloc check */
+  silc_setenv("MALLOC_CHECK_", "3");
 
-    var = silc_getenv("SILC_MALLOC_NO_FREE");
-    if (var && *var == '1')
-      no_free = TRUE;
+  /* NetBSD malloc check */
+  silc_setenv("MALLOC_OPTIONS", "AJ");
 
-    var = silc_getenv("SILC_MALLOC_DUMP");
-    if (var && *var == '1')
-      dump_mem = TRUE;
-
-    /* Linux libc malloc check */
-    silc_setenv("MALLOC_CHECK_", "3");
-
-    /* NetBSD malloc check */
-    silc_setenv("MALLOC_OPTIONS", "AJ");
-
-    malloc_check = TRUE;
-
-    silc_mutex_alloc(&lock);
-  }
-
-  /* Get backtrace */
-  stack->depth = backtrace(stack->stack, SILC_ST_DEPTH);
+  silc_mutex_alloc(&lock);
 }
 
 void *silc_st_malloc(size_t size, const char *file, int line)
 {
-  SilcStBlock stack = (SilcStBlock)malloc(SILC_ST_GET_SIZE(size));
+  SilcStBlock stack;
 
-  if (!stack)
-    return NULL;
+  if (silc_unlikely(!dump))
+    silc_st_stacktrace_init();
+
+  if (pg) {
+    unsigned char *ptr;
+
+    if (posix_memalign((void *)&ptr, pg,
+		       SILC_ST_GET_SIZE_ALIGN(size, pg) + pg))
+      return NULL;
+
+    /* The inaccessible page too will include the allocation information
+       so that we can get it when access violation occurs in that page. */
+    stack = (SilcStBlock)(ptr + SILC_ST_GET_SIZE_ALIGN(size, pg));
+    stack->size = size;
+
+    /* Protect the page */
+    if (mprotect(stack, pg, PROT_NONE))
+      silc_st_abort(NULL, file, line, "SILC_MALLOC: mprotect() error: %s\n",
+		    errno == ENOMEM ? "Cannot allocate memory. \nYour program "
+		    "leaks memory, allocates too much or system \n"
+		    "is out of memory.  The SILC_MALLOC_PROTECT cannot "
+		    "be used." : strerror(errno));
+
+    /* Get the accessible page */
+    stack = SILC_ST_GET_STACK_ALIGN(ptr, size, pg);
+  } else {
+    stack = (SilcStBlock)malloc(SILC_ST_GET_SIZE(size));
+    if (!stack)
+      return NULL;
+  }
 
   stack->dumpped = 0;
   stack->file = file;
@@ -210,7 +287,7 @@ void *silc_st_malloc(size_t size, const char *file, int line)
   stack->line = line;
   stack->size = size;
   stack->bound = SILC_ST_TOP_BOUND;
-  silc_st_stacktrace(stack);
+  stack->depth = backtrace(stack->stack, SILC_ST_DEPTH);
 
   silc_mutex_lock(lock);
 
@@ -224,7 +301,8 @@ void *silc_st_malloc(size_t size, const char *file, int line)
 
   silc_mutex_unlock(lock);
 
-  *SILC_ST_GET_BOUND(stack, size) = SILC_ST_BOTTOM_BOUND;
+  if (!pg)
+    *SILC_ST_GET_BOUND(stack, size) = SILC_ST_BOTTOM_BOUND;
 
   return SILC_ST_GET_PTR(stack);
 }
@@ -232,7 +310,8 @@ void *silc_st_malloc(size_t size, const char *file, int line)
 void *silc_st_calloc(size_t items, size_t size, const char *file, int line)
 {
   void *addr = (void *)silc_st_malloc(items * size, file, line);
-  memset(addr, 0, items * size);
+  if (addr)
+    memset(addr, 0, items * size);
   return addr;
 }
 
@@ -244,7 +323,7 @@ void *silc_st_realloc(void *ptr, size_t size, const char *file, int line)
     return silc_st_malloc(size, file, line);
 
   stack = SILC_ST_GET_STACK(ptr);
-  if (stack->size >= size) {
+  if (!pg && stack->size >= size) {
     /* Must update footer when the size changes */
     if (stack->size != size)
       *SILC_ST_GET_BOUND(stack, size) = SILC_ST_BOTTOM_BOUND;
@@ -253,8 +332,10 @@ void *silc_st_realloc(void *ptr, size_t size, const char *file, int line)
     return ptr;
   } else {
     void *addr = (void *)silc_st_malloc(size, file, line);
-    memcpy(addr, ptr, stack->size);
-    silc_st_free(ptr, file, line);
+    if (addr) {
+      memcpy(addr, ptr, size > stack->size ? stack->size : size);
+      silc_st_free(ptr, file, line);
+    }
     return addr;
   }
 }
@@ -285,17 +366,19 @@ void silc_st_free(void *ptr, const char *file, int line)
     silc_st_abort(NULL, file, line,
 		  "SILC_MALLOC: %p was never allocated\n", stack);
 
-  /* Check for underflow */
-  if (stack->bound != SILC_ST_TOP_BOUND)
-    silc_st_abort(stack, file, line,
-		  "SILC_MALLOC: %p was written out of bounds (underflow)\n",
-		  stack);
+  if (!pg) {
+    /* Check for underflow */
+    if (stack->bound != SILC_ST_TOP_BOUND)
+      silc_st_abort(stack, file, line,
+		    "SILC_MALLOC: %p was written out of bounds (underflow)\n",
+		    stack);
 
-  /* Check for overflow */
-  if (*SILC_ST_GET_BOUND(stack, stack->size) != SILC_ST_BOTTOM_BOUND)
-    silc_st_abort(stack, file, line,
-		  "SILC_MALLOC: %p was written out of bounds (overflow)\n",
-		  stack);
+    /* Check for overflow */
+    if (*SILC_ST_GET_BOUND(stack, stack->size) != SILC_ST_BOTTOM_BOUND)
+      silc_st_abort(stack, file, line,
+		    "SILC_MALLOC: %p was written out of bounds (overflow)\n",
+		    stack);
+  }
 
   if (stack->next)
     stack->next->prev = stack->prev;
@@ -316,16 +399,25 @@ void silc_st_free(void *ptr, const char *file, int line)
     return;
   }
 
-  memset(stack, 0x47, SILC_ST_GET_SIZE(stack->size));
-
-  free(stack);
+  if (pg) {
+    ptr = SILC_ST_GET_PTR_ALIGN(stack, pg);
+    mprotect(ptr + SILC_ST_GET_SIZE_ALIGN(stack->size, pg), pg,
+	     PROT_READ | PROT_WRITE);
+    memset(ptr, 0x47, SILC_ST_GET_SIZE_ALIGN(stack->size, pg));
+    free(ptr);
+  } else {
+    memset(stack, 0x47, SILC_ST_GET_SIZE(stack->size));
+    free(stack);
+  }
 }
 
 void *silc_st_memdup(const void *ptr, size_t size, const char *file, int line)
 {
   unsigned char *addr = (unsigned char *)silc_st_malloc(size + 1, file, line);
-  memcpy((void *)addr, ptr, size);
-  addr[size] = '\0';
+  if (addr) {
+    memcpy((void *)addr, ptr, size);
+    addr[size] = '\0';
+  }
   return (void *)addr;
 }
 

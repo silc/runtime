@@ -47,7 +47,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
   silc_mime_free(mime);
   SILC_LOG_DEBUG(("Decoding MIME message"));
   mime = silc_mime_decode(NULL, enc, enc_len);
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Re-encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Re-encoded MIME message"), enc, enc_len);
   silc_free(enc);
   silc_mime_free(mime);
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
   silc_mime_free(mime);
   SILC_LOG_DEBUG(("Decoding MIME message"));
   mime = silc_mime_decode(NULL, enc, enc_len);
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_HEXDUMP(("Re-encoded MIME message:"), enc, enc_len);
+  SILC_LOG_HEXDUMP(("Re-encoded MIME message"), enc, enc_len);
   silc_free(enc);
   silc_mime_free(mime);
 
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
   silc_mime_free(mime);
   SILC_LOG_DEBUG(("Decoding MIME message"));
   mime = silc_mime_decode(NULL, enc, enc_len);
@@ -194,7 +194,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Re-encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Re-encoded MIME message"), enc, enc_len);
   silc_free(enc);
   SILC_LOG_DEBUG(("Get multiparts"));
   frag = silc_mime_get_multiparts(mime, &mtype);
@@ -209,7 +209,7 @@ int main(int argc, char **argv)
 	 goto err;
     if (silc_mime_is_multipart(part))
 	 SILC_LOG_DEBUG(("Is multipart"));
-    SILC_LOG_DEBUG(("Encoded MIME part: \n%s", enc));
+    SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
     silc_free(enc);
   }
   silc_mime_free(mime);
@@ -243,7 +243,7 @@ int main(int argc, char **argv)
   enc = silc_mime_encode(mime, &enc_len);
   if (!enc)
     goto err;
-  SILC_LOG_DEBUG(("Encoded MIME message: \n%s", enc));
+  SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
   silc_free(enc);
   SILC_LOG_DEBUG(("Fragment MIME message in 100 byte chunks"));
   frag = silc_mime_encode_partial(mime, 100);
@@ -251,7 +251,8 @@ int main(int argc, char **argv)
     goto err;
   silc_dlist_start(frag);
   while ((buf = silc_dlist_get(frag)) != SILC_LIST_END)
-    SILC_LOG_DEBUG(("Fragment \n%s", buf->data, silc_buffer_len(buf)));
+    SILC_LOG_HEXDUMP(("Fragment %d", silc_buffer_len(buf)), buf->data,
+		     silc_buffer_len(buf));
   SILC_LOG_DEBUG(("Defragment"));
   silc_dlist_start(frag);
   while ((buf = silc_dlist_get(frag)) != SILC_LIST_END) {
@@ -265,7 +266,7 @@ int main(int argc, char **argv)
       enc = silc_mime_encode(mime, &enc_len);
       if (!enc)
         SILC_LOG_DEBUG(("Error encoding"));
-      SILC_LOG_DEBUG(("Encoded MIME message: \n%s", enc));
+      SILC_LOG_HEXDUMP(("Encoded MIME message"), enc, enc_len);
       silc_free(enc);
       silc_mime_free(part);
     }

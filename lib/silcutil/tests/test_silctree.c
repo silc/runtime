@@ -18,7 +18,11 @@ static int compare(void *e1, void *e2, void *context)
 {
   Foo *f1 = e1, *f2 = e2;
   SILC_LOG_DEBUG(("%p %d > %p %d", f1, f1->id, f2, f2->id));
-  return f1->id - f2->id;
+  if (f1->id > f2->id)
+    return SILC_COMPARE_GREATER_THAN;
+  if (f1->id < f2->id)
+    return SILC_COMPARE_LESS_THAN;
+  return SILC_COMPARE_EQUAL_TO;
 }
 
 int main(int argc, char **argv)
