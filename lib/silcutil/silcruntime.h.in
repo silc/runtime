@@ -51,7 +51,7 @@
    configured/compiled. */
 @__SILC_HAVE_PTHREAD@
 @__SILC_ENABLE_DEBUG@
-@__SILC_ENABLE_STACKTRACE@
+@__SILC_ENABLE_MEMTRACE@
 @__SILC_VA_COPY@
 
 /* Types */
@@ -193,10 +193,10 @@ extern "C" {
 #define SILC_DEBUG 1
 #endif /* __SILC_ENABLE_DEBUG */
 
-#ifdef __SILC_ENABLE_STACKTRACE
-#undef SILC_STACKTRACE
-#define SILC_STACKTRACE 1
-#endif /* __SILC_ENABLE_STACKTRACE */
+#ifdef __SILC_ENABLE_MEMTRACE
+#undef SILC_MEMTRACE
+#define SILC_MEMTRACE 1
+#endif /* __SILC_ENABLE_MEMTRACE */
 
 /* SILC Runtime Toolkit includes */
 #include <silctypes.h>

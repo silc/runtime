@@ -716,17 +716,17 @@ AC_ARG_WITH(alignment,
     AC_DEFINE([SILC_ALIGNMENT], SILC_SIZEOF_VOID_P, [SILC_ALIGNMENT])
   ])
 
-# Stack trace checking
-__SILC_ENABLE_STACKTRACE=""
-AC_MSG_CHECKING(whether to enable stack tracing)
-AC_ARG_ENABLE(stack-trace,
-  [  --enable-stack-trace    enable memory stack trace],
+# Memory trace checking
+__SILC_ENABLE_MEMTRACE=""
+AC_MSG_CHECKING(whether to enable memory tracing)
+AC_ARG_ENABLE(mem-trace,
+  [  --enable-mem-trace      enable memory tracing],
   [
     case "${enableval}" in
     yes)
       AC_MSG_RESULT(yes)
-      AC_DEFINE([SILC_STACKTRACE], [], [SILC_STACKTRACE])
-      __SILC_ENABLE_STACKTRACE="#define __SILC_ENABLE_STACKTRACE 1"
+      AC_DEFINE([SILC_MEMTRACE], [], [SILC_MEMTRACE])
+      __SILC_ENABLE_MEMTRACE="#define __SILC_ENABLE_MEMTRACE 1"
       CFLAGS="$CFLAGS -rdynamic"
       PC_CFLAGS="$PC_CFLAGS -rdynamic"
       ;;
@@ -1248,7 +1248,7 @@ AC_SUBST(LIBS)
 AC_SUBST(SILC_LIB_INCLUDES)
 AC_SUBST(PC_CFLAGS)
 AC_SUBST(__SILC_ENABLE_DEBUG)
-AC_SUBST(__SILC_ENABLE_STACKTRACE)
+AC_SUBST(__SILC_ENABLE_MEMTRACE)
 AC_SUBST(__SILC_HAVE_PTHREAD)
 AC_SUBST(__RUNTIME_PACKAGE_VERSION)
 

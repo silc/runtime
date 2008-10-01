@@ -29,8 +29,8 @@ endif
 
 DIST_SUBDIRS=win32 symbian unix tests
 
-SILC_DIST_SOURCE = stacktrace.c
-SILC_DIST_HEADER = stacktrace.h
+SILC_DIST_SOURCE = memtrace.c
+SILC_DIST_HEADER = memtrace.h
 
 noinst_LTLIBRARIES = libsilcutil.la
 

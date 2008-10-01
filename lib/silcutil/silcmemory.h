@@ -30,7 +30,7 @@
 
 /* Prototypes */
 
-#ifndef SILC_STACKTRACE
+#ifndef SILC_MEMTRACE
 
 /****f* silcutil/silc_malloc
  *
@@ -131,8 +131,8 @@ void *silc_memdup(const void *ptr, size_t size);
 char *silc_strdup(const char *str);
 
 #else
-#include "stacktrace.h"
-#endif /* SILC_STACKTRACE */
+#include "memtrace.h"
+#endif /* SILC_MEMTRACE */
 
 
 /* Following functions that use SilcStack as memory source. */

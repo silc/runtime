@@ -1,6 +1,6 @@
 /*
 
-  stacktrace.c
+  memtrace.c
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
@@ -50,6 +50,12 @@
      setting this variable the program will show where the memory was
      originally allocated and freed.
 
+   SILC_MALLOC_NO_ALLOCATED
+
+     When set to value 1, the program will not check if given memory was
+     allocated.  This will speed up debugging but will not detect if freeing
+     memory that was never allocated.
+
    SILC_MALLOC_DUMP
 
      When set to value 1, in case of fatal error, dumps the memory location,
@@ -69,18 +75,18 @@
 
 #include "silcruntime.h"
 
-#ifdef SILC_STACKTRACE
+#ifdef SILC_MEMTRACE
 #include <execinfo.h>
 #include <signal.h>
 #include <malloc.h>
 #include <sys/mman.h>
 
-static void *st_blocks = NULL;
-static unsigned long st_blocks_count = 0;
+static SilcTree st_blocks;
 static unsigned long st_num_malloc = 0;
 static SilcBool dump = FALSE;
 static SilcBool no_free = FALSE;
 static SilcBool dump_mem = FALSE;
+static SilcBool no_allocated = FALSE;
 static SilcUInt32 pg = 0;
 static SilcMutex lock = NULL;
 
@@ -92,8 +98,7 @@ static SilcMutex lock = NULL;
 
 /* Memory block with stack trace */
 typedef struct SilcStBlockStruct {
-  struct SilcStBlockStruct *next;
-  struct SilcStBlockStruct *prev;
+  SilcTreeHeader h;
   void *stack[SILC_ST_DEPTH];	/* Stack trace */
   const char *file;		/* Allocation file in program */
   const char *free_file;	/* Free file in program */
@@ -124,6 +129,15 @@ typedef struct SilcStBlockStruct {
 #define SILC_ST_GET_STACK_ALIGN(p, size, align)				    \
   ((SilcStBlock)(((unsigned char *)p) + (SILC_ST_GET_SIZE_ALIGN(size, pg) - \
 					 SILC_ST_GET_SIZE(size)) + 4))
+
+SilcCompareValue silc_st_compare(void *val1, void *val2, void *context)
+{
+  if (SILC_PTR_TO_32(val1) > SILC_PTR_TO_32(val2))
+    return SILC_COMPARE_GREATER_THAN;
+  if (SILC_PTR_TO_32(val1) < SILC_PTR_TO_32(val2))
+    return SILC_COMPARE_LESS_THAN;
+  return SILC_COMPARE_EQUAL_TO;
+}
 
 void silc_st_abort(SilcStBlock stack, const char *file, int line,
 		   char *fmt, ...)
@@ -204,9 +218,12 @@ void silc_st_sigsegv(int sig, siginfo_t *si, void *context)
 		"SILC_MALLOC: access violation (overflow)\n");
 }
 
-void silc_st_stacktrace_init(void)
+void silc_st_memtrace_init(void)
 {
   const char *var;
+
+  silc_tree_init(st_blocks, SILC_TREE_AVL, silc_st_compare, NULL,
+		 silc_offsetof(struct SilcStBlockStruct, h), FALSE);
 
   atexit(silc_st_dump);
   dump = TRUE;
@@ -214,6 +231,10 @@ void silc_st_stacktrace_init(void)
   var = silc_getenv("SILC_MALLOC_NO_FREE");
   if (var && *var == '1')
     no_free = TRUE;
+
+  var = silc_getenv("SILC_MALLOC_NO_ALLOCATED");
+  if (var && *var == '1')
+    no_allocated = TRUE;
 
   var = silc_getenv("SILC_MALLOC_DUMP");
   if (var && *var == '1')
@@ -251,7 +272,7 @@ void *silc_st_malloc(size_t size, const char *file, int line)
   SilcStBlock stack;
 
   if (silc_unlikely(!dump))
-    silc_st_stacktrace_init();
+    silc_st_memtrace_init();
 
   if (pg) {
     unsigned char *ptr;
@@ -268,10 +289,9 @@ void *silc_st_malloc(size_t size, const char *file, int line)
     /* Protect the page */
     if (mprotect(stack, pg, PROT_NONE))
       silc_st_abort(NULL, file, line, "SILC_MALLOC: mprotect() error: %s\n",
-		    errno == ENOMEM ? "Cannot allocate memory. \nYour program "
-		    "leaks memory, allocates too much or system \n"
-		    "is out of memory.  The SILC_MALLOC_PROTECT cannot "
-		    "be used." : strerror(errno));
+		    errno == ENOMEM ? "Cannot allocate memory. \nOn Linux, try"
+		    " giving 'echo 1000000 >/proc/sys/vm/max_map_count',\n"
+		    "to get rid of the problem" : strerror(errno));
 
     /* Get the accessible page */
     stack = SILC_ST_GET_STACK_ALIGN(ptr, size, pg);
@@ -281,6 +301,7 @@ void *silc_st_malloc(size_t size, const char *file, int line)
       return NULL;
   }
 
+  memset(&stack->h, 0, sizeof(stack->h));
   stack->dumpped = 0;
   stack->file = file;
   stack->free_file = NULL;
@@ -290,15 +311,8 @@ void *silc_st_malloc(size_t size, const char *file, int line)
   stack->depth = backtrace(stack->stack, SILC_ST_DEPTH);
 
   silc_mutex_lock(lock);
-
-  stack->next = st_blocks;
-  stack->prev = NULL;
-  if (st_blocks)
-    ((SilcStBlock)st_blocks)->prev = stack;
-  st_blocks = stack;
-  st_blocks_count++;
+  silc_tree_add(st_blocks, stack);
   st_num_malloc++;
-
   silc_mutex_unlock(lock);
 
   if (!pg)
@@ -342,7 +356,7 @@ void *silc_st_realloc(void *ptr, size_t size, const char *file, int line)
 
 void silc_st_free(void *ptr, const char *file, int line)
 {
-  SilcStBlock stack, s;
+  SilcStBlock stack;
 
   if (!ptr)
     return;
@@ -356,23 +370,13 @@ void silc_st_free(void *ptr, const char *file, int line)
 
   stack = SILC_ST_GET_STACK(ptr);
 
-  silc_mutex_lock(lock);
-
-  /* Check if we have ever made this allocation */
-  for (s = st_blocks; s; s = s->next)
-    if (s == stack)
-      break;
-  if (s == NULL)
-    silc_st_abort(NULL, file, line,
-		  "SILC_MALLOC: %p was never allocated\n", stack);
+  /* Check for underflow */
+  if (stack->bound != SILC_ST_TOP_BOUND)
+    silc_st_abort(stack, file, line,
+		  "SILC_MALLOC: %p was written out of bounds (underflow)\n",
+		  stack);
 
   if (!pg) {
-    /* Check for underflow */
-    if (stack->bound != SILC_ST_TOP_BOUND)
-      silc_st_abort(stack, file, line,
-		    "SILC_MALLOC: %p was written out of bounds (underflow)\n",
-		    stack);
-
     /* Check for overflow */
     if (*SILC_ST_GET_BOUND(stack, stack->size) != SILC_ST_BOTTOM_BOUND)
       silc_st_abort(stack, file, line,
@@ -380,14 +384,16 @@ void silc_st_free(void *ptr, const char *file, int line)
 		    stack);
   }
 
-  if (stack->next)
-    stack->next->prev = stack->prev;
-  if (stack->prev)
-    stack->prev->next = stack->next;
-  else
-    st_blocks = stack->next;
+  silc_mutex_lock(lock);
 
-  st_blocks_count--;
+  /* Check if we have ever made this allocation */
+  if (!no_allocated && !silc_tree_find(st_blocks, stack))
+    silc_st_abort(NULL, file, line,
+		  "SILC_MALLOC: %p was never allocated\n", stack);
+
+  if (!silc_tree_del(st_blocks, stack))
+    silc_st_abort(NULL, file, line,
+		  "SILC_MALLOC: %p was never allocated\n", stack);
 
   silc_mutex_unlock(lock);
 
@@ -441,7 +447,8 @@ void silc_st_dump(void)
   lock = NULL;
   silc_mutex_free(l);
 
-  for (stack = st_blocks; stack; stack = stack->next) {
+  for (stack = silc_tree_enumerate(st_blocks, NULL); stack != NULL;
+       stack = silc_tree_enumerate(st_blocks, stack)) {
     bytes = blocks = 0;
 
     if (stack->dumpped)
@@ -450,7 +457,7 @@ void silc_st_dump(void)
     leaks++;
 
     if (!fp) {
-      fp = fopen("stacktrace.log", "wb");
+      fp = fopen("memtrace.log", "wb");
       if (!fp)
 	fp = stderr;
     }
@@ -459,7 +466,8 @@ void silc_st_dump(void)
     syms = backtrace_symbols(stack->stack, stack->depth);
 
     /* Find number of leaks and bytes leaked for this leak */
-    for (s = stack; s; s = s->next) {
+    for (s = silc_tree_enumerate(st_blocks, NULL); s != NULL;
+         s = silc_tree_enumerate(st_blocks, s)) {
       if (s->file == stack->file && s->line == stack->line &&
 	  s->depth == stack->depth &&
 	  !memcmp(s->stack, stack->stack,
@@ -496,13 +504,13 @@ void silc_st_dump(void)
     fprintf(stderr, "\nNo memory leaks\n");
   } else {
     fprintf(stderr,
-	    "-----------------------------------------\n"
-	    "-----------------------------------------\n"
-	    " Memory leaks dumped to 'stacktrace.log'\n"
+	    "---------------------------------------\n"
+	    "---------------------------------------\n"
+	    " Memory leaks dumped to 'memtrace.log'\n"
 	    " Leaks: %lu leaks, %lu blocks\n"
-	    "-----------------------------------------\n"
-	    "-----------------------------------------\n",
-	    leaks, st_blocks_count);
+	    "---------------------------------------\n"
+	    "---------------------------------------\n",
+	    leaks, (unsigned long)silc_tree_count(st_blocks));
     fprintf(stderr, "Number of allocations: %lu\n", st_num_malloc);
   }
 
@@ -510,4 +518,4 @@ void silc_st_dump(void)
     fclose(fp);
 }
 
-#endif /* SILC_STACKTRACE */
+#endif /* SILC_MEMTRACE */

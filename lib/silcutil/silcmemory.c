@@ -19,7 +19,7 @@
 
 #include "silcruntime.h"
 
-#ifndef SILC_STACKTRACE
+#ifndef SILC_MEMTRACE
 
 #define SILC_MAX_ALLOC (1024 * 1024L * 1024L)
 
@@ -106,7 +106,7 @@ char *silc_strdup(const char *str)
   return silc_memdup(str, strlen(str));
 }
 
-#endif /* !SILC_STACKTRACE */
+#endif /* !SILC_MEMTRACE */
 
 /* SilcStack aware routines */
 

@@ -45,6 +45,17 @@
 
 #include <silcruntime.h>
 
+/* Define to 1 if you want hash table debug enabled */
+#ifndef SILC_AVL_TREE_DEBUG
+#define SILC_AVL_TREE_DEBUG 0
+#endif /* !SILC_AVL_TREE_DEBUG */
+
+#if SILC_ALV_TREE_DEBUG == 1
+#define SILC_TREE_DEBUG(fmt) SILC_LOG_DEBUG(fmt)
+#else
+#define SILC_TREE_DEBUG(fmt)
+#endif
+
 /************************ Static utility functions **************************/
 
 /* Rotate left
@@ -149,13 +160,13 @@ void *silc_avl_tree_find(SilcTree *tree, void *entry,
   void *cmp_context = compare ? context : tree->context;
   int ret;
 
-  SILC_LOG_DEBUG(("AVL tree %p, find %p", tree, entry));
+  SILC_TREE_DEBUG(("AVL tree %p, find %p", tree, entry));
 
   h = tree->root;
   while (h) {
     ret = cmp(entry, SILC_TREE_GET_ENTRY(tree, h), cmp_context);
     if (ret == SILC_COMPARE_EQUAL_TO) {
-      SILC_LOG_DEBUG(("Found %p", SILC_TREE_GET_ENTRY(tree, h)));
+      SILC_TREE_DEBUG(("Found %p", SILC_TREE_GET_ENTRY(tree, h)));
       return SILC_TREE_GET_ENTRY(tree, h);
     }
     if (ret == SILC_COMPARE_STOP)
@@ -163,8 +174,8 @@ void *silc_avl_tree_find(SilcTree *tree, void *entry,
     h = ret > 0 ? h->right : h->left;
   }
 
-  SILC_LOG_DEBUG(("Not found"));
-  silc_set_errno(SILC_ERR_NOT_FOUND);
+  SILC_TREE_DEBUG(("Not found"));
+  silc_set_errno_nofail(SILC_ERR_NOT_FOUND);
   return NULL;
 }
 
@@ -175,7 +186,7 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
   SilcTreeHeader *h, *parent = NULL, *q = NULL;
   int ret = 0;
 
-  SILC_LOG_DEBUG(("AVL tree %p, adding %p", tree, entry));
+  SILC_TREE_DEBUG(("AVL tree %p, adding %p", tree, entry));
 
   /* If tree is empty, add to root */
   if (!tree->root) {
@@ -184,7 +195,7 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
     h->t = 0;
     tree->root = h;
 
-    SILC_LOG_DEBUG(("Entry %p added as root", entry));
+    SILC_TREE_DEBUG(("Entry %p added as root", entry));
 
     SILC_ASSERT(!tree->count);
     tree->count = 1;
@@ -196,13 +207,13 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
   while (h) {
     /* Same entry context must not be in tree */
     if (entry == SILC_TREE_GET_ENTRY(tree, h)) {
-      silc_set_errno(SILC_ERR_ALREADY_EXISTS);
+      silc_set_errno_nofail(SILC_ERR_ALREADY_EXISTS);
       return FALSE;
     }
 
     ret = tree->compare(entry, SILC_TREE_GET_ENTRY(tree, h), tree->context);
     if (!tree->duplicates && ret == SILC_COMPARE_EQUAL_TO) {
-      silc_set_errno(SILC_ERR_ALREADY_EXISTS);
+      silc_set_errno_nofail(SILC_ERR_ALREADY_EXISTS);
       return FALSE;
     }
 
@@ -215,7 +226,7 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
 	h->dup->parent = q;
       q->dup = h->dup;
       h->dup = q;
-      SILC_LOG_DEBUG(("Entry %p is duplicate to %p", entry,
+      SILC_TREE_DEBUG(("Entry %p is duplicate to %p", entry,
 		      SILC_TREE_GET_ENTRY(tree, h)));
       tree->count++;
       return TRUE;
@@ -234,8 +245,8 @@ SilcBool silc_avl_tree_add(SilcTree *tree, void *entry)
   else
     parent->right = h;
 
-  SILC_LOG_DEBUG(("Entry %p added, parent %p", entry,
-		  SILC_TREE_GET_ENTRY(tree, parent)));
+  SILC_TREE_DEBUG(("Entry %p added, parent %p", entry,
+		   SILC_TREE_GET_ENTRY(tree, parent)));
 
   /* Update the new entry */
   h->parent = parent;
@@ -276,10 +287,10 @@ SilcBool silc_avl_tree_del(SilcTree *tree, void *entry)
   SilcTreeHeader *h, *q, *out, *parent = NULL, tmp;
   int left;
 
-  SILC_LOG_DEBUG(("AVL tree %p, delete %p", tree, entry));
+  SILC_TREE_DEBUG(("AVL tree %p, delete %p", tree, entry));
 
   if (!tree->root || !entry) {
-    silc_set_errno(SILC_ERR_INVALID_ARGUMENT);
+    silc_set_errno_nofail(SILC_ERR_INVALID_ARGUMENT);
     return FALSE;
   }
 
@@ -318,7 +329,7 @@ SilcBool silc_avl_tree_del(SilcTree *tree, void *entry)
       h->right->parent = h->dup;
 
     /* Cleanup the deleted entry */
-    SILC_LOG_DEBUG(("Deleted %p", SILC_TREE_GET_ENTRY(tree, h)));
+    SILC_TREE_DEBUG(("Deleted %p", SILC_TREE_GET_ENTRY(tree, h)));
     h->parent = h->left = h->right = h->dup = NULL;
     h->t = 0;
 
@@ -360,7 +371,7 @@ SilcBool silc_avl_tree_del(SilcTree *tree, void *entry)
     out->parent = parent;
 
   /* Cleanup the deleted entry */
-  SILC_LOG_DEBUG(("Deleted %p", SILC_TREE_GET_ENTRY(tree, h)));
+  SILC_TREE_DEBUG(("Deleted %p", SILC_TREE_GET_ENTRY(tree, h)));
   h->parent = h->left = h->right = h->dup = NULL;
   h->t = 0;
 

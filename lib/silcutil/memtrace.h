@@ -1,6 +1,6 @@
 /*
 
-  stacktrace.h 
+  memtrace.h 
 
   Author: Pekka Riikonen <priikone@silcnet.org>
 
@@ -17,15 +17,15 @@
 
 */
 
-#ifndef STACKTRACE_H
-#define STACKTRACE_H
+#ifndef MEMTRACE_H
+#define MEMTRACE_H
 
 #ifndef SILCMEMORY_H
 #error "Do not include internal header file directly"
 #endif
 
 #if (defined(__GNUC__) && defined(HAVE_EXECINFO_H) && 			\
-     defined(HAVE_BACKTRACE)) || defined(__SILC_ENABLE_STACKTRACE)
+     defined(HAVE_BACKTRACE)) || defined(__SILC_ENABLE_MEMTRACE)
 
 #undef strdup
 #define silc_malloc(s)      silc_st_malloc((s), __FILE__, __LINE__)
@@ -48,4 +48,4 @@ void silc_st_dump(void);
 #error "memory allocation stack trace not supported on this platform"
 #endif /* __GNUC__ && HAVE_EXECINFO_H && HAVE_BACKTRACE */
 
-#endif /* STACKTRACE_H */
+#endif /* MEMTRACE_H */
