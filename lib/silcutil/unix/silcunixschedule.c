@@ -54,7 +54,6 @@ typedef struct {
 } SilcUnixSignal;
 
 #define SIGNAL_COUNT 32
-SilcUnixSignal signal_call[SIGNAL_COUNT];
 
 #if defined(HAVE_EPOLL_WAIT)
 
@@ -352,6 +351,7 @@ void *silc_schedule_internal_init(SilcSchedule schedule,
 				  void *app_context)
 {
   SilcUnixScheduler internal;
+  SilcUnixSignal *signal_call;
   int i;
 
   internal = silc_scalloc(schedule->stack, 1, sizeof(*internal));
@@ -403,10 +403,17 @@ void *silc_schedule_internal_init(SilcSchedule schedule,
 
   internal->app_context = app_context;
 
-  for (i = 0; i < SIGNAL_COUNT; i++) {
-    signal_call[i].sig = 0;
-    signal_call[i].call = FALSE;
-    signal_call[i].schedule = schedule;
+  signal_call = silc_global_get_var("srtsignals", TRUE);
+  if (!signal_call)
+    signal_call = silc_global_set_var("srtsignals",
+				      sizeof(*signal_call) * SIGNAL_COUNT,
+				      NULL, TRUE);
+  if (signal_call) {
+    for (i = 0; i < SIGNAL_COUNT; i++) {
+      signal_call[i].sig = 0;
+      signal_call[i].call = FALSE;
+      signal_call[i].schedule = schedule;
+    }
   }
 
   return (void *)internal;
@@ -437,6 +444,8 @@ void silc_schedule_internal_uninit(SilcSchedule schedule, void *context)
 #elif defined(HAVE_POLL) && defined(HAVE_SETRLIMIT) && defined(RLIMIT_NOFILE)
   silc_free(internal->fds);
 #endif /* HAVE_POLL && HAVE_SETRLIMIT && RLIMIT_NOFILE */
+
+  silc_global_del_var("srtsignals", TRUE);
 }
 
 /* Wakes up the scheduler */
@@ -460,6 +469,10 @@ void silc_schedule_internal_wakeup(SilcSchedule schedule, void *context)
 static void silc_schedule_internal_sighandler(int signal)
 {
   int i;
+  SilcUnixSignal *signal_call = silc_global_get_var("srtsignals", TRUE);
+
+  if (!signal_call)
+    return;
 
   SILC_LOG_DEBUG(("Start"));
 
@@ -481,9 +494,10 @@ void silc_schedule_internal_signal_register(SilcSchedule schedule,
                                             void *callback_context)
 {
   SilcUnixScheduler internal = (SilcUnixScheduler)context;
+  SilcUnixSignal *signal_call = silc_global_get_var("srtsignals", TRUE);
   int i;
 
-  if (!internal)
+  if (!internal || !signal_call)
     return;
 
   SILC_LOG_DEBUG(("Registering signal %d", sig));
@@ -511,9 +525,10 @@ void silc_schedule_internal_signal_unregister(SilcSchedule schedule,
 					      SilcUInt32 sig)
 {
   SilcUnixScheduler internal = (SilcUnixScheduler)context;
+  SilcUnixSignal *signal_call = silc_global_get_var("srtsignals", TRUE);
   int i;
 
-  if (!internal)
+  if (!internal || !signal_call)
     return;
 
   SILC_LOG_DEBUG(("Unregistering signal %d", sig));
@@ -540,11 +555,12 @@ void silc_schedule_internal_signal_unregister(SilcSchedule schedule,
 void silc_schedule_internal_signals_call(SilcSchedule schedule, void *context)
 {
   SilcUnixScheduler internal = (SilcUnixScheduler)context;
+  SilcUnixSignal *signal_call = silc_global_get_var("srtsignals", TRUE);
   int i;
 
   SILC_LOG_DEBUG(("Start"));
 
-  if (!internal)
+  if (!internal || !signal_call)
     return;
 
   silc_schedule_internal_signals_block(schedule, context);
