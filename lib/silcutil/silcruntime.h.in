@@ -200,6 +200,7 @@ extern "C" {
 
 /* SILC Runtime Toolkit includes */
 #include <silctypes.h>
+#include <silccpuid.h>
 #include <silcerrno.h>
 #include <silcbitops.h>
 #include <silcmutex.h>

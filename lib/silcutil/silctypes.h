@@ -163,13 +163,13 @@ typedef signed short SilcInt16;
  *
  * SOURCE
  */
-#if SILC_SIZEOF_LONG == 4
-typedef unsigned long SilcUInt32;
-typedef signed long SilcInt32;
-#else
 #if SILC_SIZEOF_INT == 4
 typedef unsigned int SilcUInt32;
 typedef signed int SilcInt32;
+#else
+#if SILC_SIZEOF_LONG == 4
+typedef unsigned long SilcUInt32;
+typedef signed long SilcInt32;
 #else
 #if SILC_SIZEOF_LONG_LONG >= 4
 #ifndef WIN32
@@ -1324,5 +1324,12 @@ void silc_prefetch_block(void *addr,
 #undef SILC_PREFETCH_UINT
 #undef SILC_PREFETCH_ASM
 }
+
+typedef char __check_size1[sizeof(SilcInt8)   ==	1 ? 1 : -1];
+typedef char __check_size2[sizeof(SilcUInt8)  ==	1 ? 1 : -1];
+typedef char __check_size3[sizeof(SilcInt16)  ==	2 ? 1 : -1];
+typedef char __check_size4[sizeof(SilcUInt16) ==	2 ? 1 : -1];
+typedef char __check_size5[sizeof(SilcInt32)  ==	4 ? 1 : -1];
+typedef char __check_size6[sizeof(SilcUInt32) ==	4 ? 1 : -1];
 
 #endif /* SILCTYPES_H */

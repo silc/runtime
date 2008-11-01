@@ -71,7 +71,8 @@ libsilcutil_la_SOURCES = \
 	silcbufferstream.c \
 	silclocalnetstream.c \
 	silcxml.c	\
-	silcavltree.c
+	silcavltree.c	\
+	silccpuid.c
 
 include_HEADERS =	\
 	$(SILC_DIST_HEADER) \
@@ -131,7 +132,8 @@ include_HEADERS =	\
 	silclocalnetstream.h \
 	silcxml.h	\
 	silctree.h	\
-	silctree_i.h
+	silctree_i.h	\
+	silccpuid.h
 
 SILC_EXTRA_DIST =
 
