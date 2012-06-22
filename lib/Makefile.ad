@@ -62,7 +62,7 @@ all:
 
 install-exec-hook:
 	-mkdir -p $(DESTDIR)$(libdir)
-	-$(LIBTOOL) $(INSTALL) libsrt.la $(DESTDIR)$(libdir)/
+	-$(LIBTOOL) --mode=install $(INSTALL) libsrt.la $(DESTDIR)$(libdir)/
 
 libsrt.a:
 	find $(RUNTIME_DIRS) -type f -name *.lo | xargs \
