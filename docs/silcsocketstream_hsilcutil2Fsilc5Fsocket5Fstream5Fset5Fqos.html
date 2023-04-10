@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcsocketstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcsocketstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcsocketstream_hsilcutil2FSocket20Stream20Interface.html">Socket Stream Interface</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2FSilcSocketStreamCallback.html#">SilcSocketStreamCallback</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Ftcp5Fstream5Fcreate.html#">silc_socket_tcp_stream_create</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fudp5Fstream5Fcreate.html#">silc_socket_udp_stream_create</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fis5Fudp.html#">silc_socket_stream_is_udp</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fget5Finfo.html#">silc_socket_stream_get_info</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Finfo.html#">silc_socket_stream_set_info</a>
+<a class="menuitem" href="#">silc_socket_stream_set_qos</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fsocket5fstream5fset5fqos">
+</a><a name="robo554"></a><h2>silc_socket_stream_set_qos</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_socket_stream_set_qos</strong>(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream,
+                                        <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> read_rate,
+                                        <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> read_limit_bytes,
+                                        <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> limit_sec,
+                                        <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> limit_usec)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Sets a "Quality of Service" settings for socket stream `stream'.
+    The `read_rate' specifies the maximum read operations per second.
+    If more read operations are executed the limit will be applied for
+    the reading.  The `read_limit_bytes' specifies the maximum data
+    that is read.  It is guaranteed that <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fread.html#robo583">silc_stream_read</a>  never returns
+    more than `read_limit_bytes' of data.  The `limit_sec' and `limit_usec'
+    specifies the time limit that is applied if `read_rate' and/or
+    `read_limit_bytes' is reached.  If all arguments except `stream'
+    are zero this resets the QoS from the socket stream, all QoS data for
+    this socket stream that may be pending will be cancelled.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

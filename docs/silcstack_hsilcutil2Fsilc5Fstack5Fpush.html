@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstack.h</title>
+<!-- Source: ./../../lib/silcutil/silcstack.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstack_hsilcutil2FMemory20Pool20Interface.html">Memory Pool Interface</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStack.html#">SilcStack</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStackFrame.html#">SilcStackFrame</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStackOomHandler.html#">SilcStackOomHandler</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Falloc.html#">silc_stack_alloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Ffree.html#">silc_stack_free</a>
+<a class="menuitem" href="#">silc_stack_push</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#">silc_stack_pop</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fmalloc.html#">silc_stack_malloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Frealloc.html#">silc_stack_realloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Foom5Fhandler.html#">silc_stack_set_oom_handler</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Falignment.html#">silc_stack_set_alignment</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fget5Falignment.html#">silc_stack_get_alignment</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fpurge.html#">silc_stack_purge</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Fglobal.html#">silc_stack_set_global</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fget5Fglobal.html#">silc_stack_get_global</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fstack5fpush">
+</a><a name="robo571"></a><h2>silc_stack_push</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> <strong>silc_stack_push</strong>(<a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> stack, <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a> *frame);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Push the top of the stack and add new stack frame on top of the stack.
+    For every <strong>silc_stack_push</strong> call there must be <a href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#robo570">silc_stack_pop</a> call.  All
+    allocations between these two calls will be done from the top of the
+    stack and all allocated memory is freed after the next <a href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#robo570">silc_stack_pop</a>
+    is called.  This returns so called stack pointer for the new stack
+    frame, which the caller may use to check that all calls to
+    <a href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#robo570">silc_stack_pop</a> has been made.
+</p>
+
+<p>    If the `frame' is non-NULL then that <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a> is used as
+    stack frame.  Usually `frame' is set to NULL by user.  Statically
+    allocated <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a> should be used when using <strong>silc_stack_push</strong>
+    in recursive function and the recursion may become deep.  In this
+    case using statically allocated <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a> is recommended since
+    it assures that frames never run out.  If your routine is not recursive
+    then setting `frame' to NULL is recommended.
+</p>
+
+<p>    This function is used when a routine is doing frequent allocations
+    from the stack.  If the stack is not pushed and later popped all
+    allocations are made from the stack and the stack eventually runs out
+    (it gets enlarged by normal memory allocation).  By pushing and then
+    later popping the frequent allocations does not consume the stack.
+</p>
+
+<p>    If `stack' is NULL this call has no effect.  This function does not
+    allocate any memory.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    All memory allocations in silc_foo_parse_packet will be done in
+    a fresh stack frame and that data is freed after the parsing is
+    completed.
+
+    <strong>silc_stack_push</strong>(stack, NULL);
+    silc_foo_parse_packet(packet, stack);
+    <a href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#robo570">silc_stack_pop</a>(stack);
+
+    Another example with recursion and using statically allocated
+    <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a>.  After popping the statically allocated frame can
+    be reused if necessary.
+
+    void silc_foo_this_function(<a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> stack)
+    {
+      <a href="./silcstack_hsilcutil2FSilcStackFrame.html#robo575">SilcStackFrame</a> frame;
+      ...
+      <strong>silc_stack_push</strong>(stack, &amp;frame);
+      silc_foo_this_function(stack);   // Call recursively
+      <a href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#robo570">silc_stack_pop</a>(stack);
+      ...
+    }
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcregex.h</title>
+<!-- Source: ./../../lib/silcutil/silcregex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegex.html#">SilcRegex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexMatch.html#">SilcRegexMatch</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexFlags.html#">SilcRegexFlags</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#">silc_regex_compile</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#">silc_regex_match</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#">silc_regex_free</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex.html#">silc_regex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fbuffer.html#">silc_regex_buffer</a>
+<a class="menuitem" href="#">silc_subst</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fsubst">
+</a><a name="robo497"></a><h2>silc_subst</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_subst</strong>(<a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> buffer, const char *subst);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Regular expression matching and substitution in `buffer' according
+    to the substitution expression `subst'.  This function provides
+    Sed (Stream Editor) style substitution interface.  The `subst' may
+    be of following formats:
+</p>
+
+<pre>     's/REGEXP/REPLACEMENT/FLAGS'
+</pre>
+<p>
+    Matches regular expression REGEXP in each line in the buffer and
+    substitutes the match with REPLACEMENT.
+</p>
+
+<pre>     'ADDRs/REGEXP/REPLACEMENT/FLAGS'
+</pre>
+<p>
+    Selects lines in the buffer matching the address ADDR and matches the
+    regular expression REGEXP in the line and substitutes the match with
+    REPLACEMENT.
+</p>
+
+<p>    The ADDR may be of following format:
+</p>
+
+<pre>     /REGEXP/       Matches only lines matching the regular expression
+     NUMBER         Matches only the specified line number (1-n)
+     $              Matches only the last line
+</pre>
+<p>
+    The FLAGS may be of following format:
+</p>
+
+<pre>     no FLAGS       Finds first match in the line and replaces that
+     g              Finds and replaces all matches in the line
+</pre>
+<p>
+    An '!' may precede the 's'.  In that case the ADDR is not matched.
+</p>
+
+<p>    Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if the match and replacement was done, <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> in case
+    of error, and sets the <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a>.
+</p>
+
+<p>    If you need to match and/or replace '/' characters, they must be
+    escaped with '\' (C-style escaping for '\' is '\\').
+</p>
+
+<p>    If you need more versatile ways to modify the buffer you may consider
+    using the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a> in SILC Buffer Format API directly.  This
+    function only provides basic matching and substitution.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    // Replace all foos with bar on all lines in the buffer
+    <strong>silc_subst</strong>(buffer, "s/foo/bar/g");
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

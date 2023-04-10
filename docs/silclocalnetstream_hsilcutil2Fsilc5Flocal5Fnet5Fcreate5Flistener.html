@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silclocalnetstream.h</title>
+<!-- Source: ./../../lib/silcutil/silclocalnetstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silclocalnetstream_hsilcutil2FLocal20Network20Stream20Interface.html">Local Network Stream Interface</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2FSilcLocalNetSecurity.html#">SilcLocalNetSecurity</a>
+<a class="menuitem" href="#">silc_local_net_create_listener</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fclose5Flistener.html#">silc_local_net_close_listener</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fconnect.html#">silc_local_net_connect</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5flocal5fnet5fcreate5flistener">
+</a><a name="robo377"></a><h2>silc_local_net_create_listener</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcnet_hsilcutil2FSilcNetListener.html#robo491">SilcNetListener</a>
+    <strong>silc_local_net_create_listener</strong>(const char *filepath,
+                                   <a href="./silclocalnetstream_hsilcutil2FSilcLocalNetSecurity.html#robo378">SilcLocalNetSecurity</a> security,
+                                   <a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> schedule,
+                                   <a href="./silcnet_hsilcutil2FSilcNetCallback.html#robo490">SilcNetCallback</a> callback,
+                                   void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Creates a local network stream listener and returns a network server.
+    The `filepath' is a local filepath that must be used by the clients to
+    connect to the server.  The `security' specify the access method to
+    the listener.  It can specify for example that only the user creating
+    the listener is able to connect to it.
+</p>
+
+<p>    The `callback' will be called when a client connects to the listener
+    with the `context'.  The returned stream to the `callback' is a
+    socket stream (silcsocketstream.h).  The returned listener must be
+    closed by calling <a href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fclose5Flistener.html#robo376">silc_local_net_close_listener</a>.
+</p>
+
+<p>    Clients can connect to the listener by calling the
+    <a href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fconnect.html#robo375">silc_local_net_connect</a>.
+</p>
+
+<p>    Returns NULL on error and set <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a>.  If `schedule' is NULL this
+    will call <a href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fglobal.html#robo526">silc_schedule_get_global</a> to try to get global scheduler.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcschedule.h</title>
+<!-- Source: ./../../lib/silcutil/silcschedule.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcschedule_hsilcutil2FScheduler20Interface.html">Scheduler Interface</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSilcSchedule.html#">SilcSchedule</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSilcTask.html#">SilcTask</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSilcTaskEvent.html#">SilcTaskEvent</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSilcTaskCallback.html#">SilcTaskCallback</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSilcTaskEventCallback.html#">SilcTaskEventCallback</a>
+<a class="menuitem" href="#">SilcTaskNotifyCb</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSILC5FALL5FTASKS.html#">SILC_ALL_TASKS</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSILC5FTASK5FCALLBACK.html#">SILC_TASK_CALLBACK</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2FSILC5FTASK5FEVENT5FCALLBACK.html#">SILC_TASK_EVENT_CALLBACK</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Finit.html#">silc_schedule_init</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Funinit.html#">silc_schedule_uninit</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fstop.html#">silc_schedule_stop</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule.html#">silc_schedule</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fone.html#">silc_schedule_one</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fwakeup.html#">silc_schedule_wakeup</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fparent.html#">silc_schedule_get_parent</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fcontext.html#">silc_schedule_get_context</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fstack.html#">silc_schedule_get_stack</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fset5Fnotify.html#">silc_schedule_set_notify</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fset5Fglobal.html#">silc_schedule_set_global</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fglobal.html#">silc_schedule_get_global</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fadd5Ffd.html#">silc_schedule_task_add_fd</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fadd5Ftimeout.html#">silc_schedule_task_add_timeout</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fadd5Fsignal.html#">silc_schedule_task_add_signal</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fadd5Fevent.html#">silc_schedule_task_add_event</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel.html#">silc_schedule_task_del</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel5Fby5Ffd.html#">silc_schedule_task_del_by_fd</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel5Fby5Fcallback.html#">silc_schedule_task_del_by_callback</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel5Fby5Fcontext.html#">silc_schedule_task_del_by_context</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel5Fby5Fall.html#">silc_schedule_task_del_by_all</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Ftask5Fdel5Fevent.html#">silc_schedule_task_del_event</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fset5Flisten5Ffd.html#">silc_schedule_set_listen_fd</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Ffd5Fevents.html#">silc_schedule_get_fd_events</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Funset5Flisten5Ffd.html#">silc_schedule_unset_listen_fd</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fevent5Fconnect.html#">silc_schedule_event_connect</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fevent5Fdisconnect.html#">silc_schedule_event_disconnect</a>
+<a class="menuitem" href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fevent5Fsignal.html#">silc_schedule_event_signal</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcTaskNotifyCb">
+</a><a name="robo541"></a><h2>SilcTaskNotifyCb</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    typedef void (*<strong>SilcTaskNotifyCb</strong>)(<a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> schedule,
+                                     <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> added, <a href="./silcschedule_hsilcutil2FSilcTask.html#robo545">SilcTask</a> task,
+                                     <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> fd_task, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> fd,
+                                     <a href="./silcschedule_hsilcutil2FSilcTaskEvent.html#robo544">SilcTaskEvent</a> event,
+                                     long seconds, long useconds,
+                                     void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Task notify callback.  Callback of this type can be set to scheduler
+    by calling <a href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fset5Fnotify.html#robo528">silc_schedule_set_notify</a> and will be called whenever new
+    task is added or old task is removed.  If `added' is <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> then `task'
+    is added to scheduler.  If `added' is <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> then `task' will be removed
+    from the scheduler.  If `fd_task' is <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> the `task' is file descriptor
+    task and has `fd' is its file descriptor.  If `fd_task' is <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> then
+    the task is timeout task and `seconds' and `useconds' specify the
+    timeout.  The `context' is the context given to <a href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fset5Fnotify.html#robo528">silc_schedule_set_notify</a>.
+</p>
+<p class="item_name">NOTES</p>
+<p>    The `schedule' is locked while this callback is called.  This means that
+    new tasks cannot be added or removed inside this callback.
+</p>
+
+<p>    When timeout task expires this callback is not called.  This is called
+    only when task is explicitly deleted from the scheduler.  Note that,
+    when timeout task expires it is removed from the scheduler and `task'
+    will become invalid.
+</p>
+
+<p>    If fd task changes its events, this will be called as if it was a new
+    task with different `event' mask.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

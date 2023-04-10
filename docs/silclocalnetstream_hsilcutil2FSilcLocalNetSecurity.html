@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silclocalnetstream.h</title>
+<!-- Source: ./../../lib/silcutil/silclocalnetstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silclocalnetstream_hsilcutil2FLocal20Network20Stream20Interface.html">Local Network Stream Interface</a>
+<a class="menuitem" href="#">SilcLocalNetSecurity</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fcreate5Flistener.html#">silc_local_net_create_listener</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fclose5Flistener.html#">silc_local_net_close_listener</a>
+<a class="menuitem" href="./silclocalnetstream_hsilcutil2Fsilc5Flocal5Fnet5Fconnect.html#">silc_local_net_connect</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcLocalNetSecurity">
+</a><a name="robo378"></a><h2>SilcLocalNetSecurity</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcLocalNetSecurity</strong>
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    The security flags for the local network listener.  They specify
+    how the listener can be accessed.  The flags are a bitmasks and can
+    be combined.  Note that, these flags apply only when this API is
+    used.  Anyone in local machine is able to see the network listener
+    port by checking all bound network listeners and thus are able to
+    connect to it.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_LOCAL_NET_ALL    <span class="sign">=</span> 0x0000<span class="sign">,</span>     <span class="comment">/* Anyone in local machine can connect */</span>
+  SILC_LOCAL_NET_USER   <span class="sign">=</span> 0x0001<span class="sign">,</span>     <span class="comment">/* Same user can connect */</span>
+  SILC_LOCAL_NET_GROUP  <span class="sign">=</span> 0x0002<span class="sign">,</span>     <span class="comment">/* Same group can connect */</span>
+<span class="sign">}</span> <strong>SilcLocalNetSecurity</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

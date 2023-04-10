@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcregex.h</title>
+<!-- Source: ./../../lib/silcutil/silcregex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegex.html#">SilcRegex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexMatch.html#">SilcRegexMatch</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexFlags.html#">SilcRegexFlags</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#">silc_regex_compile</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#">silc_regex_match</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#">silc_regex_free</a>
+<a class="menuitem" href="#">silc_regex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fbuffer.html#">silc_regex_buffer</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fsubst.html#">silc_subst</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fregex">
+</a><a name="robo499"></a><h2>silc_regex</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_regex</strong>(const char *string, const char *regex,
+                        <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> match, ...);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Matches the `string' to the regular expression `regex'.  Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a>
+    if the `string' matches the regular expression or <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if it does not
+    match.  The <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> is also set to SILC_ERR_NOT_FOUND.
+</p>
+
+<p>    The first (whole) match is returned to `match' buffer if it is non-NULL.
+    The variable argument list are buffers where multiple matches are
+    returned in case of group (parenthesized) regular expression.  The caller
+    needs to know how many pointers to provide in order to get all matches.
+    If a particular group is optional, a buffer pointer still must be given
+    as argument for it, however, if it did not match the returned buffer
+    length is 0 and data pointer is NULL.
+</p>
+
+<p>    If `match' is non-NULL the variable argument list must be ended with
+    NULL.  The data in the `match' and in any other buffer is from `string'
+    and must not be freed by the caller.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    // Simple match
+    if (!<strong>silc_regex</strong>("foobar", "foo.", NULL))
+      no_match;
+
+    // Get the pointer to the first match
+    if (!<strong>silc_regex</strong>("foobar", ".bar", &amp;match, NULL))
+      no_match;
+
+    // Group match
+    SilcBufferStruct match, sub1, sub2;
+
+    if (!<strong>silc_regex</strong>("Hello World", "(H..).(o..)", &amp;match, &amp;sub1, &amp;sub2, NULL))
+      no_match;
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

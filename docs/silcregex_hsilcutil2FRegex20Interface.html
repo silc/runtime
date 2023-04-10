@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcregex.h</title>
+<!-- Source: ./../../lib/silcutil/silcregex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcasync_hsilcutil2FAsync20Operation20Interface.html">Async Operation Interface</a>
+<a class="menuitem" href="silcatomic_hsilcutil2FAtomic20Operations20Interface.html">Atomic Operations Interface</a>
+<a class="menuitem" href="silcbase64_hsilcutil2FBase6420Interface.html">Base64 Interface</a>
+<a class="menuitem" href="silcbitops_hsilcutil2FBit20Operations20Interface.html">Bit Operations Interface</a>
+<a class="menuitem" href="silcbuffer_hsilcutil2FBuffer20Interface.html">Buffer Interface</a>
+<a class="menuitem" href="silcbufferstream_hsilcutil2FBuffer20Stream20Interface.html">Buffer Stream Interface</a>
+<a class="menuitem" href="silcbuffmt_hsilcutil2FBuffer20Format20Interface.html">Buffer Format Interface</a>
+<a class="menuitem" href="silccond_hsilcutil2FCondition20Variable20Interface.html">Condition Variable Interface</a>
+<a class="menuitem" href="silcconfig_hsilcutil2FConfig20File20Interface.html">Config File Interface</a>
+<a class="menuitem" href="silcdir_hsilcutil2FDirectory20Interface.html">Directory Interface</a>
+<a class="menuitem" href="silcdlist_hsilcutil2FDynamic20List20Interface.html">Dynamic List Interface</a>
+<a class="menuitem" href="silcdll_hsilcutil2FShared20Object20Interface.html">Shared Object Interface</a>
+<a class="menuitem" href="silcenv_hsilcutil2FEnvironment20Interface.html">Environment Interface</a>
+<a class="menuitem" href="silcerrno_hsilcutil2FErrno20Interface.html">Errno Interface</a>
+<a class="menuitem" href="silcexample_hsilcexample2FSilcExampleAPI.html">SilcExampleAPI</a>
+<a class="menuitem" href="silcfdstream_hsilcutil2FFd20Stream20Interface.html">Fd Stream Interface</a>
+<a class="menuitem" href="silcfileutil_hsilcutil2FFile20Util20Interface.html">File Util Interface</a>
+<a class="menuitem" href="silcfsm_hsilcutil2FFinite20State20Machine.html">Finite State Machine</a>
+<a class="menuitem" href="silcgetopt_hsilcutil2FGetOpt20Interface.html">GetOpt Interface</a>
+<a class="menuitem" href="silcglobal_hsilcutil2FGlobal20Variable20Interface.html">Global Variable Interface</a>
+<a class="menuitem" href="silchashtable_hsilcutil2FHash20Table20Interface.html">Hash Table Interface</a>
+<a class="menuitem" href="silchttpphp_hsilchttp2FHTTP20PHP20Translator.html">HTTP PHP Translator</a>
+<a class="menuitem" href="silchttpserver_hsilchttp2FHTTP20Server20Interface.html">HTTP Server Interface</a>
+<a class="menuitem" href="silclist_hsilcutil2FList20Interface.html">List Interface</a>
+<a class="menuitem" href="silclocalnetstream_hsilcutil2FLocal20Network20Stream20Interface.html">Local Network Stream Interface</a>
+<a class="menuitem" href="silclog_hsilcutil2FLogging20Interface.html">Logging Interface</a>
+<a class="menuitem" href="silcmemory_hsilcutil2FMemory20Interface.html">Memory Interface</a>
+<a class="menuitem" href="silcmime_hsilcutil2FMIME20Interface.html">MIME Interface</a>
+<a class="menuitem" href="silcmutex_hsilcutil2FMutex20Interface.html">Mutex Interface</a>
+<a class="menuitem" href="silcnet_hsilcutil2FNetwork20Interface.html">Network Interface</a>
+<a class="menuitem" href="silcrand_hsilcutil2FRandom20Number20Interface.html">Random Number Interface</a>
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="silcruntime_hsilcutil2FRuntime20Toolkit20Interface.html">Runtime Toolkit Interface</a>
+<a class="menuitem" href="silcschedule_hsilcutil2FScheduler20Interface.html">Scheduler Interface</a>
+<a class="menuitem" href="silcsnprintf_hsilcutil2FSnprintf20Interface.html">Snprintf Interface</a>
+<a class="menuitem" href="silcsocketstream_hsilcutil2FSocket20Stream20Interface.html">Socket Stream Interface</a>
+<a class="menuitem" href="silcstack_hsilcutil2FMemory20Pool20Interface.html">Memory Pool Interface</a>
+<a class="menuitem" href="silcstream_hsilcutil2FStream20Interface.html">Stream Interface</a>
+<a class="menuitem" href="silcstringprep_hsilcutil2FStringprep20Interface.html">Stringprep Interface</a>
+<a class="menuitem" href="silcstrutil_hsilcutil2FString20Utilities.html">String Utilities</a>
+<a class="menuitem" href="silcthread_hsilcutil2FThread20Interface.html">Thread Interface</a>
+<a class="menuitem" href="silcthreadqueue_hsilcutil2FThread20Queue20Interface.html">Thread Queue Interface</a>
+<a class="menuitem" href="silctime_hsilcutil2FTime20Interface.html">Time Interface</a>
+<a class="menuitem" href="silctimer_hsilcutil2FTimer20Interface.html">Timer Interface</a>
+<a class="menuitem" href="silctree_hsilcutil2FBinary20Search20Tree20Interface.html">Binary Search Tree Interface</a>
+<a class="menuitem" href="silctypes_hsilcutil2FTypes20and20Definitions.html">Types and Definitions</a>
+<a class="menuitem" href="silcutf8_hsilcutil2FUTF2D820Interface.html">UTF-8 Interface</a>
+<a class="menuitem" href="silcutil_hsilcutil2FMisc20Utilities.html">Misc Utilities</a>
+<a class="menuitem" href="silcxml_hsilcutil2FXML20Interface.html">XML Interface</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fRegex20Interface">
+</a><a name="robo506"></a><h2>Regex Interface</h2>
+
+<p class="item_name">DESCRIPTION</p>
+<p> SILC regular expression interface provides Unix and POSIX compliant
+ regular expression compilation and matching.
+</p>
+
+<p> The interface also provides many convenience functions to make the use
+ of regular expressions easier.  Especially the <a href="./silcregex_hsilcutil2Fsilc5Fregex.html#robo499">silc_regex</a> allows very
+ simple way to match strings against regular expressions and get the
+ exact match or matches as a return.  The <a href="./silcregex_hsilcutil2Fsilc5Fsubst.html#robo497">silc_subst</a> provides simple and
+ familiar way to match and substitute strings (Sed syntax).
+</p>
+
+<p> The regex syntax follows POSIX regex syntax:
+</p>
+
+<p> Expressions:
+</p>
+<pre>   ^        Match start of line/string
+              '^a' matches 'ab' but not 'ba'
+   $        Match end of line/string
+              'a$' matches 'ba' but not 'ab'
+   .        Match any single character (except new line (\n))
+              '.a' matches 'ba' but not 'a'
+   +        Preceding item is matched one or more times
+              'a+b' matches 'aaab' but not 'b'
+   *        Preceding item is matched zero or more times
+              'a*b' matches 'ab', 'aab' and 'b'
+   ?        Preceding item is matched zero or one time
+              'ca?b' matches 'cb' and 'cab' but not 'caab'
+   |        Joins two expressions and matches either of them (OR)
+              'foo|bar' matches 'foo' or 'bar'
+   {n}      Preceding item is matched exactly n times (n can be 0-255)
+              'a{2}' matches 'aa' but not 'aaa'
+   {n,}     Preceding item is matched n or more times
+              'a{2,} matches 'aa' and 'aaaa' but not 'a'
+   {n,m}    Preceding item is matched at least n times and at most m times
+              'a{2,4}' matches 'aa', 'aaa' and 'aaaa' but not 'aaaaa'
+   [ ]      Match any single character in the character list inside [ ]
+              '[0123]' matches only '0', '1', '2' or '3'
+   [ - ]    Match any single character in the specified range
+              '[0-5]' matches digits 0-5.
+   [^ ]     Match any character not in the character list or range
+              '[^09]]' matches any other character except '0' and '9'
+   ( )      Subexpression, grouping
+</pre>
+<p>
+ Escaping (C-language style, '\' is written as '\\'):
+</p>
+<pre>   \\       Considers following character literal ('\\{' is '{')
+   \\\\     Matches literal \
+   \a       Matches bell (BEL)
+   \t       Matches horizontal tab (HT)
+   \n       Matches new line (LF)
+   \v       Matches vertical tab (VT)
+   \f       Matches form feed (FF)
+   \r       Matches carriage ret (CR)
+   \\&lt;      Match null string at the start of a word
+   \\&gt;      Match null string at the end of a word
+   \\b      Match null string at the edge of a wrod
+   \\B      Match null string when not at the edge of a word
+</pre>
+<p></p>
+<p class="item_name">EXAMPLE</p>
+<pre> SilcRegexStruct reg;
+
+ // Compile regular expression
+ if (!<a href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#robo502">silc_regex_compile</a>(&amp;reg, "foo[0-9]*", 0))
+   error;
+
+ // Match string against the compiled regex
+ if (!<a href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#robo501">silc_regex_match</a>(&amp;reg, "foo20", 0, NULL, 0))
+   no_match;
+
+ // Free the compiled regular expression
+ <a href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#robo500">silc_regex_free</a>(&amp;reg);
+
+ // Simple match
+ if (!<a href="./silcregex_hsilcutil2Fsilc5Fregex.html#robo499">silc_regex</a>("foobar", "foo.", NULL))
+   no_match;
+
+ // Replace all foos with bar on all lines in the buffer
+ <a href="./silcregex_hsilcutil2Fsilc5Fsubst.html#robo497">silc_subst</a>(buffer, "s/foo/bar/g");
+</pre>
+
+<p class="item_name">TABLE OF CONTENTS</p>
+<ul class="toc_entries">
+<li class="toc_entries"><a href="./silcregex_hsilcutil2FSilcRegex.html#">SilcRegex</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2FSilcRegexMatch.html#">SilcRegexMatch</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2FSilcRegexFlags.html#">SilcRegexFlags</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#">silc_regex_compile</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#">silc_regex_match</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#">silc_regex_free</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fregex.html#">silc_regex</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fregex5Fbuffer.html#">silc_regex_buffer</a></li>
+<li class="toc_entries"><a href="./silcregex_hsilcutil2Fsilc5Fsubst.html#">silc_subst</a></li>
+</ul>
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

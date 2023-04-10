@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcdir.h</title>
+<!-- Source: ./../../lib/silcutil/silcdir.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcdir_hsilcutil2FDirectory20Interface.html">Directory Interface</a>
+<a class="menuitem" href="./silcdir_hsilcutil2FSilcDir.html#">SilcDir</a>
+<a class="menuitem" href="./silcdir_hsilcutil2FSilcDirEntry.html#">SilcDirEntry</a>
+<a class="menuitem" href="./silcdir_hsilcutil2Fsilc5Fdir5Fopen.html#">silc_dir_open</a>
+<a class="menuitem" href="./silcdir_hsilcutil2Fsilc5Fdir5Fclose.html#">silc_dir_close</a>
+<a class="menuitem" href="#">silc_dir_read</a>
+<a class="menuitem" href="./silcdir_hsilcutil2Fsilc5Fdir5Frewind.html#">silc_dir_rewind</a>
+<a class="menuitem" href="./silcdir_hsilcutil2Fsilc5Fdir5Fname.html#">silc_dir_name</a>
+<a class="menuitem" href="./silcdir_hsilcutil2Fsilc5Fdir5Fentry5Fname.html#">silc_dir_entry_name</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fdir5fread">
+</a><a name="robo185"></a><h2>silc_dir_read</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcdir_hsilcutil2FSilcDirEntry.html#robo188">SilcDirEntry</a> <strong>silc_dir_read</strong>(<a href="./silcdir_hsilcutil2FSilcDir.html#robo189">SilcDir</a> dir, <a href="./silcfileutil_hsilcutil2FSilcFileStat.html#robo251">SilcFileStat</a> status);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Reads next entry (file) from the directory `dir'.  The <a href="./silcdir_hsilcutil2Fsilc5Fdir5Fopen.html#robo187">silc_dir_open</a>
+    must be called first before reading from the directory.  Returns the
+    next entry context or NULL if there are no more entries or error occurs.
+    In case of error the <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> is also set.
+</p>
+
+<p>    If the `status' is non-NULL this will also call <a href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fstat.html#robo239">silc_file_stat</a> and
+    returns the status into the `status' pointer.
+</p>
+
+<p>    The returned context remains valid until the <strong>silc_dir_read</strong> is called
+    again.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silctime.h</title>
+<!-- Source: ./../../lib/silcutil/silctime.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silctime_hsilcutil2FTime20Interface.html">Time Interface</a>
+<a class="menuitem" href="#">SilcTime</a>
+<a class="menuitem" href="./silctime_hsilcutil2FSilcTimeStruct.html#">SilcTimeStruct</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime.html#">silc_time</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fmsec.html#">silc_time_msec</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fusec.html#">silc_time_usec</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fstring.html#">silc_time_string</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fvalue.html#">silc_time_value</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fepoch.html#">silc_time_epoch</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftimezone.html#">silc_timezone</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Funiversal.html#">silc_time_universal</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Funiversal5Fstring.html#">silc_time_universal_string</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fgeneralized.html#">silc_time_generalized</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Ftime5Fgeneralized5Fstring.html#">silc_time_generalized_string</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Fcompare5Ftimeval.html#">silc_compare_timeval</a>
+<a class="menuitem" href="./silctime_hsilcutil2Fsilc5Fgettimeofday.html#">silc_gettimeofday</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcTime">
+</a><a name="robo642"></a><h2>SilcTime</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef struct { ... } *<strong>SilcTime</strong>, <a href="./silctime_hsilcutil2FSilcTimeStruct.html#robo641">SilcTimeStruct</a>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    This context represents time value.  It includes date and time
+    down to millisecond precision.  The structure size is 64 bits.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"> <span class="sign">*</span><span class="sign">/</span>
+typedef struct SilcTimeObject <span class="sign">{</span>
+  unsigned int year       <span class="sign">:</span> 15<span class="sign">;</span>    <span class="comment">/* Year,     0 - 32768 */</span>
+  unsigned int month      <span class="sign">:</span> 4<span class="sign">;</span>     <span class="comment">/* Month,    1 - 12 */</span>
+  unsigned int day        <span class="sign">:</span> 5<span class="sign">;</span>     <span class="comment">/* Day,      1 - 31 */</span>
+  unsigned int hour       <span class="sign">:</span> 5<span class="sign">;</span>     <span class="comment">/* Hour,     0 - 23 */</span>
+  unsigned int minute     <span class="sign">:</span> 6<span class="sign">;</span>     <span class="comment">/* Minute,   0 - 59 */</span>
+  unsigned int second     <span class="sign">:</span> 6<span class="sign">;</span>     <span class="comment">/* Second,   0 - 61 */</span>
+  unsigned int msecond    <span class="sign">:</span> 10<span class="sign">;</span>    <span class="comment">/* Millisec, 0 - 1000 */</span>
+  unsigned int utc_hour   <span class="sign">:</span> 5<span class="sign">;</span>     <span class="comment">/* Offset to Zulu (UTC) hours */</span>
+  unsigned int utc_minute <span class="sign">:</span> 6<span class="sign">;</span>     <span class="comment">/* Offset to Zulu (UTC) minutes */</span>
+  unsigned int utc_east   <span class="sign">:</span> 1<span class="sign">;</span>     <span class="comment">/* Offset, 1 east (+), 0 west (-) */</span>
+  unsigned int dst        <span class="sign">:</span> 1<span class="sign">;</span>     <span class="comment">/* Set if daylight saving time */</span>
+<span class="sign">}</span> <span class="sign">*</span><strong>SilcTime</strong><span class="sign">,</span> <a href="./silctime_hsilcutil2FSilcTimeStruct.html#robo641">SilcTimeStruct</a><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcerrno.h</title>
+<!-- Source: ./../../lib/silcutil/silcerrno.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcerrno_hsilcutil2FErrno20Interface.html">Errno Interface</a>
+<a class="menuitem" href="#">SilcResult</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#">silc_errno</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Ferrno5Fstring.html#">silc_errno_string</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Ferrno5Freason.html#">silc_errno_reason</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Ferrno5Flocation.html#">silc_errno_location</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno.html#">silc_set_errno</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno5Fnofail.html#">silc_set_errno_nofail</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno5Freason.html#">silc_set_errno_reason</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno5Freason5Fnofail.html#">silc_set_errno_reason_nofail</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno5Fposix.html#">silc_set_errno_posix</a>
+<a class="menuitem" href="./silcerrno_hsilcutil2Fsilc5Fset5Ferrno5Flocation.html#">silc_set_errno_location</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcResult">
+</a><a name="robo226"></a><h2>SilcResult</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcResult</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Error codes.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_OK                              <span class="sign">=</span> 0<span class="sign">,</span>   <span class="comment">/* Ok, no error */</span>
+
+  <span class="comment">/* General errors */</span>
+  SILC_ERR                             <span class="sign">=</span> 1<span class="sign">,</span>   <span class="comment">/* General error */</span>
+  SILC_ERR_OUT_OF_MEMORY               <span class="sign">=</span> 2<span class="sign">,</span>   <span class="comment">/* Out of memory */</span>
+  SILC_ERR_ZERO_ALLOCATION             <span class="sign">=</span> 3<span class="sign">,</span>   <span class="comment">/* Allocation by zero */</span>
+  SILC_ERR_TOO_LARGE_ALLOCATION        <span class="sign">=</span> 4<span class="sign">,</span>   <span class="comment">/* Too large allocation */</span>
+  SILC_ERR_OVERFLOW                    <span class="sign">=</span> 5<span class="sign">,</span>   <span class="comment">/* Would overflow */</span>
+  SILC_ERR_UNDERFLOW                   <span class="sign">=</span> 6<span class="sign">,</span>   <span class="comment">/* Would underflow */</span>
+  SILC_ERR_NOT_SUPPORTED               <span class="sign">=</span> 7<span class="sign">,</span>   <span class="comment">/* Feature not supported */</span>
+  SILC_ERR_NOT_PERMITTED               <span class="sign">=</span> 8<span class="sign">,</span>   <span class="comment">/* Operation not permitted */</span>
+  SILC_ERR_TRY_AGAIN                   <span class="sign">=</span> 9<span class="sign">,</span>   <span class="comment">/* Try again */</span>
+  SILC_ERR_PERMISSION_DENIED           <span class="sign">=</span> 10<span class="sign">,</span>  <span class="comment">/* Permission denied */</span>
+  SILC_ERR_INVALID_ARGUMENT            <span class="sign">=</span> 11<span class="sign">,</span>  <span class="comment">/* Invalid argument */</span>
+  SILC_ERR_BAD_TIME                    <span class="sign">=</span> 12<span class="sign">,</span>  <span class="comment">/* Bad time value */</span>
+  SILC_ERR_TIMEOUT                     <span class="sign">=</span> 13<span class="sign">,</span>  <span class="comment">/* Timeout occurred */</span>
+  SILC_ERR_ASSERT                      <span class="sign">=</span> 14<span class="sign">,</span>  <span class="comment">/* Assertion failed */</span>
+  SILC_ERR_NOT_FOUND                   <span class="sign">=</span> 15<span class="sign">,</span>  <span class="comment">/* Item/entry not found */</span>
+  SILC_ERR_UNKNOWN_CHAR                <span class="sign">=</span> 16<span class="sign">,</span>  <span class="comment">/* Unknown character */</span>
+  SILC_ERR_PROHIBITED_CHAR             <span class="sign">=</span> 17<span class="sign">,</span>  <span class="comment">/* Prohibited character */</span>
+  SILC_ERR_BAD_CHAR_ENCODING           <span class="sign">=</span> 18<span class="sign">,</span>  <span class="comment">/* Bad character encoding */</span>
+  SILC_ERR_UNSUPPORTED_CHAR_ENCODING   <span class="sign">=</span> 19<span class="sign">,</span>  <span class="comment">/* Unsupported char encoding */</span>
+  SILC_ERR_BAD_VERSION                 <span class="sign">=</span> 20<span class="sign">,</span>  <span class="comment">/* Bad/unsupported version */</span>
+  SILC_ERR_BAD_ADDRESS                 <span class="sign">=</span> 21<span class="sign">,</span>  <span class="comment">/* Bad memory address */</span>
+  SILC_ERR_BAD_ENCODING                <span class="sign">=</span> 22<span class="sign">,</span>  <span class="comment">/* Bad data encoding */</span>
+  SILC_ERR_INTERRUPTED                 <span class="sign">=</span> 23<span class="sign">,</span>  <span class="comment">/* Interrupted */</span>
+  SILC_ERR_NOT_VALID                   <span class="sign">=</span> 24<span class="sign">,</span>  <span class="comment">/* Not valid */</span>
+  SILC_ERR_LIMIT                       <span class="sign">=</span> 25<span class="sign">,</span>  <span class="comment">/* Limit reached */</span>
+  SILC_ERR_SYNTAX                      <span class="sign">=</span> 26<span class="sign">,</span>  <span class="comment">/* Syntax error */</span>
+
+  <span class="comment">/* File, directory and device errors */</span>
+  SILC_ERR_NO_SUCH_FILE                <span class="sign">=</span> 40<span class="sign">,</span>  <span class="comment">/* No such file */</span>
+  SILC_ERR_ALREADY_EXISTS              <span class="sign">=</span> 41<span class="sign">,</span>  <span class="comment">/* File already exists */</span>
+  SILC_ERR_NOT_DIRECTORY               <span class="sign">=</span> 42<span class="sign">,</span>  <span class="comment">/* Not a directory */</span>
+  SILC_ERR_IS_DIRECTORY                <span class="sign">=</span> 43<span class="sign">,</span>  <span class="comment">/* Is a directory */</span>
+  SILC_ERR_NOT_EMPTY                   <span class="sign">=</span> 44<span class="sign">,</span>  <span class="comment">/* Directory not empty */</span>
+  SILC_ERR_BUSY                        <span class="sign">=</span> 45<span class="sign">,</span>  <span class="comment">/* Device or resource busy */</span>
+  SILC_ERR_NO_SUCH_DEVICE              <span class="sign">=</span> 46<span class="sign">,</span>  <span class="comment">/* No such device */</span>
+  SILC_ERR_NO_SPACE_LEFT               <span class="sign">=</span> 47<span class="sign">,</span>  <span class="comment">/* No space left on device */</span>
+  SILC_ERR_BROKEN_PIPE                 <span class="sign">=</span> 48<span class="sign">,</span>  <span class="comment">/* Broken pipe */</span>
+  SILC_ERR_READ_ONLY                   <span class="sign">=</span> 49<span class="sign">,</span>  <span class="comment">/* Read only */</span>
+  SILC_ERR_IO                          <span class="sign">=</span> 50<span class="sign">,</span>  <span class="comment">/* I/O error */</span>
+  SILC_ERR_BAD_FD                      <span class="sign">=</span> 51<span class="sign">,</span>  <span class="comment">/* Bad file descriptor */</span>
+  SILC_ERR_EOF                         <span class="sign">=</span> 52<span class="sign">,</span>  <span class="comment">/* End of file */</span>
+
+  <span class="comment">/* Network errors */</span>
+  SILC_ERR_BAD_IP                      <span class="sign">=</span> 70<span class="sign">,</span>  <span class="comment">/* Bad IP address */</span>
+  SILC_ERR_UNKNOWN_IP                  <span class="sign">=</span> 71<span class="sign">,</span>  <span class="comment">/* Unknown IP address */</span>
+  SILC_ERR_UNKNOWN_HOST                <span class="sign">=</span> 72<span class="sign">,</span>  <span class="comment">/* Unknown host name */</span>
+  SILC_ERR_UNREACHABLE                 <span class="sign">=</span> 73<span class="sign">,</span>  <span class="comment">/* Destination unreachable */</span>
+  SILC_ERR_REFUSED                     <span class="sign">=</span> 74<span class="sign">,</span>  <span class="comment">/* Connection refused */</span>
+  SILC_ERR_ABORTED                     <span class="sign">=</span> 75<span class="sign">,</span>  <span class="comment">/* Connection aborted */</span>
+  SILC_ERR_RESET                       <span class="sign">=</span> 76<span class="sign">,</span>  <span class="comment">/* Connection reset by peer */</span>
+  SILC_ERR_WOULD_BLOCK                 <span class="sign">=</span> 77<span class="sign">,</span>  <span class="comment">/* Would block */</span>
+  SILC_ERR_HOST_DOWN                   <span class="sign">=</span> 78<span class="sign">,</span>  <span class="comment">/* Host is down */</span>
+  SILC_ERR_BAD_SOCKET                  <span class="sign">=</span> 79<span class="sign">,</span>  <span class="comment">/* Bad socket */</span>
+  SILC_ERR_BAD_STREAM                  <span class="sign">=</span> 80<span class="sign">,</span>  <span class="comment">/* Bad stream */</span>
+  SILC_ERR_ADDR_IN_USE                 <span class="sign">=</span> 81<span class="sign">,</span>  <span class="comment">/* Address already in use */</span>
+  SILC_ERR_NET_DOWN                    <span class="sign">=</span> 82<span class="sign">,</span>  <span class="comment">/* Network is down */</span>
+  SILC_ERR_EOS                         <span class="sign">=</span> 83<span class="sign">,</span>  <span class="comment">/* End of stream */</span>
+
+  <span class="comment">/* Regular expression errors */</span>
+  SILC_ERR_REGEX_PAREN                 <span class="sign">=</span> 100<span class="sign">,</span> <span class="comment">/* Unmatched parenthesis */</span>
+  SILC_ERR_REGEX_HEX                   <span class="sign">=</span> 101<span class="sign">,</span> <span class="comment">/* Bad hex number */</span>
+  SILC_ERR_REGEX_REG                   <span class="sign">=</span> 102<span class="sign">,</span> <span class="comment">/* Bad register number */</span>
+  SILC_ERR_REGEX_SPECIAL               <span class="sign">=</span> 103<span class="sign">,</span> <span class="comment">/* Unmatched special character */</span>
+  SILC_ERR_REGEX_TOO_COMPLEX           <span class="sign">=</span> 104<span class="sign">,</span> <span class="comment">/* Too complex expression */</span>
+  SILC_ERR_REGEX_OPCODE                <span class="sign">=</span> 105<span class="sign">,</span> <span class="comment">/* Bad regex opcode */</span>
+  SILC_ERR_REGEX_REPEAT                <span class="sign">=</span> 106<span class="sign">,</span> <span class="comment">/* Bad repeat value */</span>
+
+  SILC_ERR_MAX<span class="sign">,</span>
+<span class="sign">}</span> <strong>SilcResult</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

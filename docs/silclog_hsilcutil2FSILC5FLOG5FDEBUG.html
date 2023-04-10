@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silclog.h</title>
+<!-- Source: ./../../lib/silcutil/silclog.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silclog_hsilcutil2FLogging20Interface.html">Logging Interface</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogType.html#">SilcLogType</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogCb.html#">SilcLogCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogDebugCb.html#">SilcLogDebugCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogHexdumpCb.html#">SilcLogHexdumpCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FINFO.html#">SILC_LOG_INFO</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FWARNING.html#">SILC_LOG_WARNING</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FERROR.html#">SILC_LOG_ERROR</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FFATAL.html#">SILC_LOG_FATAL</a>
+<a class="menuitem" href="#">SILC_LOG_DEBUG</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FHEXDUMP.html#">SILC_LOG_HEXDUMP</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Ffile.html#">silc_log_set_file</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fget5Ffile.html#">silc_log_get_file</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Fcallback.html#">silc_log_set_callback</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fcallbacks.html#">silc_log_reset_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fflush5Fall.html#">silc_log_flush_all</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fall.html#">silc_log_reset_all</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Fdebug5Fcallbacks.html#">silc_log_set_debug_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fdebug5Fcallbacks.html#">silc_log_reset_debug_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Fdebug5Fstring.html#">silc_log_set_debug_string</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Ftimestamp.html#">silc_log_timestamp</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fflushdelay.html#">silc_log_flushdelay</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fquick.html#">silc_log_quick</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fdebug.html#">silc_log_debug</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fdebug5Fhexdump.html#">silc_log_debug_hexdump</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSILC5fLOG5fDEBUG">
+</a><a name="robo395"></a><h2>SILC_LOG_DEBUG</h2>
+
+<p class="item_name">NAME</p>
+<pre>    #define <strong>SILC_LOG_DEBUG</strong>(...)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    This is a special wrapper to the debugging output (usually stderr).
+    The standard behaviour is the same as <a href="./silclog_hsilcutil2FSILC5FLOG5FINFO.html#robo399">SILC_LOG_INFO</a>, with the difference
+    that this macro also depends on the global define SILC_DEBUG.
+</p>
+
+<p>    Undefining SILC_DEBUG causes these functions to be defined to an empty
+    value, thus removing all debug logging calls from the compiled
+    application.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="sign">#</span>if defined<span class="sign">(</span>SILC_DEBUG<span class="sign">)</span>
+<span class="sign">#</span>define <strong>SILC_LOG_DEBUG</strong><span class="sign">(</span>fmt<span class="sign">)</span> silc_log_output_debug<span class="sign">(</span>__FILE__<span class="sign">,</span>     <span class="sign">\</span>
+                                __FUNCTION__<span class="sign">,</span>                   <span class="sign">\</span>
+                                __LINE__<span class="sign">,</span>                       <span class="sign">\</span>
+                                <a href="./silcutil_hsilcutil2Fsilc5Fformat.html#robo742">silc_format</a> fmt<span class="sign">)</span>
+<span class="sign">#</span>define SILC_NOT_IMPLEMENTED<span class="sign">(</span>string<span class="sign">)</span>                                    <span class="sign">\</span>
+  <a href="./silclog_hsilcutil2FSILC5FLOG5FINFO.html#robo399">SILC_LOG_INFO</a><span class="sign">(</span><span class="sign">(</span><span class="quote">"*********** %s: NOT IMPLEMENTED YET"</span><span class="sign">,</span> string<span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="sign">#</span>else
+<span class="sign">#</span>define <strong>SILC_LOG_DEBUG</strong><span class="sign">(</span>fmt<span class="sign">)</span> do <span class="sign">{</span> <span class="sign">}</span> while<span class="sign">(</span>0<span class="sign">)</span>
+<span class="sign">#</span>define SILC_NOT_IMPLEMENTED<span class="sign">(</span>string<span class="sign">)</span> do <span class="sign">{</span> <span class="sign">}</span> while<span class="sign">(</span>0<span class="sign">)</span>
+<span class="sign">#</span>endif  <span class="comment">/* SILC_DEBUG */</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

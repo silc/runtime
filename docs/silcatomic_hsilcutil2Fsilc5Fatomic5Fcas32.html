@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcatomic.h</title>
+<!-- Source: ./../../lib/silcutil/silcatomic.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcatomic_hsilcutil2FAtomic20Operations20Interface.html">Atomic Operations Interface</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2FSilcAtomic32.html#">SilcAtomic32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2FSilcAtomic16.html#">SilcAtomic16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2FSilcAtomic8.html#">SilcAtomic8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2FSilcAtomicPointer.html#">SilcAtomicPointer</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finit32.html#">silc_atomic_init32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finit16.html#">silc_atomic_init16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finit8.html#">silc_atomic_init8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finit5Fpointer.html#">silc_atomic_init_pointer</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Funinit32.html#">silc_atomic_uninit32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Funinit16.html#">silc_atomic_uninit16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Funinit8.html#">silc_atomic_uninit8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Funinit5Fpointer.html#">silc_atomic_uninit_pointer</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fset5Fint32.html#">silc_atomic_set_int32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fset5Fint16.html#">silc_atomic_set_int16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fset5Fint8.html#">silc_atomic_set_int8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fset5Fpointer.html#">silc_atomic_set_pointer</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fget5Fint32.html#">silc_atomic_get_int32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fget5Fint16.html#">silc_atomic_get_int16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fget5Fint8.html#">silc_atomic_get_int8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fget5Fpointer.html#">silc_atomic_get_pointer</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fadd5Fint32.html#">silc_atomic_add_int32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fadd5Fint16.html#">silc_atomic_add_int16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fadd5Fint8.html#">silc_atomic_add_int8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fsub5Fint32.html#">silc_atomic_sub_int32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fsub5Fint16.html#">silc_atomic_sub_int16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fsub5Fint8.html#">silc_atomic_sub_int8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finc32.html#">silc_atomic_inc32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finc16.html#">silc_atomic_inc16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Finc8.html#">silc_atomic_inc8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fdec32.html#">silc_atomic_dec32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fdec16.html#">silc_atomic_dec16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fdec8.html#">silc_atomic_dec8</a>
+<a class="menuitem" href="#">silc_atomic_cas32</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fcas16.html#">silc_atomic_cas16</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fcas8.html#">silc_atomic_cas8</a>
+<a class="menuitem" href="./silcatomic_hsilcutil2Fsilc5Fatomic5Fcas5Fpointer.html#">silc_atomic_cas_pointer</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fatomic5fcas32">
+</a><a name="robo15"></a><h2>silc_atomic_cas32</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    static inline
+    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_atomic_cas32</strong>(<a href="./silcatomic_hsilcutil2FSilcAtomic32.html#robo47">SilcAtomic32</a> *atomic, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> old_val,
+                               <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> new_val)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Performs compare and swap (CAS).  Atomically compares if the variable
+    `atomic' has the value `old_val' and in that case swaps it with the
+    value `new_val'.  Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if the old value was same and it was
+    swapped and <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if it differed and was not swapped.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

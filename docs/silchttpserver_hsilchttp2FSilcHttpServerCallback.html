@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silchttpserver.h</title>
+<!-- Source: ./../../lib/silchttp/silchttpserver.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silchttpserver_hsilchttp2FHTTP20Server20Interface.html">HTTP Server Interface</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2FSilcHttpServer.html#">SilcHttpServer</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2FSilcHttpConnection.html#">SilcHttpConnection</a>
+<a class="menuitem" href="#">SilcHttpServerCallback</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Falloc.html#">silc_http_server_alloc</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Ffree.html#">silc_http_server_free</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fsend.html#">silc_http_server_send</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fsend5Ferror.html#">silc_http_server_send_error</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fget5Fheader.html#">silc_http_server_get_header</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fadd5Fheader.html#">silc_http_server_add_header</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silchttp2fSilcHttpServerCallback">
+</a><a name="robo356"></a><h2>SilcHttpServerCallback</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    typedef void (*<strong>SilcHttpServerCallback</strong>)(<a href="./silchttpserver_hsilchttp2FSilcHttpServer.html#robo358">SilcHttpServer</a> httpd,
+                                           <a href="./silchttpserver_hsilchttp2FSilcHttpConnection.html#robo357">SilcHttpConnection</a> conn,
+                                           const char *uri,
+                                           const char *method,
+                                           <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> data,
+                                           void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    The HTTP request callback that is called everytime a new HTTP request
+    comes from a HTTP client.  The `uri' is the requested URI (web page),
+    and the `method' is the HTTP request method (GET, POST, etc.).  The
+    `data' is non-NULL only if the `method' is POST, and it includes the
+    the POST data.
+</p>
+
+<p>    The requested web page must be returned to the HTTP client from this
+    callback by calling <a href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fsend.html#robo353">silc_http_server_send</a> or error is returned by
+    calling <a href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fsend5Ferror.html#robo352">silc_http_server_send_error</a>.
+</p>
+
+<p>    The <a href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fget5Fheader.html#robo351">silc_http_server_get_header</a> may be called to find a specific
+    HTTP header from this request.  New headers may be added to the
+    reply by calling <a href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fadd5Fheader.html#robo350">silc_http_server_add_header</a>.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

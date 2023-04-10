@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcregex.h</title>
+<!-- Source: ./../../lib/silcutil/silcregex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegex.html#">SilcRegex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexMatch.html#">SilcRegexMatch</a>
+<a class="menuitem" href="#">SilcRegexFlags</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#">silc_regex_compile</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#">silc_regex_match</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#">silc_regex_free</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex.html#">silc_regex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fbuffer.html#">silc_regex_buffer</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fsubst.html#">silc_subst</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcRegexFlags">
+</a><a name="robo503"></a><h2>SilcRegexFlags</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcRegexFlags</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Regular expression feature flags.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_REGEX_DEFAULT   <span class="sign">=</span> 0x00000000<span class="sign">,</span>
+
+  <span class="comment">/* The following flags can be used with <a href="./silcregex_hsilcutil2Fsilc5Fregex5Fmatch.html#robo501">silc_regex_match</a> */</span>
+
+  <span class="comment">/* The beginning-of-line (^) always fails to match.  This can be useful
+     when beginning of a string should not be interpreted as the beginning
+     of line. */</span>
+  SILC_REGEX_NOTBOL    <span class="sign">=</span> 0x00010000<span class="sign">,</span>
+
+  <span class="comment">/* The end-of-line ($) always fails to match. */</span>
+  SILC_REGEX_NOTEOL    <span class="sign">=</span> 0x00020000<span class="sign">,</span>
+<span class="sign">}</span> <strong>SilcRegexFlags</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

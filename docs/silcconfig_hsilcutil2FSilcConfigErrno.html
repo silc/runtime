@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcconfig.h</title>
+<!-- Source: ./../../lib/silcutil/silcconfig.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcconfig_hsilcutil2FConfig20File20Interface.html">Config File Interface</a>
+<a class="menuitem" href="#">SilcConfigErrno</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigType.html#">SilcConfigType</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigCallback.html#">SilcConfigCallback</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigTable.html#">SilcConfigTable</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigFile.html#">SilcConfigFile</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigEntity.html#">SilcConfigEntity</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSILC5FCONFIG5FCALLBACK.html#">SILC_CONFIG_CALLBACK</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fopen.html#">silc_config_open</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fclose.html#">silc_config_close</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Finit.html#">silc_config_init</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fstrerror.html#">silc_config_strerror</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fget5Ffilename.html#">silc_config_get_filename</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fget5Fline.html#">silc_config_get_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fread5Fline.html#">silc_config_read_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fread5Fcurrent5Fline.html#">silc_config_read_current_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fregister.html#">silc_config_register</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fregister5Ftable.html#">silc_config_register_table</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fmain.html#">silc_config_main</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcConfigErrno">
+</a><a name="robo180"></a><h2>SilcConfigErrno</h2>
+
+<p class="item_name">NAME</p>
+<pre>    enum { ... } - describe a SILC Config error
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    The virtual integer `errno' is returned by the <a href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fmain.html#robo163">silc_config_main</a>()
+    function and indicates what went wrong.
+    You can convert it to the corresponding error string with the function
+    <a href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fstrerror.html#robo170">silc_config_strerror</a>().
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">enum <span class="sign">{</span>
+  SILC_CONFIG_OK<span class="sign">,</span>               <span class="comment">/* OK */</span>
+  SILC_CONFIG_ESILENT<span class="sign">,</span>          <span class="comment">/* Error defined by callback function */</span>
+  SILC_CONFIG_EPRINTLINE<span class="sign">,</span>       <span class="comment">/* Error defined by callback function */</span>
+  SILC_CONFIG_EGENERIC<span class="sign">,</span>         <span class="comment">/* Invalid syntax */</span>
+  SILC_CONFIG_EINTERNAL<span class="sign">,</span>        <span class="comment">/* Internal Error (caused by developer) */</span>
+  SILC_CONFIG_ECANTOPEN<span class="sign">,</span>        <span class="comment">/* Can't open specified file */</span>
+  SILC_CONFIG_EOPENBRACE<span class="sign">,</span>       <span class="comment">/* Expected open-brace '{' */</span>
+  SILC_CONFIG_ECLOSEBRACE<span class="sign">,</span>      <span class="comment">/* Missing close-brace '}' */</span>
+  SILC_CONFIG_ETYPE<span class="sign">,</span>            <span class="comment">/* Invalid data type */</span>
+  SILC_CONFIG_EBADOPTION<span class="sign">,</span>       <span class="comment">/* Unknown option */</span>
+  SILC_CONFIG_EINVALIDTEXT<span class="sign">,</span>     <span class="comment">/* Invalid text */</span>
+  SILC_CONFIG_EDOUBLE<span class="sign">,</span>          <span class="comment">/* Double option specification */</span>
+  SILC_CONFIG_EEXPECTED<span class="sign">,</span>        <span class="comment">/* Expected data but not found */</span>
+  SILC_CONFIG_EEXPECTEDEQUAL<span class="sign">,</span>   <span class="comment">/* Expected '=' */</span>
+  SILC_CONFIG_EUNEXPECTED<span class="sign">,</span>      <span class="comment">/* Unexpected data */</span>
+  SILC_CONFIG_EMISSFIELDS<span class="sign">,</span>      <span class="comment">/* Missing mandatory fields */</span>
+  SILC_CONFIG_EMISSCOLON<span class="sign">,</span>       <span class="comment">/* Missing ';' */</span>
+<span class="sign">}</span><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

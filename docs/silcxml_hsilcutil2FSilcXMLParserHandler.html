@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcxml.h</title>
+<!-- Source: ./../../lib/silcutil/silcxml.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcxml_hsilcutil2FXML20Interface.html">XML Interface</a>
+<a class="menuitem" href="./silcxml_hsilcutil2FSilcXMLParser.html#">SilcXMLParser</a>
+<a class="menuitem" href="#">SilcXMLParserHandler</a>
+<a class="menuitem" href="./silcxml_hsilcutil2FSilcXMLParams.html#">SilcXMLParams</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparser5Fcreate.html#">silc_xml_parser_create</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparser5Ffree.html#">silc_xml_parser_free</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparse.html#">silc_xml_parse</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparse5Ffile.html#">silc_xml_parse_file</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fget5Fattribute.html#">silc_xml_get_attribute</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fcurrent5Flocation.html#">silc_xml_current_location</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcXMLParserHandler">
+</a><a name="robo756"></a><h2>SilcXMLParserHandler</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef struct SilcXMLParserHandlerObject { ... }
+                   <strong>SilcXMLParserHandler</strong>, SilcXMLParserHandlerStruct;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    The XML parser handler function callbacks are declared in this
+    structure.  The structure is given as argument to the
+    <a href="./silcxml_hsilcutil2Fsilc5Fxml5Fparser5Fcreate.html#robo754">silc_xml_parser_create</a>.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef struct SilcXMLParserHandlerObject <span class="sign">{</span>
+  <span class="comment">/* Called at the start of an XML element.  The `name' is the element name.
+     The `attributes' is the element attributes or NULL if there were no
+     attributes.  The `attributes' may be enumerated using the <a href="./silchashtable_hsilcutil2FSilcHashTable.html#robo345">SilcHashTable</a>
+     API.  The <a href="./silcxml_hsilcutil2Fsilc5Fxml5Fget5Fattribute.html#robo750">silc_xml_get_attribute</a> can be used to retrieve the attribute
+     values from the `attributes' by their name. */</span>
+  void <span class="comment">(*start_element)(<a href="./silcxml_hsilcutil2FSilcXMLParser.html#robo757">SilcXMLParser</a> parser,
+                        const char *name,
+                        <a href="./silchashtable_hsilcutil2FSilcHashTable.html#robo345">SilcHashTable</a> attributes,
+                        void *context);
+
+  /* Called and the end of an XML element.  The `name' is the element name. */</span>
+  void <span class="comment">(*end_element)(<a href="./silcxml_hsilcutil2FSilcXMLParser.html#robo757">SilcXMLParser</a> parser,
+                      const char *name,
+                      void *context);
+
+  /* Called to deliver the characters or whatever data is in the element. */</span>
+  void <span class="comment">(*data)(<a href="./silcxml_hsilcutil2FSilcXMLParser.html#robo757">SilcXMLParser</a> parser,
+               const unsigned char *data,
+               <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> data_len,
+               void *context);
+
+  /* Called to deliver a processing instruction.  The `target' is the first
+     word in the processing instruction.  The `data' is the rest of the
+     characters in it skipping all whitespace after the initial word.  This
+     callback may be NULL if it is not needed. */</span>
+  void <span class="comment">(*pi)(<a href="./silcxml_hsilcutil2FSilcXMLParser.html#robo757">SilcXMLParser</a> parser,
+             const char *target,
+             const char *data,
+             void *context);
+} *<strong>SilcXMLParserHandler</strong>, SilcXMLParserHandlerStruct;
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

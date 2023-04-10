@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silctypes.h</title>
+<!-- Source: ./../../lib/silcutil/silctypes.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silctypes_hsilcutil2FTypes20and20Definitions.html">Types and Definitions</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcBool.html#">SilcBool</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FTRUE.html#">TRUE</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FFALSE.html#">FALSE</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcUInt8.html#">SilcUInt8</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcInt8.html#">SilcInt8</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcUInt16.html#">SilcUInt16</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcInt16.html#">SilcInt16</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcUInt32.html#">SilcUInt32</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcInt32.html#">SilcInt32</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcUInt64.html#">SilcUInt64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcInt64.html#">SilcInt64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcFloat32.html#">SilcFloat32</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcFloat64.html#">SilcFloat64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcSocket.html#">SilcSocket</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcParam.html#">SilcParam</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcCompareValue.html#">SilcCompareValue</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSilcCompare.html#">SilcCompare</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FMAX.html#">SILC_MAX</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FMIN.html#">SILC_MIN</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FGET165FMSB.html#">SILC_GET16_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FGET325FMSB.html#">SILC_GET32_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FGET645FMSB.html#">SILC_GET64_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FGET165FLSB.html#">SILC_GET16_LSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FGET325FLSB.html#">SILC_GET32_LSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPUT165FMSB.html#">SILC_PUT16_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPUT325FMSB.html#">SILC_PUT32_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPUT645FMSB.html#">SILC_PUT64_MSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPUT165FLSB.html#">SILC_PUT16_LSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPUT325FLSB.html#">SILC_PUT32_LSB</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FSWAB5F16.html#">SILC_SWAB_16</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FSWAB5F32.html#">SILC_SWAB_32</a>
+<a class="menuitem" href="#">SILC_PTR_TO_32</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FPTR5FTO5F64.html#">SILC_PTR_TO_64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5F325FTO5FPTR.html#">SILC_32_TO_PTR</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5F645FTO5FPTR.html#">SILC_64_TO_PTR</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FASSERT.html#">SILC_ASSERT</a>
+<a class="menuitem" href="./silctypes_hsilcutil2FSILC5FVERIFY.html#">SILC_VERIFY</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frol.html#">silc_rol</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frolc.html#">silc_rolc</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Fror.html#">silc_ror</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frorc.html#">silc_rorc</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frol64.html#">silc_rol64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frolc64.html#">silc_rolc64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Fror64.html#">silc_ror64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Frorc64.html#">silc_rorc64</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Foffsetof.html#">silc_offsetof</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Fattribute.html#">silc_attribute</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Flikely.html#">silc_likely</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Funlikely.html#">silc_unlikely</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Fprefetch.html#">silc_prefetch</a>
+<a class="menuitem" href="./silctypes_hsilcutil2Fsilc5Fprefetch5Fblock.html#">silc_prefetch_block</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSILC5fPTR5fTO5f32">
+</a><a name="robo689"></a><h2>SILC_PTR_TO_32</h2>
+
+<p class="item_name">NAME</p>
+<pre>    #define <strong>SILC_PTR_TO_32</strong>(ptr)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Type casts a pointer's value into a 32-bit integer.  Use this to
+    avoid compiler warnings when type casting pointers to integers
+    of different size.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="sign">#</span>if SILC_SIZEOF_VOID_P <span class="sign">&lt;</span> 8
+<span class="sign">#</span>define <strong>SILC_PTR_TO_32</strong><span class="sign">(</span>_ptr__<span class="sign">)</span> <span class="sign">(</span><span class="sign">(</span><a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a><span class="sign">)</span><span class="sign">(</span>_ptr__<span class="sign">)</span><span class="sign">)</span>
+<span class="sign">#</span>else
+<span class="sign">#</span>define <strong>SILC_PTR_TO_32</strong><span class="sign">(</span>_ptr__<span class="sign">)</span>                                          <span class="sign">\</span>
+  <span class="sign">(</span><span class="sign">(</span><a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a><span class="sign">)</span><span class="sign">(</span><span class="sign">(</span><a href="./silctypes_hsilcutil2FSilcUInt64.html#robo711">SilcUInt64</a><span class="sign">)</span><span class="sign">(</span>_ptr__<span class="sign">)</span> <span class="sign">&amp;</span> <span class="sign">(</span><a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a><span class="sign">)</span>0xFFFFFFFFUL<span class="sign">)</span><span class="sign">)</span>
+<span class="sign">#</span>endif
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

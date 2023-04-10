@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silctree.h</title>
+<!-- Source: ./../../lib/silcutil/silctree.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silctree_hsilcutil2FBinary20Search20Tree20Interface.html">Binary Search Tree Interface</a>
+<a class="menuitem" href="./silctree_hsilcutil2FSilcTree.html#">SilcTree</a>
+<a class="menuitem" href="./silctree_hsilcutil2FSilcTreeHeader.html#">SilcTreeHeader</a>
+<a class="menuitem" href="./silctree_hsilcutil2FSilcTreeType.html#">SilcTreeType</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Finit.html#">silc_tree_init</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Fadd.html#">silc_tree_add</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Fdel.html#">silc_tree_del</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Ffind.html#">silc_tree_find</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Ffind5Fext.html#">silc_tree_find_ext</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Fcount.html#">silc_tree_count</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Fminmax.html#">silc_tree_minmax</a>
+<a class="menuitem" href="#">silc_tree_enumerate</a>
+<a class="menuitem" href="./silctree_hsilcutil2Fsilc5Ftree5Fenumerate5Fduplicates.html#">silc_tree_enumerate_duplicates</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5ftree5fenumerate">
+</a><a name="robo658"></a><h2>silc_tree_enumerate</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void *<strong>silc_tree_enumerate</strong>(<a href="./silctree_hsilcutil2FSilcTree.html#robo668">SilcTree</a> *tree, void *at);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Enumerates the `tree' starting/continuing at the `at'.  When `at' is
+    NULL this will start enumeration from the root of the tree.  The found
+    entry must be given as `at' for next call to continue the enumeration
+    in order.  The enumeration is done in ascending order starting from the
+    smallest value.  If there are duplicates in the tree, their order is
+    undefined.  Returns NULL at the end of the enumeration.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre> // Start enumerating from beginning in order
+ for (entry = <strong>silc_tree_enumerate</strong>(tree, NULL); entry != NULL;
+      entry = <strong>silc_tree_enumerate</strong>(tree, entry))
+   printf("Client entry %s\n", entry-&gt;name);
+
+ // Delete all entries from the tree
+ while ((entry = <strong>silc_tree_enumerate</strong>(tree, NULL)))
+   <a href="./silctree_hsilcutil2Fsilc5Ftree5Fdel.html#robo663">silc_tree_del</a>(tree, entry);
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

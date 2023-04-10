@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcxml.h</title>
+<!-- Source: ./../../lib/silcutil/silcxml.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcxml_hsilcutil2FXML20Interface.html">XML Interface</a>
+<a class="menuitem" href="./silcxml_hsilcutil2FSilcXMLParser.html#">SilcXMLParser</a>
+<a class="menuitem" href="./silcxml_hsilcutil2FSilcXMLParserHandler.html#">SilcXMLParserHandler</a>
+<a class="menuitem" href="./silcxml_hsilcutil2FSilcXMLParams.html#">SilcXMLParams</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparser5Fcreate.html#">silc_xml_parser_create</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparser5Ffree.html#">silc_xml_parser_free</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fparse.html#">silc_xml_parse</a>
+<a class="menuitem" href="#">silc_xml_parse_file</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fget5Fattribute.html#">silc_xml_get_attribute</a>
+<a class="menuitem" href="./silcxml_hsilcutil2Fsilc5Fxml5Fcurrent5Flocation.html#">silc_xml_current_location</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fxml5fparse5ffile">
+</a><a name="robo751"></a><h2>silc_xml_parse_file</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_xml_parse_file</strong>(<a href="./silcxml_hsilcutil2FSilcXMLParser.html#robo757">SilcXMLParser</a> parser,
+                                 const char *filename);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Parse XML file indicated by `filename'.  Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> after the file
+    has been parsed.  The handler callback functions set for `parser' will
+    be called while parsing the XML file.
+</p>
+
+<p>    Returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> and set <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> and <a href="./silcerrno_hsilcutil2Fsilc5Ferrno5Freason.html#robo223">silc_errno_reason</a> if error
+    occurs.  The <a href="./silcerrno_hsilcutil2Fsilc5Ferrno5Flocation.html#robo222">silc_errno_location</a> can be used to retrieve the exact
+    location in the file where the error occurred.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

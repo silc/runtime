@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffmt.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffmt.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbuffmt_hsilcutil2FBuffer20Format20Interface.html">Buffer Format Interface</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferFormatFunc.html#">SilcBufferFormatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferUnformatFunc.html#">SilcBufferUnformatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#">silc_buffer_format</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat.html#">silc_buffer_sformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat5Fvp.html#">silc_buffer_format_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat5Fvp.html#">silc_buffer_sformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat.html#">silc_buffer_unformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat.html#">silc_buffer_sunformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat5Fvp.html#">silc_buffer_unformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat5Fvp.html#">silc_buffer_sunformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fstrformat.html#">silc_buffer_strformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsstrformat.html#">silc_buffer_sstrformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT8.html#">SILC_STR_SINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT8.html#">SILC_STR_UINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT16.html#">SILC_STR_SINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT16.html#">SILC_STR_UINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT32.html#">SILC_STR_SINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT32.html#">SILC_STR_UINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT64.html#">SILC_STR_SINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT64.html#">SILC_STR_UINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#">SILC_STR_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FSTRING.html#">SILC_STR_*_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FNSTRING.html#">SILC_STR_*_NSTRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDATA.html#">SILC_STR_DATA</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FBUFFER.html#">SILC_STR_BUFFER</a>
+<a class="menuitem" href="#">SILC_STR_REPLACE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#">SILC_STR_FUNC</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferRegexFlags.html#">SilcBufferRegexFlags</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#">SILC_STR_REGEX</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDELETE.html#">SILC_STR_DELETE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET.html#">SILC_STR_OFFSET</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FSTART.html#">SILC_STR_OFFSET_START</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FEND.html#">SILC_STR_OFFSET_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FADVANCE.html#">SILC_STR_ADVANCE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#">SILC_STR_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTRFMT5FEND.html#">SILC_STRFMT_END</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSILC5fSTR5fREPLACE">
+</a><a name="robo128"></a><h2>SILC_STR_REPLACE</h2>
+
+<p class="item_name">NAME</p>
+<pre>    #define <strong>SILC_STR_REPLACE</strong>(unsigned char *data, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> len) ...
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Encode the `data' of length of `len' bytes into the buffer, replacing
+    existing data.
+</p>
+
+<p>    If the length of the current data area is equal to `len' the data area
+    is replaced with `data'.
+</p>
+
+<p>    If `len' is longer than the data area, it will be enlarged to fit the
+    `data'.  If there is data in the tail area, it will not be replaced,
+    but the buffer is enlarged and the old tail area will be copied to the
+    new tail area, thus preserving any data in the buffer (the data is
+    in effect appended to the current data area).
+</p>
+
+<p>    If `len' is shorter than than the data area, only the bytes in `data'
+    are replaced, and rest are deleted from the data area.  The buffer size
+    is also reduced but no other data is lost in the process.
+</p>
+
+<p>    If `len' is 0 but `data' is non-NULL, this will delete all bytes from
+    the current data area.  If `data' is NULL this macro has no effect to
+    the buffer.
+</p>
+
+<p>    Use this only for formatting.
+</p>
+
+<pre>     Formatting:  <strong>SILC_STR_REPLACE</strong>(unsigned char *, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a>)
+</pre>
+<p></p>
+<p class="item_name">EXAMPLE</p>
+<pre>    Before replacing
+    -------------------------
+    | head  | 12345 | 67890 |
+    -------------------------
+
+    After replacing with 12345XXX (appends)
+    ----------------------------
+    | head  | 12345XXX | 67890 |
+    ----------------------------
+
+    After replacing with YYY (deletes)
+    -----------------------
+    | head  | YYY | 67890 |
+    -----------------------
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

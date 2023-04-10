@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcgetopt.h</title>
+<!-- Source: ./../../lib/silcutil/silcgetopt.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcgetopt_hsilcutil2FGetOpt20Interface.html">GetOpt Interface</a>
+<a class="menuitem" href="./silcgetopt_hsilcutil2FSilcGetOpt.html#">SilcGetOpt</a>
+<a class="menuitem" href="./silcgetopt_hsilcutil2FSILC5FGETOPT5FINIT.html#">SILC_GETOPT_INIT</a>
+<a class="menuitem" href="#">silc_getopt</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fgetopt">
+</a><a name="robo297"></a><h2>silc_getopt</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    int <strong>silc_getopt</strong>(int argc, char **argv, const char *optstring,
+                    <a href="./silcgetopt_hsilcutil2FSilcGetOpt.html#robo299">SilcGetOpt</a> op)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Parses comand line options.  This function is equivalent to getopt(3).
+    Returns the current parsed option, '?' if option was unknown, ':' if
+    required argument was missing or -1 after all options have been parsed.
+    If options require arguments they are available from the `op' structure,
+    to where the options are parsed.  The parsing is stopped immediately
+    when first non-option character, which is not an argument for an option,
+    is encountered.
+</p>
+
+<p>    The `optstring' contains the supported option characters.  One character
+    per option is required.  If colon (':') follows option character the
+    option requires an argument.  If two colons ('::') follows option
+    character the argument is optional.  In that case the argument must
+    follow the option in command line, for example -oarg, instead of -o arg.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    int main(int argc, char **argv)
+    {
+      SilcGetOptStruct op = <a href="./silcgetopt_hsilcutil2FSILC5FGETOPT5FINIT.html#robo298">SILC_GETOPT_INIT</a>;
+
+      while ((option = <strong>silc_getopt</strong>(argc, argv, "ab:t::", &amp;op)) != -1) {
+        switch (option) {
+          case 'a':
+            ...
+            break;
+          case 'b':
+            argument = <a href="./silcmemory_hsilcutil2Fsilc5Fstrdup.html#robo411">silc_strdup</a>(op.opt_arg);
+            break;
+          case 't':
+            if (op.opt_arg)
+              optional_argument = <a href="./silcmemory_hsilcutil2Fsilc5Fstrdup.html#robo411">silc_strdup</a>(op.opt_arg);
+            break;
+          default:
+            exit(1);
+            break;
+        }
+      }
+    }
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

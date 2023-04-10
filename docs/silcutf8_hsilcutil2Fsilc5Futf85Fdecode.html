@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcutf8.h</title>
+<!-- Source: ./../../lib/silcutil/silcutf8.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcutf8_hsilcutil2FUTF2D820Interface.html">UTF-8 Interface</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fencode.html#">silc_utf8_encode</a>
+<a class="menuitem" href="#">silc_utf8_decode</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fc2w.html#">silc_utf8_c2w</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fw2c.html#">silc_utf8_w2c</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fencoded5Flen.html#">silc_utf8_encoded_len</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fdecoded5Flen.html#">silc_utf8_decoded_len</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fvalid.html#">silc_utf8_valid</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fstrcasecmp.html#">silc_utf8_strcasecmp</a>
+<a class="menuitem" href="./silcutf8_hsilcutil2Fsilc5Futf85Fstrncasecmp.html#">silc_utf8_strncasecmp</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5futf85fdecode">
+</a><a name="robo729"></a><h2>silc_utf8_decode</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> <strong>silc_utf8_decode</strong>(const unsigned char *utf8,
+                                <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> utf8_len,
+                                <a href="./silcstrutil_hsilcutil2FSilcStringEncoding.html#robo598">SilcStringEncoding</a> bin_encoding,
+                                unsigned char *bin, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> bin_size);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Decodes UTF-8 encoded string `utf8' to string of which encoding is
+    to be `bin_encoding', into the `bin' buffer of size of `bin_size'.
+    Returns the length of the decoded buffer, or zero (0) on error.
+    By default `bin_encoding' is ASCII, and the caller needs to know to
+    which encoding the output string is to be encoded if ASCII is not
+    desired.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

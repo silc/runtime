@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcnet.h</title>
+<!-- Source: ./../../lib/silcutil/silcnet.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcnet_hsilcutil2FNetwork20Interface.html">Network Interface</a>
+<a class="menuitem" href="./silcnet_hsilcutil2FSilcNetListener.html#">SilcNetListener</a>
+<a class="menuitem" href="./silcnet_hsilcutil2FSilcNetCallback.html#">SilcNetCallback</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Ftcp5Fcreate5Flistener.html#">silc_net_tcp_create_listener</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Ftcp5Fcreate5Flistener2.html#">silc_net_tcp_create_listener2</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Flistener5Fget5Fport.html#">silc_net_listener_get_port</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Flistener5Fget5Fip.html#">silc_net_listener_get_ip</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Flistener5Fget5Fhostname.html#">silc_net_listener_get_hostname</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fclose5Flistener.html#">silc_net_close_listener</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Ftcp5Fconnect.html#">silc_net_tcp_connect</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Fconnect.html#">silc_net_udp_connect</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Freceive.html#">silc_net_udp_receive</a>
+<a class="menuitem" href="#">silc_net_udp_send</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fclose5Fconnection.html#">silc_net_close_connection</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Faccept5Fconnection.html#">silc_net_accept_connection</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fset5Fsocket5Fopt.html#">silc_net_set_socket_opt</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fget5Fsocket5Fopt.html#">silc_net_get_socket_opt</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fset5Fsocket5Fnonblock.html#">silc_net_set_socket_nonblock</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fis5Fip4.html#">silc_net_is_ip4</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fis5Fip6.html#">silc_net_is_ip6</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fis5Fip.html#">silc_net_is_ip</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Faddr2bin.html#">silc_net_addr2bin</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fbin2addr.html#">silc_net_bin2addr</a>
+<a class="menuitem" href="./silcnet_hsilcutil2FSilcNetResolveCallback.html#">SilcNetResolveCallback</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fgethostbyname.html#">silc_net_gethostbyname</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fgethostbyname5Fasync.html#">silc_net_gethostbyname_async</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fgethostbyaddr.html#">silc_net_gethostbyaddr</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fgethostbyaddr5Fasync.html#">silc_net_gethostbyaddr_async</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fcheck5Fhost5Fby5Fsock.html#">silc_net_check_host_by_sock</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fcheck5Flocal5Fby5Fsock.html#">silc_net_check_local_by_sock</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fget5Fremote5Fport.html#">silc_net_get_remote_port</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Fget5Flocal5Fport.html#">silc_net_get_local_port</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Flocalhost.html#">silc_net_localhost</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fnet5Flocalip.html#">silc_net_localip</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fhtonl.html#">silc_htonl</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fntohl.html#">silc_ntohl</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fhtons.html#">silc_htons</a>
+<a class="menuitem" href="./silcnet_hsilcutil2Fsilc5Fntohs.html#">silc_ntohs</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fnet5fudp5fsend">
+</a><a name="robo480"></a><h2>silc_net_udp_send</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    int <strong>silc_net_udp_send</strong>(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream,
+                          const char *remote_ip_addr, int remote_port,
+                          const unsigned char *data, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> data_len);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Sends an UDP packet to remote host `remote_ip_addr' on `remote_port'.
+    This may be used with UDP streams that are not connected to any
+    specific remote host.  With those streams <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a> cannot be
+    used.  In those cases, this function must be used.  However, this may
+    also be used even if the stream is in connected state.
+</p>
+
+<p>    You can create the `stream' by calling <a href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Fconnect.html#robo482">silc_net_udp_connect</a>.
+</p>
+
+<p>    Returns the amount of data written, -1 if data could not be written
+    at this moment, or -2 if error occurred.  If -1 is returned the
+    notifier callback will later be called with SILC_STREAM_CAN_WRITE
+    status when stream is again ready for writing.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

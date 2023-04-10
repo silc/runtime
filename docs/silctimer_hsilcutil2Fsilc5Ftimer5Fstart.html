@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silctimer.h</title>
+<!-- Source: ./../../lib/silcutil/silctimer.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silctimer_hsilcutil2FTimer20Interface.html">Timer Interface</a>
+<a class="menuitem" href="./silctimer_hsilcutil2FSilcTimer.html#">SilcTimer</a>
+<a class="menuitem" href="./silctimer_hsilcutil2FSilcTimerStruct.html#">SilcTimerStruct</a>
+<a class="menuitem" href="#">silc_timer_start</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fstop.html#">silc_timer_stop</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fcontinue.html#">silc_timer_continue</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fvalue.html#">silc_timer_value</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fvalue5Ftime.html#">silc_timer_value_time</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fstart5Ftime.html#">silc_timer_start_time</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fis5Frunning.html#">silc_timer_is_running</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Ftick.html#">silc_timer_tick</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Ftimer5Fsynchronize.html#">silc_timer_synchronize</a>
+<a class="menuitem" href="./silctimer_hsilcutil2Fsilc5Fusleep.html#">silc_usleep</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5ftimer5fstart">
+</a><a name="robo653"></a><h2>silc_timer_start</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_timer_start</strong>(<a href="./silctimer_hsilcutil2FSilcTimer.html#robo655">SilcTimer</a> timer);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Starts the timer.  If the timer is already running this will reset
+    the timer and continue.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    <a href="./silctimer_hsilcutil2FSilcTimerStruct.html#robo654">SilcTimerStruct</a> timer;
+
+    <strong>silc_timer_start</strong>(&amp;timer);
+    ... time passes ...
+    <a href="./silctimer_hsilcutil2Fsilc5Ftimer5Fstop.html#robo652">silc_timer_stop</a>(&amp;timer);
+    <a href="./silctimer_hsilcutil2Fsilc5Ftimer5Fvalue.html#robo650">silc_timer_value</a>(&amp;timer, &amp;elapsed_sec, &amp;elapsed_usec);
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

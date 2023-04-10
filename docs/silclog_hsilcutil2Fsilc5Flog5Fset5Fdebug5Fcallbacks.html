@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silclog.h</title>
+<!-- Source: ./../../lib/silcutil/silclog.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silclog_hsilcutil2FLogging20Interface.html">Logging Interface</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogType.html#">SilcLogType</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogCb.html#">SilcLogCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogDebugCb.html#">SilcLogDebugCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSilcLogHexdumpCb.html#">SilcLogHexdumpCb</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FINFO.html#">SILC_LOG_INFO</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FWARNING.html#">SILC_LOG_WARNING</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FERROR.html#">SILC_LOG_ERROR</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FFATAL.html#">SILC_LOG_FATAL</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FDEBUG.html#">SILC_LOG_DEBUG</a>
+<a class="menuitem" href="./silclog_hsilcutil2FSILC5FLOG5FHEXDUMP.html#">SILC_LOG_HEXDUMP</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Ffile.html#">silc_log_set_file</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fget5Ffile.html#">silc_log_get_file</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Fcallback.html#">silc_log_set_callback</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fcallbacks.html#">silc_log_reset_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fflush5Fall.html#">silc_log_flush_all</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fall.html#">silc_log_reset_all</a>
+<a class="menuitem" href="#">silc_log_set_debug_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Freset5Fdebug5Fcallbacks.html#">silc_log_reset_debug_callbacks</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fset5Fdebug5Fstring.html#">silc_log_set_debug_string</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Ftimestamp.html#">silc_log_timestamp</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fflushdelay.html#">silc_log_flushdelay</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fquick.html#">silc_log_quick</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fdebug.html#">silc_log_debug</a>
+<a class="menuitem" href="./silclog_hsilcutil2Fsilc5Flog5Fdebug5Fhexdump.html#">silc_log_debug_hexdump</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5flog5fset5fdebug5fcallbacks">
+</a><a name="robo387"></a><h2>silc_log_set_debug_callbacks</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void <strong>silc_log_set_debug_callbacks</strong>(<a href="./silclog_hsilcutil2FSilcLogDebugCb.html#robo401">SilcLogDebugCb</a> debug_cb,
+                                      void *debug_context,
+                                      <a href="./silclog_hsilcutil2FSilcLogHexdumpCb.html#robo400">SilcLogHexdumpCb</a> hexdump_cb,
+                                      void *hexdump_context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Sets `debug_cb' as the the default callback function for the debug
+    output, that will be called with the `debug_context' parameter.
+    When SilcLog receives a debug message, it will trigger the callback
+    function.  If the callback function returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> SilcLog will assume
+    the input as handled and won't run its default handler.  The `hexdump_cb'
+    and `hexdump_context' works the same way, except that they are referred
+    to <a href="./silclog_hsilcutil2FSILC5FLOG5FHEXDUMP.html#robo394">SILC_LOG_HEXDUMP</a> requests.
+</p>
+
+<p>    You can disable/remove a callback by setting it to NULL.  If set, each
+    callback function must be either in the form described by <a href="./silclog_hsilcutil2FSilcLogDebugCb.html#robo401">SilcLogDebugCb</a>
+    or <a href="./silclog_hsilcutil2FSilcLogHexdumpCb.html#robo400">SilcLogHexdumpCb</a>.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

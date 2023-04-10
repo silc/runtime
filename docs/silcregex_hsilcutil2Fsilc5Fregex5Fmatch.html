@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcregex.h</title>
+<!-- Source: ./../../lib/silcutil/silcregex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegex.html#">SilcRegex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexMatch.html#">SilcRegexMatch</a>
+<a class="menuitem" href="./silcregex_hsilcutil2FSilcRegexFlags.html#">SilcRegexFlags</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#">silc_regex_compile</a>
+<a class="menuitem" href="#">silc_regex_match</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Ffree.html#">silc_regex_free</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex.html#">silc_regex</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fregex5Fbuffer.html#">silc_regex_buffer</a>
+<a class="menuitem" href="./silcregex_hsilcutil2Fsilc5Fsubst.html#">silc_subst</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fregex5fmatch">
+</a><a name="robo501"></a><h2>silc_regex_match</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_regex_match</strong>(<a href="./silcregex_hsilcutil2FSilcRegex.html#robo505">SilcRegex</a> regexp, const char *string,
+                              <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> string_len, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> num_match,
+                              <a href="./silcregex_hsilcutil2FSilcRegexMatch.html#robo504">SilcRegexMatch</a> match, <a href="./silcregex_hsilcutil2FSilcRegexFlags.html#robo503">SilcRegexFlags</a> flags);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Finds one or more matches from the `string' using the pre-compiled
+    regular expression `regexp'.  It must be compiled by calling the
+    <a href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#robo502">silc_regex_compile</a> before calling this function.  The `flags' defines
+    various feature flags.
+</p>
+
+<p>    If only one match is needed the `num_match' may be set to 0 and the
+    `match' is set to NULL.  If multiple matches (substrings) are needed the
+    `num_match' defines the size of the `match' array, where each of the
+    matches (with parenthesized regular expression) will be stored.  The
+    `match' provides information on where the match was found in `string',
+    providing the start offset and end offset of the match.  Unused entires
+    in the array will have -1 as the offset values.
+</p>
+
+<p>    Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if the string matched the regular expression or <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>
+    if it did not match or error occurred.  The <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> will indicate
+    the error.  The <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> is set to SILC_ERR_NOT_FOUND if the regular
+    expression did not match.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    // Find first match (check if string matches)
+    if (!<strong>silc_regex_match</strong>(&amp;reg, "foo20", 5, 0, NULL, 0))
+      no_match;
+
+    // Find multiple matches, one by one
+    SilcRegexMatchStruct match;
+
+    while (<strong>silc_regex_match</strong>(&amp;reg, string, len, 1, &amp;match, 0)) {
+      match_string = <a href="./silcmemory_hsilcutil2Fsilc5Fmemdup.html#robo412">silc_memdup</a>(string + match.start,
+                                 match.end - match.start);
+      string += match.end;
+    }
+
+    // Parse URI into its components, available in the match[] array
+    SilcRegexStruct reg;
+    SilcRegexMatchStruct match[7];
+
+    <a href="./silcregex_hsilcutil2Fsilc5Fregex5Fcompile.html#robo502">silc_regex_compile</a>(&amp;reg, "^(([^:]+)://)?([^:/]+)(:([0-9]+))?(/.*)", 0);
+    <strong>silc_regex_match</strong>(&amp;reg, "<a href="http://example.com/page.html",">http://example.com/page.html",</a> len, 7, match, 0);
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

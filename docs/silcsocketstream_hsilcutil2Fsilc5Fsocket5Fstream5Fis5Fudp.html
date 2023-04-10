@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcsocketstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcsocketstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcsocketstream_hsilcutil2FSocket20Stream20Interface.html">Socket Stream Interface</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2FSilcSocketStreamCallback.html#">SilcSocketStreamCallback</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Ftcp5Fstream5Fcreate.html#">silc_socket_tcp_stream_create</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fudp5Fstream5Fcreate.html#">silc_socket_udp_stream_create</a>
+<a class="menuitem" href="#">silc_socket_stream_is_udp</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fget5Finfo.html#">silc_socket_stream_get_info</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Finfo.html#">silc_socket_stream_set_info</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Fqos.html#">silc_socket_stream_set_qos</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fsocket5fstream5fis5fudp">
+</a><a name="robo557"></a><h2>silc_socket_stream_is_udp</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_socket_stream_is_udp</strong>(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream,
+                                       <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> *connected);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if the `stream' is UDP stream.  If the `connected' pointer
+    is non-NULL it will have indication whether the UDP stream is in
+    connected state.  If it is then packets can be read and written using
+    <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fread.html#robo583">silc_stream_read</a> and <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a>.  If it is not then packets
+    need to read and written by using <a href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Freceive.html#robo481">silc_net_udp_receive</a> and
+    <a href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Fsend.html#robo480">silc_net_udp_send</a>.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

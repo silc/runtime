@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffmt.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffmt.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbuffmt_hsilcutil2FBuffer20Format20Interface.html">Buffer Format Interface</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferFormatFunc.html#">SilcBufferFormatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferUnformatFunc.html#">SilcBufferUnformatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#">silc_buffer_format</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat.html#">silc_buffer_sformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat5Fvp.html#">silc_buffer_format_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat5Fvp.html#">silc_buffer_sformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat.html#">silc_buffer_unformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat.html#">silc_buffer_sunformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat5Fvp.html#">silc_buffer_unformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat5Fvp.html#">silc_buffer_sunformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fstrformat.html#">silc_buffer_strformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsstrformat.html#">silc_buffer_sstrformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT8.html#">SILC_STR_SINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT8.html#">SILC_STR_UINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT16.html#">SILC_STR_SINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT16.html#">SILC_STR_UINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT32.html#">SILC_STR_SINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT32.html#">SILC_STR_UINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT64.html#">SILC_STR_SINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT64.html#">SILC_STR_UINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#">SILC_STR_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FSTRING.html#">SILC_STR_*_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FNSTRING.html#">SILC_STR_*_NSTRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDATA.html#">SILC_STR_DATA</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FBUFFER.html#">SILC_STR_BUFFER</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#">SILC_STR_REPLACE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#">SILC_STR_FUNC</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferRegexFlags.html#">SilcBufferRegexFlags</a>
+<a class="menuitem" href="#">SILC_STR_REGEX</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDELETE.html#">SILC_STR_DELETE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET.html#">SILC_STR_OFFSET</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FSTART.html#">SILC_STR_OFFSET_START</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FEND.html#">SILC_STR_OFFSET_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FADVANCE.html#">SILC_STR_ADVANCE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#">SILC_STR_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTRFMT5FEND.html#">SILC_STRFMT_END</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSILC5fSTR5fREGEX">
+</a><a name="robo125"></a><h2>SILC_STR_REGEX</h2>
+
+<p class="item_name">NAME</p>
+<pre>    #define <strong>SILC_STR_REGEX</strong>() ...
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Regular expression matching within the buffer.
+</p>
+
+<pre>     Formatting:    <strong>SILC_STR_REGEX</strong>(char *regex, <a href="./silcbuffmt_hsilcutil2FSilcBufferRegexFlags.html#robo126">SilcBufferRegexFlags</a> flags)
+     Unformatting:  <strong>SILC_STR_REGEX</strong>(char *regex, <a href="./silcbuffmt_hsilcutil2FSilcBufferRegexFlags.html#robo126">SilcBufferRegexFlags</a> flags)
+</pre>
+<p>
+    <strong>SILC_STR_REGEX</strong> can be used to do regular expression matching within
+    the <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a>.  When the string in the buffer matches the regular
+    expression the position of the buffer is advanced to the position of
+    the first match (rest of the buffer remains intact).  If the regular
+    expression does not match it is skipped, unless the flags specify
+    otherwise.  If flags are not needed they can be set to 0.
+</p>
+
+<p>    In addition of matching regular expressions it can be used in a
+    Stream Editor (sed) and Awk like fashion.  The regular expression can be
+    matched and then edited by any of the SILC_STR_* macros.  The flags
+    can be used to perform complex operations on the data.  Some sed
+    features that cannot be directly done with the flags can be done with
+    <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#robo127">SILC_STR_FUNC</a> and other macros (the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#robo127">SILC_STR_FUNC</a> could do anything
+    after the match).
+</p>
+
+<p>    The <strong>SILC_STR_REGEX</strong> itself is used as an opening of a block of encoding
+    macros and must be closed with <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>.  This means that for
+    each <strong>SILC_STR_REGEX</strong> there must be one <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>.  See examples for
+    more information.
+</p>
+
+<p>    The <strong>SILC_STR_REGEX</strong> can be used in buffer unformatting also to do
+    string matching and parsing, but not editing, except with <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#robo127">SILC_STR_FUNC</a>
+    macro, which can do anything caller wants.
+</p>
+
+<p>    Typically the following encoding macros are used with <strong>SILC_STR_REGEX</strong>:
+    <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#robo128">SILC_STR_REPLACE</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#robo133">SILC_STR_STRING</a> and <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#robo127">SILC_STR_FUNC</a>.  If you use
+    <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#robo128">SILC_STR_REPLACE</a> always set SILC_STR_REGEX_INCLUSIVE.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    // sed 's/foo/bar/', replace first foo with bar
+    <a href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#robo151">silc_buffer_format</a>(buffer,
+                       <strong>SILC_STR_REGEX</strong>("foo", 0),
+                         <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#robo133">SILC_STR_STRING</a>("bar"),
+                       <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>);
+
+    // sed 's/foo/barbar/g', replace all foo's with barbar, without
+    // overwriting any data in the buffer, but appending it.  The match
+    // must be inclusive to make appending work.
+    <a href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#robo151">silc_buffer_format</a>(buffer,
+                       <strong>SILC_STR_REGEX</strong>("foo", SILC_STR_REGEX_ALL |
+                                             SILC_STR_REGEX_INCLUSIVE),
+                         <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#robo128">SILC_STR_REPLACE</a>("barbar", 5),
+                       <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>);
+
+    // sed 's/foo/B/', replace foo with B, deleting rest of the match from
+    // the buffer.  The match must be inclusive to make deleting work.
+    <a href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#robo151">silc_buffer_format</a>(buffer,
+                       <strong>SILC_STR_REGEX</strong>("foo", SILC_STR_REGEX_ALL |
+                                             SILC_STR_REGEX_INCLUSIVE),
+                         <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#robo128">SILC_STR_REPLACE</a>("B", 1),
+                       <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>);
+
+    // sed '/baz/s/foo/bar/g, replace all foo's with bar on lines with baz
+    <a href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#robo151">silc_buffer_format</a>(buffer,
+                       <strong>SILC_STR_REGEX</strong>("baz", SILC_STR_REGEX_NL),
+                         <strong>SILC_STR_REGEX</strong>("foo", SILC_STR_REGEX_ALL),
+                           <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#robo133">SILC_STR_STRING</a>("bar"),
+                         <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>,
+                       <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>);
+
+    // Print all lines that start with 'R'
+    int print(<a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> stack, <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> buf, void *value, void *context)
+    {
+      return fwrite(<a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdata.html#robo111">silc_buffer_data</a>(buf), 1, <a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Flen.html#robo107">silc_buffer_len</a>(buf), stdout);
+    }
+
+    <a href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat.html#robo147">silc_buffer_unformat</a>(buffer,
+                         <strong>SILC_STR_REGEX</strong>("^R", SILC_STR_REGEX_NL),
+                           <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#robo127">SILC_STR_FUNC</a>(print, NULL, NULL),
+                         <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>, <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#robo119">SILC_STR_END</a>);
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

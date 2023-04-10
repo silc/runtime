@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstringprep.h</title>
+<!-- Source: ./../../lib/silcutil/silcstringprep.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstringprep_hsilcutil2FStringprep20Interface.html">Stringprep Interface</a>
+<a class="menuitem" href="#">SilcStringprepStatus</a>
+<a class="menuitem" href="./silcstringprep_hsilcutil2FSilcStringprepFlags.html#">SilcStringprepFlags</a>
+<a class="menuitem" href="./silcstringprep_hsilcutil2Fsilc5Fstringprep.html#">silc_stringprep</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcStringprepStatus">
+</a><a name="robo591"></a><h2>SilcStringprepStatus</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcStringprepStatus</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Status and errors returned by <a href="./silcstringprep_hsilcutil2Fsilc5Fstringprep.html#robo589">silc_stringprep</a>.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_STRINGPREP_OK<span class="sign">,</span>                     <span class="comment">/* Preparation success */</span>
+  SILC_STRINGPREP_ERR_UNASSIGNED<span class="sign">,</span>         <span class="comment">/* Contains unassigned characters */</span>
+  SILC_STRINGPREP_ERR_PROHIBITED<span class="sign">,</span>         <span class="comment">/* Contains prohibited characters */</span>
+  SILC_STRINGPREP_ERR_BIDI_PROHIBITED<span class="sign">,</span>    <span class="comment">/* BIDI contains prohibited chars */</span>
+  SILC_STRINGPREP_ERR_BIDI_RAL_WITH_L<span class="sign">,</span>    <span class="comment">/* BIDI has both R/AL and L */</span>
+  SILC_STRINGPREP_ERR_BIDI_RAL<span class="sign">,</span>           <span class="comment">/* BIDI has R/AL but not as leading
+                                             and/or trailing character. */</span>
+  SILC_STRINGPREP_ERR_OUT_OF_MEMORY<span class="sign">,</span>      <span class="comment">/* System out of memory */</span>
+  SILC_STRINGPREP_ERR_ENCODING<span class="sign">,</span>           <span class="comment">/* Character encoding error */</span>
+  SILC_STRINGPREP_ERR_UNSUP_ENCODING<span class="sign">,</span>     <span class="comment">/* Unsupported character encoding  */</span>
+  SILC_STRINGPREP_ERR_UNSUP_PROFILE<span class="sign">,</span>      <span class="comment">/* Unsupported profile */</span>
+  SILC_STRINGPREP_ERR<span class="sign">,</span>                    <span class="comment">/* Unknown error */</span>
+<span class="sign">}</span> <strong>SilcStringprepStatus</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

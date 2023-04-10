@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstringprep.h</title>
+<!-- Source: ./../../lib/silcutil/silcstringprep.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstringprep_hsilcutil2FStringprep20Interface.html">Stringprep Interface</a>
+<a class="menuitem" href="./silcstringprep_hsilcutil2FSilcStringprepStatus.html#">SilcStringprepStatus</a>
+<a class="menuitem" href="./silcstringprep_hsilcutil2FSilcStringprepFlags.html#">SilcStringprepFlags</a>
+<a class="menuitem" href="#">silc_stringprep</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fstringprep">
+</a><a name="robo589"></a><h2>silc_stringprep</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcstringprep_hsilcutil2FSilcStringprepStatus.html#robo591">SilcStringprepStatus</a>
+    <strong>silc_stringprep</strong>(const unsigned char *bin, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> bin_len,
+                    <a href="./silcstrutil_hsilcutil2FSilcStringEncoding.html#robo598">SilcStringEncoding</a> bin_encoding,
+                    const char *profile_name,
+                    <a href="./silcstringprep_hsilcutil2FSilcStringprepFlags.html#robo590">SilcStringprepFlags</a> flags,
+                    unsigned char **out, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> *out_len,
+                    <a href="./silcstrutil_hsilcutil2FSilcStringEncoding.html#robo598">SilcStringEncoding</a> out_encoding);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Prepares the input string 'bin' of length 'bin_len' of encoding
+    'bin_encoding' according to the stringrep profile 'profile_name'.
+    Returns the prepared and allocated string into 'out'.  The 'out_len'
+    indicates the length of the prepared string.  This returns the
+    <a href="./silcstringprep_hsilcutil2FSilcStringprepStatus.html#robo591">SilcStringprepStatus</a> which indicates the status of the preparation.
+    For example, if the input string contains prohibited characters
+    (according to the used profile) this function will return error.
+    The 'flags' however can be used to modify the behavior of this
+    function.  Caller must free the returned 'out' string.
+</p>
+
+<p>    The output string will be encoded into the character encoding
+    defined by the 'out_encoding'.  This allows caller to have for
+    example the input string as locale specific string and output string
+    as UTF-8 encoded string.
+</p>
+
+<p>    If the 'out' is NULL this function merely performs the preparation
+    process, but does not return anything.  In this case this function
+    could be used to for example verify that an input string that ought
+    to have been prepared correctly was done so.
+</p>
+
+<p>    Available profile names:
+</p>
+
+<pre>      SILC_IDENTIFIER_PREP            Prepares SILC identifier strings
+      SILC_IDENTIFIER_CH_PREP         Prepares SILC channel name strings
+      SILC_IDENTIFIERC_PREP           Casefolds identifier strings
+      SILC_CASEFOLD_PREP              Casefolding and normalizing
+</pre>
+<p></p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

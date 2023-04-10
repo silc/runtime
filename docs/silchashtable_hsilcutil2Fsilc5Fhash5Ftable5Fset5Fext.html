@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silchashtable.h</title>
+<!-- Source: ./../../lib/silcutil/silchashtable.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silchashtable_hsilcutil2FHash20Table20Interface.html">Hash Table Interface</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashTable.html#">SilcHashTable</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashTableList.html#">SilcHashTableList</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashFunction.html#">SilcHashFunction</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashCompare.html#">SilcHashCompare</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashDestructor.html#">SilcHashDestructor</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2FSilcHashForeach.html#">SilcHashForeach</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Falloc.html#">silc_hash_table_alloc</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffree.html#">silc_hash_table_free</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fsize.html#">silc_hash_table_size</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fcount.html#">silc_hash_table_count</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fadd.html#">silc_hash_table_add</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fset.html#">silc_hash_table_set</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fdel.html#">silc_hash_table_del</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fdel5Fby5Fcontext.html#">silc_hash_table_del_by_context</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind.html#">silc_hash_table_find</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind5Fby5Fcontext.html#">silc_hash_table_find_by_context</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind5Fforeach.html#">silc_hash_table_find_foreach</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fforeach.html#">silc_hash_table_foreach</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Frehash.html#">silc_hash_table_rehash</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Flist.html#">silc_hash_table_list</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Flist5Freset.html#">silc_hash_table_list_reset</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fget.html#">silc_hash_table_get</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fadd5Fext.html#">silc_hash_table_add_ext</a>
+<a class="menuitem" href="#">silc_hash_table_set_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fdel5Fext.html#">silc_hash_table_del_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fdel5Fby5Fcontext5Fext.html#">silc_hash_table_del_by_context_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind5Fext.html#">silc_hash_table_find_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind5Fby5Fcontext5Fext.html#">silc_hash_table_find_by_context_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Ffind5Fforeach5Fext.html#">silc_hash_table_find_foreach_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Frehash5Fext.html#">silc_hash_table_rehash_ext</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fstring.html#">silc_hash_string</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fstring5Fcase.html#">silc_hash_string_case</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Futf85Fstring.html#">silc_hash_utf8_string</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fuint.html#">silc_hash_uint</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fptr.html#">silc_hash_ptr</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fdata.html#">silc_hash_data</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fstring5Fcompare.html#">silc_hash_string_compare</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fstring5Fcase5Fcompare.html#">silc_hash_string_case_compare</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Futf85Fcompare.html#">silc_hash_utf8_compare</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fdata5Fcompare.html#">silc_hash_data_compare</a>
+<a class="menuitem" href="./silchashtable_hsilcutil2Fsilc5Fhash5Fdestructor.html#">silc_hash_destructor</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fhash5ftable5fset5fext">
+</a><a name="robo322"></a><h2>silc_hash_table_set_ext</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_hash_table_set_ext</strong>(<a href="./silchashtable_hsilcutil2FSilcHashTable.html#robo345">SilcHashTable</a> ht, void *key,
+                                     void *context,
+                                     <a href="./silchashtable_hsilcutil2FSilcHashFunction.html#robo343">SilcHashFunction</a> hash,
+                                     void *hash_user_context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Same as <a href="./silchashtable_hsilcutil2Fsilc5Fhash5Ftable5Fadd5Fext.html#robo323">silc_hash_table_add_ext</a> but if the `key' already exists in the
+    hash table the old key and the old context will be replaced with the
+    `key' and the `context. The destructor function will be called for the
+    replaced key and context.
+</p>
+
+<p>    The `hash' and `hash_user_context' are application specified hash
+    function. If not provided the hash table's default is used.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

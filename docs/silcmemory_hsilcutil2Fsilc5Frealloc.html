@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcmemory.h</title>
+<!-- Source: ./../../lib/silcutil/silcmemory.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcmemory_hsilcutil2FMemory20Interface.html">Memory Interface</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fmalloc.html#">silc_malloc</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fcalloc.html#">silc_calloc</a>
+<a class="menuitem" href="#">silc_realloc</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Ffree.html#">silc_free</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fmemdup.html#">silc_memdup</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fstrdup.html#">silc_strdup</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fsmalloc.html#">silc_smalloc</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fscalloc.html#">silc_scalloc</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fsrealloc.html#">silc_srealloc</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fsmemdup.html#">silc_smemdup</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fsfree.html#">silc_sfree</a>
+<a class="menuitem" href="./silcmemory_hsilcutil2Fsilc5Fsstrdup.html#">silc_sstrdup</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5frealloc">
+</a><a name="robo414"></a><h2>silc_realloc</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void *<strong>silc_realloc</strong>(void *ptr, size_t size);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Change the size of the memory block indicated by `ptr' to the new
+    size of `size' bytes.  The contents of `ptr' will not be changed.
+    If `ptr' is NULL the call is equivalent to <a href="./silcmemory_hsilcutil2Fsilc5Fmalloc.html#robo416">silc_malloc</a>.  If the
+    `size' is zero (0) the call is equivalent to <a href="./silcmemory_hsilcutil2Fsilc5Ffree.html#robo413">silc_free</a>.  Free the
+    memory by calling <a href="./silcmemory_hsilcutil2Fsilc5Ffree.html#robo413">silc_free</a>.
+</p>
+<p class="item_name">NOTES</p>
+<p>    The pointer returned to the reallocated memory area might not be
+    same as `ptr'.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

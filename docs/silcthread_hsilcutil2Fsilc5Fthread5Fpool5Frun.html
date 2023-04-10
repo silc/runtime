@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcthread.h</title>
+<!-- Source: ./../../lib/silcutil/silcthread.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcthread_hsilcutil2FThread20Interface.html">Thread Interface</a>
+<a class="menuitem" href="./silcthread_hsilcutil2FSilcThread.html#">SilcThread</a>
+<a class="menuitem" href="./silcthread_hsilcutil2FSilcThreadStart.html#">SilcThreadStart</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fcreate.html#">silc_thread_create</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fexit.html#">silc_thread_exit</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fself.html#">silc_thread_self</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fwait.html#">silc_thread_wait</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fyield.html#">silc_thread_yield</a>
+<a class="menuitem" href="./silcthread_hsilcutil2FSilcThreadPool.html#">SilcThreadPool</a>
+<a class="menuitem" href="./silcthread_hsilcutil2FSilcThreadPoolFunc.html#">SilcThreadPoolFunc</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Falloc.html#">silc_thread_pool_alloc</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Ffree.html#">silc_thread_pool_free</a>
+<a class="menuitem" href="#">silc_thread_pool_run</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Fset5Fmax5Fthreads.html#">silc_thread_pool_set_max_threads</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Fget5Fmax5Fthreads.html#">silc_thread_pool_get_max_threads</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Fnum5Ffree5Fthreads.html#">silc_thread_pool_num_free_threads</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Fpool5Fpurge.html#">silc_thread_pool_purge</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Ftls5Fset.html#">silc_thread_tls_set</a>
+<a class="menuitem" href="./silcthread_hsilcutil2Fsilc5Fthread5Ftls5Fget.html#">silc_thread_tls_get</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fthread5fpool5frun">
+</a><a name="robo606"></a><h2>silc_thread_pool_run</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_thread_pool_run</strong>(<a href="./silcthread_hsilcutil2FSilcThreadPool.html#robo610">SilcThreadPool</a> tp,
+                                  <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> queueable,
+                                  <a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> schedule,
+                                  <a href="./silcthread_hsilcutil2FSilcThreadPoolFunc.html#robo609">SilcThreadPoolFunc</a> run,
+                                  void *run_context,
+                                  <a href="./silcschedule_hsilcutil2FSilcTaskCallback.html#robo543">SilcTaskCallback</a> completion,
+                                  void *completion_context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Run the `run' function with `run_context' in one of the threads in the
+    thread pool.  Returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if the thread pool is being freed.  If
+    there are no free threads left in the pool this will queue the `run'
+    and call it once a thread becomes free, if `queueable' is <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a>.  If
+    `queueable' is <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> and there are no free threads, this returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>
+    and `run' is not executed.
+</p>
+
+<p>    If `completion' is non-NULL it will be called to indicate completion
+    of the `run' function.  If `schedule' is non-NULL the `completion'
+    will be called through the scheduler in the main thread.  If it is
+    NULL the `completion' is called directly from the thread after the
+    `run' has returned.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

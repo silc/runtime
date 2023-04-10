@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstream_hsilcutil2FStream20Interface.html">Stream Interface</a>
+<a class="menuitem" href="./silcstream_hsilcutil2FSilcStream.html#">SilcStream</a>
+<a class="menuitem" href="./silcstream_hsilcutil2FSilcStreamStatus.html#">SilcStreamStatus</a>
+<a class="menuitem" href="./silcstream_hsilcutil2FSilcStreamNotifier.html#">SilcStreamNotifier</a>
+<a class="menuitem" href="#">SilcStreamOps</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fread.html#">silc_stream_read</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#">silc_stream_write</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fclose.html#">silc_stream_close</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fdestroy.html#">silc_stream_destroy</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fset5Fnotifier.html#">silc_stream_set_notifier</a>
+<a class="menuitem" href="./silcstream_hsilcutil2Fsilc5Fstream5Fget5Fschedule.html#">silc_stream_get_schedule</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcStreamOps">
+</a><a name="robo584"></a><h2>SilcStreamOps</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef struct { ... } <strong>SilcStreamOps</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    SILC Stream operations structure.  This structure includes callback
+    functions to the actual stream implementation.  Any stream that
+    use SILC Stream abstraction must fill this structure with the actual
+    stream implementation.
+</p>
+
+<p>    Each stream implementation MUST set this structure as the first field
+    in their stream structure.  As it is that structure that is passed
+    to the silc_stream_* routines, the SILC Stream API expects that the
+    <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> context starts with this structure.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    typedef struct {
+      const <strong>SilcStreamOps</strong> *ops;
+      ... other stuff ...
+    } *SilcFooStream;
+
+    SilcFooStream foo;
+    <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a>((<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a>)foo, data, data_len);
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef struct <span class="sign">{</span>
+  <span class="comment">/* This is called to read data from the stream.  This is called when
+     <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fread.html#robo583">silc_stream_read</a> function was called. */</span>
+  int <span class="comment">(*read)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream, unsigned char *buf, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> buf_len);
+
+  /* This is called when writing data to the stream.  This is called when
+     <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a> function was called. */</span>
+  int <span class="comment">(*write)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream, const unsigned char *data,
+               <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> data_len);
+
+  /* This is called to close the stream.  This is called when the
+     <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fclose.html#robo581">silc_stream_close</a> function was called. */</span>
+  <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <span class="comment">(*close)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream);
+
+  /* This is called to destroy the stream.  This is called when the
+     <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fdestroy.html#robo580">silc_stream_destroy</a> function was called. */</span>
+  void <span class="comment">(*destroy)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream);
+
+  /* This is called to set a notifier callback to the stream and schedule
+     the stream.  Stream should not be scheduled before calling this
+     function.  If stream does not need scheduler then the scheduler can
+     be ignored.  This is called when <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fset5Fnotifier.html#robo579">silc_stream_set_notifier</a> was called.
+     Returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if the stream could not be scheduled. */</span>
+  <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <span class="comment">(*notifier)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream, <a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> schedule,
+                       <a href="./silcstream_hsilcutil2FSilcStreamNotifier.html#robo585">SilcStreamNotifier</a> callback, void *context);
+
+  /* This is called to return the associated scheduler, if set.  This is
+     called when <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fget5Fschedule.html#robo578">silc_stream_get_schedule</a> was called. */</span>
+  <a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> <span class="comment">(*get_schedule)(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream);
+} <strong>SilcStreamOps</strong>;
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

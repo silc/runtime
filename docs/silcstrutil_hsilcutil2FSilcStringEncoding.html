@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstrutil.h</title>
+<!-- Source: ./../../lib/silcutil/silcstrutil.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstrutil_hsilcutil2FString20Utilities.html">String Utilities</a>
+<a class="menuitem" href="#">SilcStringEncoding</a>
+<a class="menuitem" href="./silcstrutil_hsilcutil2Fsilc5Fstrncat.html#">silc_strncat</a>
+<a class="menuitem" href="./silcstrutil_hsilcutil2Fsilc5Fstring5Fregexify.html#">silc_string_regexify</a>
+<a class="menuitem" href="./silcstrutil_hsilcutil2Fsilc5Fstring5Fmatch.html#">silc_string_match</a>
+<a class="menuitem" href="./silcstrutil_hsilcutil2Fsilc5Fstring5Fcompare.html#">silc_string_compare</a>
+<a class="menuitem" href="./silcstrutil_hsilcutil2Fsilc5Fstring5Fsplit.html#">silc_string_split</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcStringEncoding">
+</a><a name="robo598"></a><h2>SilcStringEncoding</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcStringEncoding</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    String encoding definitions used with various string manipulation
+    routines.  By default, applications are suggested to use
+    SILC_STRING_LOCALE since it encodes and decodes correctly according
+    to local system language and character set (locale).
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_STRING_ASCII         <span class="sign">=</span> 0<span class="sign">,</span>  <span class="comment">/* Any 8 bit ASCII encoding (default) */</span>
+  SILC_STRING_ASCII_ESC     <span class="sign">=</span> 1<span class="sign">,</span>  <span class="comment">/* 7 bit ASCII (&gt;0x7f escaped) */</span>
+  SILC_STRING_BMP           <span class="sign">=</span> 2<span class="sign">,</span>  <span class="comment">/* 16 bit, UCS-2, BMP, ISO/IEC 10646 */</span>
+  SILC_STRING_BMP_LSB       <span class="sign">=</span> 3<span class="sign">,</span>  <span class="comment">/* BMP, least significant byte first */</span>
+  SILC_STRING_UNIVERSAL     <span class="sign">=</span> 4<span class="sign">,</span>  <span class="comment">/* 32 bit, UCS-4, Universal, ISO/IEC 10646 */</span>
+  SILC_STRING_UNIVERSAL_LSB <span class="sign">=</span> 5<span class="sign">,</span>  <span class="comment">/* Universal, least significant byte first */</span>
+  SILC_STRING_LOCALE        <span class="sign">=</span> 6<span class="sign">,</span>  <span class="comment">/* A locale specific conversion on
+                                     those platforms that support iconv().
+                                     Fallback is SILC_STRING_ASCII. */</span>
+  SILC_STRING_UTF8          <span class="sign">=</span> 7<span class="sign">,</span>  <span class="comment">/* UTF-8 encoding */</span>
+  SILC_STRING_PRINTABLE     <span class="sign">=</span> 8<span class="sign">,</span>  <span class="comment">/* Printable ASCII (no escaping) */</span>
+  SILC_STRING_VISIBLE       <span class="sign">=</span> 9<span class="sign">,</span>  <span class="comment">/* Visible ASCII string */</span>
+  SILC_STRING_TELETEX       <span class="sign">=</span> 10<span class="sign">,</span> <span class="comment">/* Teletex ASCII string */</span>
+  SILC_STRING_NUMERICAL     <span class="sign">=</span> 11<span class="sign">,</span> <span class="comment">/* Numerical ASCII string (digits) */</span>
+  SILC_STRING_LDAP_DN       <span class="sign">=</span> 12<span class="sign">,</span> <span class="comment">/* Strings for LDAP DNs, RFC 2253 */</span>
+  SILC_STRING_UTF8_ESCAPE   <span class="sign">=</span> 12<span class="sign">,</span> <span class="comment">/* Escaped UTF-8 as defined in RFC 2253 */</span>
+
+  SILC_STRING_LANGUAGE      <span class="sign">=</span> 6<span class="sign">,</span>  <span class="comment">/* _Deprecated_, use SILC_STRING_LOCALE. */</span>
+<span class="sign">}</span> <strong>SilcStringEncoding</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

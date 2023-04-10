@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcconfig.h</title>
+<!-- Source: ./../../lib/silcutil/silcconfig.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcconfig_hsilcutil2FConfig20File20Interface.html">Config File Interface</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigErrno.html#">SilcConfigErrno</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigType.html#">SilcConfigType</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigCallback.html#">SilcConfigCallback</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigTable.html#">SilcConfigTable</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigFile.html#">SilcConfigFile</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSilcConfigEntity.html#">SilcConfigEntity</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2FSILC5FCONFIG5FCALLBACK.html#">SILC_CONFIG_CALLBACK</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fopen.html#">silc_config_open</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fclose.html#">silc_config_close</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Finit.html#">silc_config_init</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fstrerror.html#">silc_config_strerror</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fget5Ffilename.html#">silc_config_get_filename</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fget5Fline.html#">silc_config_get_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fread5Fline.html#">silc_config_read_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fread5Fcurrent5Fline.html#">silc_config_read_current_line</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fregister.html#">silc_config_register</a>
+<a class="menuitem" href="#">silc_config_register_table</a>
+<a class="menuitem" href="./silcconfig_hsilcutil2Fsilc5Fconfig5Fmain.html#">silc_config_main</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fconfig5fregister5ftable">
+</a><a name="robo164"></a><h2>silc_config_register_table</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_config_register_table</strong>(<a href="./silcconfig_hsilcutil2FSilcConfigEntity.html#robo175">SilcConfigEntity</a> ent,
+                                    const <a href="./silcconfig_hsilcutil2FSilcConfigTable.html#robo177">SilcConfigTable</a> table[],
+                                    void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Register the tableset of options `table' automatically in the entity
+    `ent'.  If defined in the table, the callback functions will be called
+    all with the same context `context'.
+</p>
+
+<p>    The `table' array must be terminated with an entry with the name field
+    set to NULL.
+</p>
+
+<p>    If the table contains invalid data this function returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>, otherwise
+    it returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a>.  If a calling to this function failed, you must destroy
+    and recreate the entity before retrying, as it's impossible to detect
+    the point at the function stopped the registering process.
+</p>
+<p class="item_name">SEE ALSO</p>
+<p>    <a href="./silcconfig_hsilcutil2FSilcConfigTable.html#robo177">SilcConfigTable</a>
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

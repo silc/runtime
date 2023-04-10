@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcmime.h</title>
+<!-- Source: ./../../lib/silcutil/silcmime.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcmime_hsilcutil2FMIME20Interface.html">MIME Interface</a>
+<a class="menuitem" href="./silcmime_hsilcutil2FSilcMime.html#">SilcMime</a>
+<a class="menuitem" href="./silcmime_hsilcutil2FSilcMimeAssembler.html#">SilcMimeAssembler</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Falloc.html#">silc_mime_alloc</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Ffree.html#">silc_mime_free</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fassembler5Falloc.html#">silc_mime_assembler_alloc</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fassembler5Ffree.html#">silc_mime_assembler_free</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fassembler5Fpurge.html#">silc_mime_assembler_purge</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fdecode.html#">silc_mime_decode</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fencode.html#">silc_mime_encode</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fassemble.html#">silc_mime_assemble</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fencode5Fpartial.html#">silc_mime_encode_partial</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fpartial5Ffree.html#">silc_mime_partial_free</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fadd5Ffield.html#">silc_mime_add_field</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fget5Ffield.html#">silc_mime_get_field</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fadd5Fdata.html#">silc_mime_add_data</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fget5Fdata.html#">silc_mime_get_data</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fsteal5Fdata.html#">silc_mime_steal_data</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fis5Fpartial.html#">silc_mime_is_partial</a>
+<a class="menuitem" href="#">silc_mime_set_multipart</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fadd5Fmultipart.html#">silc_mime_add_multipart</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fis5Fmultipart.html#">silc_mime_is_multipart</a>
+<a class="menuitem" href="./silcmime_hsilcutil2Fsilc5Fmime5Fget5Fmultiparts.html#">silc_mime_get_multiparts</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fmime5fset5fmultipart">
+</a><a name="robo421"></a><h2>silc_mime_set_multipart</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void <strong>silc_mime_set_multipart</strong>(<a href="./silcmime_hsilcutil2FSilcMime.html#robo439">SilcMime</a> mime, const char *type,
+                                 const char *boundary);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Sets the `mime' to be a multipart MIME message.  The `type' specifies
+    the multipart type, usually "mixed", but can be something else too.
+    The `boundary' specifies the multipart boundary.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

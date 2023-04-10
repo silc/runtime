@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcsocketstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcsocketstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcsocketstream_hsilcutil2FSocket20Stream20Interface.html">Socket Stream Interface</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2FSilcSocketStreamCallback.html#">SilcSocketStreamCallback</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Ftcp5Fstream5Fcreate.html#">silc_socket_tcp_stream_create</a>
+<a class="menuitem" href="#">silc_socket_udp_stream_create</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fis5Fudp.html#">silc_socket_stream_is_udp</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fget5Finfo.html#">silc_socket_stream_get_info</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Finfo.html#">silc_socket_stream_set_info</a>
+<a class="menuitem" href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Fqos.html#">silc_socket_stream_set_qos</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fsocket5fudp5fstream5fcreate">
+</a><a name="robo558"></a><h2>silc_socket_udp_stream_create</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> <strong>silc_socket_udp_stream_create</strong>(<a href="./silctypes_hsilcutil2FSilcSocket.html#robo707">SilcSocket</a> sock,
+                                             <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> ipv6,
+                                             <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> connected,
+                                             <a href="./silcschedule_hsilcutil2FSilcSchedule.html#robo546">SilcSchedule</a> schedule);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Creates UDP socket stream of the UDP connection indicated by `sock'.
+    The stream can be destroyed by calling the <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fdestroy.html#robo580">silc_stream_destroy</a>.
+    The `connected' defines whether the socket is in connected or in
+    connectionless state.
+</p>
+
+<p>    Note that, UDP packets may be read only through the notifier
+    callback (see <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fset5Fnotifier.html#robo579">silc_stream_set_notifier</a>), when SILC_STREAM_CAN_READ
+    is returned to the callback.  Because of this the notifier callback
+    must be set.
+</p>
+
+<p>    Note that, UDP packet sending using <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a> and receiving
+    with <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fread.html#robo583">silc_stream_read</a> works only if the `sock' is a UDP socket in a
+    connected state.  In connectionless state sending packets with
+    <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a> is possible only if the remote address and port
+    has been set with <a href="./silcsocketstream_hsilcutil2Fsilc5Fsocket5Fstream5Fset5Finfo.html#robo555">silc_socket_stream_set_info</a>.  If it is not set
+    in connectionless state packets may be sent only by using the
+    <a href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Fsend.html#robo480">silc_net_udp_send</a> function.  In connectionless state packets may be
+    received only by using <a href="./silcnet_hsilcutil2Fsilc5Fnet5Fudp5Freceive.html#robo481">silc_net_udp_receive</a>.
+</p>
+
+<p>    This function returns the created <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> or NULL on error.
+</p>
+
+<p>    If the <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fset5Fnotifier.html#robo579">silc_stream_set_notifier</a> is called the stream is set to
+    non-blocking mode.  If `schedule' is NULL this will call
+    <a href="./silcschedule_hsilcutil2Fsilc5Fschedule5Fget5Fglobal.html#robo526">silc_schedule_get_global</a> to try to get global scheduler.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

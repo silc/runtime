@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffer.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffer.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcasync_hsilcutil2FAsync20Operation20Interface.html">Async Operation Interface</a>
+<a class="menuitem" href="silcatomic_hsilcutil2FAtomic20Operations20Interface.html">Atomic Operations Interface</a>
+<a class="menuitem" href="silcbase64_hsilcutil2FBase6420Interface.html">Base64 Interface</a>
+<a class="menuitem" href="silcbitops_hsilcutil2FBit20Operations20Interface.html">Bit Operations Interface</a>
+<a class="menuitem" href="silcbuffer_hsilcutil2FBuffer20Interface.html">Buffer Interface</a>
+<a class="menuitem" href="silcbufferstream_hsilcutil2FBuffer20Stream20Interface.html">Buffer Stream Interface</a>
+<a class="menuitem" href="silcbuffmt_hsilcutil2FBuffer20Format20Interface.html">Buffer Format Interface</a>
+<a class="menuitem" href="silccond_hsilcutil2FCondition20Variable20Interface.html">Condition Variable Interface</a>
+<a class="menuitem" href="silcconfig_hsilcutil2FConfig20File20Interface.html">Config File Interface</a>
+<a class="menuitem" href="silcdir_hsilcutil2FDirectory20Interface.html">Directory Interface</a>
+<a class="menuitem" href="silcdlist_hsilcutil2FDynamic20List20Interface.html">Dynamic List Interface</a>
+<a class="menuitem" href="silcdll_hsilcutil2FShared20Object20Interface.html">Shared Object Interface</a>
+<a class="menuitem" href="silcenv_hsilcutil2FEnvironment20Interface.html">Environment Interface</a>
+<a class="menuitem" href="silcerrno_hsilcutil2FErrno20Interface.html">Errno Interface</a>
+<a class="menuitem" href="silcexample_hsilcexample2FSilcExampleAPI.html">SilcExampleAPI</a>
+<a class="menuitem" href="silcfdstream_hsilcutil2FFd20Stream20Interface.html">Fd Stream Interface</a>
+<a class="menuitem" href="silcfileutil_hsilcutil2FFile20Util20Interface.html">File Util Interface</a>
+<a class="menuitem" href="silcfsm_hsilcutil2FFinite20State20Machine.html">Finite State Machine</a>
+<a class="menuitem" href="silcgetopt_hsilcutil2FGetOpt20Interface.html">GetOpt Interface</a>
+<a class="menuitem" href="silcglobal_hsilcutil2FGlobal20Variable20Interface.html">Global Variable Interface</a>
+<a class="menuitem" href="silchashtable_hsilcutil2FHash20Table20Interface.html">Hash Table Interface</a>
+<a class="menuitem" href="silchttpphp_hsilchttp2FHTTP20PHP20Translator.html">HTTP PHP Translator</a>
+<a class="menuitem" href="silchttpserver_hsilchttp2FHTTP20Server20Interface.html">HTTP Server Interface</a>
+<a class="menuitem" href="silclist_hsilcutil2FList20Interface.html">List Interface</a>
+<a class="menuitem" href="silclocalnetstream_hsilcutil2FLocal20Network20Stream20Interface.html">Local Network Stream Interface</a>
+<a class="menuitem" href="silclog_hsilcutil2FLogging20Interface.html">Logging Interface</a>
+<a class="menuitem" href="silcmemory_hsilcutil2FMemory20Interface.html">Memory Interface</a>
+<a class="menuitem" href="silcmime_hsilcutil2FMIME20Interface.html">MIME Interface</a>
+<a class="menuitem" href="silcmutex_hsilcutil2FMutex20Interface.html">Mutex Interface</a>
+<a class="menuitem" href="silcnet_hsilcutil2FNetwork20Interface.html">Network Interface</a>
+<a class="menuitem" href="silcrand_hsilcutil2FRandom20Number20Interface.html">Random Number Interface</a>
+<a class="menuitem" href="silcregex_hsilcutil2FRegex20Interface.html">Regex Interface</a>
+<a class="menuitem" href="silcruntime_hsilcutil2FRuntime20Toolkit20Interface.html">Runtime Toolkit Interface</a>
+<a class="menuitem" href="silcschedule_hsilcutil2FScheduler20Interface.html">Scheduler Interface</a>
+<a class="menuitem" href="silcsnprintf_hsilcutil2FSnprintf20Interface.html">Snprintf Interface</a>
+<a class="menuitem" href="silcsocketstream_hsilcutil2FSocket20Stream20Interface.html">Socket Stream Interface</a>
+<a class="menuitem" href="silcstack_hsilcutil2FMemory20Pool20Interface.html">Memory Pool Interface</a>
+<a class="menuitem" href="silcstream_hsilcutil2FStream20Interface.html">Stream Interface</a>
+<a class="menuitem" href="silcstringprep_hsilcutil2FStringprep20Interface.html">Stringprep Interface</a>
+<a class="menuitem" href="silcstrutil_hsilcutil2FString20Utilities.html">String Utilities</a>
+<a class="menuitem" href="silcthread_hsilcutil2FThread20Interface.html">Thread Interface</a>
+<a class="menuitem" href="silcthreadqueue_hsilcutil2FThread20Queue20Interface.html">Thread Queue Interface</a>
+<a class="menuitem" href="silctime_hsilcutil2FTime20Interface.html">Time Interface</a>
+<a class="menuitem" href="silctimer_hsilcutil2FTimer20Interface.html">Timer Interface</a>
+<a class="menuitem" href="silctree_hsilcutil2FBinary20Search20Tree20Interface.html">Binary Search Tree Interface</a>
+<a class="menuitem" href="silctypes_hsilcutil2FTypes20and20Definitions.html">Types and Definitions</a>
+<a class="menuitem" href="silcutf8_hsilcutil2FUTF2D820Interface.html">UTF-8 Interface</a>
+<a class="menuitem" href="silcutil_hsilcutil2FMisc20Utilities.html">Misc Utilities</a>
+<a class="menuitem" href="silcxml_hsilcutil2FXML20Interface.html">XML Interface</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fBuffer20Interface">
+</a><a name="robo113"></a><h2>Buffer Interface</h2>
+
+<p class="item_name">DESCRIPTION</p>
+<p> Data buffer interface that provides buffer allocation and manipulation
+ routines.  <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> is simple and easy to use, yet you can do to the
+ buffer almost anything you want with its method functions.  The buffer
+ is constructed of four different data sections that in whole creates
+ the allocated data area.  See the <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> context for more information.
+</p>
+
+<p> The <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> context is not thread-safe and if same context must be
+ used from multiple threads concurrency control must be employed.
+</p>
+
+<p class="item_name">TABLE OF CONTENTS</p>
+<ul class="toc_entries">
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2FSilcBuffer.html#">SilcBuffer</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdata.html#">silc_buffer_data</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftail.html#">silc_buffer_tail</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdatalen.html#">silc_buffer_datalen</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftruelen.html#">silc_buffer_truelen</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Flen.html#">silc_buffer_len</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fheadlen.html#">silc_buffer_headlen</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftaillen.html#">silc_buffer_taillen</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc.html#">silc_buffer_alloc</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc.html#">silc_buffer_salloc</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ffree.html#">silc_buffer_free</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsfree.html#">silc_buffer_sfree</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsteal.html#">silc_buffer_steal</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpurge.html#">silc_buffer_purge</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fspurge.html#">silc_buffer_spurge</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fset.html#">silc_buffer_set</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull.html#">silc_buffer_pull</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush.html#">silc_buffer_push</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull5Ftail.html#">silc_buffer_pull_tail</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush5Ftail.html#">silc_buffer_push_tail</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Fhead.html#">silc_buffer_put_head</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput.html#">silc_buffer_put</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Ftail.html#">silc_buffer_put_tail</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc5Fsize.html#">silc_buffer_alloc_size</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc5Fsize.html#">silc_buffer_salloc_size</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Freset.html#">silc_buffer_reset</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclear.html#">silc_buffer_clear</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstart.html#">silc_buffer_start</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fend.html#">silc_buffer_end</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fcopy.html#">silc_buffer_copy</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fscopy.html#">silc_buffer_scopy</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclone.html#">silc_buffer_clone</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsclone.html#">silc_buffer_sclone</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc.html#">silc_buffer_realloc</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc.html#">silc_buffer_srealloc</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc5Fsize.html#">silc_buffer_realloc_size</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc5Fsize.html#">silc_buffer_srealloc_size</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fenlarge.html#">silc_buffer_enlarge</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsenlarge.html#">silc_buffer_senlarge</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fappend.html#">silc_buffer_append</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsappend.html#">silc_buffer_sappend</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstrchr.html#">silc_buffer_strchr</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fequal.html#">silc_buffer_equal</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fmemcmp.html#">silc_buffer_memcmp</a></li>
+<li class="toc_entries"><a href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fprintf.html#">silc_buffer_printf</a></li>
+</ul>
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

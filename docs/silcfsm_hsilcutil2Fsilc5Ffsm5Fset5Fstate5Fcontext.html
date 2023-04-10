@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcfsm.h</title>
+<!-- Source: ./../../lib/silcutil/silcfsm.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcfsm_hsilcutil2FFinite20State20Machine.html">Finite State Machine</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSM.html#">SilcFSM</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMStruct.html#">SilcFSMStruct</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMThread.html#">SilcFSMThread</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMThreadStruct.html#">SilcFSMThreadStruct</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FCONTINUE.html#">SILC_FSM_CONTINUE</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FYIELD.html#">SILC_FSM_YIELD</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FWAIT.html#">SILC_FSM_WAIT</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FFINISH.html#">SILC_FSM_FINISH</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMDestructor.html#">SilcFSMDestructor</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMThreadDestructor.html#">SilcFSMThreadDestructor</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FSTATE.html#">SILC_FSM_STATE</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FCALL.html#">SILC_FSM_CALL</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FCALL5FCONTINUE.html#">SILC_FSM_CALL_CONTINUE</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FCALL5FCONTINUE5FSYNC.html#">SILC_FSM_CALL_CONTINUE_SYNC</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FTHREAD5FWAIT.html#">SILC_FSM_THREAD_WAIT</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Falloc.html#">silc_fsm_alloc</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Finit.html#">silc_fsm_init</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fthread5Falloc.html#">silc_fsm_thread_alloc</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fthread5Finit.html#">silc_fsm_thread_init</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Ffree.html#">silc_fsm_free</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fstart.html#">silc_fsm_start</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fstart5Fsync.html#">silc_fsm_start_sync</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fnext.html#">silc_fsm_next</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fnext5Flater.html#">silc_fsm_next_later</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fcontinue.html#">silc_fsm_continue</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fcontinue5Fsync.html#">silc_fsm_continue_sync</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Ffinish.html#">silc_fsm_finish</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fset5Fcontext.html#">silc_fsm_set_context</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fget5Fcontext.html#">silc_fsm_get_context</a>
+<a class="menuitem" href="#">silc_fsm_set_state_context</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fget5Fstate5Fcontext.html#">silc_fsm_get_state_context</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fget5Fschedule.html#">silc_fsm_get_schedule</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fget5Fmachine.html#">silc_fsm_get_machine</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fis5Fstarted.html#">silc_fsm_is_started</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMEvent.html#">SilcFSMEvent</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSilcFSMEventStruct.html#">SilcFSMEventStruct</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fevent5Falloc.html#">silc_fsm_event_alloc</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fevent5Finit.html#">silc_fsm_event_init</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2Fsilc5Ffsm5Fevent5Ffree.html#">silc_fsm_event_free</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FEVENT5FWAIT.html#">SILC_FSM_EVENT_WAIT</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FEVENT5FTIMEDWAIT.html#">SILC_FSM_EVENT_TIMEDWAIT</a>
+<a class="menuitem" href="./silcfsm_hsilcutil2FSILC5FFSM5FEVENT5FSIGNAL.html#">SILC_FSM_EVENT_SIGNAL</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5ffsm5fset5fstate5fcontext">
+</a><a name="robo266"></a><h2>silc_fsm_set_state_context</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void <strong>silc_fsm_set_state_context</strong>(void *fsm, void *state_context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Set's a state specific context for the `fsm'.  This function can be
+    used to change the state context inside the `fsm', if needed.  This
+    function is used with both <a href="./silcfsm_hsilcutil2FSilcFSM.html#robo295">SilcFSM</a> and <a href="./silcfsm_hsilcutil2FSilcFSMThread.html#robo293">SilcFSMThread</a> contexts.  The
+    context is the `state_context' in the state function (<a href="./silcfsm_hsilcutil2FSILC5FFSM5FSTATE.html#robo285">SILC_FSM_STATE</a>).
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

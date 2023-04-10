@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcstack.h</title>
+<!-- Source: ./../../lib/silcutil/silcstack.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcstack_hsilcutil2FMemory20Pool20Interface.html">Memory Pool Interface</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStack.html#">SilcStack</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStackFrame.html#">SilcStackFrame</a>
+<a class="menuitem" href="./silcstack_hsilcutil2FSilcStackOomHandler.html#">SilcStackOomHandler</a>
+<a class="menuitem" href="#">silc_stack_alloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Ffree.html#">silc_stack_free</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fpush.html#">silc_stack_push</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fpop.html#">silc_stack_pop</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fmalloc.html#">silc_stack_malloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Frealloc.html#">silc_stack_realloc</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Foom5Fhandler.html#">silc_stack_set_oom_handler</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Falignment.html#">silc_stack_set_alignment</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fget5Falignment.html#">silc_stack_get_alignment</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fpurge.html#">silc_stack_purge</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fset5Fglobal.html#">silc_stack_set_global</a>
+<a class="menuitem" href="./silcstack_hsilcutil2Fsilc5Fstack5Fget5Fglobal.html#">silc_stack_get_global</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fstack5falloc">
+</a><a name="robo573"></a><h2>silc_stack_alloc</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> <strong>silc_stack_alloc</strong>(<a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> stack_size, <a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> parent);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Allocates new data stack that can be used as stack for fast memory
+    allocation by various routines.  Returns the pointer to the stack
+    that must be freed with <a href="./silcstack_hsilcutil2Fsilc5Fstack5Ffree.html#robo572">silc_stack_free</a> function when it is not
+    needed anymore.  If the `stack_size' is zero (0) by default a
+    1 kilobyte (1024 bytes) stack is allocated.
+</p>
+
+<p>    If `parent' is non-NULL the created stack is a child of the `parent'
+    stack.  All of childs the memory is allocated from the `parent' and
+    will be returned back to the parent when the child is freed.  Note
+    that, even though child allocates memory from the parent, the parent's
+    stack is not consumed.
+</p>
+
+<p>    Returns NULL on error and sets <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a>.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcfileutil.h</title>
+<!-- Source: ./../../lib/silcutil/silcfileutil.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcfileutil_hsilcutil2FFile20Util20Interface.html">File Util Interface</a>
+<a class="menuitem" href="#">SilcFileMode</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2FSilcFileStat.html#">SilcFileStat</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fopen.html#">silc_file_open</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fopen5Fmode.html#">silc_file_open_mode</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fread.html#">silc_file_read</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fwrite.html#">silc_file_write</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fclose.html#">silc_file_close</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fset5Fnonblock.html#">silc_file_set_nonblock</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Freadfile.html#">silc_file_readfile</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fwritefile.html#">silc_file_writefile</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fwritefile5Fmode.html#">silc_file_writefile_mode</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fsize.html#">silc_file_size</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Ffsize.html#">silc_file_fsize</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Fstat.html#">silc_file_stat</a>
+<a class="menuitem" href="./silcfileutil_hsilcutil2Fsilc5Ffile5Ffstat.html#">silc_file_fstat</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcFileMode">
+</a><a name="robo252"></a><h2>SilcFileMode</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcFileMode</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    A file mode bits that specify the file's mode, type and protection
+    in the <a href="./silcfileutil_hsilcutil2FSilcFileStat.html#robo251">SilcFileStat</a> context.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  <span class="comment">/* Type */</span>
+  SILC_FILE_IFDIR     <span class="sign">=</span> 0x00000001<span class="sign">,</span>  <span class="comment">/* Entry is directory */</span>
+  SILC_FILE_IFCHR     <span class="sign">=</span> 0x00000002<span class="sign">,</span>  <span class="comment">/* Entry is character device */</span>
+  SILC_FILE_IFBLK     <span class="sign">=</span> 0x00000004<span class="sign">,</span>  <span class="comment">/* Entry is block device */</span>
+  SILC_FILE_IFREG     <span class="sign">=</span> 0x00000008<span class="sign">,</span>  <span class="comment">/* Entry is regular file */</span>
+  SILC_FILE_IFIFO     <span class="sign">=</span> 0x00000010<span class="sign">,</span>  <span class="comment">/* Entry is FIFO */</span>
+  SILC_FILE_IFLNK     <span class="sign">=</span> 0x00000020<span class="sign">,</span>  <span class="comment">/* Entry is symbolic link */</span>
+  SILC_FILE_IFSOCK    <span class="sign">=</span> 0x00000040<span class="sign">,</span>  <span class="comment">/* Entry is socket */</span>
+
+  <span class="comment">/* Protection */</span>
+  SILC_FILE_IRUSR     <span class="sign">=</span> 0x00000080<span class="sign">,</span>  <span class="comment">/* Owner has read permission */</span>
+  SILC_FILE_IWUSR     <span class="sign">=</span> 0x00000100<span class="sign">,</span>  <span class="comment">/* Owner has write permission */</span>
+  SILC_FILE_IXUSR     <span class="sign">=</span> 0x00000200<span class="sign">,</span>  <span class="comment">/* Owner has execute permission */</span>
+  SILC_FILE_IRGRP     <span class="sign">=</span> 0x00000400<span class="sign">,</span>  <span class="comment">/* Group has read permission */</span>
+  SILC_FILE_IWGRP     <span class="sign">=</span> 0x00000800<span class="sign">,</span>  <span class="comment">/* Group has write permission */</span>
+  SILC_FILE_IXGRP     <span class="sign">=</span> 0x00001000<span class="sign">,</span>  <span class="comment">/* Group has execute permission */</span>
+  SILC_FILE_IROTH     <span class="sign">=</span> 0x00002000<span class="sign">,</span>  <span class="comment">/* Others have read permission */</span>
+  SILC_FILE_IWOTH     <span class="sign">=</span> 0x00004000<span class="sign">,</span>  <span class="comment">/* Others have write permission */</span>
+  SILC_FILE_IXOTH     <span class="sign">=</span> 0x00008000<span class="sign">,</span>  <span class="comment">/* Others have execute permission */</span>
+<span class="sign">}</span> <strong>SilcFileMode</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

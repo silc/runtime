@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcgetopt.h</title>
+<!-- Source: ./../../lib/silcutil/silcgetopt.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcgetopt_hsilcutil2FGetOpt20Interface.html">GetOpt Interface</a>
+<a class="menuitem" href="#">SilcGetOpt</a>
+<a class="menuitem" href="./silcgetopt_hsilcutil2FSILC5FGETOPT5FINIT.html#">SILC_GETOPT_INIT</a>
+<a class="menuitem" href="./silcgetopt_hsilcutil2Fsilc5Fgetopt.html#">silc_getopt</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcGetOpt">
+</a><a name="robo299"></a><h2>SilcGetOpt</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef struct SilcGetOptObject { ... } *<strong>SilcGetOpt</strong>, SilcGetOptStruct;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Command line option parsers structure given to <a href="./silcgetopt_hsilcutil2Fsilc5Fgetopt.html#robo297">silc_getopt</a> as argument.
+    It contains the current parsed command line option data.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef struct SilcGetOptObject <span class="sign">{</span>
+  int opt_index<span class="sign">;</span>                <span class="comment">/* Current option index in argv[] array */</span>
+  int opt_option<span class="sign">;</span>               <span class="comment">/* Current option character */</span>
+  char <span class="sign">*</span>opt_arg<span class="sign">;</span>                <span class="comment">/* Current parsed option argument */</span>
+  <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> opt_error<span class="sign">;</span>           <span class="comment">/* Set this to <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> to make <a href="./silcgetopt_hsilcutil2Fsilc5Fgetopt.html#robo297">silc_getopt</a> print
+                                   errors or <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> to suppress them. */</span>
+
+  <a href="./silctypes_hsilcutil2FSilcUInt16.html#robo715">SilcUInt16</a> opt_sp<span class="sign">;</span>            <span class="comment">/* Internal parser index */</span>
+<span class="sign">}</span> <span class="sign">*</span><strong>SilcGetOpt</strong><span class="sign">,</span> SilcGetOptStruct<span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

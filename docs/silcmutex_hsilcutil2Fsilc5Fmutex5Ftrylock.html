@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcmutex.h</title>
+<!-- Source: ./../../lib/silcutil/silcmutex.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcmutex_hsilcutil2FMutex20Interface.html">Mutex Interface</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2FSilcMutex.html#">SilcMutex</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2FSilcRwLock.html#">SilcRwLock</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Fmutex5Falloc.html#">silc_mutex_alloc</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Fmutex5Ffree.html#">silc_mutex_free</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Fmutex5Flock.html#">silc_mutex_lock</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Fmutex5Funlock.html#">silc_mutex_unlock</a>
+<a class="menuitem" href="#">silc_mutex_trylock</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Fmutex5Fassert5Flocked.html#">silc_mutex_assert_locked</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Frwlock5Falloc.html#">silc_rwlock_alloc</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Frwlock5Ffree.html#">silc_rwlock_free</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Frwlock5Frdlock.html#">silc_rwlock_rdlock</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Frwlock5Fwrlock.html#">silc_rwlock_wrlock</a>
+<a class="menuitem" href="./silcmutex_hsilcutil2Fsilc5Frwlock5Funlock.html#">silc_rwlock_unlock</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fmutex5ftrylock">
+</a><a name="robo447"></a><h2>silc_mutex_trylock</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_mutex_trylock</strong>(<a href="./silcmutex_hsilcutil2FSilcMutex.html#robo453">SilcMutex</a> mutex);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Attempts to lock the `mutex'.  Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if the caller was able
+    to acquire the lock and <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if the mutex is already locked.  If the
+    mutex is already locked the caller cannot acquire the lock at this
+    time.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

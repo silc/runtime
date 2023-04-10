@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbufferstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcbufferstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbufferstream_hsilcutil2FBuffer20Stream20Interface.html">Buffer Stream Interface</a>
+<a class="menuitem" href="./silcbufferstream_hsilcutil2FSilcBufferReceiveCallback.html#">SilcBufferReceiveCallback</a>
+<a class="menuitem" href="#">silc_buffer_stream_create</a>
+<a class="menuitem" href="./silcbufferstream_hsilcutil2Fsilc5Fbuffer5Fstream5Fsend.html#">silc_buffer_stream_send</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fbuffer5fstream5fcreate">
+</a><a name="robo115"></a><h2>silc_buffer_stream_create</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> <strong>silc_buffer_stream_create</strong>(<a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> stream,
+                                         <a href="./silcbufferstream_hsilcutil2FSilcBufferReceiveCallback.html#robo116">SilcBufferReceiveCallback</a> receiver,
+                                         void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Creates a buffer stream and returns it.  The `stream' is the underlaying
+    stream to be used to actually send the buffer and receive buffers.
+    The returned stream is used with this API to send the buffers.  The
+    `stream' must stay valid as long the buffer stream is used.
+</p>
+
+<p>    To send buffers to the stream <a href="./silcbufferstream_hsilcutil2Fsilc5Fbuffer5Fstream5Fsend.html#robo114">silc_buffer_stream_send</a> can be used.
+    The <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fwrite.html#robo582">silc_stream_write</a> cannot be used with the returned stream.  Buffers
+    coming from the `stream' will be delivered to the `receiver' callback.
+    The returned stream and `context' will also be delivered to `receiver'.
+</p>
+
+<p>    The returned stream must be destroyed by calling <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fdestroy.html#robo580">silc_stream_destroy</a>.
+    Other <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> API functions cannot be used with buffer stream.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

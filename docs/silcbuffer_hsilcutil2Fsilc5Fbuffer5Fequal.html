@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffer.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffer.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbuffer_hsilcutil2FBuffer20Interface.html">Buffer Interface</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2FSilcBuffer.html#">SilcBuffer</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdata.html#">silc_buffer_data</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftail.html#">silc_buffer_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdatalen.html#">silc_buffer_datalen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftruelen.html#">silc_buffer_truelen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Flen.html#">silc_buffer_len</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fheadlen.html#">silc_buffer_headlen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftaillen.html#">silc_buffer_taillen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc.html#">silc_buffer_alloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc.html#">silc_buffer_salloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ffree.html#">silc_buffer_free</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsfree.html#">silc_buffer_sfree</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsteal.html#">silc_buffer_steal</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpurge.html#">silc_buffer_purge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fspurge.html#">silc_buffer_spurge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fset.html#">silc_buffer_set</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull.html#">silc_buffer_pull</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush.html#">silc_buffer_push</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull5Ftail.html#">silc_buffer_pull_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush5Ftail.html#">silc_buffer_push_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Fhead.html#">silc_buffer_put_head</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput.html#">silc_buffer_put</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Ftail.html#">silc_buffer_put_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc5Fsize.html#">silc_buffer_alloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc5Fsize.html#">silc_buffer_salloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Freset.html#">silc_buffer_reset</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclear.html#">silc_buffer_clear</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstart.html#">silc_buffer_start</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fend.html#">silc_buffer_end</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fcopy.html#">silc_buffer_copy</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fscopy.html#">silc_buffer_scopy</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclone.html#">silc_buffer_clone</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsclone.html#">silc_buffer_sclone</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc.html#">silc_buffer_realloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc.html#">silc_buffer_srealloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc5Fsize.html#">silc_buffer_realloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc5Fsize.html#">silc_buffer_srealloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fenlarge.html#">silc_buffer_enlarge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsenlarge.html#">silc_buffer_senlarge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fappend.html#">silc_buffer_append</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsappend.html#">silc_buffer_sappend</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstrchr.html#">silc_buffer_strchr</a>
+<a class="menuitem" href="#">silc_buffer_equal</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fmemcmp.html#">silc_buffer_memcmp</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fprintf.html#">silc_buffer_printf</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fbuffer5fequal">
+</a><a name="robo70"></a><h2>silc_buffer_equal</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    static inline
+    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_buffer_equal</strong>(<a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> sb1, <a href="./silcbuffer_hsilcutil2FSilcBuffer.html#robo112">SilcBuffer</a> sb2)
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Compares if the data area of the buffer `sb1' and `sb2' are identical.
+    Returns <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> if they match and <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if they differ.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

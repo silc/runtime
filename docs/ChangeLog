@@ -1,0 +1,86 @@
+commit 63350b51434f4031b400daf94009ee1ed1020011
+Author: Pekka Riikonen <priikone@localhost.localdomain>
+Date:   Mon Sep 22 08:05:56 2008 +0300
+
+    Fixed silc_buffer_stdout compilation warning.
+
+commit 8d0e81414d89d72c5b88d95c80d803eca67da43f
+Author: Pekka Riikonen <priikone@localhost.localdomain>
+Date:   Mon Sep 22 07:48:15 2008 +0300
+
+    Fixed missing HTTP server headers.
+
+commit 9d07960e92353552d16a8ca5c99d1eff3d4fb534
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Sun Sep 21 15:32:29 2008 +0300
+
+    silcruntime.h: include stdarg.h by default
+
+commit 296e4d08e79816ef1474596e81857b9261500f22
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Sun Sep 21 15:32:04 2008 +0300
+
+    SilcRegex: Fixed silc_regex to return correct value for optional args
+    
+    In grouped expressions, optional, non-matched arguments didn't have their
+    value set to NULL as documented.  Set all arguments by default to NULL.
+
+commit 55dac5fbf2f83e8ca4278fa6fcdbbccbeb1d12cd
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Sun Sep 21 15:28:20 2008 +0300
+
+    SilcTree: Replace SilcTreeCompare with SilcCompare
+    
+    Added also new internal, undocumented, macro API for defining all kinds
+    of trees.
+
+commit 9df31f979d5ebd26edd45dceed544c4eb166ccd4
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Sun Sep 21 15:26:06 2008 +0300
+
+    SilcList: Added silc_list_find
+
+commit 0591a422cd4b71e5af6581bcd3d00d184d84a017
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Sun Sep 21 15:25:23 2008 +0300
+
+    Types: Added SilcCompare generic comparison function
+    
+    The SilcCompare can be used in various comparison functions.  Returns
+    SilcCompareValue.
+
+commit a6428c51f8544ca92870eb573f8a7bc7d1e16d19
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Thu Jul 3 15:37:38 2008 +0300
+
+    Added SILC Tree API, a generic binary search tree interface
+    
+    So far it supports only AVL tree but support for other types of trees
+    can be added easily.
+
+commit 0ec0cbbedc2ec9ab76aa1073b30572288441e9c9
+Author: Pekka Riikonen <priikone@silcnet.org>
+Date:   Thu Jul 3 15:35:21 2008 +0300
+
+    Added SILC_MAX and SILC_MIN macros
+
+ doc/runtime.in/manual.html.in      |    1 +
+ lib/silchttp/Makefile.ad           |    2 -
+ lib/silcutil/Makefile.ad           |    7 +-
+ lib/silcutil/silcavltree.c         |  440 ++++++++++++++++++++++++++++++++++++
+ lib/silcutil/silcbuffer.h          |    3 +-
+ lib/silcutil/silcbufferstream.h    |    3 +
+ lib/silcutil/silclist.h            |   62 ++++-
+ lib/silcutil/silcregex.c           |    6 +-
+ lib/silcutil/silcruntime.h.in      |    2 +
+ lib/silcutil/silctree.h            |  410 +++++++++++++++++++++++++++++++++
+ lib/silcutil/silctree_i.h          |   88 +++++++
+ lib/silcutil/silctypes.h           |   64 ++++++
+ lib/silcutil/tests/Makefile.am     |    4 +-
+ lib/silcutil/tests/test_silclist.c |   10 +-
+ lib/silcutil/tests/test_silctree.c |  122 ++++++++++
+ 15 files changed, 1200 insertions(+), 24 deletions(-)
+ create mode 100644 lib/silcutil/silcavltree.c
+ create mode 100644 lib/silcutil/silctree.h
+ create mode 100644 lib/silcutil/silctree_i.h
+ create mode 100644 lib/silcutil/tests/test_silctree.c

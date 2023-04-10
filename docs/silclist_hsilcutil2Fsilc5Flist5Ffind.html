@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silclist.h</title>
+<!-- Source: ./../../lib/silcutil/silclist.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silclist_hsilcutil2FList20Interface.html">List Interface</a>
+<a class="menuitem" href="./silclist_hsilcutil2FSilcList.html#">SilcList</a>
+<a class="menuitem" href="./silclist_hsilcutil2FSILC5FLIST5FEND.html#">SILC_LIST_END</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Finit.html#">silc_list_init</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Finit5Fprev.html#">silc_list_init_prev</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fcount.html#">silc_list_count</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fstart.html#">silc_list_start</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fend.html#">silc_list_end</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fadd.html#">silc_list_add</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Finsert.html#">silc_list_insert</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fdel.html#">silc_list_del</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fget.html#">silc_list_get</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fpop.html#">silc_list_pop</a>
+<a class="menuitem" href="./silclist_hsilcutil2Fsilc5Flist5Fsort.html#">silc_list_sort</a>
+<a class="menuitem" href="#">silc_list_find</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5flist5ffind">
+</a><a name="robo360"></a><h2>silc_list_find</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void *<strong>silc_list_find</strong>(<a href="./silclist_hsilcutil2FSilcList.html#robo373">SilcList</a> list, void *entry1, <a href="./silctypes_hsilcutil2FSilcCompare.html#robo704">SilcCompare</a> compare,
+                         void *context);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Find an entry from the `list'.  The `compare' function will be called
+    with `context' to do comparison between the entries.  If `compare'
+    returns 0 the `entry1' is considered to be equal to `entry2' and the
+    found entry is returned.  Returns NULL if the entry could not be found.
+</p>
+
+<p>    The <a href="./silclist_hsilcutil2Fsilc5Flist5Fstart.html#robo368">silc_list_start</a> or <a href="./silclist_hsilcutil2Fsilc5Flist5Fend.html#robo367">silc_list_end</a> must be called before calling this
+    if the finding should be started from the beginning or from the end.
+    Calling it however is not required.  The founding can be started at
+    any point of the list.  The <strong>silc_list_find</strong> can be called many times
+    to find more entries following the previously found entries.
+</p>
+
+<p>    The list can be enumerated by calling <a href="./silclist_hsilcutil2Fsilc5Flist5Fget.html#robo363">silc_list_get</a> after the found
+    entry.  The <a href="./silclist_hsilcutil2Fsilc5Flist5Fget.html#robo363">silc_list_get</a> will return the next entry after the found
+    entry.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

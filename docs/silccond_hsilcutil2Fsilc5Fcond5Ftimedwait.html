@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silccond.h</title>
+<!-- Source: ./../../lib/silcutil/silccond.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silccond_hsilcutil2FCondition20Variable20Interface.html">Condition Variable Interface</a>
+<a class="menuitem" href="./silccond_hsilcutil2FSilcCond.html#">SilcCond</a>
+<a class="menuitem" href="./silccond_hsilcutil2Fsilc5Fcond5Falloc.html#">silc_cond_alloc</a>
+<a class="menuitem" href="./silccond_hsilcutil2Fsilc5Fcond5Ffree.html#">silc_cond_free</a>
+<a class="menuitem" href="./silccond_hsilcutil2Fsilc5Fcond5Fwait.html#">silc_cond_wait</a>
+<a class="menuitem" href="#">silc_cond_timedwait</a>
+<a class="menuitem" href="./silccond_hsilcutil2Fsilc5Fcond5Fsignal.html#">silc_cond_signal</a>
+<a class="menuitem" href="./silccond_hsilcutil2Fsilc5Fcond5Fbroadcast.html#">silc_cond_broadcast</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fcond5ftimedwait">
+</a><a name="robo157"></a><h2>silc_cond_timedwait</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void <strong>silc_cond_timedwait</strong>(<a href="./silccond_hsilcutil2FSilcCond.html#robo161">SilcCond</a> cond, <a href="./silcmutex_hsilcutil2FSilcMutex.html#robo453">SilcMutex</a> mutex, int timeout);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Waits for condition variable `cond' to be signalled or for the
+    `timeout' to expire.  The timeout is in milliseconds.  If it is 0
+    no timeout exist.  Returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if timeout expired, <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> when
+    signalled.  This function will block the calling thread until the
+    condition variable is signalled.  The `mutex' must be locked before
+    calling this function.  The `mutex' will be unlocked inside this
+    function.  After this function returns the `mutex' is in locked
+    state again.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

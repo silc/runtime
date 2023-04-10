@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffer.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffer.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbuffer_hsilcutil2FBuffer20Interface.html">Buffer Interface</a>
+<a class="menuitem" href="#">SilcBuffer</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdata.html#">silc_buffer_data</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftail.html#">silc_buffer_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fdatalen.html#">silc_buffer_datalen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftruelen.html#">silc_buffer_truelen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Flen.html#">silc_buffer_len</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fheadlen.html#">silc_buffer_headlen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ftaillen.html#">silc_buffer_taillen</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc.html#">silc_buffer_alloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc.html#">silc_buffer_salloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Ffree.html#">silc_buffer_free</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsfree.html#">silc_buffer_sfree</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsteal.html#">silc_buffer_steal</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpurge.html#">silc_buffer_purge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fspurge.html#">silc_buffer_spurge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fset.html#">silc_buffer_set</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull.html#">silc_buffer_pull</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush.html#">silc_buffer_push</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpull5Ftail.html#">silc_buffer_pull_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fpush5Ftail.html#">silc_buffer_push_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Fhead.html#">silc_buffer_put_head</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput.html#">silc_buffer_put</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fput5Ftail.html#">silc_buffer_put_tail</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Falloc5Fsize.html#">silc_buffer_alloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsalloc5Fsize.html#">silc_buffer_salloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Freset.html#">silc_buffer_reset</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclear.html#">silc_buffer_clear</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstart.html#">silc_buffer_start</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fend.html#">silc_buffer_end</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fcopy.html#">silc_buffer_copy</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fscopy.html#">silc_buffer_scopy</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fclone.html#">silc_buffer_clone</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsclone.html#">silc_buffer_sclone</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc.html#">silc_buffer_realloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc.html#">silc_buffer_srealloc</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Frealloc5Fsize.html#">silc_buffer_realloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsrealloc5Fsize.html#">silc_buffer_srealloc_size</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fenlarge.html#">silc_buffer_enlarge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsenlarge.html#">silc_buffer_senlarge</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fappend.html#">silc_buffer_append</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fsappend.html#">silc_buffer_sappend</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fstrchr.html#">silc_buffer_strchr</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fequal.html#">silc_buffer_equal</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fmemcmp.html#">silc_buffer_memcmp</a>
+<a class="menuitem" href="./silcbuffer_hsilcutil2Fsilc5Fbuffer5Fprintf.html#">silc_buffer_printf</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcBuffer">
+</a><a name="robo112"></a><h2>SilcBuffer</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef struct { ... } *<strong>SilcBuffer</strong>, SilcBufferStruct;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    SILC Buffer object. Following short description of the fields
+    of the buffer.
+</p>
+
+<pre>     unsiged char *head;
+</pre>
+<p>
+</p>
+<pre>        Head of the allocated buffer. This is the start of the allocated
+        data area and remains as same throughout the lifetime of the buffer.
+        However, the end of the head area or the start of the currently valid
+        data area is variable.  Reallocating the buffer may change the
+        pointer.
+</pre>
+<p>
+</p>
+<pre>        --------------------------------
+        | head  | data         | tail  |
+        --------------------------------
+        ^       ^
+</pre>
+<p>
+</p>
+<pre>        Current head section in the buffer is sb-&gt;data - sb-&gt;head.
+</pre>
+<p>
+</p>
+<pre>     unsigned char *data;
+</pre>
+<p>
+</p>
+<pre>        Currently valid data area. This is the start of the currently valid
+        main data area. The data area is variable in all directions.
+</pre>
+<p>
+</p>
+<pre>        --------------------------------
+        | head  | data         | tail  |
+        --------------------------------
+                ^              ^
+</pre>
+<p>
+</p>
+<pre>        Current valid data area in the buffer is sb-&gt;tail - sb-&gt;data.
+</pre>
+<p>
+</p>
+<pre>      unsigned char *tail;
+</pre>
+<p>
+</p>
+<pre>        Tail of the buffer. This is the end of the currently valid data area
+        or start of the tail area. The start of the tail area is variable.
+</pre>
+<p>
+</p>
+<pre>        --------------------------------
+        | head  | data         | tail  |
+        --------------------------------
+                               ^       ^
+</pre>
+<p>
+</p>
+<pre>        Current tail section in the buffer is sb-&gt;end - sb-&gt;tail.
+</pre>
+<p>
+</p>
+<pre>     unsigned char *end;
+</pre>
+<p>
+</p>
+<pre>        End of the allocated buffer. This is the end of the allocated data
+        area and remains as same throughout the lifetime of the buffer.
+        Usually this field is not needed except when checking the size
+        of the buffer.
+</pre>
+<p>
+</p>
+<pre>        --------------------------------
+        | head  | data         | tail  |
+        --------------------------------
+                                       ^
+</pre>
+<p>
+</p>
+<pre>        Length of the entire buffer is (ie. truelen) sb-&gt;end - sb-&gt;head.
+</pre>
+<p>
+    Currently valid data area is considered to be the main data area in
+    the buffer. However, the entire buffer is of course valid data and can
+    be used as such. Usually head section of the buffer includes different
+    kind of headers or similar. Data section includes the main data of
+    the buffer. Tail section can be seen as a reserve space of the data
+    section. Tail section can be pulled towards end, and thus the data
+    section becomes larger.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef struct SilcBufferObject <span class="sign">{</span>
+  unsigned char <span class="sign">*</span>head<span class="sign">;</span>          <span class="comment">/* Head of the allocated buffer area */</span>
+  unsigned char <span class="sign">*</span>data<span class="sign">;</span>          <span class="comment">/* Start of the data area */</span>
+  unsigned char <span class="sign">*</span>tail<span class="sign">;</span>          <span class="comment">/* Start of the tail area */</span>
+  unsigned char <span class="sign">*</span>end<span class="sign">;</span>           <span class="comment">/* End of the buffer */</span>
+<span class="sign">}</span> <span class="sign">*</span><strong>SilcBuffer</strong><span class="sign">,</span> SilcBufferStruct<span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

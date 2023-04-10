@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcglobal.h</title>
+<!-- Source: ./../../lib/silcutil/silcglobal.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcglobal_hsilcutil2FGlobal20Variable20Interface.html">Global Variable Interface</a>
+<a class="menuitem" href="#">silc_global_set_var</a>
+<a class="menuitem" href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fget5Fvar.html#">silc_global_get_var</a>
+<a class="menuitem" href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fdel5Fvar.html#">silc_global_del_var</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fglobal5fset5fvar">
+</a><a name="robo303"></a><h2>silc_global_set_var</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void *<strong>silc_global_set_var</strong>(const char *name, <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> variable_size,
+                              void *initial_value, <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> tls);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Sets a variable of size of `variable_size' bytes as a global variable
+    under the name of `name'.  If `initial_value' is non-NULL it is
+    considered to be the initial value of the stored variable.  If it is
+    NULL this will initialize the variable as all zeroes.
+</p>
+
+<p>    If variable with `name' already exists it will be replaced with the
+    `initial_value' or as all zeroes, and the old pointer will become
+    invalid.
+</p>
+
+<p>    If `tls' is <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> the variable is visible to all threads in the process.
+    If it is <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a> the variable is visible only in the current thread.  The
+    variable can be retrieved using the same name by calling the
+    <a href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fget5Fvar.html#robo302">silc_global_get_var</a>.
+</p>
+
+<p>    Returns NULL and sets <a href="./silcerrno_hsilcutil2Fsilc5Ferrno.html#robo225">silc_errno</a> if the variable could not be added, or
+    a pointer to the added variable otherwise.
+</p>
+<p class="item_name">EXAMPLE</p>
+<pre>    // Initialize global buffer
+    <strong>silc_global_set_var</strong>("somebuf", 256, NULL, <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>);
+
+    // Retrieve the buffer
+    unsigned char *buf = <a href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fget5Fvar.html#robo302">silc_global_get_var</a>("somebuf", <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>);
+
+    // Set integer global
+    <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> integer = 100;
+    <strong>silc_global_set_var</strong>("someint", 4, &amp;integer, <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>);
+
+    // Retrieve the integer and change its value
+    <a href="./silctypes_hsilcutil2FSilcUInt32.html#robo713">SilcUInt32</a> *intptr = <a href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fget5Fvar.html#robo302">silc_global_get_var</a>("someint", <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>);
+    *intptr = 200;
+
+    // Set structure as global in the thread
+    <strong>silc_global_set_var</strong>("somestruct", sizeof(*context), NULL, <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a>);
+
+    // Retrieve the context
+    context = <a href="./silcglobal_hsilcutil2Fsilc5Fglobal5Fget5Fvar.html#robo302">silc_global_get_var</a>("somestruct", <a href="./silctypes_hsilcutil2FTRUE.html#robo719">TRUE</a>);
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

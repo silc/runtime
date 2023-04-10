@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcbuffmt.h</title>
+<!-- Source: ./../../lib/silcutil/silcbuffmt.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcbuffmt_hsilcutil2FBuffer20Format20Interface.html">Buffer Format Interface</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferFormatFunc.html#">SilcBufferFormatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSilcBufferUnformatFunc.html#">SilcBufferUnformatFunc</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat.html#">silc_buffer_format</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat.html#">silc_buffer_sformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fformat5Fvp.html#">silc_buffer_format_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsformat5Fvp.html#">silc_buffer_sformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat.html#">silc_buffer_unformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat.html#">silc_buffer_sunformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Funformat5Fvp.html#">silc_buffer_unformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsunformat5Fvp.html#">silc_buffer_sunformat_vp</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fstrformat.html#">silc_buffer_strformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2Fsilc5Fbuffer5Fsstrformat.html#">silc_buffer_sstrformat</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT8.html#">SILC_STR_SINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT8.html#">SILC_STR_UINT8</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT16.html#">SILC_STR_SINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT16.html#">SILC_STR_UINT16</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT32.html#">SILC_STR_SINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT32.html#">SILC_STR_UINT32</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSINT64.html#">SILC_STR_SINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FUINT64.html#">SILC_STR_UINT64</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FSTRING.html#">SILC_STR_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FSTRING.html#">SILC_STR_*_STRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5F2A5FNSTRING.html#">SILC_STR_*_NSTRING</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDATA.html#">SILC_STR_DATA</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FBUFFER.html#">SILC_STR_BUFFER</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREPLACE.html#">SILC_STR_REPLACE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FFUNC.html#">SILC_STR_FUNC</a>
+<a class="menuitem" href="#">SilcBufferRegexFlags</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#">SILC_STR_REGEX</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FDELETE.html#">SILC_STR_DELETE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET.html#">SILC_STR_OFFSET</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FSTART.html#">SILC_STR_OFFSET_START</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET5FEND.html#">SILC_STR_OFFSET_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FADVANCE.html#">SILC_STR_ADVANCE</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTR5FEND.html#">SILC_STR_END</a>
+<a class="menuitem" href="./silcbuffmt_hsilcutil2FSILC5FSTRFMT5FEND.html#">SILC_STRFMT_END</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fSilcBufferRegexFlags">
+</a><a name="robo126"></a><h2>SilcBufferRegexFlags</h2>
+
+<p class="item_name">NAME</p>
+<pre>    typedef enum { ... } <strong>SilcBufferRegexFlags</strong>;
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Regular expression flags for <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a> macro.  The flags can be
+    used to manipulate the behavior of the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a>.  All flags
+    may be combined unless otherwise stated.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">typedef enum <span class="sign">{</span>
+  SILC_STR_REGEX_NONE                 <span class="sign">=</span> 0x00000000<span class="sign">,</span>
+
+  <span class="comment">/* By default mismatch will be skipped.  Skipping means that none of the
+     operations inside the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a> are executed.  Set this flag if
+     mismatch should cause error and stopping of the formatting/unformatting. */</span>
+  SILC_STR_REGEX_MISMATCH             <span class="sign">=</span> 0x00000001<span class="sign">,</span>
+
+  <span class="comment">/* By default only the first match is found.  Set this flag to find
+     all matches. */</span>
+  SILC_STR_REGEX_ALL                  <span class="sign">=</span> 0x00000002<span class="sign">,</span>
+
+  <span class="comment">/* By default the buffer position is advanced to the position of the
+     first match.  Set this flag if the buffer should not be advanced to
+     the match. */</span>
+  SILC_STR_REGEX_NO_ADVANCE           <span class="sign">=</span> 0x00000004<span class="sign">,</span>
+
+  <span class="comment">/* By default <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a> performs the match on the whole buffer.  Set
+     this flag to make it behave like sed and match line by line.  Each line
+     must end with '\n'.  If buffer doesn't have '\n' it is considered to be
+     one line.  Note that, any formatting done immediately after <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a>
+     block with this flag will be formatted to the end of the buffer (after
+     last line).  Use <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FOFFSET.html#robo123">SILC_STR_OFFSET</a>* macros to change the position if
+     needed.  Also note that, any encoding macro inside the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a>
+     block will see only the matched line (including '\n'), instead of whole
+     buffer after the match. */</span>
+  SILC_STR_REGEX_NL                   <span class="sign">=</span> 0x00000008<span class="sign">,</span>
+
+  <span class="comment">/* Set this flag to not match the regular expression, but to match everything
+     else.  When combined with SILC_STR_REGEX_NL this flag matches all other
+     lines except the ones with matching regular expression. */</span>
+  SILC_STR_REGEX_NOT                  <span class="sign">=</span> 0x00000010<span class="sign">,</span>
+
+  <span class="comment">/* By default the buffer is advanced to the first match and the rest of the
+     buffer remains as is.  Set this flag to pass the exact match to the
+     SILC_STR_* macros in the <a href="./silcbuffmt_hsilcutil2FSILC5FSTR5FREGEX.html#robo125">SILC_STR_REGEX</a> block; macros see the start of
+     the match and the end of the match, but not rest of the buffer (ie. with
+     match 'foo' the size of the buffer is 3 bytes). */</span>
+  SILC_STR_REGEX_INCLUSIVE            <span class="sign">=</span> 0x00000020<span class="sign">,</span>
+<span class="sign">}</span> <strong>SilcBufferRegexFlags</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

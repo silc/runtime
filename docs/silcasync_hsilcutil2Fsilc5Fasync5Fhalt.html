@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcasync.h</title>
+<!-- Source: ./../../lib/silcutil/silcasync.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcasync_hsilcutil2FAsync20Operation20Interface.html">Async Operation Interface</a>
+<a class="menuitem" href="./silcasync_hsilcutil2FSilcAsyncOperation.html#">SilcAsyncOperation</a>
+<a class="menuitem" href="./silcasync_hsilcutil2FSilcAsyncOperationStruct.html#">SilcAsyncOperationStruct</a>
+<a class="menuitem" href="./silcasync_hsilcutil2FSilcAsyncOperationAbort.html#">SilcAsyncOperationAbort</a>
+<a class="menuitem" href="./silcasync_hsilcutil2FSilcAsyncOperationPause.html#">SilcAsyncOperationPause</a>
+<a class="menuitem" href="#">silc_async_halt</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Fresume.html#">silc_async_resume</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Fabort.html#">silc_async_abort</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Falloc.html#">silc_async_alloc</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Finit.html#">silc_async_init</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Ffree.html#">silc_async_free</a>
+<a class="menuitem" href="./silcasync_hsilcutil2Fsilc5Fasync5Fget5Fcontext.html#">silc_async_get_context</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fasync5fhalt">
+</a><a name="robo6"></a><h2>silc_async_halt</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_async_halt</strong>(<a href="./silcasync_hsilcutil2FSilcAsyncOperation.html#robo10">SilcAsyncOperation</a> op);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Halt the execution of the asynchronous operation.  If the operation
+    supports this feature, it is guaranteed that the operation is halted
+    and its execution is not progressed until the <a href="./silcasync_hsilcutil2Fsilc5Fasync5Fresume.html#robo5">silc_async_resume</a> function
+    is called.  The operation still can be aborted even if it is halted.
+    If this function is not supported, calling this has no effect and the
+    function returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a>.  This function is for the upper layer that
+    controls the asynchronous operation.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

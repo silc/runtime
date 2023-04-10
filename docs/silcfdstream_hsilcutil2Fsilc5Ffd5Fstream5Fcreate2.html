@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcfdstream.h</title>
+<!-- Source: ./../../lib/silcutil/silcfdstream.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcfdstream_hsilcutil2FFd20Stream20Interface.html">Fd Stream Interface</a>
+<a class="menuitem" href="./silcfdstream_hsilcutil2Fsilc5Ffd5Fstream5Fcreate.html#">silc_fd_stream_create</a>
+<a class="menuitem" href="#">silc_fd_stream_create2</a>
+<a class="menuitem" href="./silcfdstream_hsilcutil2Fsilc5Ffd5Fstream5Ffile.html#">silc_fd_stream_file</a>
+<a class="menuitem" href="./silcfdstream_hsilcutil2Fsilc5Ffd5Fstream5Ffile2.html#">silc_fd_stream_file2</a>
+<a class="menuitem" href="./silcfdstream_hsilcutil2Fsilc5Ffd5Fstream5Fget5Finfo.html#">silc_fd_stream_get_info</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5ffd5fstream5fcreate2">
+</a><a name="robo235"></a><h2>silc_fd_stream_create2</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silcstream_hsilcutil2FSilcStream.html#robo587">SilcStream</a> <strong>silc_fd_stream_create2</strong>(int read_fd, int write_fd,
+                                      <a href="./silcstack_hsilcutil2FSilcStack.html#robo576">SilcStack</a> stack);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Creates file descriptor stream for the open file descriptors indicated
+    by `read_fd' and `write_fd'.  The `read_fd' must be opened for reading
+    and `write_fd' opened for writing.  The stream is closed with the
+    <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fclose.html#robo581">silc_stream_close</a> and destroyed with the <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fdestroy.html#robo580">silc_stream_destroy</a>.  Returns
+    NULL if system is out of memory.
+</p>
+
+<p>    If the <a href="./silcstream_hsilcutil2Fsilc5Fstream5Fset5Fnotifier.html#robo579">silc_stream_set_notifier</a> is called the stream is set to
+    non-blocking mode.
+</p>
+
+<p>    If `stack' is non-NULL all memory is allocated from the `stack' and
+    will be released back to `stack' after the stream is destroyed.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silchttpserver.h</title>
+<!-- Source: ./../../lib/silchttp/silchttpserver.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silchttpserver_hsilchttp2FHTTP20Server20Interface.html">HTTP Server Interface</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2FSilcHttpServer.html#">SilcHttpServer</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2FSilcHttpConnection.html#">SilcHttpConnection</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2FSilcHttpServerCallback.html#">SilcHttpServerCallback</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Falloc.html#">silc_http_server_alloc</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Ffree.html#">silc_http_server_free</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fsend.html#">silc_http_server_send</a>
+<a class="menuitem" href="#">silc_http_server_send_error</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fget5Fheader.html#">silc_http_server_get_header</a>
+<a class="menuitem" href="./silchttpserver_hsilchttp2Fsilc5Fhttp5Fserver5Fadd5Fheader.html#">silc_http_server_add_header</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silchttp2fsilc5fhttp5fserver5fsend5ferror">
+</a><a name="robo352"></a><h2>silc_http_server_send_error</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    <a href="./silctypes_hsilcutil2FSilcBool.html#robo720">SilcBool</a> <strong>silc_http_server_send_error</strong>(<a href="./silchttpserver_hsilchttp2FSilcHttpServer.html#robo358">SilcHttpServer</a> httpd,
+                                         <a href="./silchttpserver_hsilchttp2FSilcHttpConnection.html#robo357">SilcHttpConnection</a> conn,
+                                         const char *error,
+                                         const char *error_message);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Send HTTP error back to the connection indicated by `conn'.  The
+    `error' is one of the 4xx or 5xx errors defined by the HTTP protocol.
+    The `error_message' is the optional error message sent to the
+    connection.  Returns <a href="./silctypes_hsilcutil2FFALSE.html#robo718">FALSE</a> if the error could not be sent.
+</p>
+
+<p>    Typical errors are: 400 Bad Request
+</p>
+<pre>                        403 Forbidden
+                        404 Not Found
+</pre>
+<p></p>
+<p class="item_name">EXAMPLE</p>
+<pre>    <strong>silc_http_server_send_error</strong>(httpd, conn, "400 Bad Request",
+                                "&lt;body&gt;&lt;h1&gt;400 Bad Request!!&lt;/h1&gt;&lt;/body&gt;");
+</pre>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>

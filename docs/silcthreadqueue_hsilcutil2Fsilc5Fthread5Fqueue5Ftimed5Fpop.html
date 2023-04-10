@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<title>silcthreadqueue.h</title>
+<!-- Source: ./../../lib/silcutil/silcthreadqueue.h -->
+<!-- Generated with ROBODoc Version 4.99.36 (Feb  3 2008) -->
+</head>
+<body>
+<div id="logo">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+
+<div id="contentwrapper">
+<div id="navigation">
+<a class="menuitem" href="silcthreadqueue_hsilcutil2FThread20Queue20Interface.html">Thread Queue Interface</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2FSilcThreadQueue.html#">SilcThreadQueue</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Falloc.html#">silc_thread_queue_alloc</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Fconnect.html#">silc_thread_queue_connect</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Fdisconnect.html#">silc_thread_queue_disconnect</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Fpush.html#">silc_thread_queue_push</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Fpop.html#">silc_thread_queue_pop</a>
+<a class="menuitem" href="#">silc_thread_queue_timed_pop</a>
+<a class="menuitem" href="./silcthreadqueue_hsilcutil2Fsilc5Fthread5Fqueue5Fpop5Flist.html#">silc_thread_queue_pop_list</a>
+</div> <!-- navigation -->
+<div id="content">
+<a name="silcutil2fsilc5fthread5fqueue5ftimed5fpop">
+</a><a name="robo620"></a><h2>silc_thread_queue_timed_pop</h2>
+
+<p class="item_name">SYNOPSIS</p>
+<pre>    void *<strong>silc_thread_queue_timed_pop</strong>(<a href="./silcthreadqueue_hsilcutil2FSilcThreadQueue.html#robo626">SilcThreadQueue</a> queue,
+                                      int pipe_index, int timeout_msec);
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<p>    Takes data from the thread queue or waits at most `timeout_msec'
+    milliseconds for the data to arrive.  If data is not available when
+    the timeout occurrs this returns NULL.
+</p>
+
+<p>    The `pipe_index' specifies the pipe from which to pop the data.
+    First pipe has index 0, second has index 1, and so on.  If there is
+    only one pipe the index is always 0.
+</p>
+
+</div> <!-- content -->
+</div> <!-- contentwrapper -->
+<div id="footer">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+ <tr valign="top">
+  <td>Copyright &copy; 2001 - 2008 SILC Project<br />
+    <a href="http://silc.fi">SILC Project Website</a></td>
+  <td align="right">
+   <a href="index.html">SILC Runtime Toolkit Manual</a><br />
+   <a href="masterindex.html">Index</a></small></td>
+  </td>
+ </tr>
+</table>
+</div>
+</body>
+</html>
